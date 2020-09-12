@@ -43,7 +43,13 @@ void reg_test() {
 
 void isa_reg_display() {
 	for (int i = 0; i < 8; i++) {
-		printf("%s\t\n",regsl[i]);
+		printf("%s\t%x\n",regsl[i], reg_l(i));
+	}
+	for (int i = 0; i < 8; i++) {
+		printf("%s\t%x\n",regsw[i], reg_w(i));
+	}
+	for (int i = 0; i < 8; i++) {
+		printf("%s\t%x\n",regsb[i], reg_b(i));
 	}
 }
 
