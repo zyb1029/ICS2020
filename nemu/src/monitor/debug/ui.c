@@ -115,8 +115,8 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args) {
 	int n = atoi(args);
-	//char * now = args + strlen(arg +1;
-	printf("\n%d\n", n);
+	char *now = args + strlen(args) +1;
+	printf("%s\n%d\n",now,  n);
 	return 1;
 }
 void ui_mainloop() {
