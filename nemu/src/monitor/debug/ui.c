@@ -90,13 +90,13 @@ static int cmd_si(char *args) {
 		int len = strlen(args);
 		for(int i = 0; i < len; i++) {
 			if (! (args[i] <= '9' && args[i] >= 0 )) {
-				printf("n must be nonnegative integer!\n");
+				printf("si n : n must be nonnegative integer!\n");
 				return 0;
 			}
 		}
 		int n = atoi(args);
 		if (n < 0) {
-			printf("n must be nonnegative integer!\n");
+			printf("si [n]: n must be nonnegative integer!\n");
 		}
 		else {
 			cpu_exec(n);
@@ -105,7 +105,9 @@ static int cmd_si(char *args) {
 	return 0;
 }
 static int cmd_info(char *args) {
-	isa_reg_display();
+	if (strcmp(args,"q") ==0 ) {
+		isa_reg_display();
+	}
 	return 0;
 }
 
