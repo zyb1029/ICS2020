@@ -43,6 +43,7 @@ static int cmd_si(char *args);
 
 static int cmd_info(char *args);
 
+static int cmd_x(char *args);
 static struct {
   char *name;
   char *description;
@@ -52,7 +53,8 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "executive instruction for [n] times", cmd_si },
-  {"info", "print all registers", cmd_info },
+  { "info", "print all registers", cmd_info },
+  { "x", "examine memory", cmd_x },
   /* TODO: Add more commands */
 
 };
@@ -111,6 +113,12 @@ static int cmd_info(char *args) {
 	return 0;
 }
 
+static int cmd_x(char *args) {
+	//int n = atoi(args);
+	//char * now = args + strlen(arg +1;
+	//printf("%s\n%d\n", now,n);
+	return 1;
+}
 void ui_mainloop() {
   if (is_batch_mode()) {
     cmd_c(NULL);
