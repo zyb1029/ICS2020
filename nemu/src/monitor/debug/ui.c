@@ -87,9 +87,21 @@ static int cmd_si(char *args) {
 		cpu_exec(1);
 	}
 	else {
+		int len = strlen(args);
+		for(int i = 0; i < len; i++) {
+			if (! (args[i] <= '9' && args[i] >= 0 )) {
+				printf("n must be nonnegative integer!");
+				return 0;
+			}
+		}
 		int n = atoi(args);
-		printf("%d",n);
-		cpu_exec(n);
+		if (n < 0) {
+			printf("n must be nonnegative integer!");
+		}
+		else {
+			printf("%d",n);
+			cpu_exec(n);
+		}
 	} 
 	return 0;
 }
