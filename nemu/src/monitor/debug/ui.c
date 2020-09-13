@@ -120,12 +120,14 @@ static int cmd_x(char *args) {
 	now = strtok(NULL, " ");
 	int i;
 	printf("0x%s:\t",now);
+	init_mem();
 	for (i = 0; i < n; i++) {
 		printf("0x");
 		uint32_t *addr = (uint32_t *)guest_to_host(*now);
 		printf("%x\t", *addr);
 		addr = addr + 1;
 	}
+	printf ("\n");
 	return 0;
 }
 void ui_mainloop() {
