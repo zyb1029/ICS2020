@@ -19,9 +19,6 @@ void init_mem() {
   int i;
    for (i = 0; i < PMEM_SIZE / sizeof(p[0]); i ++) {
     p[i] = rand();
-	if(i< 10){
-		printf("%d  p    ", p[i]);
-	}
   }
 //#endif
   for (i = 0; i < 10; i++) {

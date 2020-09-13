@@ -121,9 +121,9 @@ static int cmd_x(char *args) {
 	int i;
 	printf("0x%s:\t",now);
 	init_mem();
+	uint32_t *addr = (uint32_t *)guest_to_host(*now); 
 	for (i = 0; i < n; i++) {
 		printf("0x");
-		uint32_t *addr = (uint32_t *)guest_to_host(*now);
 		printf("%x\t", *addr);
 		addr = addr + 1;
 	}
