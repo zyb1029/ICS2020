@@ -122,7 +122,6 @@ static int cmd_x(char *args) {
 	sscanf(now, "%x" , &num);
 	int i;
 	printf("0x%x:\t",num);
-	init_mem();
 	uint32_t *addr = (uint32_t *)guest_to_host(num); 
 	for (i = 0; i < n; i++) {
 		printf("0x");
