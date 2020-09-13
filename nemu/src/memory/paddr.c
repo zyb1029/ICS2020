@@ -15,9 +15,9 @@ IOMap* fetch_mmio_map(paddr_t addr);
 void init_mem() {
 //#ifndef DIFF_TEST
   srand(time(0));
-  uint32_t *p = (uint32_t *)guest_to_host(0);
+  uint32_t *p = (uint32_t *)guest_to_host(0x100000);
   int i;
-   for (i = 0; i < PMEM_SIZE / sizeof(p[0]); i ++) {
+   for (i = 0; i < 10; i ++) {
     p[i] = rand();
   }
 //#endif
