@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <memory/paddr.h>
 
 void cpu_exec(uint64_t);
 int is_batch_mode();
@@ -117,8 +118,15 @@ static int cmd_x(char *args) {
 	int n = atoi(args);
 	char *now = strtok(NULL," ");
 	now = strtok(NULL, " ");
-	printf("%s\n%d\n",now,  n);
-	return 1;
+	int i;
+	printf("0x%s:\t",now);
+	for (i = 0; i < n; i++) {
+		printf("0x");
+		uint32_t *addr = guest_to_host(*now);
+		printf("%x\t", *addr);
+		addr = addr + 1;
+	}
+	return 0;
 }
 void ui_mainloop() {
   if (is_batch_mode()) {
