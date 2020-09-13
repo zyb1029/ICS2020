@@ -118,14 +118,15 @@ static int cmd_x(char *args) {
 	int n = atoi(args);
 	char *now = strtok(NULL," ");
 	now = strtok(NULL, " ");
+	int num;
+	sscanf(now, "%x" , &num);
 	int i;
-	printf("0x%s:\t",now);
+	printf("0x%x:\t",num);
 	init_mem();
-	uint32_t *addr = (uint32_t *)guest_to_host(*now); 
+	uint32_t *addr = (uint32_t *)guest_to_host(num); 
 	for (i = 0; i < n; i++) {
 		printf("0x");
-		printf("%x\t", *addr);
-		addr = addr + 1;
+		printf("%x\t", addr[i]);
 	}
 	printf ("\n");
 	return 0;
