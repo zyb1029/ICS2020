@@ -122,7 +122,7 @@ static int cmd_x(char *args) {
 	printf("0x%s:\t",now);
 	for (i = 0; i < n; i++) {
 		printf("0x");
-		uint32_t *addr = guest_to_host(*now);
+		uint32_t *addr = (uint32_t *)guest_to_host(*now);
 		printf("%x\t", *addr);
 		addr = addr + 1;
 	}
