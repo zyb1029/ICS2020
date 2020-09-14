@@ -88,7 +88,9 @@ static bool make_token(char *e) {
 	//	tokens[nr_token].str = substr_start;
 	//	nr_token = nr_token + 1;
         switch (rules[i].token_type) {
-          default: TODO();
+			case TK_NOTYPE : break;
+			
+          default: printf("%s\n",substr_start);
         }
 
         break;
