@@ -202,7 +202,7 @@ void expr_clear(){
 	int i;
 	for (i = 0; i < nr_token; i++) {
 		tokens[i].type = ' ';
-		strcpy(tokens[i].str, "");
+		memset(tokens[i].str,0 , sizeof(tokens[i].str));
 		printf("%s", tokens[i].str);
 		printf("22");
 		top = 0;
