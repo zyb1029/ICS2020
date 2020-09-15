@@ -103,6 +103,7 @@ static int cmd_si(char *args) {
 			}
 		}
 		int n = atoi(args);
+		printf("%d 333",n);
 		if (n < 0) {
 			printf("si [n]: n must be nonnegative integer!\n");
 		}
