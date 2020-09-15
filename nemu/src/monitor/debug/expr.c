@@ -92,13 +92,13 @@ static bool make_token(char *e) {
 			case '/':
 			case '(':
 			case ')':
-			case '0':	
+			case '0':
+				     nr_token = nr_token + 1;	
 					 memcpy(tokens[nr_token].str, substr_start,substr_len);
 					 tokens[nr_token].type = rules[i].token_type;
 					 break;
 			default: TODO();
         }
-		nr_token = nr_token + 1;
         break;
       }
     }
@@ -148,11 +148,9 @@ bool check_parentheses(int p,int q){
 	}
 }
 word_t eval(int p, int q) {
-	printf("%d %d\n", p, q);
 	if (p > q) {
-		printf("%d %d\n",p,q);
 		return 0;
-		//assert(0);
+		assert(0);
 	}
 	else if (p == q) {
 		if(tokens[p].type != '0') {
@@ -198,7 +196,6 @@ word_t eval(int p, int q) {
 				}
 			}
 		}
-		printf("%c %d 666\n",op_type,op);
 		int32_t val1 = eval(p, op -1);
 		int32_t val2 = eval(op + 1, q);
 		switch (op_type) {
@@ -232,7 +229,6 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   pre_check();
   *success = true;
-  printf("%d\n", nr_token);
   word_t answer = eval(0, nr_token - 1);
   expr_clear();
   return answer;
