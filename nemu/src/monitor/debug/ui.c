@@ -94,6 +94,7 @@ static int cmd_si(char *args) {
 		cpu_exec(1);
 	}
 	else {
+		printf("%s",args);
 		int len = strlen(args);
 		for(int i = 0; i < len; i++) {
 			if (! (args[i] <= '9' && args[i] >= 0 )) {
