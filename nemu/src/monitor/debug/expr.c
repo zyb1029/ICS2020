@@ -209,7 +209,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   pre_check();
   *success = true;
- // word_t answer = eval(0, nr_token - 1);
- // return answer;
- return 0;
+  word_t answer = eval(0, nr_token - 1);
+  nr_token = 0;
+  return answer;
 }
