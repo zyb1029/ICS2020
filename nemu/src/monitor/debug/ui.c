@@ -143,7 +143,8 @@ static int cmd_p(char *args) {
 	char *e = strtok(NULL, " ");
 	bool p = true;
 	word_t pp = expr(e, &p);
-	return pp;
+	printf("%d", pp);
+	return 0;
 }
 
 void ui_mainloop() {
