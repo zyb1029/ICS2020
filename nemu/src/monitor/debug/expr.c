@@ -93,9 +93,9 @@ static bool make_token(char *e) {
 			case '(':
 			case ')':
 			case '0':
-				     nr_token = nr_token + 1;	
 					 memcpy(tokens[nr_token].str, substr_start,substr_len);
 					 tokens[nr_token].type = rules[i].token_type;
+				     nr_token = nr_token + 1;	
 					 break;
 			default: TODO();
         }
