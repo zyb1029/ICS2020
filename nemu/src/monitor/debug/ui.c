@@ -129,18 +129,12 @@ static int cmd_x(char *args) {
 	sscanf(now, "%x" , &num);
 	int i;
 	printf("0x%x:\t",num);
-	uint32_t *addr = (uint32_t *)guest_to_host(num); 
+	uint32_t  addr = paddr_read(num, 4);
 	for (i = 0; i < n; i++) {
 		printf("0x");
-		printf("%x\t", addr[i]);
-	}
-	printf ("\n");
-	uint32_t  addr2 = paddr_read(num, 4);
-	for (i = 0; i < n; i++) {
-		printf("0x");
-		printf("%x\t",addr2);
+		printf("%x\t",addr);
 		num = num + 4;
-		addr2 = paddr_read(num, 4);
+		addr = paddr_read(num, 4);
 	}
 	printf("\n");
 	return 0;
