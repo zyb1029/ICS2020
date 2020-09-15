@@ -147,64 +147,64 @@ bool check_parentheses(int p,int q){
 		}
 	}
 }
-word_t eval(int p, int q) {
+uint32_t eval(int p, int q) {
 	if (p > q) {
 		assert(0);
 	}
-	else if (p == q) {
+	else  if (p == q) {
 		if(tokens[p].type != '0') {
 			assert(0);
-		}
+		} 
 		else {
 			int32_t tmp;
 			sscanf(tokens[p].str, "%d", &tmp);
 			return tmp;
-		}
+		} 
 	}
 	else if (p + 1 == q && tokens[p].type == '-' && tokens[q].type == '0') {
 		int32_t tmp;
 		sscanf(tokens[q].str, "%d", &tmp);
 		return -1 * tmp;
-	}
+	} 
 	else if (check_parentheses(p, q) == true) {
 		return eval(p + 1, q - 1);
-	}
+	} 
     else {
 		int i, sum = 0, op = p;
 		char op_type = '0';
 		for (i = q; i > p; i--) {
 			if(tokens[i].type == '(') {
 				sum--;
-			}
+	 		}
 			else if(tokens[i].type == ')') {
 				sum++;
-			}
+	 		}
 			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) {
 				continue;
-			}
-			else if(sum == 0){
-				if(tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
+	 		}
+	 		else if(sum == 0){
+	 			if(tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
 					if (op_type == '0') {
 						op_type = tokens[i].type;
 						op = i;
-					}
+	 				}
 					else if( (op_type == '*' || op_type == '/') && (tokens[i].type == '+' || tokens[i].type == '-')) {
 						op_type = tokens[i].type;
 						op = i;
-					}
+	 				}
 				}
 			}
-		}
-		int32_t val1 = eval(p, op -1);
-		int32_t val2 = eval(op + 1, q);
-		switch (op_type) {
+	 	}
+		uint32_t val1 = eval(p, op -1);
+		uint32_t val2 = eval(op + 1, q);
+	 	switch (op_type) {
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
 			case '/': return val1 / val2;
 			default: return 0;
 		}
-	}
+	} 
 }
 void expr_clear(){
 	int i;
@@ -215,7 +215,7 @@ void expr_clear(){
 		top = 0;
 		st[i] = 0;
 		match_parentheses[i] = 0;	
-	}
+	} 
 	nr_token = 0;
 
 }
@@ -228,7 +228,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   pre_check();
   *success = true;
-  word_t answer = eval(0, nr_token - 1);
+  uint32_t answer = eval(0, nr_token - 1);
   expr_clear();
   return answer;
 }
