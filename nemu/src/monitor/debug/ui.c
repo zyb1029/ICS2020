@@ -140,10 +140,9 @@ static int cmd_x(char *args) {
 	return 0;
 }
 static int cmd_p(char *args) {
-	char *e = strtok(NULL, " ");
 	bool p = true;
-	word_t pp = expr(e, &p);
-	printf("%d\n", pp);
+	word_t pp = expr(args, &p);
+	printf("%d", pp);
 	return 0;
 }
 
