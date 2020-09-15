@@ -180,7 +180,8 @@ word_t eval(int p, int q) {
 				sum++;
 			}
 			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) {
-					continue;
+				printf("6464");
+				continue;
 			}
 			else if(sum == 0){
 				if(tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
