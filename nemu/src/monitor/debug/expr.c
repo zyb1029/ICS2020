@@ -204,7 +204,6 @@ void expr_clear(){
 		tokens[i].type = ' ';
 		memset(tokens[i].str,0 , sizeof(tokens[i].str));
 		printf("%s", tokens[i].str);
-		printf("22");
 		top = 0;
 		st[i] = 0;
 		match_parentheses[i] = 0;	
