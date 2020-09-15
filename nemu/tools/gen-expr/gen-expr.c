@@ -27,7 +27,8 @@ void rand_space(){
 	   }
 }
 void gen_num() {
-	int p = rand() % 50 + 1;
+	int p = rand();
+	buf[len ++] = 'u';
 	if(p>100)buf[len++] = p / 100 + '0';
 	if(p>10)buf[len++] = p / 10 - p / 100 * 10 + '0';
 	buf[len++] = p % 10 + '0';
@@ -88,7 +89,7 @@ int main(int argc, char *argv[]) {
     int result;
     fscanf(fp, "%d", &result);
     pclose(fp);
-
+	remove_u(buf);
     printf( "%u %s\n", result, buf);
   }
   return 0;
