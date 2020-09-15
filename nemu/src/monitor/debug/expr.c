@@ -203,6 +203,7 @@ void expr_clear(){
 	for (i = 0; i < nr_token; i++) {
 		tokens[i].type = ' ';
 		strcpy(tokens[i].str, "");
+		printf("%s", tokens[i].str);
 		top = 0;
 		st[i] = 0;
 		match_parentheses[i] = 0;	
