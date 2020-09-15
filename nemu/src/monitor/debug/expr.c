@@ -232,6 +232,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   pre_check();
   *success = true;
+  printf("%d\n", nr_token);
   word_t answer = eval(0, nr_token - 1);
   expr_clear();
   return answer;
