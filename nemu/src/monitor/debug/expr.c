@@ -198,7 +198,18 @@ word_t eval(int p, int q) {
 		}
 	}
 }
+void expr_clear(){
+	int i;
+	for (i = 0; i < nr_token; i++) {
+		tokens[i].type = ' ';
+		strcpy(tokens[i].str, "");
+		top = 0;
+		st[i] = 0;
+		match_parentheses[i] = 0;	
+	}
+	nr_token = 0;
 
+}
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -209,6 +220,6 @@ word_t expr(char *e, bool *success) {
   pre_check();
   *success = true;
   word_t answer = eval(0, nr_token - 1);
-  nr_token = 0;
+  expr_clear();
   return answer;
 }
