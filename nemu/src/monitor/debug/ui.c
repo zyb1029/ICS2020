@@ -93,9 +93,10 @@ static int cmd_si(char *args) {
 	if(args == NULL ){
 		cpu_exec(1);
 	}
+
 	else {
-		printf("%s",args);
 		int len = strlen(args);
+		printf("%s %d",args,len);
 		for(int i = 0; i < len; i++) {
 			if (! (args[i] <= '9' && args[i] >= 0 )) {
 				printf("si n : n must be nonnegative integer!\n");
@@ -103,7 +104,6 @@ static int cmd_si(char *args) {
 			}
 		}
 		int n = atoi(args);
-		printf("%d 333",n);
 		if (n < 0) {
 			printf("si [n]: n must be nonnegative integer!\n");
 		}
