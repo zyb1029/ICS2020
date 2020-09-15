@@ -156,14 +156,14 @@ uint32_t eval(int p, int q) {
 			assert(0);
 		} 
 		else {
-			int32_t tmp;
-			sscanf(tokens[p].str, "%d", &tmp);
+			uint32_t tmp;
+			sscanf(tokens[p].str, "%u", &tmp);
 			return tmp;
 		} 
 	}
 	else if (p + 1 == q && tokens[p].type == '-' && tokens[q].type == '0') {
-		int32_t tmp;
-		sscanf(tokens[q].str, "%d", &tmp);
+		uint32_t tmp;
+		sscanf(tokens[q].str, "%u", &tmp);
 		return -1 * tmp;
 	} 
 	else if (check_parentheses(p, q) == true) {
@@ -175,26 +175,26 @@ uint32_t eval(int p, int q) {
 		for (i = q; i > p; i--) {
 			if(tokens[i].type == '(') {
 				sum--;
-	 		}
+	 	 	}
 			else if(tokens[i].type == ')') {
 				sum++;
-	 		}
+	 	 	}
 			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) {
 				continue;
-	 		}
+	 	 	}
 	 		else if(sum == 0){
 	 			if(tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
 					if (op_type == '0') {
 						op_type = tokens[i].type;
 						op = i;
-	 				}
+	 	 			}
 					else if( (op_type == '*' || op_type == '/') && (tokens[i].type == '+' || tokens[i].type == '-')) {
 						op_type = tokens[i].type;
 						op = i;
-	 				}
-				}
-			}
-	 	}
+	 	 			}
+		 		}
+		 	}
+	 	} 
 		uint32_t val1 = eval(p, op -1);
 		uint32_t val2 = eval(op + 1, q);
 	 	switch (op_type) {
@@ -203,7 +203,7 @@ uint32_t eval(int p, int q) {
 			case '*': return val1 * val2;
 			case '/': return val1 / val2;
 			default: return 0;
-		}
+		} 
 	} 
 }
 void expr_clear(){
