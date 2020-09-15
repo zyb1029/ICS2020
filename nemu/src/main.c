@@ -1,7 +1,10 @@
+/*#include<string.h>
+#include<stdio.h>
+#include<expr.h>*/
 void init_monitor(int, char *[]);
 void engine_start();
 int is_exit_status_bad();
-
+//word_t expr(char *e, bool *success);
 int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
   
@@ -9,7 +12,11 @@ int main(int argc, char *argv[]) {
 
   /* Start engine. */
   engine_start();
- 
+/*	char e[10];
+	strcpy(e,"1+2");
+	bool p = 1;
+	printf("%u",expr(e,p));
+*/
 /*  FILE *fp = fopen("~/ics2020/nemu/tools/gen-expr/.input","r");
   assert(fp != NULL);
   uint32_t result;

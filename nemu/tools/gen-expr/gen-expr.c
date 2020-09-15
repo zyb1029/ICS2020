@@ -27,18 +27,30 @@ void rand_space(){
 	   }
 }
 void gen_num() {
-	int p = rand();
-	buf[len ++] = 'u';
-	if(p>100)buf[len++] = p / 100 + '0';
-	if(p>10)buf[len++] = p / 10 - p / 100 * 10 + '0';
-	buf[len++] = p % 10 + '0';
+	int p = rand() % 1000000;
+	char tmp[10];
+	int cnt = 0;
+	if(p == 0) {
+		buf[len++] = '0';
+	}
+	else {
+		while(p) {
+			tmp[cnt++] = p % 10 + '0';
+			p/=10;	
+		}
+		int i;
+		for (i = cnt - 1; i >= 0; i--) {
+			buf[len++] = tmp[i];
+		}
+	}
 //	printf("%d ",p);
+	buf[len ++] = 'u';
 	buf[len] = 0;
 }
 void gen_op(){
 	int t= rand () % 4;
-//	printf("%d",t);
- 	switch(t){ 
+ //	printf("%d",t);
+  	switch(t){ 
 		case 0 : buf[len] = '+'; buf[++len] = 0; break;	
 		case 1 : buf[len] = '*'; buf[++len] = 0; break;	
 		case 2 : buf[len] = '-'; buf[++len] = 0; break;	
@@ -59,6 +71,14 @@ static inline void gen_rand_expr() {
 			  break;
 	  case 2: gen_rand_expr();rand_space(); gen_op(); rand_space(); gen_rand_expr(); break;
   }   
+}
+
+void remove_u(char *p) {
+	char *q = p;
+	while((q = strchr(q, 'u')) != NULL) {
+		strcpy(code_buf, q + 1);
+		strcpy(q, code_buf);
+	}
 }
 
 int main(int argc, char *argv[]) {
