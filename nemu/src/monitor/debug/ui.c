@@ -120,6 +120,7 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args) {
 	int n = atoi(args);
+	printf("%s",args);
 	char *now = strtok(NULL," ");
 	now = strtok(NULL, " ");
 	int num;
