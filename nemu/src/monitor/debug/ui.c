@@ -142,6 +142,7 @@ static int cmd_x(char *args) {
 		num = num + 4;
 		addr2 = paddr_read(num, 4);
 	}
+	printf("\n");
 	return 0;
 }
 static int cmd_p(char *args) {
