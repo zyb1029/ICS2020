@@ -114,17 +114,17 @@ static int cmd_si(char *args) {
 	return 0;
 }
 static int cmd_info(char *args) {
-	if (strcmp(args,"r") ==0 ) {
+	char *arg = strtok(NULL, " ");
+	if (strcmp(arg,"r") ==0 ) {
 		isa_reg_display();
 	}
 	return 0;
 }
 
 static int cmd_x(char *args) {
-	int n = atoi(args);
-	printf("%d",n);
+	char *arg = strtok(NULL, " ");
+	int n = atoi(arg);
 	char *now = strtok(NULL," ");
-	now = strtok(NULL, " ");
 	int num;
 	sscanf(now, "%x" , &num);
 	int i;
