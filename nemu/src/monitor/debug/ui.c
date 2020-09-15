@@ -135,6 +135,13 @@ static int cmd_x(char *args) {
 		printf("%x\t", addr[i]);
 	}
 	printf ("\n");
+	uint32_t  addr2 = paddr_read(num, 4);
+	for (i = 0; i < n; i++) {
+		printf("0x");
+		printf("%x\t",addr2);
+		num = num + 4;
+		addr2 = paddr_read(num, 4);
+	}
 	return 0;
 }
 static int cmd_p(char *args) {
