@@ -161,6 +161,11 @@ word_t eval(int p, int q) {
 			return tmp;
 		}
 	}
+	else if (p + 1 == q && tokens[p].type == '-' && tokens[q].type == '0') {
+		int32_t tmp;
+		sscanf(tokens[q].str, "%d", &tmp);
+		return -1 * tmp;
+	}
 	else if (check_parentheses(p, q) == true) {
 		return eval(p + 1, q - 1);
 	}
@@ -173,6 +178,9 @@ word_t eval(int p, int q) {
 			}
 			else if(tokens[i].type == ')') {
 				sum++;
+			}
+			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) {
+					continue;
 			}
 			else if(sum == 0){
 				if(tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
