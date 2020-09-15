@@ -198,7 +198,7 @@ word_t eval(int p, int q) {
 				}
 			}
 		}
-		printf("%c",op_type);
+		printf("%c %d 666\n",op_type,op);
 		int32_t val1 = eval(p, op -1);
 		int32_t val2 = eval(op + 1, q);
 		switch (op_type) {
