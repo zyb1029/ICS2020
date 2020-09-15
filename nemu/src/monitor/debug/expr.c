@@ -117,7 +117,6 @@ int st[32], top = 0;
 
 void pre_check(){
 	for (int i = 0; i < nr_token; i++) {
-		printf("%s",tokens[i].str);
 		if(tokens[i].type == '(') {
 			st[++top] = i;
 		}
