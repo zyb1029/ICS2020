@@ -183,7 +183,6 @@ word_t eval(int p, int q) {
 				sum++;
 			}
 			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) {
-				printf("6464");
 				continue;
 			}
 			else if(sum == 0){
@@ -199,6 +198,7 @@ word_t eval(int p, int q) {
 				}
 			}
 		}
+		printf("%c",op_type);
 		int32_t val1 = eval(p, op -1);
 		int32_t val2 = eval(op + 1, q);
 		switch (op_type) {
