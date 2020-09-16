@@ -13,21 +13,8 @@ int is_batch_mode();
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char buff[65536];
 static char* rl_gets() {
-/*  static char *line_read = NULL;
 
-  if (line_read) {
-    free(line_read);
-    line_read = NULL;
-  }
-
-  line_read = readline("(nemu) ");
-
-  if (line_read && *line_read) {
-    add_history(line_read);
-  }
-
-  return line_read;
- */ FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
+  FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
   assert(fp != NULL);
   uint32_t result;
   while(fgets(buff, 10000, fp) != NULL) {
@@ -45,7 +32,7 @@ static char* rl_gets() {
 	  }
 	  bool p =true;
 	  if(result == expr(buff + len_result,&p)) {
-		  puts("OK");
+	//	  puts("OK");
 	//	  printf("%s\n%u\n ",buff + len_result, result);
 	  }
 	  else {
@@ -55,8 +42,20 @@ static char* rl_gets() {
 	  
   }
   fclose(fp);
-  strcpy(buff, "");
-  return buff;
+   static char *line_read = NULL;
+
+  if (line_read) {
+    free(line_read);
+    line_read = NULL;
+  }
+
+  line_read = readline("(nemu) ");
+
+  if (line_read && *line_read) {
+    add_history(line_read);
+  }
+
+  return line_read;
 }
 
 static int cmd_c(char *args) {
