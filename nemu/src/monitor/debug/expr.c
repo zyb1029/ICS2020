@@ -122,7 +122,8 @@ void pre_check(){
 		}
 		else if(tokens[i].type == ')') {
 			if(top == 0) {
-				assert(0);
+			//	assert(0);
+				printf("%d sd\n", i);
 			}
 			else {
 				match_parentheses[st[top--]] = i;
