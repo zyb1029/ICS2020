@@ -45,8 +45,8 @@ static char* rl_gets() {
 	  }
 	  bool p =true;
 	  if(result == expr(buff + len_result,&p)) {
-		  puts("OK");
-		  printf("%s\n%u\n ",buff + len_result, result);
+	//	  puts("OK");
+	//	  printf("%s\n%u\n ",buff + len_result, result);
 	  }
 	  else {
 		  assert(0);
