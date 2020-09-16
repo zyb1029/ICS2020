@@ -11,8 +11,9 @@ void cpu_exec(uint64_t);
 int is_batch_mode();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
+static char buff[65536];
 static char* rl_gets() {
-  static char *line_read = NULL;
+ /* static char *line_read = NULL;
 
   if (line_read) {
     free(line_read);
@@ -25,7 +26,30 @@ static char* rl_gets() {
     add_history(line_read);
   }
 
-  return line_read;
+  return line_read;*/
+  FILE *fp = fopen("~/ics2020/nemu/tools/gen-expr/.input","r");
+  assert(fp != NULL);
+  uint32_t result;
+  while(fgets(buff, 10000, fp) != NULL) {
+	  int len = strlen(buff);
+	  buff[len - 1] = 0;
+	  sscanf(buff,"%u", &result);
+	  int len_result = 0;
+	  uint32_t tmp = result;
+	  while(tmp) {
+		  len_result++;
+		  tmp/=10;
+	  }
+	  bool p =true;
+	  if(result == expr(buff + len_result,&p)) {
+		  puts("OK");
+	  }
+	  else {
+		  printf("%u %s\n", result, buff + len_result);
+	  }
+	  fclose(fp);
+  }
+  return buff;
 }
 
 static int cmd_c(char *args) {
