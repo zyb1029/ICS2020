@@ -36,6 +36,9 @@ static char* rl_gets() {
 	  sscanf(buff,"%u", &result);
 	  int len_result = 0;
 	  uint32_t tmp = result;
+	  if(tmp == 0) {
+		  len_result = 1;
+	  }
 	  while(tmp) {
 		  len_result++;
 		  tmp/=10;
