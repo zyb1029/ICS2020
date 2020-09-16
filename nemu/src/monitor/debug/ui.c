@@ -172,8 +172,8 @@ static int cmd_x(char *args) {
 	uint32_t  addr = paddr_read(num, 1);
 	for (i = 0; i < n; i++) {
 		printf("0x");
-		printf("%.8x\t",addr);
-		num = num + 4;
+		printf("%.2x\t",addr);
+		num = num + 1;
 		addr = paddr_read(num, 1);
 	}
 	printf("\n");
