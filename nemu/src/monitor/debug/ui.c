@@ -172,7 +172,7 @@ static int cmd_x(char *args) {
 	uint32_t  addr = paddr_read(num, 4);
 	for (i = 0; i < n; i++) {
 		printf("0x");
-		printf("%x\t",addr);
+		printf("%.8x\t",addr);
 		num = num + 4;
 		addr = paddr_read(num, 4);
 	}
