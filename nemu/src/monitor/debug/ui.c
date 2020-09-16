@@ -19,7 +19,7 @@ static char* rl_gets() {
   assert(fp != NULL);
   uint32_t result;
   int t = 0;
-  while(fgets(buff, 10000, fp) != NULL) {
+  while(fgets(buff, 65536, fp) != NULL) {
 	  int len = strlen(buff);
 	  if (t < len) {
 		  t = len;
