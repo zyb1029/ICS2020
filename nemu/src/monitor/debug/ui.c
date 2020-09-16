@@ -51,6 +51,7 @@ static char* rl_gets() {
 	  fclose(fp);
 	  
   }
+  strcpy(buff, "");
   return buff;
 }
 
