@@ -174,7 +174,7 @@ static int cmd_x(char *args) {
 		printf("0x");
 		printf("%.8x\t",addr);
 		num = num + 4;
-		addr = paddr_read(num, 4);
+		addr = paddr_read(num, 1);
 	}
 	printf("\n");
 	return 0;
