@@ -14,7 +14,8 @@ int is_batch_mode();
 static char buff[65536];
 static char* rl_gets() {
 
-  FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
+  //FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
+  FILE *fp = fopen("/home/zyb/Downloads/input","r");
   assert(fp != NULL);
   uint32_t result;
   while(fgets(buff, 10000, fp) != NULL) {
@@ -32,8 +33,8 @@ static char* rl_gets() {
 	  }
 	  bool p =true;
 	  if(result == expr(buff + len_result,&p)) {
-	//	  puts("OK");
-	//	  printf("%s\n%u\n ",buff + len_result, result);
+		  puts("OK");
+		  printf("%s\n%u\n ",buff + len_result, result);
 	  }
 	  else {
 		  assert(0);
