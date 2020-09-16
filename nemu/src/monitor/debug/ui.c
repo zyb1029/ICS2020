@@ -169,12 +169,12 @@ static int cmd_x(char *args) {
 	sscanf(now, "%x" , &num);
 	int i;
 	printf("0x%x:\t",num);
-	uint32_t  addr = paddr_read(num, 1);
+	uint32_t  addr = paddr_read(num, 4);
 	for (i = 0; i < n; i++) {
 		printf("0x");
-		printf("%.2x\t",addr);
-		num = num + 1;
-		addr = paddr_read(num, 1);
+		printf("%.8x\t",addr);
+		num = num + 4;
+		addr = paddr_read(num, 4);
 	}
 	printf("\n");
 	return 0;
