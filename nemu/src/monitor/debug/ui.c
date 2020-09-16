@@ -18,7 +18,9 @@ static char* rl_gets() {
  // FILE *fp = fopen("/home/zyb/Downloads/input","r");
   assert(fp != NULL);
   uint32_t result;
+  int t = 0;
   while(fgets(buff, 10000, fp) != NULL) {
+	  t++;
 	  int len = strlen(buff);
 	  buff[len - 1] = 0;
 	  sscanf(buff,"%u", &result);
@@ -43,6 +45,7 @@ static char* rl_gets() {
 	  
   }
   fclose(fp);
+  printf("%d",t);
    static char *line_read = NULL;
 
   if (line_read) {
