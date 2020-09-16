@@ -59,7 +59,7 @@ void gen_op(){
 } 
 static inline void gen_rand_expr() {
   int  t = rand()%4;
-  if (len > 65536 / 4) {
+  if (len > 65536 / 3) {
 	  t = 0;
   }
    switch(t) {
@@ -76,10 +76,11 @@ static inline void gen_rand_expr() {
 }
 
 void remove_u(char *p) {
-	char *q = p;
-	while((q = strchr(q, 'u')) != NULL) {
-		strcpy(code_buf, q + 1);
-		strcpy(q, code_buf);
+	int i;
+	for (i = 0; p[i] != 0; i++) {
+		if (p[i] == 'u') {
+			p[i] = ' ';
+		}
 	}
 }
 
@@ -102,8 +103,11 @@ int main(int argc, char *argv[]) {
     assert(fp != NULL);
     fputs(code_buf, fp);
     fclose(fp);
-    int ret = system("gcc /tmp/.code.c -o /tmp/.expr -Wall -Werror ");
-    if (ret != 0) continue;
+    int ret = system("gcc /tmp/.code.c -o /tmp/.expr 2> /home/zyb/Desktop/input2 -Wall -Werror ");
+    if (ret != 0) {
+		i--;
+		continue;
+	}
 
     fp = popen("/tmp/.expr", "r");
     assert(fp != NULL);
