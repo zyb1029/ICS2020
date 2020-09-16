@@ -27,7 +27,7 @@ static char* rl_gets() {
   }
 
   return line_read;*/
-  FILE *fp = fopen("/tmp/.expr","r");
+  FILE *fp = fopen("","r");
   assert(fp != NULL);
   uint32_t result;
   while(fgets(buff, 10000, fp) != NULL) {
