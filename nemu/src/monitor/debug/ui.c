@@ -43,11 +43,13 @@ static char* rl_gets() {
 	  bool p =true;
 	  if(result == expr(buff + len_result,&p)) {
 		  puts("OK");
+		  printf("%s\n%u",buff + len_result, result);
 	  }
 	  else {
 		  printf("%u %s\n", result, buff + len_result);
 	  }
 	  fclose(fp);
+	  
   }
   return buff;
 }
