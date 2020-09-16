@@ -20,8 +20,10 @@ static char* rl_gets() {
   uint32_t result;
   int t = 0;
   while(fgets(buff, 10000, fp) != NULL) {
-	  t++;
 	  int len = strlen(buff);
+	  if (t < len) {
+		  t = len;
+	  }
 	  buff[len - 1] = 0;
 	  sscanf(buff,"%u", &result);
 	  int len_result = 0;
