@@ -25,7 +25,6 @@ static char* rl_gets() {
 		  t = len;
 	  }
 	  printf("%s",buff);
-	  break;
 	  buff[len - 1] = 0;
 	  sscanf(buff,"%u", &result);
 	  int len_result = 0;
