@@ -27,7 +27,7 @@ static char* rl_gets() {
   }
 
   return line_read;*/
-  FILE *fp = fopen("~/ics2020/nemu/tools/gen-expr/.input","r");
+  FILE *fp = fopen("~/ics2020/nemu/tools/gen-expr/input","r");
   assert(fp != NULL);
   uint32_t result;
   while(fgets(buff, 10000, fp) != NULL) {
