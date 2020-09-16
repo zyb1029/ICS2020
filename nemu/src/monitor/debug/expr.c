@@ -111,9 +111,9 @@ static bool make_token(char *e) {
 
   return true;
 }
-int match_parentheses[32];
+static int match_parentheses[65536];
 
-int st[32], top = 0;
+static int st[65536], top = 0;
 
 void pre_check(){
 	for (int i = 0; i < nr_token; i++) {
@@ -211,7 +211,6 @@ void expr_clear(){
 	for (i = 0; i < nr_token; i++) {
 		tokens[i].type = ' ';
 		memset(tokens[i].str,0 , sizeof(tokens[i].str));
-		printf("%s", tokens[i].str);
 		top = 0;
 		st[i] = 0;
 		match_parentheses[i] = 0;	
