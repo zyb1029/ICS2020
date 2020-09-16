@@ -27,7 +27,7 @@ void rand_space(){
 	   }
 }
 void gen_num() {
-	int p = rand() % 1000000;
+	int p = rand();
 	char tmp[10];
 	int cnt = 0;
 	if(p == 0) {
@@ -58,7 +58,7 @@ void gen_op(){
 	} 
 } 
 static inline void gen_rand_expr() {
-  int  t = rand()%3;
+  int  t = rand()%4;
   if (len > 65536 / 4) {
 	  t = 0;
   }
@@ -69,7 +69,9 @@ static inline void gen_rand_expr() {
 			  gen_rand_expr(); rand_space();
 			  buf[len] = ')'; buf[++ len] = 0;
 			  break;
-	  case 2: gen_rand_expr();rand_space(); gen_op(); rand_space(); gen_rand_expr(); break;
+	  case 2:
+	  case 3: 
+			  gen_rand_expr();rand_space(); gen_op(); rand_space(); gen_rand_expr(); break;
   }   
 }
 

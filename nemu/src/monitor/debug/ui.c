@@ -14,8 +14,8 @@ int is_batch_mode();
 static char buff[65536];
 static char* rl_gets() {
 
- // FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
-  FILE *fp = fopen("/home/zyb/Downloads/input","r");
+  FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
+ // FILE *fp = fopen("/home/zyb/Downloads/input","r");
   assert(fp != NULL);
   uint32_t result;
   int t = 0;
