@@ -122,8 +122,7 @@ void pre_check(){
 		}
 		else if(tokens[i].type == ')') {
 			if(top == 0) {
-			//	assert(0);
-				printf("%d sd\n", i);
+				assert(0);
 			}
 			else {
 				match_parentheses[st[top--]] = i;
@@ -228,7 +227,6 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   pre_check();
   *success = true;
-  return 0;
   uint32_t answer = eval(0, nr_token - 1);
   expr_clear();
   return answer;
