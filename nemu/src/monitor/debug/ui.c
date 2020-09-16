@@ -49,7 +49,7 @@ static char* rl_gets() {
 	  
   }
   fclose(fp);
-  printf("%d",t);
+  printf("the max length is %d\n",t);
    static char *line_read = NULL;
 
   if (line_read) {
