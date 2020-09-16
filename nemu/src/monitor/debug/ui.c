@@ -24,7 +24,6 @@ static char* rl_gets() {
 	  if (t < len) {
 		  t = len;
 	  }
-	  printf("%s",buff);
 	  buff[len - 1] = 0;
 	  sscanf(buff,"%u", &result);
 	  int len_result = 0;
@@ -37,6 +36,7 @@ static char* rl_gets() {
 		  tmp/=10;
 	  }
 	  bool p =true;
+	  printf("%s",buff + len_result);
 	  if(result == expr(buff + len_result,&p)) {
 		  puts("OK");
 		  printf("%s\n%u\n ",buff + len_result, result);
