@@ -50,7 +50,7 @@ static char* rl_gets() {
   }
   fclose(fp);
   printf("the max length is %d\n",t);
-  return 0;
+  return buff;
 
 /*
    static char *line_read = NULL;
