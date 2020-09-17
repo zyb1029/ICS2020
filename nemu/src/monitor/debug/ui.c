@@ -35,7 +35,6 @@ static char* rl_gets() {
 		  tmp/=10;
 	  }
 	  bool p =true;
-	  printf("%s",buff + len_result);
 	  if(result == expr(buff + len_result,&p)) {
 		  printf("OK %d\n",t);
 		 // printf("%s\n%u\n ",buff + len_result, result);
