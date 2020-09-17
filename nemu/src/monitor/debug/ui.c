@@ -22,7 +22,6 @@ static char* rl_gets() {
   while(fgets(buff, 65536, fp) != NULL) {
 	  t = t + 1;
 	  int len = strlen(buff);
-	  printf("%s",buff);
 	  buff[len - 1] = 0;
 	  sscanf(buff,"%u", &result);
 	  int len_result = 0;
