@@ -20,10 +20,8 @@ static char* rl_gets() {
   uint32_t result;
   int t = 0;
   while(fgets(buff, 65536, fp) != NULL) {
+	  t = t + 1;
 	  int len = strlen(buff);
-	  if (t < len) {
-		  t = len;
-	  }
 	  printf("%s",buff);
 	  buff[len - 1] = 0;
 	  sscanf(buff,"%u", &result);
@@ -39,8 +37,8 @@ static char* rl_gets() {
 	  bool p =true;
 	  printf("%s",buff + len_result);
 	  if(result == expr(buff + len_result,&p)) {
-		  puts("OK");
-		  printf("%s\n%u\n ",buff + len_result, result);
+		  printf("OK %d\n",t);
+		 // printf("%s\n%u\n ",buff + len_result, result);
 	  }
 	  else {
 		  assert(0);
@@ -49,7 +47,6 @@ static char* rl_gets() {
 	  
   }
   fclose(fp);
-  printf("the max length is %d\n",t);
   return buff;
 
 /*
