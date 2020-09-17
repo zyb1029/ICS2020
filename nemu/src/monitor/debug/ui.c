@@ -36,7 +36,7 @@ static char* rl_gets() {
 	  bool p =true;
 	  if(result == expr(buff + len_result,&p)) {
 		  printf("OK %d\n",t);
-		 // printf("%s\n%u\n ",buff + len_result, result);
+		  printf("%s\n%u\n ",buff + len_result, result);
 	  }
 	  else {
 		  assert(0);
@@ -45,9 +45,8 @@ static char* rl_gets() {
 	  
   }
   fclose(fp);
-  return buff;
 
-/*
+
    static char *line_read = NULL;
 
   if (line_read) {
@@ -62,7 +61,7 @@ static char* rl_gets() {
   }
 
   return line_read;
-  */
+  
 }
 
 static int cmd_c(char *args) {
