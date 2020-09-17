@@ -115,6 +115,8 @@ static int match_parentheses[65536];
 
 static int st[65536], top = 0;
 
+static int expr_error = 0;
+
 void pre_check(){
 	for (int i = 0; i < nr_token; i++) {
 		if(tokens[i].type == '(') {
@@ -122,7 +124,8 @@ void pre_check(){
 		}
 		else if(tokens[i].type == ')') {
 			if(top == 0) {
-				assert(0);
+				expr_error = 1;
+				break;
 			}
 			else {
 				match_parentheses[st[top--]] = i;
@@ -130,7 +133,7 @@ void pre_check(){
 		}
 	}
 	if(top) {
-		assert(0);
+		expr_error = 1;
 	}
 }
 
@@ -148,8 +151,12 @@ bool check_parentheses(int p,int q){
 	}
 }
 uint32_t eval(int p, int q) {
+	if (expr_error != 0) {
+		return 0;
+	}
 	if (p > q) {
-		assert(0);
+		expr_error = 1;
+		return 0;
 	}
 	else  if (p == q) {
 		if(tokens[p].type != '0') {
@@ -201,7 +208,14 @@ uint32_t eval(int p, int q) {
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
-			case '/': return val1 / val2;
+			case '/':
+					  if (val2 == 0){
+						   expr_error = 2;
+						   return 0;
+					  }
+					  else {
+						  return val1 / val2;
+					  }
 			default: return 0;
 		} 
 	} 
@@ -225,9 +239,14 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+  expr_error = 0;
   pre_check();
   *success = true;
   uint32_t answer = eval(0, nr_token - 1);
   expr_clear();
+  if(expr_error != 0) {
+		*success = false;
+		return expr_error;
+  }
   return answer;
 }
