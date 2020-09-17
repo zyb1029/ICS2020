@@ -160,7 +160,8 @@ uint32_t eval(int p, int q) {
 	}
 	else  if (p == q) {
 		if(tokens[p].type != '0') {
-			assert(0);
+			expr_error = 1;
+			return 0;
 		} 
 		else {
 			uint32_t tmp;

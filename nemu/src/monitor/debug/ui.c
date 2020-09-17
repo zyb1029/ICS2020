@@ -180,9 +180,19 @@ static int cmd_x(char *args) {
 	return 0;
 }
 static int cmd_p(char *args) {
-	bool p = true;
-	uint32_t pp = expr(args, &p);
-	printf("%u\n", pp);
+	bool expr_state = true;
+	uint32_t expr_val = expr(args, &expr_state);
+	if (expr_state == false) {
+		if (expr_val == 1) {
+			puts("Illegal expression!");
+		}
+		if (expr_val == 2) {
+			puts("Divide by zero!");
+		}
+	}
+	else {
+		printf("%u\n", expr_val);
+	}
 	return 0;
 }
 
