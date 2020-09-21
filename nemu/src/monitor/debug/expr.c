@@ -337,6 +337,7 @@ word_t expr(char *e, bool *success) {
 										  || tokens[i - 1].type == TK_EQ
 										  || tokens[i - 1].type == 'n'
 										  || tokens[i - 1].type == '&'
+										  || tokens[i - 1].type == STAR
 	    )) {
 		  tokens[i].type = STAR;
 	  }
