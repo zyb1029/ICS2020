@@ -32,6 +32,7 @@ static struct rule {
   {"\\)", ')'},
   {"\\$", '$'},
   {"[a-zA-Z]+", 'w'},
+  {"!=", 'n'},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -97,6 +98,7 @@ static bool make_token(char *e) {
 			case '0':
 			case 'w':
 			case '$':
+			case 'n':
 			case TK_EQ:
 					 memcpy(tokens[nr_token].str, substr_start,substr_len);
 					 tokens[nr_token].type = rules[i].token_type;
@@ -196,9 +198,9 @@ uint32_t eval(int p, int q) {
 		return eval(p + 1, q - 1);
 	} 
     else {
-		int i, sum = 0, op = p, equal_location = 0;
+		int i, sum = 0, op = p, equal_location = 0, unequal_location = 0;
 		int op_type = '0';
-		bool equal_sign = false;
+		bool equal_sign = false, unequal_sign = false;
 		for (i = q; i > p; i--) {
 			if(tokens[i].type == '(') {
 				sum--;
@@ -213,6 +215,11 @@ uint32_t eval(int p, int q) {
 	 			if (tokens[i].type == TK_EQ && equal_sign == false) { //匹配等于号
 					equal_sign = true;
 					equal_location = i;
+				}
+				else if (tokens[i].type == 'n' && unequal_sign == false) {
+				//匹配不等于号
+					unequal_sign = true;
+					unequal_location = i;
 				}
 				else if (tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
 					if (op_type == '0') { // 当前未匹配四则运算符
@@ -230,6 +237,10 @@ uint32_t eval(int p, int q) {
 			op = equal_location;
 			op_type = TK_EQ;
 		}
+		else if (unequal_sign == true) {
+			op = unequal_location;
+			op_type = 'n';
+		}
 		uint32_t val1 = eval(p, op -1);
 		uint32_t val2 = eval(op + 1, q);
 	 	switch (op_type) {
@@ -245,6 +256,7 @@ uint32_t eval(int p, int q) {
 						  return val1 / val2;
 					  }
 			case TK_EQ: return val1 == val2;
+			case 'n': return val1 != val2;
 			default: return 0;
 		} 
 	} 
