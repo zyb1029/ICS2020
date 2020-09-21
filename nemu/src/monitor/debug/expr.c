@@ -24,16 +24,17 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"==", TK_EQ},        // equal
-  {"-", '-'},
-  {"\\*", '*'},
-  {"/",'/'},
-  {"[0-9]+", '0'},
-  {"\\(", '('},
-  {"\\)", ')'},
-  {"\\$", '$'},
-  {"[a-zA-Z]+", 'w'},
-  {"!=", 'n'},
-  {"&&", '&'},
+  {"-", '-'},			// mimus
+  {"\\*", '*'},			// mutilply
+  {"/",'/'},			// divide
+  {"[0-9]+", '0'},		// %d number
+  {"\\(", '('},			// left
+  {"\\)", ')'},			// right
+  {"\\$", '$'},			// reg
+  {"[a-zA-Z]+", 'w'},	// reg_name
+  {"!=", 'n'},			// not_equal
+  {"&&", '&'},			// and
+  {"0x[0-9]+", 'h'},	// %x number
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -102,6 +103,7 @@ static bool make_token(char *e) {
 			case 'n':
 			case TK_EQ:
 			case '&':
+			case 'h':
 					 memcpy(tokens[nr_token].str, substr_start,substr_len);
 					 tokens[nr_token].type = rules[i].token_type;
 				     nr_token = nr_token + 1;	
@@ -168,19 +170,29 @@ uint32_t eval(int p, int q) {
 		return 0;
 	}
 	else  if (p == q) { // 剩余一个立即数
-		if(tokens[p].type != '0') {
+		if(tokens[p].type != '0' && tokens[p].type != 'h') {
 			expr_error = 1;
 			return 0;
 		} 
 		else {
 			uint32_t tmp;
-			sscanf(tokens[p].str, "%u", &tmp);
+			if (tokens[p].type == '0') {
+				sscanf(tokens[p].str, "%u", &tmp);
+			}
+			else {
+				sscanf(tokens[p].str, "%x", &tmp);
+			}
 			return tmp;
 		} 
 	}
-	else if (p + 1 == q && tokens[p].type == '-' && tokens[q].type == '0') { // 处理负数
+	else if (p + 1 == q && tokens[p].type == '-' && (tokens[q].type == '0'													 || tokens[q].type == 'h') ) {    // 处理负数
 		uint32_t tmp;
-		sscanf(tokens[q].str, "%u", &tmp);
+		if (tokens[q].type == '0') {
+			sscanf(tokens[q].str, "%u", &tmp);
+		}
+		else if (tokens[q].type == 'h') {
+			sscanf(tokens[q].str, "%x", &tmp);
+		}
 		return -1 * tmp;
 	}
 	else if (p + 1 == q && tokens[p].type == '$' && tokens[q].type == 'w') { // 处理寄存器
@@ -211,7 +223,7 @@ uint32_t eval(int p, int q) {
 			else if(tokens[i].type == ')') {
 				sum++;
 	 	 	}
-			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) { // 当前不为首位，且当前为-运算符号，下一个为数字，前一个为四则运算符，则判定为减法
+			else if(tokens[i].type == '-' && i != q && (tokens[i + 1].type == '0' || tokens[i + 1].type == 'h') && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) { // 当前不为首位，且当前为-运算符号，下一个为数字，前一个为四则运算符，则判定为减法
 				continue;
 	 	 	}
 	 		else if(sum == 0){ // 若不处于括号之中，取最右面优先级最低的运算符
