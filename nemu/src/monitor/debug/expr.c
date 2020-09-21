@@ -162,7 +162,7 @@ uint32_t eval(int p, int q) {
 		expr_error = 1;
 		return 0;
 	}
-	else  if (p == q) {
+	else  if (p == q) { // 剩余一个立即数
 		if(tokens[p].type != '0') {
 			expr_error = 1;
 			return 0;
@@ -173,12 +173,25 @@ uint32_t eval(int p, int q) {
 			return tmp;
 		} 
 	}
-	else if (p + 1 == q && tokens[p].type == '-' && tokens[q].type == '0') {
+	else if (p + 1 == q && tokens[p].type == '-' && tokens[q].type == '0') { // 处理负数
 		uint32_t tmp;
 		sscanf(tokens[q].str, "%u", &tmp);
 		return -1 * tmp;
-	} 
-	else if (check_parentheses(p, q) == true) {
+	}
+	else if (p + 1 == q && tokens[p].type == '$' && tokens[q].type == 'w') { // 处理寄存器
+		bool success = false;
+		uint32_t reg_val;
+        reg_val = isa_reg_str2val(tokens[q].str, &success);
+		if (success == false) {
+			expr_error = 1;
+			return 0;
+		}
+		else {
+			return reg_val;
+		}
+	}
+		 
+	else if (check_parentheses(p, q) == true) {  // 检测括号
 		return eval(p + 1, q - 1);
 	} 
     else {
@@ -191,16 +204,16 @@ uint32_t eval(int p, int q) {
 			else if(tokens[i].type == ')') {
 				sum++;
 	 	 	}
-			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) {
+			else if(tokens[i].type == '-' && i != q &&tokens[i + 1].type == '0' && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) { // 当前不为首位，且当前为-运算符号，下一个为数字，前一个为四则运算符，则判定为减法
 				continue;
 	 	 	}
-	 		else if(sum == 0){
+	 		else if(sum == 0){ // 若不处于括号之中，取最右面优先级最低的运算符
 	 			if(tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
-					if (op_type == '0') {
+					if (op_type == '0') { // 当前未匹配四则运算符
 						op_type = tokens[i].type;
 						op = i;
 	 	 			}
-					else if( (op_type == '*' || op_type == '/') && (tokens[i].type == '+' || tokens[i].type == '-')) {
+					else if( (op_type == '*' || op_type == '/') && (tokens[i].type == '+' || tokens[i].type == '-')) { // 已经匹配乘除
 						op_type = tokens[i].type;
 						op = i;
 	 	 			}
