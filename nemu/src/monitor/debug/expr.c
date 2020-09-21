@@ -97,6 +97,7 @@ static bool make_token(char *e) {
 			case '0':
 			case 'w':
 			case '$':
+			case TK_EQ:
 					 memcpy(tokens[nr_token].str, substr_start,substr_len);
 					 tokens[nr_token].type = rules[i].token_type;
 				     nr_token = nr_token + 1;	
@@ -195,8 +196,9 @@ uint32_t eval(int p, int q) {
 		return eval(p + 1, q - 1);
 	} 
     else {
-		int i, sum = 0, op = p;
-		char op_type = '0';
+		int i, sum = 0, op = p, equal_location = 0;
+		int op_type = '0';
+		bool equal_sign = false;
 		for (i = q; i > p; i--) {
 			if(tokens[i].type == '(') {
 				sum--;
@@ -208,18 +210,26 @@ uint32_t eval(int p, int q) {
 				continue;
 	 	 	}
 	 		else if(sum == 0){ // 若不处于括号之中，取最右面优先级最低的运算符
-	 			if(tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
+	 			if (tokens[i].type == TK_EQ && equal_sign == false) { //匹配等于号
+					equal_sign = true;
+					equal_location = i;
+				}
+				else if (tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
 					if (op_type == '0') { // 当前未匹配四则运算符
 						op_type = tokens[i].type;
 						op = i;
 	 	 			}
-					else if( (op_type == '*' || op_type == '/') && (tokens[i].type == '+' || tokens[i].type == '-')) { // 已经匹配乘除
+					else if ( (op_type == '*' || op_type == '/') && (tokens[i].type == '+' || tokens[i].type == '-')) { // 已经匹配乘除
 						op_type = tokens[i].type;
 						op = i;
 	 	 			}
 		 		}
 		 	}
 	 	} 
+		if (equal_sign == true) {
+			op = equal_location;
+			op_type = TK_EQ;
+		}
 		uint32_t val1 = eval(p, op -1);
 		uint32_t val2 = eval(op + 1, q);
 	 	switch (op_type) {
@@ -234,6 +244,7 @@ uint32_t eval(int p, int q) {
 					  else {
 						  return val1 / val2;
 					  }
+			case TK_EQ: return val1 == val2;
 			default: return 0;
 		} 
 	} 
