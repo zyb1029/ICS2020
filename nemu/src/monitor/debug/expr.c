@@ -1,5 +1,5 @@
 #include <isa.h>
-
+#include <memory/paddr.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -265,7 +265,25 @@ uint32_t eval(int p, int q) {
 			op = unequal_location;
 			op_type = 'n';
 		}
-		
+		if (op == p) {
+			int sum = 0;
+			for (int i = p; i <= q; i++) {
+				if (tokens[i].type == STAR) {
+					sum++;
+				}
+				else {
+					break;
+				}
+			}
+			if (sum != 0) {
+				uint32_t val;
+				val = eval(p + sum, q);
+				for (i = 0; i < sum; i++) {
+					val = paddr_read(val,4);
+				}
+				return val;
+			}
+		}
 		uint32_t val1 = eval(p, op -1);
 		uint32_t val2 = eval(op + 1, q);
 	 	switch (op_type) {
