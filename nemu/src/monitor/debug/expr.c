@@ -33,6 +33,7 @@ static struct rule {
   {"\\$", '$'},
   {"[a-zA-Z]+", 'w'},
   {"!=", 'n'},
+  {"&&", '&'},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -199,8 +200,9 @@ uint32_t eval(int p, int q) {
 	} 
     else {
 		int i, sum = 0, op = p, equal_location = 0, unequal_location = 0;
+		int and_location = 0;
 		int op_type = '0';
-		bool equal_sign = false, unequal_sign = false;
+		bool equal_sign = false, unequal_sign = false, and_sign = false;
 		for (i = q; i > p; i--) {
 			if(tokens[i].type == '(') {
 				sum--;
@@ -221,6 +223,11 @@ uint32_t eval(int p, int q) {
 					unequal_sign = true;
 					unequal_location = i;
 				}
+				else if (tokens[i].type == '&' && and_sign == false) {
+			    // 匹配and
+					and_sign = true;
+					and_location = i;
+				}
 				else if (tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'){
 					if (op_type == '0') { // 当前未匹配四则运算符
 						op_type = tokens[i].type;
@@ -233,7 +240,11 @@ uint32_t eval(int p, int q) {
 		 		}
 		 	}
 	 	} 
-		if (equal_sign == true) {
+		if (and_sign == true) {
+			op = and_location;
+			op_type = '&';
+		}
+		else if (equal_sign == true) {
 			op = equal_location;
 			op_type = TK_EQ;
 		}
@@ -241,6 +252,7 @@ uint32_t eval(int p, int q) {
 			op = unequal_location;
 			op_type = 'n';
 		}
+		
 		uint32_t val1 = eval(p, op -1);
 		uint32_t val2 = eval(op + 1, q);
 	 	switch (op_type) {
@@ -257,6 +269,7 @@ uint32_t eval(int p, int q) {
 					  }
 			case TK_EQ: return val1 == val2;
 			case 'n': return val1 != val2;
+			case '&': return val1 && val2;
 			default: return 0;
 		} 
 	} 
