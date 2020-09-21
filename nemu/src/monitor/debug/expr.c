@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_EQ, STAR
 
   /* TODO: Add more token types */
 
@@ -185,7 +185,7 @@ uint32_t eval(int p, int q) {
 			return tmp;
 		} 
 	}
-	else if (p + 1 == q && tokens[p].type == '-' && (tokens[q].type == '0'													 || tokens[q].type == 'h') ) {    // 处理负数
+	else if (p + 1 == q && tokens[p].type == '-' && (tokens[q].type == '0' || tokens[q].type == 'h') ) {    // 处理负数
 		uint32_t tmp;
 		if (tokens[q].type == '0') {
 			sscanf(tokens[q].str, "%u", &tmp);
@@ -309,6 +309,20 @@ word_t expr(char *e, bool *success) {
   expr_error = 0;
   pre_check();
   *success = true;
+  int i;
+  for (i = 0; i < nr_token; i++) {
+	  if(tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == '+'
+	                                      || tokens[i - 1].type == '-'
+										  || tokens[i - 1].type == '*'
+										  || tokens[i - 1].type == '/'	  
+										  || tokens[i - 1].type == '('
+										  || tokens[i - 1].type == TK_EQ
+										  || tokens[i - 1].type == 'n'
+										  || tokens[i - 1].type == '&'
+	    )) {
+		  tokens[i].type = STAR;
+	  }
+  }
   uint32_t answer = eval(0, nr_token - 1);
   expr_clear();
   if(expr_error != 0) {
