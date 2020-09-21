@@ -54,5 +54,43 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
-  return 0;
+	char t[32];
+	strcpy(t,s);
+	int i;
+	int len = strlen(t);
+	for (i = 0; i < len; i++) {
+		if(t[i] < 'Z') {
+			t[i] += 'a' - 'A';
+		}
+	}
+	*success = false;
+	word_t ans = 0;
+	for (i = 0; i < 8; i++) {
+		if (strcmp(t, regsl[i]) == 0) {
+			ans = reg_l(i); 
+			*success = true;
+		}
+		else if (strcmp(t, regsw[i]) == 0) {
+			ans = reg_w(i);
+			*success = true;
+		}
+		else if (strcmp(t, regsb[i]) == 0) {
+			ans = reg_b(i);
+			*success = true;
+		}
+	}
+  return ans;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

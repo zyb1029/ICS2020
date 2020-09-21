@@ -30,6 +30,8 @@ static struct rule {
   {"[0-9]+", '0'},
   {"\\(", '('},
   {"\\)", ')'},
+  {"\\$", '$'},
+  {"[a-zA-Z]+", 'w'},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -93,6 +95,8 @@ static bool make_token(char *e) {
 			case '(':
 			case ')':
 			case '0':
+			case 'w':
+			case '$':
 					 memcpy(tokens[nr_token].str, substr_start,substr_len);
 					 tokens[nr_token].type = rules[i].token_type;
 				     nr_token = nr_token + 1;	
