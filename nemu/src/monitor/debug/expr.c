@@ -27,6 +27,7 @@ static struct rule {
   {"-", '-'},			// mimus
   {"\\*", '*'},			// mutilply
   {"/",'/'},			// divide
+  {"0x[0-9]+", 'h'},	// %x number
   {"[0-9]+", '0'},		// %d number
   {"\\(", '('},			// left
   {"\\)", ')'},			// right
@@ -34,7 +35,6 @@ static struct rule {
   {"[a-zA-Z]+", 'w'},	// reg_name
   {"!=", 'n'},			// not_equal
   {"&&", '&'},			// and
-  {"0x[0-9]+", 'h'},	// %x number
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
