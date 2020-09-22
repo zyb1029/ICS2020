@@ -135,12 +135,16 @@ static int cmd_help(char *args) {
 }
 
 static int cmd_si(char *args) {
-	if(args == NULL ){
+	if(args == NULL){
 		cpu_exec(1);
 	}
 
 	else {
 		char *arg = strtok(NULL, " ");
+		if (arg == NULL) {
+			cpu_exec(1);
+			return 0;
+		}
 		int len = strlen(arg);
 		for(int i = 0; i < len; i++) {
 			if (! (arg[i] <= '9' && arg[i] >= '0' )) {
@@ -181,9 +185,21 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
+	if (args == NULL) {
+		puts("Unknown command!");
+		return 0;	
+	}
 	char *arg = strtok(NULL, " ");
+	if (arg == NULL) {
+		puts("Unknown command!");
+		return 0;	
+	}
 	int n = atoi(arg);
 	char *now = strtok(NULL," ");
+	if (now == NULL) {
+		puts("Unknown command!");
+		return 0;	
+	}
 	int num;
 	sscanf(now, "%x" , &num);
 	int i;
@@ -225,7 +241,14 @@ static int cmd_w(char *args) {
 }
 
 static int cmd_d(char *args) {
+	if (args == NULL) {
+		puts("Unknown command!");
+		return 0;	
+	}
 	char *arg = strtok(NULL, " ");
+	if (arg == NULL) {
+		puts("Unknown command!");	
+	}
 	int wp_num;
 	sscanf(arg, "%d", &wp_num);
 	del_wp(wp_num);
