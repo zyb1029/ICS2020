@@ -35,6 +35,7 @@ void watchpoint_check(bool * success) {
 			printf("NO.%d watchpoint changed from %d to %d!",tmp -> NO, tmp -> val, now_expr);
 			*success = false;
 		}
+		tmp = tmp -> next;
 	}
 	return;
 }
