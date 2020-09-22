@@ -78,6 +78,10 @@ void new_wp(char *args) {
 }
 
 void free_wp(WP *wp) {
+	wp -> next = NULL;
+	wp -> val = 0;
+	wp -> NO = 0;
+	strcpy(wp -> str, "");
 	if (free_ == NULL) {
 		free_ = wp;
 	}
@@ -89,4 +93,30 @@ void free_wp(WP *wp) {
 		tmp -> next = wp;
 	}
 
+}
+
+void del_wp(int wp_num) {
+	WP *tmp = head;
+	bool del_success = false;
+	if (tmp -> NO == wp_num) {
+		head = tmp -> next;
+		free_wp(tmp);	
+		del_success = true;
+	}
+	else {
+		while (tmp -> next != NULL) {
+			if (tmp -> next -> NO == wp_num) {
+				WP *del_tmp = tmp -> next;
+				tmp -> next = tmp -> next -> next;
+				free_wp(del_tmp);
+				del_success = true;
+				break;
+			}		
+			tmp = tmp -> next;
+		}	
+	}	
+	if (del_success == false) {
+		printf("THe No.%d watchpoint doesn't exist\n", wp_num);	
+	}
+	return;
 }

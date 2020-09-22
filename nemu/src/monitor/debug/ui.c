@@ -9,7 +9,7 @@
 
 void new_wp(char *args);
 void wp_display();
-
+void del_wp(int wp_num);
 void cpu_exec(uint64_t);
 int is_batch_mode();
 
@@ -213,6 +213,10 @@ static int cmd_w(char *args) {
 }
 
 static int cmd_d(char *args) {
+	char *arg = strtok(NULL, " ");
+	int wp_num;
+	sscanf(arg, "%d", &wp_num);
+	del_wp(wp_num);
 	return 0;	
 }
 void ui_mainloop() {
