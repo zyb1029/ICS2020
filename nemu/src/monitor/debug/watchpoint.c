@@ -19,6 +19,21 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
+
+void watchpoint_check(bool * success) {
+	*success = true;	
+	WP * tmp = head;
+	while (tmp != NULL) {
+		bool expr_state = true;
+		uint32_t now_expr = expr(tmp -> str,&expr_state);
+		if (now_expr != tmp -> val) {
+			printf("NO.%d watchpoint changed from %d to %d!",tmp -> NO, tmp -> val, now_expr);
+			*success = false;
+		}
+	}
+	return;
+}
+
 void new_wp(char *args) {
 	if (free_ == NULL) {
 		assert(0);
