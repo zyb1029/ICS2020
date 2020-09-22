@@ -14,9 +14,9 @@ void cpu_exec(uint64_t);
 int is_batch_mode();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
-//static char buff[65536];
+static char buff[65536];
 static char* rl_gets() {
-	/*
+	
   FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
  // FILE *fp = fopen("/home/zyb/Downloads/input2","r");
   assert(fp != NULL);
@@ -48,7 +48,7 @@ static char* rl_gets() {
 	  
   }
   fclose(fp);
-   */
+   
 
    static char *line_read = NULL;
 
@@ -89,6 +89,8 @@ static int cmd_p(char *args);
 
 static int cmd_w(char *args);
 
+static int cmd_d(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -102,6 +104,7 @@ static struct {
   { "x", "examine memory", cmd_x },
   { "p", "caculus the expression", cmd_p },
   { "w", "set the watchpoint", cmd_w },
+  { "d", "delete a watchpoint", cmd_d },
   /* TODO: Add more commands */
 
 };
@@ -207,6 +210,10 @@ static int cmd_p(char *args) {
 static int cmd_w(char *args) {
 	new_wp(args);
 	return 0;
+}
+
+static int cmd_d(char *args) {
+	return 0;	
 }
 void ui_mainloop() {
   if (is_batch_mode()) {
