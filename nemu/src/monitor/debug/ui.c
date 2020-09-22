@@ -84,6 +84,8 @@ static int cmd_x(char *args);
 
 static int cmd_p(char *args);
 
+static int cmd_w(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -96,6 +98,7 @@ static struct {
   { "info", "print all registers", cmd_info },
   { "x", "examine memory", cmd_x },
   { "p", "caculus the expression", cmd_p },
+  { "w", "set the watchpoint", cmd_w },
   /* TODO: Add more commands */
 
 };
@@ -192,6 +195,10 @@ static int cmd_p(char *args) {
 	return 0;
 }
 
+static int cmd_w(char *args) {
+	new_wp(args);
+	return 0;
+}
 void ui_mainloop() {
   if (is_batch_mode()) {
     cmd_c(NULL);

@@ -19,15 +19,35 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
-WP* new_wp() {
+void new_wp(char *args) {
 	if (free_ == NULL) {
 		assert(0);
 	}
 	else {
+		bool expr_state = true;
+		uint32_t expr_val = expr(args, &expr_state);
+		if (expr_state == false) {
+			if (expr_val == 1) {
+				puts("Illegal expression!");
+			}
+			else {
+				puts("Divide by zero!");
+			}
+			return;
+		}
 		WP* tmp = free_;
 		tmp -> next = NULL;
 		free_ = free_ -> next;
-		return tmp;
+		strcpy(tmp->str, args);
+		tmp -> val = expr_val;
+		if (head != NULL) {
+			tmp -> next = head;	
+			head = tmp;
+		}
+		else {
+			head = tmp;
+		}
+		return;
 	}
 }
 

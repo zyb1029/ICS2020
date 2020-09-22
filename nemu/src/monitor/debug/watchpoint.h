@@ -6,10 +6,12 @@
 typedef struct watchpoint {
   int NO;
   struct watchpoint *next;
-
+  char str[65536];
+  uint32_t val;
   /* TODO: Add more members if necessary */
 
 } WP;
 
+void new_wp(char *args);
 
 #endif
