@@ -38,6 +38,7 @@ void new_wp(char *args) {
 		WP* tmp = free_;
 		tmp -> next = NULL;
 		free_ = free_ -> next;
+		assert(free_ != NULL);
 		strcpy(tmp->str, args);
 		tmp -> val = expr_val;
 		if (head != NULL) {
