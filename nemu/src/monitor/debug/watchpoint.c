@@ -7,7 +7,12 @@ static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
 
 void wp_display(){
-	
+	printf("%-15s%-15s%-15s\n","Num", "Type", "What");
+	WP *tmp = head;
+	while(tmp != NULL) {
+		printf("%-15d%-15s%-15s\n",tmp -> NO, "watchpoint", tmp -> str);
+		tmp = tmp -> next;
+	}	
 	return;	
 }
 
