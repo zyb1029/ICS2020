@@ -61,6 +61,7 @@ void new_wp(char *args) {
 			}
 			return;
 		}
+		printf("the watchpoint %s setups\n",args);
 		WP* tmp = free_;
 		free_ = free_ -> next;
 		tmp -> next = NULL;
@@ -117,6 +118,9 @@ void del_wp(int wp_num) {
 	}	
 	if (del_success == false) {
 		printf("THe No.%d watchpoint doesn't exist\n", wp_num);	
+	}
+	else {
+		printf("The No.%d watchpoint is deleted successfully!\n",wp_num);	
 	}
 	return;
 }
