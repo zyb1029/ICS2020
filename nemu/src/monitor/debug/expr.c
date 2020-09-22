@@ -266,6 +266,7 @@ uint32_t eval(int p, int q) {
 			op_type = 'n';
 		}
 		if (op == p) {
+			// deal with star
 			int sum = 0;
 			for (int i = p; i <= q; i++) {
 				if (tokens[i].type == STAR) {
@@ -329,7 +330,7 @@ word_t expr(char *e, bool *success) {
   *success = true;
   int i;
   for (i = 0; i < nr_token; i++) {
-	  if ( (tokens[i].type == '-' 
+	  if ( (tokens[i].type == '*'  // 9.23 ignore nimus 
 		  ||tokens[i].type == '*') && (i == 0 || tokens[i - 1].type == '+'
 	                                          || tokens[i - 1].type == '-'
 		  								      || tokens[i - 1].type == '*'
