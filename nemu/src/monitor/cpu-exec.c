@@ -23,7 +23,7 @@ const rtlreg_t rzero = 0;
 
 void asm_print(vaddr_t this_pc, int instr_len, bool print_flag);
 
-void new_wp(char *args);
+void watchpoint_check(bool *success);
 
 int is_exit_status_bad() {
   int good = (nemu_state.state == NEMU_END && nemu_state.halt_ret == 0) ||
@@ -88,8 +88,13 @@ void cpu_exec(uint64_t n) {
 
 #ifdef DEBUG
     asm_print(this_pc, seq_pc - this_pc, n < MAX_INSTR_TO_PRINT);
-    new_wp("1+1");
     /* TODO: check watchpoints here. */
+	
+	bool wp_success = true;
+	watchpoint_check(&wp_success);
+	if (wp_success == false) {
+		nemu_state.state = NEMU_STOP;
+	}	
 #endif
 
 #ifdef HAS_IOE
