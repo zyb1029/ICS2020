@@ -7,6 +7,7 @@
 #include <readline/history.h>
 #include <memory/paddr.h>
 
+void new_wp(char *args);
 void cpu_exec(uint64_t);
 int is_batch_mode();
 

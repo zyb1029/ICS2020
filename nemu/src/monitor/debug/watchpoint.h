@@ -12,6 +12,5 @@ typedef struct watchpoint {
 
 } WP;
 
-void new_wp(char *args);
 
 #endif
