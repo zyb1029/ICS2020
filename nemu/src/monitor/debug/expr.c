@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, STAR
+  TK_NOTYPE = 256, TK_EQ, STAR, MINUS
 
   /* TODO: Add more token types */
 
@@ -329,17 +329,24 @@ word_t expr(char *e, bool *success) {
   *success = true;
   int i;
   for (i = 0; i < nr_token; i++) {
-	  if(tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == '+'
-	                                      || tokens[i - 1].type == '-'
-										  || tokens[i - 1].type == '*'
-										  || tokens[i - 1].type == '/'	  
-										  || tokens[i - 1].type == '('
-										  || tokens[i - 1].type == TK_EQ
-										  || tokens[i - 1].type == 'n'
-										  || tokens[i - 1].type == '&'
-										  || tokens[i - 1].type == STAR
+	  if ( (tokens[i].type == '-' 
+		  ||tokens[i].type == '*') && (i == 0 || tokens[i - 1].type == '+'
+	                                          || tokens[i - 1].type == '-'
+		  								      || tokens[i - 1].type == '*'
+										      || tokens[i - 1].type == '/'
+										   || tokens[i - 1].type == '('
+										   || tokens[i - 1].type == TK_EQ
+										   || tokens[i - 1].type == 'n'
+										   || tokens[i - 1].type == '&'
+										   || tokens[i - 1].type == STAR
+								    	   || tokens[i - 1].type == MINUS
 	    )) {
-		  tokens[i].type = STAR;
+		  if (tokens[i].type == '*') {
+			tokens[i].type = STAR;
+		  }
+		  else {	
+			tokens[i].type = MINUS;
+		  }
 	  }
   }
   uint32_t answer = eval(0, nr_token - 1);
