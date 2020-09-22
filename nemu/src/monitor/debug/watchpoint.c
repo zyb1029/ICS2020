@@ -32,7 +32,7 @@ void watchpoint_check(bool * success) {
 		bool expr_state = true;
 		uint32_t now_expr = expr(tmp -> str,&expr_state);
 		if (now_expr != tmp -> val) {
-			printf("NO.%d watchpoint changed from %d to %d!",tmp -> NO, tmp -> val, now_expr);
+			printf("NO.%d watchpoint changed from %d to %d!\n",tmp -> NO, tmp -> val, now_expr);
 			*success = false;
 		}
 		tmp = tmp -> next;
