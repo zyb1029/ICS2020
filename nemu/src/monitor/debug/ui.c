@@ -164,6 +164,10 @@ static int cmd_info(char *args) {
 		return 0;
 	}
 	char *arg = strtok(NULL, " ");
+	if (arg == NULL) {
+		puts("Unknown command!");
+		return 0;	
+	}
 	if (strcmp(arg, "r") == 0) {
 		isa_reg_display();
 	}
