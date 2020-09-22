@@ -51,7 +51,7 @@ void new_wp(char *args) {
 			if (expr_val == 1) {
 				puts("Illegal expression!");
 			}
-			else {
+			else if(expr_val == 2) {
 				puts("Divide by zero!");
 			}
 			return;
