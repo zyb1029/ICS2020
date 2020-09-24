@@ -27,7 +27,7 @@ static struct rule {
   {"-", '-'},			// mimus
   {"\\*", '*'},			// mutilply
   {"/",'/'},			// divide
-  {"0x[0-9,a-e]+", 'h'},	// %x number
+  {"0x[0-9,a-f]+", 'h'},	// %x number
   {"[0-9]+", '0'},		// %d number
   {"\\(", '('},			// left
   {"\\)", ')'},			// right
