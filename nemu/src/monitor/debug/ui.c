@@ -220,12 +220,11 @@ static int cmd_p(char *args) {
 		return 0;	
 	}
 	char *arg = strtok(NULL, " ");
-	printf("%s\n%s\n",arg, args);
 	int hex = 0;
-/*	if (strcmp(arg, "/x") == 0) {
+	if (strcmp(arg, "/x") == 0) {
 		hex = 1;
 		args = arg + 3;
-	}*/
+	}
 	bool expr_state = true;
 	uint32_t expr_val = expr(args, &expr_state);
 	if (expr_state == false) {
@@ -261,6 +260,10 @@ static int cmd_d(char *args) {
 	if (arg == NULL) {
 		puts("Unknown command!");	
 	}
+	for (int i = 0; args[i] != 0; i++){
+		printf("%c", args[i]);	
+	}
+	printf("\n");
 	int wp_num;
 	sscanf(arg, "%d", &wp_num);
 	del_wp(wp_num);
