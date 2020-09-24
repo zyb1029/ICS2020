@@ -42,7 +42,7 @@ static char* rl_gets() {
 		  printf("%s\n%u\n ",buff + len_result, result);
 	  }
 	  else {
-		  assert(0);
+//		  assert(0);
 		  printf("%u %s\n", result, buff + len_result);
 	  }
 	  
