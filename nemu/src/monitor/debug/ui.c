@@ -219,7 +219,8 @@ static int cmd_p(char *args) {
 		puts("Unknown command!");
 		return 0;	
 	}
-//	char *arg = strtok(NULL, " ");
+	char *arg = strtok(NULL, " ");
+	printf("%s\n%s\n",arg, args);
 	int hex = 0;
 /*	if (strcmp(arg, "/x") == 0) {
 		hex = 1;
