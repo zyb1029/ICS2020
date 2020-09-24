@@ -223,13 +223,13 @@ static int cmd_p(char *args) {
 	for (i = 0; args[i] != '0'; i++) {
 		if (args[i] == '/' && args[i + 1] == 'x') {
 			args = args + i + 2;
+			hex = 1;
 			break;	
 		}
 		if (args[i] != ' ') {
 			break;	
 		}	
 	}
-	printf("%s", args);
 	bool expr_state = true;
 	uint32_t expr_val = expr(args, &expr_state);
 	if (expr_state == false) {
