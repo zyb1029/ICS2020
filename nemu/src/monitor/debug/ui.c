@@ -258,13 +258,14 @@ static int cmd_w(char *args) {
 
 static int cmd_d(char *args) {
 	if (args == NULL) {
-		puts("232Unknown command!");
+		puts("Unknown command!");
 		return 0;	
 	}
 	char *arg = strtok(NULL, " ");
 	if (arg == NULL) {
 		puts("Unknown command!");	
 	}
+	return 0;
 	int wp_num;
 	sscanf(arg, "%d", &wp_num);
 	del_wp(wp_num);
