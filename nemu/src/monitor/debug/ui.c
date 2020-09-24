@@ -268,7 +268,6 @@ static int cmd_d(char *args) {
 	}
 	int wp_num;
 	sscanf(arg, "%d", &wp_num);
-	printf("%d", wp_num);
 	del_wp(wp_num);
 	return 0;	
 }
