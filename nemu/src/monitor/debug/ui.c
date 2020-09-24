@@ -229,6 +229,7 @@ static int cmd_p(char *args) {
 			break;	
 		}	
 	}
+	printf("%s", args);
 	bool expr_state = true;
 	uint32_t expr_val = expr(args, &expr_state);
 	if (expr_state == false) {
