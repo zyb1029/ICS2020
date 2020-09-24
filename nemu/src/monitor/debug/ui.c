@@ -219,12 +219,12 @@ static int cmd_p(char *args) {
 		puts("Unknown command!");
 		return 0;	
 	}
-	char *arg = strtok(NULL, " ");
+//	char *arg = strtok(NULL, " ");
 	int hex = 0;
-	if (strcmp(arg, "/x") == 0) {
+/*	if (strcmp(arg, "/x") == 0) {
 		hex = 1;
 		args = arg + 3;
-	}
+	}*/
 	bool expr_state = true;
 	uint32_t expr_val = expr(args, &expr_state);
 	if (expr_state == false) {
