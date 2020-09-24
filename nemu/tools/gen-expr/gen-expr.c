@@ -48,13 +48,25 @@ void gen_num() {
 	buf[len] = 0;
 }
 void gen_op(){
-	int t= rand () % 4;
+	int t= rand () % 4, p = rand() % 10;
+	if (p == 3) {
+		t = 4;
+	}
+	else if (p == 4) {
+		t = 5;	
+	}
+	else if(p == 5) {
+		t = 6;	
+	}
  //	printf("%d",t);
   	switch(t){ 
 		case 0 : buf[len] = '+'; buf[++len] = 0; break;	
 		case 1 : buf[len] = '*'; buf[++len] = 0; break;	
 		case 2 : buf[len] = '-'; buf[++len] = 0; break;	
 		case 3 : buf[len] = '/'; buf[++len] = 0; break;	
+		case 4 : buf[len] = '='; buf[++len] = '='; buf[++len] = 0; break;
+		case 5 : buf[len] = '!'; buf[++len] = '='; buf[++len] = 0; break;
+		case 6 : buf[len] = '&'; buf[++len] = '&'; buf[++len] = 0; break;
 	} 
 } 
 static inline void gen_rand_expr() {
