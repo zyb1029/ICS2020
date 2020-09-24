@@ -78,6 +78,10 @@ word_t isa_reg_str2val(const char *s, bool *success) {
 			ans = reg_b(i);
 			*success = true;
 		}
+		else if (strcmp(t, "pc") == 0) {
+			ans = cpu.pc;
+			*success = true;	
+		}
 	}
   return ans;
 }
