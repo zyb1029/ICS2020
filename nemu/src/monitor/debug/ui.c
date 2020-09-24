@@ -14,9 +14,9 @@ void cpu_exec(uint64_t);
 int is_batch_mode();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
-static char buff[65536];
+//static char buff[65536];
 static char* rl_gets() {
-	
+/*	
   FILE *fp = fopen("/home/zyb/ics2020/nemu/tools/gen-expr/input","r");
  // FILE *fp = fopen("/home/zyb/Downloads/input2","r");
   assert(fp != NULL);
@@ -49,7 +49,7 @@ static char* rl_gets() {
   }
   fclose(fp);
   
-
+*/
    static char *line_read = NULL;
 
   if (line_read) {
