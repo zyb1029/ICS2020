@@ -219,16 +219,16 @@ static int cmd_p(char *args) {
 		puts("Unknown command!");
 		return 0;	
 	}
-	char *arg = strtok(NULL, " ");
-	int hex = 0;
-	if (strcmp(arg, "/x") == 0) {
-		hex = 1;
-		args = arg + 3;
+	int hex = 0, i;
+	for (i = 0; args[i] != '0'; i++) {
+		if (args[i] == '/' && args[i] == 'x') {
+			args = args + i + 2;
+			break;	
+		}
+		if (args[i] != ' ') {
+			break;	
+		}	
 	}
-	for (int i = 0; args[i] != 0; i++){
-		printf("%c", args[i]);	
-	}
-	printf("\n");
 	bool expr_state = true;
 	uint32_t expr_val = expr(args, &expr_state);
 	if (expr_state == false) {
