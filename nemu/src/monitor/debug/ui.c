@@ -258,7 +258,7 @@ static int cmd_w(char *args) {
 
 static int cmd_d(char *args) {
 	if (args == NULL) {
-		puts("Unknown command!");
+		puts("232Unknown command!");
 		return 0;	
 	}
 	char *arg = strtok(NULL, " ");
