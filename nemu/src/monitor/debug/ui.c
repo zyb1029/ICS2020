@@ -263,11 +263,12 @@ static int cmd_d(char *args) {
 	}
 	char *arg = strtok(NULL, " ");
 	if (arg == NULL) {
-		puts("31Unknown command!");	
+		puts("Unknown command!");	
+		return 0;
 	}
-//	int wp_num;
-//	sscanf(arg, "%d", &wp_num);
-//	del_wp(wp_num);
+	int wp_num;
+	sscanf(arg, "%d", &wp_num);
+	del_wp(wp_num);
 	return 0;	
 }
 void ui_mainloop() {
