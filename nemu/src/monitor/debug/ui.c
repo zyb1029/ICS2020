@@ -219,6 +219,11 @@ static int cmd_p(char *args) {
 		puts("Unknown command!");
 		return 0;	
 	}
+	char *arg = strtok(NULL, " ");
+	int hex = 0;
+	if (strcmp(arg, "/x") == 0) {
+		hex = 1;
+	}
 	bool expr_state = true;
 	uint32_t expr_val = expr(args, &expr_state);
 	if (expr_state == false) {
@@ -230,7 +235,12 @@ static int cmd_p(char *args) {
 		}
 	}
 	else {
-		printf("%u\n", expr_val);
+		if (hex == 0) {
+			printf("%u\n", expr_val);
+		}
+		else {
+			printf("0x%08x\n", expr_val);	
+		}
 	}
 	return 0;
 }
