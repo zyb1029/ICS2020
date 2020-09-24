@@ -27,24 +27,37 @@ void rand_space(){
 	   }
 }
 void gen_num() {
-	int p = rand();
-	char tmp[10];
-	int cnt = 0;
-	if(p == 0) {
-		buf[len++] = '0';
-	}
-	else {
-		while(p) {
-			tmp[cnt++] = p % 10 + '0';
-			p/=10;	
+	int op = rand () % 2;
+	if (op == 0) {
+		int p = rand();
+		char tmp[10];
+		int cnt = 0;
+		if(p == 0) {
+			buf[len++] = '0';
 		}
+		else {
+			while(p) {
+				tmp[cnt++] = p % 10 + '0';
+				p/=10;	
+			}
+			int i;
+			for (i = cnt - 1; i >= 0; i--) {
+				buf[len++] = tmp[i];
+			}
+		}
+	}
+	else if (op == 1) {
+		char op_num[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+		int l = rand () % 9;
 		int i;
-		for (i = cnt - 1; i >= 0; i--) {
-			buf[len++] = tmp[i];
+		buf[len++] = '0';
+		buf[len++] = 'x';
+		for (i = 0; i < l; i++) {
+			buf[len++] = op_num[rand() % 16];	
 		}
 	}
-//	printf("%d ",p);
-	buf[len ++] = 'u';
+
+	buf[len++] = 'u';
 	buf[len] = 0;
 }
 void gen_op(){

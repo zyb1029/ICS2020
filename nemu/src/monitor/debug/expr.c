@@ -126,7 +126,8 @@ static int match_parentheses[65536];
 
 static int st[65536], top = 0;
 
-static int expr_error = 0;
+static bool type1_sign = false;
+static bool type2_sign = false;
 
 void pre_check(){
 	for (int i = 0; i < nr_token; i++) {
@@ -135,7 +136,7 @@ void pre_check(){
 		}
 		else if(tokens[i].type == ')') {
 			if(top == 0) {
-				expr_error = 1;
+				type1_sign = true;
 				break;
 			}
 			else {
@@ -144,7 +145,7 @@ void pre_check(){
 		}
 	}
 	if(top) {
-		expr_error = 1;
+		type1_sign = true;
 	}
 }
 
@@ -162,16 +163,16 @@ bool check_parentheses(int p,int q){
 	}
 }
 uint32_t eval(int p, int q) {
-	if (expr_error != 0) {
+	if (type1_sign || type2_sign) {
 		return 0;
 	}
 	if (p > q) {
-		expr_error = 1;
+		type1_sign = true;
 		return 0;
 	}
 	else  if (p == q) { // 剩余一个立即数
 		if(tokens[p].type != '0' && tokens[p].type != 'h') {
-			expr_error = 1;
+			type1_sign = true;
 			return 0;
 		} 
 		else {
@@ -200,7 +201,7 @@ uint32_t eval(int p, int q) {
 		uint32_t reg_val;
         reg_val = isa_reg_str2val(tokens[q].str, &success);
 		if (success == false) {
-			expr_error = 1;
+			type1_sign = true;
 			return 0;
 		}
 		else {
@@ -236,7 +237,7 @@ uint32_t eval(int p, int q) {
 					unequal_sign = true;
 					unequal_location = i;
 				}
-				else if (tokens[i].type == '&' && and_sign == false) {
+				else if (tokens[i].type == '&') {
 			    // 匹配and
 					and_sign = true;
 					and_location = i;
@@ -285,16 +286,23 @@ uint32_t eval(int p, int q) {
 				return val;
 			}
 		}
-		uint32_t val1 = eval(p, op -1);
+		uint32_t val1 = eval(p, op - 1);
+		int bj = 0;
+		if (op_type == '&' && val1 == 0 && type1_sign == false && type2_sign == false) {
+			bj = 1;
+		}
 		uint32_t val2 = eval(op + 1, q);
+		if (bj == 1 && type1_sign == false) {
+			type2_sign = false;
+		}
 	 	switch (op_type) {
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
 			case '/':
-					  if (val2 == 0){
-						   expr_error = 2;
-						   return 0;
+					  if (val2 == 0) {
+						  type2_sign = true; 
+						  return 0;
 					  }
 					  else {
 						  return val1 / val2;
@@ -325,7 +333,8 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  expr_error = 0;
+  type1_sign = false;
+  type2_sign = false;
   pre_check();
   *success = true;
   int i;
@@ -352,9 +361,13 @@ word_t expr(char *e, bool *success) {
   }
   uint32_t answer = eval(0, nr_token - 1);
   expr_clear();
-  if(expr_error != 0) {
+  if (type1_sign == true) {
 		*success = false;
-		return expr_error;
+		return 1;
+  }
+  if (type2_sign == true) {
+		*success = false;
+		return 2;	  
   }
   return answer;
 }
