@@ -98,6 +98,10 @@ void free_wp(WP *wp) {
 
 void del_wp(int wp_num) {
 	WP *tmp = head;
+	if (tmp == NULL) {
+		printf("THe No.%d watchpoint doesn't exist\n", wp_num);	
+		return;
+	}
 	bool del_success = false;
 	if (tmp -> NO == wp_num) {
 		head = tmp -> next;
