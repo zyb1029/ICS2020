@@ -265,9 +265,9 @@ static int cmd_d(char *args) {
 	if (arg == NULL) {
 		puts("Unknown command!");	
 	}
-	int wp_num;
-	sscanf(arg, "%d", &wp_num);
-	del_wp(wp_num);
+//	int wp_num;
+//	sscanf(arg, "%d", &wp_num);
+//	del_wp(wp_num);
 	return 0;	
 }
 void ui_mainloop() {
