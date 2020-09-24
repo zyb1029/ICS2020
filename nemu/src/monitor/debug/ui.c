@@ -221,7 +221,7 @@ static int cmd_p(char *args) {
 	}
 	int hex = 0, i;
 	for (i = 0; args[i] != '0'; i++) {
-		if (args[i] == '/' && args[i] == 'x') {
+		if (args[i] == '/' && args[i + 1] == 'x') {
 			args = args + i + 2;
 			break;	
 		}
