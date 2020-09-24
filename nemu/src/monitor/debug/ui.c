@@ -263,7 +263,7 @@ static int cmd_d(char *args) {
 	}
 	char *arg = strtok(NULL, " ");
 	if (arg == NULL) {
-		puts("Unknown command!");	
+		puts("31Unknown command!");	
 	}
 //	int wp_num;
 //	sscanf(arg, "%d", &wp_num);
