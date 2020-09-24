@@ -265,7 +265,6 @@ static int cmd_d(char *args) {
 	if (arg == NULL) {
 		puts("Unknown command!");	
 	}
-	return 0;
 	int wp_num;
 	sscanf(arg, "%d", &wp_num);
 	del_wp(wp_num);
