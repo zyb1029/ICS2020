@@ -83,7 +83,8 @@ void gen_op(){
 	} 
 } 
 static inline void gen_rand_expr() {
-  int  t = rand()%4;
+  int  t = rand() % 3;
+  if (t > 3) t = 3;
   if (len > 65536 / 3) {
 	  t = 0;
   }
