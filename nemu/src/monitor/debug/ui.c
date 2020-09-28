@@ -212,7 +212,7 @@ static int cmd_x(char *args) {
 		return 0;
 	}
 	int i;
-	printf("0x%x:\t",num);
+	printf("0x%.8x:\t",num);
 	uint32_t  addr = paddr_read(num, 4);
 	for (i = 0; i < n; i++) {
 		printf("0x");
