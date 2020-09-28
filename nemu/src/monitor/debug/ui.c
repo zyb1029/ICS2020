@@ -195,11 +195,7 @@ static int cmd_x(char *args) {
 		return 0;	
 	}
 	int n = atoi(arg);
-	char *now = strtok(NULL," ");
-	if (now == NULL) {
-		puts("Unknown command!");
-		return 0;	
-	}
+	char * now = arg + strlen(arg) + 1;
 	printf("%s\n", now);
 	bool expr_state = true;
 	uint32_t num = expr(now, &expr_state);
