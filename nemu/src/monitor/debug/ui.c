@@ -196,7 +196,6 @@ static int cmd_x(char *args) {
 	}
 	int n = atoi(arg);
 	char * now = arg + strlen(arg) + 1;
-	printf("%s\n", now);
 	bool expr_state = true;
 	uint32_t num = expr(now, &expr_state);
 	if (expr_state == false) {
@@ -209,7 +208,7 @@ static int cmd_x(char *args) {
 		return 0;
 	}
 	int i;
-	printf("0x%.8x:\t",num);
+	printf("0x%.8x:\n",num);
 	uint32_t  addr = paddr_read(num, 4);
 	for (i = 0; i < n; i++) {
 		printf("0x");
