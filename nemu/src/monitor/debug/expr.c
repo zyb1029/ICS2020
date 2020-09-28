@@ -186,7 +186,7 @@ uint32_t eval(int p, int q) {
 			return tmp;
 		} 
 	}
-	else if (p + 1 == q && tokens[p].type == '-' && (tokens[q].type == '0' || tokens[q].type == 'h') ) {    // 处理负数
+	else if (p + 1 == q && tokens[p].type == MINUS  && (tokens[q].type == '0' || tokens[q].type == 'h') ) {    // 处理负数
 		uint32_t tmp;
 		if (tokens[q].type == '0') {
 			sscanf(tokens[q].str, "%u", &tmp);
@@ -223,9 +223,6 @@ uint32_t eval(int p, int q) {
 	 	 	}
 			else if(tokens[i].type == ')') {
 				sum++;
-	 	 	}
-			else if(tokens[i].type == '-' && i != q && (tokens[i + 1].type == '0' || tokens[i + 1].type == 'h') && i != p && (tokens[i - 1].type == '+' || tokens[i - 1].type == '-' ||tokens[i - 1].type == '*' || tokens[i - 1].type == '/') ) { // 当前不为首位，且当前为-运算符号，下一个为数字，前一个为四则运算符，则判定为减法
-				continue;
 	 	 	}
 	 		else if(sum == 0){ // 若不处于括号之中，取最右面优先级最低的运算符
 	 			if (tokens[i].type == TK_EQ && equal_sign == false) { //匹配等于号
@@ -267,7 +264,7 @@ uint32_t eval(int p, int q) {
 			op_type = 'n';
 		}
 		if (op == p) {
-			// deal with star
+			// deal with star or minus sign
 			int sum = 0;
 			for (int i = p; i <= q; i++) {
 				if (tokens[i].type == STAR) {
@@ -284,6 +281,22 @@ uint32_t eval(int p, int q) {
 					val = paddr_read(val,4);
 				}
 				return val;
+			}
+			else {
+				for (int i = p; i <= q; i++) {
+					if (tokens[i].type == MINUS) {
+						sum++;
+					}
+					else {
+						break;
+					}
+				}
+				if (sum != 0) {
+					uint32_t val;
+					val = eval(p + sum, q);
+					if (sum & 1) return val * -1;
+					else return val;
+				}
 			}
 		}
 		uint32_t val1 = eval(p, op - 1);
@@ -340,7 +353,7 @@ word_t expr(char *e, bool *success) {
   int i;
   for (i = 0; i < nr_token; i++) {
 	  if ( (tokens[i].type == '*'  // 9.23 ignore nimus 
-		  ||tokens[i].type == '*') && (i == 0 || tokens[i - 1].type == '+'
+		  ||tokens[i].type == '-') && (i == 0 || tokens[i - 1].type == '+'
 	                                          || tokens[i - 1].type == '-'
 		  								      || tokens[i - 1].type == '*'
 										      || tokens[i - 1].type == '/'
