@@ -200,6 +200,7 @@ static int cmd_x(char *args) {
 		puts("Unknown command!");
 		return 0;	
 	}
+	printf("%s\n", now);
 	bool expr_state = true;
 	uint32_t num = expr(now, &expr_state);
 	if (expr_state == false) {
