@@ -200,8 +200,17 @@ static int cmd_x(char *args) {
 		puts("Unknown command!");
 		return 0;	
 	}
-	int num;
-	sscanf(now, "%x" , &num);
+	bool expr_state = true;
+	uint32_t num = expr(now, &expr_state);
+	if (expr_state == false) {
+		if (num == 1) {
+			puts("Illegal expression!");
+		}
+		if (num == 2) {
+			puts("Divide by zero!");
+		}
+		return 0;
+	}
 	int i;
 	printf("0x%x:\t",num);
 	uint32_t  addr = paddr_read(num, 4);
