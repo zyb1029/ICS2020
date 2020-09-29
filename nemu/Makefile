@@ -118,3 +118,5 @@ clean:
 	$(MAKE) -C tools/gen-expr clean
 	$(MAKE) -C tools/qemu-diff clean
 	$(MAKE) -C tools/kvm-diff clean
+count:
+	find . | grep -E '\.c$$|\.h$$' | xargs cat | wc -l
