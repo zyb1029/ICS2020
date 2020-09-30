@@ -278,6 +278,7 @@ static int cmd_d(char *args) {
 }
 void ui_mainloop() {
   if (is_batch_mode()) {
+	  puts(" 232");
     cmd_c(NULL);
     return;
   }
