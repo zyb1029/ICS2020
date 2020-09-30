@@ -26,6 +26,7 @@ void asm_print(vaddr_t this_pc, int instr_len, bool print_flag);
 void watchpoint_check(bool *success);
 
 int is_exit_status_bad() {
+  if (nemu_state.state == NEMU_STOP) nemu_state.state = NEMU_QUIT;	
   int good = (nemu_state.state == NEMU_END && nemu_state.halt_ret == 0) ||
     (nemu_state.state == NEMU_QUIT);
 	printf("%d\n", nemu_state.state);
