@@ -4,6 +4,7 @@
 void read_ModR_M(DecodeExecState *s, Operand *rm, bool load_rm_val, Operand *reg, bool load_reg_val);
 
 static inline void operand_reg(DecodeExecState *s, Operand *op, bool load_val, int r, int width) {
+ printf("%d", r);
   op->type = OP_TYPE_REG;
   op->reg = r;
 
