@@ -70,7 +70,6 @@ static inline def_DopHelper(a) {
  * eXX: eAX, eCX, eDX, eBX, eSP, eBP, eSI, eDI
  */
 static inline def_DopHelper(r) {
-	printf("%d\n", s->opcode);
   operand_reg(s, op, load_val, s->opcode & 0x7, op->width);
 }
 
