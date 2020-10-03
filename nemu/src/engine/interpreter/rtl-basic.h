@@ -8,7 +8,6 @@
 
 #define def_rtl_compute_reg(name) \
   static inline def_rtl(name, rtlreg_t* dest, const rtlreg_t* src1, const rtlreg_t* src2) { \
-    assert(0);\
     *dest = concat(c_, name) (*src1, *src2); \
   }
 
