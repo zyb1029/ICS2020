@@ -28,7 +28,7 @@ static inline def_EHelper(call) {
   rtl_j(s, s->jmp_pc);
   *s0 = s->seq_pc;
   rtl_push(s, s0);
-  printf("call %x\n", reg_l(4));
+  printf("call %x\n", s->seq_pc);
   print_asm("call %x", s->jmp_pc);
 }
 
