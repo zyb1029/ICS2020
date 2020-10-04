@@ -118,9 +118,9 @@ again:
     IDEX (0xf7, E, gp3)
     IDEXW(0xfe, E, gp4, 1)
     IDEX (0xff, E, gp5)
-	IDEX (0xe8, J, call)
-	IDEX (0x55, r, push)
-	IDEX (0x68, I, push)
+//	IDEX (0xe8, J, call)
+//	IDEX (0x55, r, push)
+//	IDEX (0x68, I, push)
 //	IDEX (0x31, E, xor)
 //	EX (0xc3, ret)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
