@@ -35,6 +35,7 @@ static inline def_EHelper(ret) {
   s->jmp_pc = *s0;
   s->is_jmp = true;
   printf("sdad");
+  assert(0);
   print_asm("ret");
 }
 
