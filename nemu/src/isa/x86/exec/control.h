@@ -34,6 +34,7 @@ static inline def_EHelper(call) {
 static inline def_EHelper(ret) {
  // TODO();
   rtl_pop(s, s0);
+  printf("%x adas", *s0);
   s->jmp_pc = *s0;
   s->is_jmp = true;
   printf("sdad");
