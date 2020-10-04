@@ -36,6 +36,7 @@ static inline def_rtl(pop, rtlreg_t* dest) {
   // dest <- M[esp]
   // esp <- esp + 4
   rtl_mv(s, &reg_l(R_ESP), dest);
+  printf("%x\n", *dest);
   rtl_addi(s, &reg_l(R_ESP), &reg_l(R_ESP), 4);
   //TODO();
 }
