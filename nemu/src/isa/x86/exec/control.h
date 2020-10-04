@@ -35,7 +35,6 @@ static inline def_EHelper(ret) {
  // TODO();
   *s0 = 0;
   rtl_pop(s, s0);
-  printf("%x adas", *s0);
   s->jmp_pc = *s0;
   s->is_jmp = true;
   print_asm("ret");
