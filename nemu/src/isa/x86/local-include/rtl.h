@@ -26,6 +26,7 @@ static inline def_rtl(sr, int r, const rtlreg_t* src1, int width) {
 
 static inline def_rtl(push, const rtlreg_t* src1) {
   rtl_addi(s, &reg_l(R_ESP), &reg_l(R_ESP), -4);
+  printf("%08x\n", reg_l(R_ESP));
   rtl_host_sm(s, &reg_l(R_ESP), src1, 4);
   // esp <- esp - 4
   // M[esp] <- src1
