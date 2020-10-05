@@ -35,7 +35,20 @@ typedef struct {
 		};
 	};
 	vaddr_t pc;
-
+	union {
+		struct {
+			uint32_t CF	:1;
+			uint32_t	:5;
+            uint32_t ZF :1;
+			uint32_t SF	:1;
+			uint32_t    :1;
+			uint32_t IF :1;
+			uint32_t    :1;
+			uint32_t OF :1;
+			uint32_t    :20;
+		};	
+		uint32_t val;
+	}EFLAGS;
 } x86_CPU_state;
 
 // decode
