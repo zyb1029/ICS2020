@@ -128,6 +128,10 @@ again:
 	IDEX (0x55, r, push)
 	IDEX (0x68, I, push)
 	IDEX (0x31, G2E, xor)
+	IDEX (0x57, r, push)
+	IDEX (0x56, r, push)
+	IDEX (0x53, r, push)
+	IDEX (0x51, r, push)
 	EX (0xc3, ret)
 	IDEX (0x8d, lea_M2G, lea)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
