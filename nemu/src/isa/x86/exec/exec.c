@@ -16,7 +16,7 @@ static inline def_EHelper(gp1) {
     EMPTY(0) EMPTY(1) EMPTY(2) EMPTY(3)
     EMPTY(6) EMPTY(7)
 	case 4:
-		exec_add(s);
+		exec_and(s);
 		break;
 	case 5:
 		exec_sub(s);
