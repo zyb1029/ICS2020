@@ -48,7 +48,7 @@ typedef struct {
 			uint32_t    :20;
 		};	
 		uint32_t val;
-	}EFLAGS;
+	}eflags;
 } x86_CPU_state;
 
 // decode
