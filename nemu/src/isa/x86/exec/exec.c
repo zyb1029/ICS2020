@@ -134,6 +134,7 @@ again:
 	IDEX (0x51, r, push)
 	EX (0xc3, ret)
 	IDEX (0x8d, lea_M2G, lea)
+	IDEX (0x01, G2E, add)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
