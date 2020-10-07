@@ -83,6 +83,22 @@ word_t isa_reg_str2val(const char *s, bool *success) {
 			*success = true;	
 		}
 	}
+  if (strcmp(t, "cf") == 0) {
+	  ans = cpu.eflags.CF;
+	  *success = true;
+  }
+  if (strcmp(t, "of") == 0) {
+	  ans = cpu.eflags.OF;
+	  *success = true;
+  }
+  if (strcmp(t, "zf") == 0) {
+	  ans = cpu.eflags.ZF;
+	  *success = true;
+  }
+  if (strcmp(t, "sf") == 0) {
+	  ans = cpu.eflags.SF;
+	  *success = true;
+  }
   return ans;
 }
 
