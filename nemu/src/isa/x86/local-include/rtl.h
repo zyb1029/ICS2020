@@ -43,25 +43,52 @@ static inline def_rtl(pop, rtlreg_t* dest) {
 static inline def_rtl(is_sub_overflow, rtlreg_t* dest,
     const rtlreg_t* res, const rtlreg_t* src1, const rtlreg_t* src2, int width) {
   // dest <- is_overflow(src1 - src2)
-  TODO();
+  if ((*src1 & (1 << (width * 8 -1))) && (*src2 & (1 << (width * 8 - 1))) == 0 && (*res & (1 << (width * 8 - 1))) == 0) {
+	  *dest = 1;
+  }
+  else if ((*src1 & (1 << (width * 8 -1))) == 0 && (*src2 & (1 << (width * 8 - 1))) && (*res & (1 << (width * 8 - 1)))) {
+	  *dest = 1;
+  }
+  else {
+	  *dest = 0;
+  }
 }
 
 static inline def_rtl(is_sub_carry, rtlreg_t* dest,
     const rtlreg_t* src1, const rtlreg_t* src2) {
   // dest <- is_carry(src1 - src2)
-  TODO();
+  rtl_sub(s, t0, src1, src2);
+  if (*t0 > *src1) {
+	  *dest = 1;
+  }
+  else {
+	  *dest = 0;
+  }
 }
 
 static inline def_rtl(is_add_overflow, rtlreg_t* dest,
     const rtlreg_t* res, const rtlreg_t* src1, const rtlreg_t* src2, int width) {
   // dest <- is_overflow(src1 + src2)
-  TODO();
+  if ((*src1 & (1 << (width * 8 -1))) && (*src2 & (1 << (width * 8 - 1))) && (*res & (1 << (width * 8 - 1))) == 0) {
+	  *dest = 1;
+  }
+  else if ((*src1 & (1 << (width * 8 -1))) == 0 && (*src2 & (1 << (width * 8 - 1))) == 0 && (*res & (1 << (width * 8 - 1)))) {
+	  *dest = 1;
+  }
+  else {
+	  *dest = 0;
+  }
 }
 
 static inline def_rtl(is_add_carry, rtlreg_t* dest,
     const rtlreg_t* res, const rtlreg_t* src1) {
   // dest <- is_carry(src1 + src2)
-  TODO();
+  if (*src1 > *res) {
+	  *dest = 1;
+  }
+  else {
+	  *dest = 0;
+  }
 }
 
 #define def_rtl_setget_eflags(f) \
