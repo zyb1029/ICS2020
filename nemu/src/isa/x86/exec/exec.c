@@ -142,7 +142,7 @@ again:
 	IDEX (0x8d, lea_M2G, lea)
 	IDEX (0x01, G2E, add)
 	IDEX (0x3b, E2G, cmp)
-	IDEX (0x74, J, jcc)
+	IDEXW (0x74, J, jcc, 1)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
