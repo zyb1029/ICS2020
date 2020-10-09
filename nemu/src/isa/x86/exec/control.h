@@ -38,7 +38,15 @@ static inline def_EHelper(ret) {
 }
 
 static inline def_EHelper(xchg) {
-  TODO();
+	rtl_lr(s, s0, R_EAX, id_dest->width);
+	if (id_dest -> type == OP_TYPE_REG) {
+		rtl_sr(s, R_EAX, ddest, id_dest -> width);
+		rtl_sr(s, id_dest->reg, s0, id_dest -> width);
+	}
+	else  {
+		TODO();
+
+	}
 }
 
 static inline def_EHelper(ret_imm) {
