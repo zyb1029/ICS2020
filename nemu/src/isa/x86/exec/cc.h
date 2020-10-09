@@ -40,6 +40,8 @@ static inline void rtl_setcc(DecodeExecState *s, rtlreg_t* dest, uint32_t subcod
 		*dest = (cpu.eflags.SF != cpu.eflags.OF);
 		break;
     case CC_LE:
+		*dest = (cpu.eflags.ZF == 1 || cpu.eflags.SF != cpu.eflags.OF);
+		break;
        TODO();
     default: panic("should not reach here");
     case CC_P: panic("PF is not supported");
