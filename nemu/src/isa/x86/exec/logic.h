@@ -23,8 +23,10 @@ static inline def_EHelper(xor) {
 }
 
 static inline def_EHelper(or) {
-  TODO();
-
+  rtl_or(s, ddest, dsrc1, ddest);
+  rtl_set_CF(s, rz);
+  rtl_set_OF(s, rz);
+  rtl_update_ZFSF(s, ddest, s->dest.width);
   print_asm_template2(or);
 }
 
