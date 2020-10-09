@@ -11,6 +11,7 @@ static inline def_EHelper(push) {
 
 static inline def_EHelper(pop) {
  // TODO();
+  rtl_push(s, ddest);
   print_asm_template1(pop);
 }
 
