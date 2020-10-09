@@ -48,8 +48,8 @@ static inline def_EHelper(cmp) {
 }
 
 static inline def_EHelper(inc) {
-  rtl_addi(s, dsrc1, rz, 1);
-  rtl_add(s, s0, ddest, dsrc1);
+  rtl_addi(s, s2, rz, 1);
+  rtl_add(s, s0, ddest, s2);
 /*  rtl_update_ZFSF(s, s0, id_dest->width);
   rtl_is_add_overflow(s, s1, s0, ddest, dsrc1, id_dest->width);
   rtl_set_OF(s, s1);
