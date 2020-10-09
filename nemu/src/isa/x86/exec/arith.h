@@ -50,14 +50,14 @@ static inline def_EHelper(cmp) {
 static inline def_EHelper(inc) {
   rtl_addi(s, dsrc1, rz, 1);
   rtl_add(s, s0, ddest, dsrc1);
-  rtl_update_ZFSF(s, s0, id_dest->width);
+/*  rtl_update_ZFSF(s, s0, id_dest->width);
   rtl_is_add_overflow(s, s1, s0, ddest, dsrc1, id_dest->width);
   rtl_set_OF(s, s1);
   if (id_dest->width != 4) {
     rtl_andi(s, s0, s0, 0xffffffffu >> ((4 - id_dest->width) * 8));
   }
   rtl_is_add_carry(s, s1, s0, dsrc1);
-  rtl_set_CF(s, s1);
+  rtl_set_CF(s, s1);*/
   operand_write(s, id_dest, s0);
   print_asm_template1(inc);
 }
