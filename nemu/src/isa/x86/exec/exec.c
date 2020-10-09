@@ -147,6 +147,7 @@ again:
 	IDEX (0x3b, E2G, cmp)
 	IDEXW (0x74, J, jcc, 1)
 	EX (0xc9, leave)
+	IDEX (0x47, r, inc)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
