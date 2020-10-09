@@ -117,7 +117,6 @@ static inline def_rtl(update_ZF, const rtlreg_t* result, int width) {
 static inline def_rtl(update_SF, const rtlreg_t* result, int width) {
   // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
   if (((*result) & (1 << (width * 8 - 1))) != 0) {
-	  printf("%x", *result);
 	  cpu.eflags.SF = 1;
   }
   else {
