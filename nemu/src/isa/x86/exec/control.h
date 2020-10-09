@@ -37,6 +37,10 @@ static inline def_EHelper(ret) {
   print_asm("ret");
 }
 
+static inline def_EHelper(xchg) {
+	  TODO();
+}
+
 static inline def_EHelper(ret_imm) {
   TODO();
 
