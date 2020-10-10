@@ -70,12 +70,15 @@ static inline def_EHelper(gp4) {
 static inline def_EHelper(gp5) {
   switch (s->isa.ext_opcode) {
     EMPTY(1) EMPTY(3)
-    EMPTY(4) EMPTY(5) EMPTY(7)
+    EMPTY(5) EMPTY(7)
 	case 0:
 		exec_inc(s);
 		break;
 	case 2:
 		exec_call_rm(s);
+		break;
+	case 4:
+		exec_jmp_rm(s);
 		break;
 	case 6:
 		exec_push(s);
