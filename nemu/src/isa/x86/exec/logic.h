@@ -34,11 +34,15 @@ static inline def_EHelper(or) {
 }
 
 static inline def_EHelper(sar) {
-  TODO();
+  rtl_sar(s, s0, ddest, dsrc1);
+  rtl_mv(s, ddest, s0);
+  operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
 
-  print_asm_template2(sar);
+  print_asm_template2(shl);
 }
+
+
 
 static inline def_EHelper(shl) {
   //TODO();
