@@ -68,9 +68,9 @@ static inline def_EHelper(gp5) {
 	case 0:
 		exec_inc(s);
 		break;
-	case 2:
+/*	case 2:
 		exec_call(s);
-		break;
+		break;*/
 	case 6:
 		exec_push(s);
 	break;
