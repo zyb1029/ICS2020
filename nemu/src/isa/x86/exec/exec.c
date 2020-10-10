@@ -36,8 +36,11 @@ static inline def_EHelper(gp2) {
 	case 4:
 		exec_shl(s);
 		break;
+	case 5:
+		exec_shr(s);
+		break;
     EMPTY(0) EMPTY(1) EMPTY(2) EMPTY(3)
-    EMPTY(5) EMPTY(6) EMPTY(7)
+    EMPTY(6) EMPTY(7)
   }
 }
 
