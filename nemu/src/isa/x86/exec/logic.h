@@ -19,7 +19,8 @@ static inline def_EHelper(and) {
 }
 
 static inline def_EHelper(xor) {
-  rtl_xor(s, ddest, dsrc1, ddest);
+  rtl_xor(s, s0, dsrc1, ddest);
+  operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
   rtl_update_ZFSF(s, ddest, s->dest.width);
@@ -27,7 +28,8 @@ static inline def_EHelper(xor) {
 }
 
 static inline def_EHelper(or) {
-  rtl_or(s, ddest, dsrc1, ddest);
+  rtl_or(s, s0, dsrc1, ddest);
+  operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
   rtl_update_ZFSF(s, ddest, s->dest.width);
