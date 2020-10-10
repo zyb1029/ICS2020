@@ -10,7 +10,8 @@ static inline def_EHelper(test) {
 }
 
 static inline def_EHelper(and) {
-  rtl_and(s, ddest, ddest, dsrc1);
+  rtl_and(s, s0, ddest, dsrc1);
+  operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
   rtl_update_ZFSF(s, ddest, s->dest.width);
