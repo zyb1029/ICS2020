@@ -74,7 +74,7 @@ static inline def_EHelper(setcc) {
 static inline def_EHelper(not) {
   rtl_li(s, s0, 1);
   rtl_xor(s, s1, ddest, s0);
-  printf("0x%x\n", id_dest->val);
+  printf("0x%x\n", *ddest);
   operand_write(s, id_dest, s1);
   print_asm_template1(not);
 }
