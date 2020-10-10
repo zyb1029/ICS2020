@@ -55,6 +55,7 @@ static inline def_EHelper(gp3) {
 		break;
 	case 7:
 		exec_idiv(s);
+		break;
     EMPTY(1) EMPTY(2) EMPTY(3)
     EMPTY(4) EMPTY(6) 
   }
