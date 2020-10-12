@@ -38,11 +38,13 @@ static inline def_EHelper(gp2) {
 	case 4:
 		exec_shl(s);
 		break;
+	case 5:
+		exec_shr(s);
 	case 7:
 		exec_sar(s);
 		break;
     EMPTY(0) EMPTY(1) EMPTY(2) EMPTY(3)
-    EMPTY(6) EMPTY(5)
+    EMPTY(6) 
   }
 }
 
