@@ -40,6 +40,7 @@ static inline def_EHelper(gp2) {
 		break;
 	case 5:
 		exec_shr(s);
+		break;
 	case 7:
 		exec_sar(s);
 		break;
