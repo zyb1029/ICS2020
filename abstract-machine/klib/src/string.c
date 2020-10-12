@@ -4,7 +4,9 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 size_t strlen(const char *s) {
-  return 0;
+  size_t ans = 0;
+  for (int i = 0; s[i] != 0; i++) ans++;
+  return ans;
 }
 
 char *strcpy(char* dst,const char* src) {
