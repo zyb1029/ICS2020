@@ -60,6 +60,7 @@ static inline def_EHelper(gp3) {
 		break;
 	case 4:
 		exec_mul(s);
+		break;
 	case 5:
 		exec_imul1(s);
 		break;
