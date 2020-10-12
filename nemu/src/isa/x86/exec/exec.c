@@ -198,6 +198,7 @@ again:
 	IDEX (0x03, E2G, add)
 	IDEX (0x39, G2E, cmp)
 	IDEX (0x43, r, inc)
+	IDEX (0x46, r, inc)
 	IDEXW (0x7d, J, jcc, 1)
 	IDEXW (0x7e, J, jcc, 1)
 	IDEX (0x48, r, dec)
