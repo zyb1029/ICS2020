@@ -73,8 +73,6 @@ int sprintf(char *out, const char *fmt, ...) {
 		len++;
 	}	  
   }
-  *out = '1';
-  out++;
   *out = *fmt;
   return len;
 }
