@@ -1,6 +1,5 @@
 #ifndef KLIB_H__
 #define KLIB_H__
-
 #include <am.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -9,7 +8,7 @@
 extern "C" {
 #endif
 
-//#define __NATIVE_USE_KLIB__
+#define __NATIVE_USE_KLIB__
 
 // string.h
 void  *memset    (void *s, int c, size_t n);
