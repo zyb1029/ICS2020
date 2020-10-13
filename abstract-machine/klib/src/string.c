@@ -73,8 +73,18 @@ void* memcpy(void* out, const void* in, size_t n) {
 }
 
 int memcmp(const void* s1, const void* s2, size_t n) {
-  assert(0);
-  return 0;
+  if (n == 0) {
+	return 0;	  
+  }
+  unsigned char *dst = (unsigned char *)s1;
+  unsigned char *src = (unsigned char *)s2; 
+  int i;
+  for (i = 0; i < n && *dst == *src; i++) {
+	dst++;
+	src++;	  
+  }
+  if (i == n) return 0;
+  else return *dst - *src;
 }
 
 #endif
