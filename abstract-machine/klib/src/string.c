@@ -29,7 +29,7 @@ char* strncpy(char* dst, const char* src, size_t n) {
 		dst[i] = '\0';
 	return dst;
 }
-
+// finish testing
 char* strcat(char* dst, const char* src) { 
 	assert (dst != NULL && src != NULL);
 	int i;
