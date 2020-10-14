@@ -9,6 +9,7 @@ size_t strlen(const char *s) {
   return ans;
 }
 
+// finish testing
 char *strcpy(char* dst,const char* src) {
 	assert(dst != NULL && src != NULL);
 	int i;
@@ -18,9 +19,15 @@ char *strcpy(char* dst,const char* src) {
 	*(dst + i) = '\0';
 	return dst;
 }
-
+// finish testing
 char* strncpy(char* dst, const char* src, size_t n) {
-  return NULL;
+	size_t i;
+	for (i = 0; i < n && src[i] != '\0'; i++){
+		dst[i] = src[i];
+	}
+	for( ; i < n; i++)
+		dst[i] = '\0';
+	return dst;
 }
 
 char* strcat(char* dst, const char* src) { 
@@ -50,20 +57,25 @@ int strcmp(const char* s1, const char* s2) {
 int strncmp(const char* s1, const char* s2, size_t n) {
   return 0;
 }
-
+// finsh testing
 void* memset(void* v,int c,size_t n) {
-  char *dst = (char *)v;
+  unsigned char *dst = (unsigned char *)v;
   for (int i = 0; i < n; i++) {
 	  *(dst + i) = c;	  
   }
-  *(dst + n) = '\0';
   return v;
 }
-
+// finsish testing
 void* memmove(void* dst,const void* src,size_t n) {
-  return NULL;
+	unsigned char s[65536];
+	unsigned char *s1 = (unsigned char *)dst;
+	unsigned char *s2 = (unsigned char *)src;
+	for (int i = 0; i < n; i++) s[i] = s2[i];
+	for (int i = 0; i < n; i++) s1[i] = s[i];
+	return dst;
 }
 
+// finish testing
 void* memcpy(void* out, const void* in, size_t n) {
 	unsigned char *s1 = (unsigned char *)out;
 	unsigned char *s2 = (unsigned char *)in;
