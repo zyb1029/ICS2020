@@ -9,43 +9,6 @@ size_t strlen(const char *s) {
   return ans;
 }
 
-
-
-
-
-
-
-
-
-void *memcpy(void *str1, const void *str2, size_t n)
-{
-	    if(str1 == NULL || str2 == NULL || n <= 0){
-			        return NULL;
-					    }
-
-						    char *pstr1 = (char *)str1;
-							    char *pstr2 = (char *)str2;
-
-								    // 说明str1在str2中间，有内存重叠
-									    // 为了防止copy时不破坏str2，从后向前拷贝
-										    if(pstr1 > pstr2 && pstr1 < (pstr2 + n)){
-												        pstr1 += (n - 1);
-														        pstr2 += (n - 1);
-
-																        while(n--){
-																			            *pstr1-- = *pstr2--;
-																						        }
-																								    }
-																									    else{
-																											        while(n--){
-																														            *pstr1++ = *pstr2++;
-																																	        }
-																																			    }
-return str1;}
-
-
-
-
 char *strcpy(char* dst,const char* src) {
 	assert(dst != NULL && src != NULL);
 	int i;
@@ -101,7 +64,7 @@ void* memmove(void* dst,const void* src,size_t n) {
   return NULL;
 }
 
-void* Memcpy(void* out, const void* in, size_t n) {
+void* memcpy(void* out, const void* in, size_t n) {
 	unsigned char *s1 = (unsigned char *)out;
 	unsigned char *s2 = (unsigned char *)in;
 	for (int i = 0; i < n; i++) *(s1 + i) = *(s2 + i);
