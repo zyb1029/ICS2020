@@ -50,7 +50,12 @@ void pio_write_w(ioaddr_t, uint32_t);
 void pio_write_b(ioaddr_t, uint32_t);
 
 static inline def_EHelper(in) {
-  
+   switch (id_dest -> width) {
+	case 4:	  
+	  pio_read_l(id_src1->val);
+	  break;
+	default: TODO();  
+  }
   print_asm_template2(in);
 }
 
