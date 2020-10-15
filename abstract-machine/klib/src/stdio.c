@@ -50,6 +50,7 @@ int printf(const char *fmt, ...) {
 				int tmpd =  my_atoi(NULL, d, 1, 1);
 				fmt++;
 			    len += tmpd;
+				putch('2');
 				break;
 			case 's':
 			    putch('1');
