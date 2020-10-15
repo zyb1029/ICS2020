@@ -5,17 +5,7 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int printf(const char *fmt, ...) {
-//  assert(0);
-  return 0;
-}
-
-int vsprintf(char *out, const char *fmt, va_list ap) {
- // assert(0);
-  return 0;
-}
-
-int my_atoi(char *dst, int d, int type) {
+int my_atoi(char *dst, int d, int type, int out_type) {
 	if (type == 1) {
 		char s[20];
 		int len = 0;
@@ -28,14 +18,67 @@ int my_atoi(char *dst, int d, int type) {
 			 s[len++] = d % 10 + '0';	
 			 d = d / 10;	
 			}
-			for (int i = len - 1; i >= 0; i--) {
-				*(dst + len - 1 -i) = *(s + i);
+			if (out_type == 0) {
+				for (int i = len - 1; i >= 0; i--) {
+					*(dst + len - 1 -i) = *(s + i);
+				}
+			}
+			else if (out_type == 1) {
+				for (int i = len - 1; i >= 0; i--) {
+					putch(s[i]);	
+				}	
 			}
 		}
 		return len;
 	}	
 	else return 0;
 }
+
+int printf(const char *fmt, ...) {
+
+  va_list ap;
+  va_start(ap, fmt);
+  int d, len = 0;
+  char *s;
+  while (*fmt != '\0') {
+	switch(*fmt) {
+      case '%':
+		fmt++;
+		switch(*fmt) {
+			case 'd':
+				d = va_arg(ap, int);
+				int tmpd =  my_atoi(NULL, d, 1, 1);
+				fmt++;
+			    len += tmpd;
+				break;
+			case 's':
+				s = va_arg(ap, char *);
+				for (int i = 0; s[i] != '\0'; i++) putch(s[i]);
+				int tmps = strlen(s);
+			     fmt++;
+				len += tmps;
+				break;
+			default:
+				putch('%');	putch(*fmt);
+				 fmt++;
+				len += 2;
+		}
+		break;
+	  default:	
+		putch(*fmt);
+		fmt++;
+		len++;
+	}	  
+  }
+  return len;
+
+}
+
+int vsprintf(char *out, const char *fmt, va_list ap) {
+ // assert(0);
+  return 0;
+}
+
 
 int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
@@ -49,7 +92,7 @@ int sprintf(char *out, const char *fmt, ...) {
 		switch(*fmt) {
 			case 'd':
 				d = va_arg(ap, int);
-				int tmpd =  my_atoi(out, d, 1);
+				int tmpd =  my_atoi(out, d, 1, 0);
 				out = out + tmpd; fmt++;
 			    len += tmpd;
 				break;
