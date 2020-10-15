@@ -64,11 +64,13 @@ static inline def_EHelper(gp3) {
 	case 5:
 		exec_imul1(s);
 		break;
+	case 6:
+		exec_div(s);
 	case 7:
 		exec_idiv(s);
 		break;
     EMPTY(1) EMPTY(3)
-    EMPTY(6) 
+
   }
 }
 
