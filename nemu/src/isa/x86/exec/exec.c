@@ -230,7 +230,7 @@ again:
 	IDEX (0x29, G2E, sub)
 	EX (0x99, cltd)
 	IDEX (0x4b, r, dec)
-	IDEX (0x85, G2E, test)
+//	IDEX (0x85, G2E, test)
 	IDEXW (0x84, G2E, test, 1)
 	IDEXW (0x0a, E2G, or, 1)
 	IDEXW (0x22, E2G, and, 1)
