@@ -53,6 +53,7 @@ static inline def_EHelper(gp2) {
 static inline def_EHelper(gp3) {
   switch (s->isa.ext_opcode) {
 	case 0:
+	    decode_op_I(s, id_src1, true);
 		exec_test(s);
 		break;
 	case 2:
@@ -174,7 +175,7 @@ again:
     IDEXW(0xd2, gp2_cl2E, gp2, 1)
     IDEX (0xd3, gp2_cl2E, gp2)
     EX   (0xd6, nemu_trap)
-    IDEXW(0xf6, I2E, gp3, 1) // E->I2E
+    IDEXW(0xf6, E, gp3, 1) // E->I2E
     IDEX (0xf7, E, gp3)
     IDEXW(0xfe, E, gp4, 1)
     IDEX (0xff, E, gp5)
