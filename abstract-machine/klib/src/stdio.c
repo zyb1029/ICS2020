@@ -54,14 +54,14 @@ int printf(const char *fmt, ...) {
 			case 's':
 			    putch('1');
 				s = va_arg(ap, char *);
-				for (int i = 0; s[i] != '\0'; i++) putch(s[i]);
+				for (int i = 0; s[i] != '\0'; i++) putch('1');
 				int tmps = strlen(s);
 			     fmt++;
 				len += tmps;
 				break;
 			default:
 				putch('%');	putch(*fmt);
-				//fmt++;
+			    fmt++;
 				len += 2;
 				break;
 		}
