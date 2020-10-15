@@ -60,9 +60,9 @@ int printf(const char *fmt, ...) {
 				len += tmps;
 				break;
 			default:
-				//putch('%');	putch(*fmt);
-				// fmt++;
-			//	len += 2;
+				putch('%');	putch(*fmt);
+				//fmt++;
+				len += 2;
 				break;
 		}
 		break;
