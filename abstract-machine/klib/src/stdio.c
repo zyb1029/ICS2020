@@ -51,10 +51,16 @@ int printf(const char *fmt, ...) {
 				fmt++;
 			    len += tmpd;
 				break;
+			case 'c':
+			    d = va_arg(ap, int);
+				putch(d);
+				fmt++;
+			    len += 1;
+				break;
+ 
 			case 's':
-			    putch('1');
 				s = va_arg(ap, char *);
-				for (int i = 0; s[i] != '\0'; i++) putch('1');
+				for (int i = 0; s[i] != '\0'; i++) putch(s[i]);
 				int tmps = strlen(s);
 			     fmt++;
 				len += tmps;
