@@ -67,6 +67,7 @@ static inline def_EHelper(gp3) {
 		break;
 	case 6:
 		exec_div(s);
+		break;
 	case 7:
 		exec_idiv(s);
 		break;
