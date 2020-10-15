@@ -62,6 +62,7 @@ int printf(const char *fmt, ...) {
 				putch('%');	putch(*fmt);
 				 fmt++;
 				len += 2;
+				break;
 		}
 		break;
 	  default:	
