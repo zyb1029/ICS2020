@@ -51,7 +51,6 @@ int printf(const char *fmt, ...) {
 				fmt++;
 			    len += tmpd;
 				break;
-			case 'c':
 			case 's':
 				s = va_arg(ap, char *);
 				for (int i = 0; s[i] != '\0'; i++) putch(s[i]);
