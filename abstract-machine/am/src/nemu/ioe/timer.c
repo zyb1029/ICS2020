@@ -8,8 +8,8 @@ void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
   long useconds = inl(RTC_ADDR);
   long seconds = inl(RTC_ADDR + 4);
  // long useconds = inl(RTC_ADDR + 4);
-  printf("%d\n", seconds); 
-  uptime->us = useconds;
+ // printf("%d\n", seconds); 
+  uptime->us = useconds + seconds;
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc) {
