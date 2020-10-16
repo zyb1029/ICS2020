@@ -245,6 +245,7 @@ again:
     IDEXW (0xec, in_dx2a, in, 1)
 	IDEX (0x19, G2E, sbb)
 	IDEXW (0x72, J, jcc, 1)
+	IDEXW (0xa8, I2a, test, 1)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
