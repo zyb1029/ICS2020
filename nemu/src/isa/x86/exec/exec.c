@@ -288,7 +288,7 @@ again:
 	IDEX (0x23, E2G, and)
 	IDEX (0x05, I2a, add)
     IDEX (0x0d, I2a, or)
-//	EX (0xa4, movsb)// movsb 未实现
+	EX (0xa4, movsb)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
