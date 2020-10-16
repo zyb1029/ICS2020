@@ -59,6 +59,7 @@ static inline def_EHelper(shl) {
 
 static inline def_EHelper(shr) {
   rtl_shr(s, s0, ddest, dsrc1);
+  printf("0x%x\n", *s0);
   rtl_mv(s, ddest, s0);
   // unnecessary to update CF and OF in NEMU
 
