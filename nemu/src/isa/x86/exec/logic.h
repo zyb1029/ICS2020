@@ -51,6 +51,7 @@ static inline def_EHelper(rol) {
   uint32_t tmp = *dsrc1;
   uint32_t val = *ddest;
   uint32_t bias = s->isa.is_operand_size_16 ? 15 : 31;
+  tmp = tmp % (bias + 1);
   while(tmp--){
 	  uint32_t now = (val & (1 << bias)) >> bias;
 	  val = (val << 1) + now; 
