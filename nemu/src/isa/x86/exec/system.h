@@ -23,7 +23,7 @@ static inline def_EHelper(mov_cr2r) {
 }
 static inline def_EHelper(movsb) {
 
-  print_asm("movl %%cr%d,%%%s", id_src1->reg, reg_name(id_dest->reg, 4));
+//  print_asm("movl %%cr%d,%%%s", id_src1->reg, reg_name(id_dest->reg, 4));
 
 #ifndef __DIFF_REF_NEMU__
   difftest_skip_ref();
