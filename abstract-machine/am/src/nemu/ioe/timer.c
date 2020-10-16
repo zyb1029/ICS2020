@@ -1,6 +1,5 @@
 #include <am.h>
 #include <nemu.h>
-#include <stdio.h>
 
 static long boot_time_usec;
 static long boot_time_sec;
