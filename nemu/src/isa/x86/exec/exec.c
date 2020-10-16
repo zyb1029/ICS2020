@@ -152,6 +152,7 @@ static inline def_EHelper(2byte_esc) {
 	IDEX (0x83, J, jcc)
 	IDEX (0x8f, J, jcc)
 	IDEX (0x8c, J, jcc)
+	IDEX (0x82, J, jcc)
     default: exec_inv(s);
   }
 }
