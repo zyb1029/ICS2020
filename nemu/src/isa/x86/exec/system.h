@@ -27,8 +27,8 @@ static inline def_EHelper(movsb) {
   }
   else {
     rtl_mv(s, &reg_l(R_EDI), &reg_l(R_ESI));
-	rtl_addi(s, &reg_l(R_EDI), &reg_l(R_EDI), 4);	  
-	rtl_addi(s, &reg_l(R_ESI), &reg_l(R_ESI), 4);	  
+	rtl_addi(s, &reg_l(R_EDI), &reg_l(R_EDI), 1);	  
+	rtl_addi(s, &reg_l(R_ESI), &reg_l(R_ESI), 1);	  
    }
 //  print_asm("movl %%cr%d,%%%s", id_src1->reg, reg_name(id_dest->reg, 4));
 
