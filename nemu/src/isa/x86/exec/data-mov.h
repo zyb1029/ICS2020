@@ -64,10 +64,14 @@ static inline def_EHelper(cltd) {
 
 static inline def_EHelper(cwtl) {
   if (s->isa.is_operand_size_16) {
-  TODO();
+	 rtl_lr(s, s1, R_EAX, 1);
+     rtl_sext(s, s0, s1, 1);
+	 rtl_sr(s, R_EAX, s0, 2);
   }
   else {
-  TODO();
+	 rtl_lr(s, s1, R_EAX, 2);
+     rtl_sext(s, s0, s1, 2);
+	 rtl_sr(s, R_EAX, s0, 4);
   }
 
   print_asm(s->isa.is_operand_size_16 ? "cbtw" : "cwtl");
