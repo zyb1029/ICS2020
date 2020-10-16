@@ -280,6 +280,7 @@ again:
 	IDEX (0x21, G2E, and)
 	IDEX (0x0b, E2G, or)
 	IDEXW (0x00, G2E, add, 1)
+	IDEXW (0x02, E2G, add, 1)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
