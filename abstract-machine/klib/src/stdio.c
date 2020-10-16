@@ -39,11 +39,20 @@ int printf(const char *fmt, ...) {
   va_list ap;
   va_start(ap, fmt);
   int d, len = 0;
+  int width = 0;
+//  char width_type = ' ';
   char *s;
   while (*fmt != '\0') {
 	switch(*fmt) {
       case '%':
 		fmt++;
+		if (*fmt == '0') {
+			fmt++;
+			while(*fmt <= '9' && *fmt >= '0') {
+				width = width * 10 + *fmt;
+				fmt++;
+			}
+		}
 		switch(*fmt) {
 			case 'd':
 				d = va_arg(ap, int);
