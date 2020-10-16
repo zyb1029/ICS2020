@@ -234,6 +234,7 @@ again:
 	IDEXW (0x7d, J, jcc, 1)
 	IDEXW (0x7e, J, jcc, 1)
 	IDEX (0x48, r, dec)
+	IDEX (0x49, r, dec)
 	IDEX (0x4a, r, dec)
 	IDEX (0x4e, r, dec)
 	IDEXW (0x7f, J, jcc, 1)
