@@ -59,8 +59,8 @@ static inline def_EHelper(shl) {
 
 static inline def_EHelper(shr) {
   rtl_shr(s, s0, ddest, dsrc1);
-  printf("0x%x\n", *s0);
   rtl_mv(s, ddest, s0);
+  operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
 
   print_asm_template2(shr);
