@@ -42,7 +42,7 @@ static inline def_EHelper(sar) {
   operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
 
-  print_asm_template2(shl);
+  print_asm_template2(sar);
 }
 
 
