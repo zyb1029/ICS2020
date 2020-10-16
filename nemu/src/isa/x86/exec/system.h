@@ -26,6 +26,8 @@ static inline def_EHelper(movsb) {
 	TODO();   
   }
   else {
+	rtl_lm(s, s0, &reg_l(R_ESI), 0, 1);
+	rtl_sm(s, &reg_l(R_EDI), 0, s0, 1);
 	rtl_addi(s, &reg_l(R_EDI), &reg_l(R_EDI), 1);	  
 	rtl_addi(s, &reg_l(R_ESI), &reg_l(R_ESI), 1);	  
    }
