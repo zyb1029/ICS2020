@@ -88,7 +88,7 @@ static inline def_EHelper(gp4) {
     EMPTY(0) EMPTY(2) EMPTY(3)
     EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
 	case 1:
-		exec_jcc(s);
+		exec_dec(s);
 		break;
   }
 }
