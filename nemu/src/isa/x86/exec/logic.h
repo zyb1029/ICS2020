@@ -37,7 +37,8 @@ static inline def_EHelper(or) {
 }
 
 static inline def_EHelper(sar) {
-  rtl_sar(s, s0, ddest, dsrc1);
+  rtl_sext(s, s1, ddest, id_dest -> width);
+  rtl_sar(s, s0, s1, dsrc1);
   rtl_mv(s, ddest, s0);
   operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
