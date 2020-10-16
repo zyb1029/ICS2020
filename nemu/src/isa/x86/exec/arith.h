@@ -75,7 +75,13 @@ static inline def_EHelper(dec) {
 }
 
 static inline def_EHelper(neg) {
-  TODO();
+  rtl_li(s, s0, 1);
+  if (id_dest -> val == 0) rtl_set_CF(s, rz);
+  else rtl_set_CF(s, s0);
+  rtl_neg(s, s1, ddest);
+  rtl_update_ZFSF(s, s1, id_dest -> width);
+  rtl_set_OF(s, s1);
+  operand_write(s, id_dest, s1);
   print_asm_template1(neg);
 }
 
