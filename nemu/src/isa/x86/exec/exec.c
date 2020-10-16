@@ -43,6 +43,9 @@ static inline def_EHelper(gp1) {
 /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
 static inline def_EHelper(gp2) {
   switch (s->isa.ext_opcode) {
+	case 0:
+		exec_rol(s);
+		break;
 	case 4:
 		exec_shl(s);
 		break;
@@ -52,7 +55,7 @@ static inline def_EHelper(gp2) {
 	case 7:
 		exec_sar(s);
 		break;
-    EMPTY(0) EMPTY(1) EMPTY(2) EMPTY(3)
+    EMPTY(1) EMPTY(2) EMPTY(3)
     EMPTY(6) 
   }
 }
