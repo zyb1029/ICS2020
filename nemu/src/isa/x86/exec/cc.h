@@ -42,7 +42,7 @@ static inline void rtl_setcc(DecodeExecState *s, rtlreg_t* dest, uint32_t subcod
 		*dest = ((cpu.eflags.ZF == 1) || (cpu.eflags.CF == 1));
 		break;
     case CC_S:
-		TODO();
+		*dest = (cpu.eflags.SF == 1);
 		break;
     case CC_L:
 		*dest = (cpu.eflags.SF != cpu.eflags.OF);
