@@ -50,6 +50,7 @@ static inline def_EHelper(sar) {
 static inline def_EHelper(rol) {
   int tmp = id_src1->val;
   uint32_t val = id_dest -> val;
+  printf("%x %X\n", tmp, val);
   uint32_t bias = s->isa.is_operand_size_16 ? 15 : 31;
   while(tmp--){
 	  uint32_t now = (val & (1 << bias)) >> bias;
