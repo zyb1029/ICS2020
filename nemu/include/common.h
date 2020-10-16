@@ -1,14 +1,14 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
-#define DEBUG
-#define DIFF_TEST
+//#define DEBUG
+//#define DIFF_TEST
 
 
 #if _SHARE
 // do not enable these features while building a reference design
-//#undef DIFF_TEST
-//#undef DEBUG
+#undef DIFF_TEST
+#undef DEBUG
 #endif
 
 /* You will define this macro in PA2 */
