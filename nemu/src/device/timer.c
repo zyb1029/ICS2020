@@ -2,7 +2,6 @@
 #include <device/alarm.h>
 #include <monitor/monitor.h>
 #include <sys/time.h>
-#include <stdio.h>
 #define RTC_PORT 0x48   // Note that this is not the standard
 #define RTC_MMIO 0xa1000048
 

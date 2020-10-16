@@ -52,10 +52,12 @@ void pio_write_b(ioaddr_t, uint32_t);
 static inline def_EHelper(in) {
    switch (id_dest -> width) {
 	case 1:	  
-	  pio_read_b(id_src1->val);
+	  rtl_li(s, s0, pio_read_b(id_src1->val));
+	  rtl_sr(s, R_EAX, s0, 1);
 	  break;
 	case 4:	  
-	  pio_read_l(id_src1->val);
+	  rtl_li(s, s0, pio_read_l(id_src1->val));
+	  rtl_sr(s, R_EAX, s0, 4);
 	  break;
 	default: TODO();  
   }
