@@ -270,6 +270,7 @@ again:
 	IDEX (0x35, I2a, xor)
 	EX (0x98, cwtl)
 	IDEXW (0x32, E2G, xor, 1)
+	IDEX (0x33, E2G, xor)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
