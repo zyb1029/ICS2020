@@ -2,6 +2,7 @@
 #include <nemu.h>
 #include <stdio.h>
 void __am_timer_init() {
+	printf("3132131");
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
