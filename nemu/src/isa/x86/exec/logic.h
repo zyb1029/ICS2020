@@ -45,6 +45,22 @@ static inline def_EHelper(sar) {
 
   print_asm_template2(sar);
 }
+static inline def_EHelper(ror) {
+  uint32_t tmp = *dsrc1;
+  uint32_t val = *ddest;
+  uint32_t bias = s->isa.is_operand_size_16 ? 15 : 31;
+  tmp = tmp % (bias + 1);
+  while(tmp--){
+	  uint32_t now = val & 1;
+	  val = (val >> 1) + (now << bias); 
+  }
+  rtl_li(s, s0, val);
+  operand_write(s, id_dest, s0);
+  // unnecessary to update CF and OF in NEMU
+
+  print_asm_template2(ror);
+}
+
 
 
 static inline def_EHelper(rol) {

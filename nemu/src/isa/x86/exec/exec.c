@@ -46,6 +46,9 @@ static inline def_EHelper(gp2) {
 	case 0:
 		exec_rol(s);
 		break;
+	case 1:
+		exec_ror(s);
+		break;
 	case 4:
 		exec_shl(s);
 		break;
@@ -55,7 +58,7 @@ static inline def_EHelper(gp2) {
 	case 7:
 		exec_sar(s);
 		break;
-    EMPTY(1) EMPTY(2) EMPTY(3)
+    EMPTY(2) EMPTY(3)
     EMPTY(6) 
   }
 }
