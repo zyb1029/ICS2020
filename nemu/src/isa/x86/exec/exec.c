@@ -297,6 +297,7 @@ again:
 	IDEX (0x05, I2a, add)
     IDEX (0x0d, I2a, or)
 	EX (0xa4, movsb)
+	IDEX (0x11, G2E, adc)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
