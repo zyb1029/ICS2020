@@ -51,6 +51,11 @@ void isa_reg_display() {
 	for (int i = 0; i < 8; i++) {
 		printf("%-20s0x%-20x%-20d\n",regsb[i], reg_b(i), reg_b(i));
 	}
+	printf("%-20s0x%-20x%-20d\n", "ZF", cpu.eflags.ZF, cpu.eflags.ZF);
+	printf("%-20s0x%-20x%-20d\n", "CF", cpu.eflags.CF, cpu.eflags.CF);
+	printf("%-20s0x%-20x%-20d\n", "OF", cpu.eflags.OF, cpu.eflags.OF);
+	printf("%-20s0x%-20x%-20d\n", "SF", cpu.eflags.SF, cpu.eflags.SF);
+	printf("%-20s0x%-20x%-20d\n", "IF", cpu.eflags.IF, cpu.eflags.IF);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
