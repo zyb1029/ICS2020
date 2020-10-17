@@ -4,6 +4,10 @@
 #include "difftest.h"
 
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
+  if (cpu.eflags.ZF != ref_r -> eflags.ZF) {
+	  printf("eax should be %x\n", ref_r ->eax);
+	  return false;
+  }
   if (cpu.eax != ref_r -> eax) {
 	  printf("eax should be %x\n", ref_r ->eax);
 	  return false;
