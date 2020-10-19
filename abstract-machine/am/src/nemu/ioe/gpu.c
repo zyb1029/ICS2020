@@ -1,6 +1,6 @@
 #include <am.h>
 #include <nemu.h>
-#include<assert.h>
+#include<stdio.h>
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
@@ -30,7 +30,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 		int cp_bytes = sizeof(uint32_t) * p;
 		for (int j = 0; j < h && y + j < H; j++) {
 			for (int k = 0; k <= cp_bytes; k++) {
-				//assert ((y + j) * W + x < 400 * 300);
+				printf ("%d", (y + j) * W + x < 400 * 300);
 				fb[(y + j) * W + x] = *(pixels + k);
 			}
 			//memcpy(&fb[(y * h + j) * W + x * w], pixels, cp_bytes);
