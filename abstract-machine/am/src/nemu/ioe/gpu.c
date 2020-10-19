@@ -34,7 +34,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 				if ((y + j)*W + x >= 400 * 300)
 					printf("%d %d %d \n", y, j, x);
 	//			assert ((y + j) * W + x < 400 * 300);
-				fb[(y + j) * W + x] = *(pixels + k);
+			    fb[(y + j) * W + x -x - y*W] = *(pixels + k);
 			}
 			//memcpy(&fb[(y * h + j) * W + x * w], pixels, cp_bytes);
 			pixels += w;
