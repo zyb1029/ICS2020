@@ -36,10 +36,11 @@ static inline void update_screen() {
   SDL_RenderCopy(renderer, texture, NULL, NULL);
   SDL_RenderPresent(renderer);
 }
-
+static int loc;
 static void vga_io_handler(uint32_t offset, int len, bool is_write) {
   assert (is_write);
-  if (offset == 4) update_screen();
+  if (offset == 0) { /*(vmem + loc) = screensize_port_base[0]; */loc++; }
+  else if (offset == 4){ loc = 0; update_screen();}
   // TODO: call `update_screen()` when writing to the sync register
   else TODO();
 }
