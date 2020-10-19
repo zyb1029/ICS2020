@@ -30,7 +30,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 		int p = (w < W - x) ? w : W - x;
 		for (int j = 0; j < h && y + j < H; j++) {
 			for (int k = x; k < x + p; k++) {
-				outl(FB_ADDR + ((y + j) * W + k) * 4, *(pixel + k));
+				outl(FB_ADDR + ((y + j) * W + k) , *(pixel + k));
 			}
 			pixel += w;
 		}
