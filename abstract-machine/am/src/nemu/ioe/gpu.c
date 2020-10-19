@@ -37,7 +37,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 			    fb[(y + j) * W + x -x - y*W - j * W] = *(pixels + k);
 			}
 			//memcpy(&fb[(y * h + j) * W + x * w], pixels, cp_bytes);
-			pixels += w;
+		//	pixels += w;
 		}
 	}
   if (ctl->sync) {
