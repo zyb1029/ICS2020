@@ -15,6 +15,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
     .width = W,  .height = H,
     .vmemsz = 0
   };
+  outl(FB_ADDR, 0);
   /*uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for (int i = 0; i < 400 * 300; i++)fb[i] = i;
   outl(SYNC_ADDR, 0); */
