@@ -82,6 +82,7 @@ static inline def_EHelper(out) {
 	  pio_write_b(*ddest, *dsrc1);
 	  break;
 	case 4:
+	  printf("0x%xi\n", *ddest);
 	  pio_write_l(*ddest, *dsrc1);
 	  break;
 	default: TODO();  
