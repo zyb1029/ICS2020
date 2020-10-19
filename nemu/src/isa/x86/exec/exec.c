@@ -276,6 +276,7 @@ again:
 	IDEX (0x2b, E2G, sub)
 	IDEX (0x1b, E2G, sbb)
     IDEXW (0xee, out_a2dx, out, 1)
+    IDEX (0xef, out_a2dx, out)
     IDEX (0xed, in_dx2a, in)
     IDEXW (0xec, in_dx2a, in, 1)
 	IDEX (0x19, G2E, sbb)

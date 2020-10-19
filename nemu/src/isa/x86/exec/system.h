@@ -81,6 +81,9 @@ static inline def_EHelper(out) {
 	case 1:	  
 	  pio_write_b(*ddest, *dsrc1);
 	  break;
+	case 4:
+	  pio_write_l(*ddest, *dsrc1);
+	  break;
 	default: TODO();  
   }
   print_asm_template2(out);
