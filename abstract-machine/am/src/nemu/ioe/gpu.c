@@ -34,7 +34,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 			}
 			pixel += w;
 		}*/
-		outl(FB_ADDR, 0);
+/*		outl(FB_ADDR, 0);*/
 	}
 }
 
