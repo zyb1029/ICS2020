@@ -38,7 +38,6 @@ static inline void update_screen() {
 }
 
 void vga_update_screen(uint32_t offset, int len, bool is_write) {
-  assert (is_write);
   if (vgactl_port_base[1] != '0') {
 	update_screen();
 	vgactl_port_base[1] = 0;	  
