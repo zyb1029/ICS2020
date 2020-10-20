@@ -46,6 +46,7 @@ int my_atoi(char *dst, int d, int type, int out_type) {
 		break;
 
 static int width = 0;
+static char* out;
 va_list ap;
 
 int deal_width(const char *fmt){
@@ -61,9 +62,33 @@ int deal_width(const char *fmt){
 	return len;
 }
 
+static char buff[32];
+
+void deal_number(int x,int len, int mod) {
+	if (x) {
+		while (x) {
+			buff[len++] = x % mod;
+			buff[len] = '\0';
+			x /= mod;
+		}
+    }
+	else {buff[len++] = '0'; buff[len] = '\0';}
+
+	for (int i = len; i < width; i++) {
+		buff[len++] = '0'; buff[len] = '\0';
+		len++;
+	}
+	for (int i = 0; i < len / 2; i++) {
+		char tmp = buff[len - 1 - i];
+		buff[len - 1 - i] = buff[i];	
+		buff[i] = tmp;
+	}
+	out = buff;
+}
+
 void deal_character4() {
-		
-	
+	int d = va_arg(ap, int);
+    deal_number(d, 0, 10);	
 }
 
 int deal_character(const char *fmt) { 
@@ -87,10 +112,6 @@ int printf(const char *fmt, ...) {
 		CASE(fmt, character)
 		switch(*fmt) {
 			case 'd':
-				d = va_arg(ap, int);
-				int tmpd =  my_atoi(NULL, d, 1, 1);
-				fmt++;
-			    len += tmpd;
 				break;
 			case 'c':
 			    d = va_arg(ap, int);
