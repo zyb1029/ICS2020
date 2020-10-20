@@ -19,28 +19,53 @@ enum {
   reg_sbuf_size,
   reg_init,
   reg_count,
+  reg_head,
+  reg_tail,
   nr_reg
 };
 
 static uint8_t *sbuf = NULL;
 static uint32_t *audio_base = NULL;
 static uint32_t count = 0;
+static uint32_t head = 0;
+static uint32_t tail = 0;
 static inline void audio_play(void *userdata, uint8_t *stream, int len) {
+	int nread = len;
+	if (count < len) nread = count;
+	
+	if (nread + tail < STREAM_BUF_MAX_SIZE) {
+		for (int i = 0; i < nread; i++)
+			stream[i] = sbuf[tail + i];
+		tail += nread;	
+	}
+	else {
+		int first_cpy_len = STREAM_BUF_MAX_SIZE - tail;
+		for (int i = 0; i < first_cpy_len; i++) 
+			stream[i] = sbuf[tail + i];	
+		for (int i = 0; i < nread - first_cpy_len; i++)
+			stream[first_cpy_len + i] = sbuf[i];
+		tail = nread - first_cpy_len;
+	}
+	count -= nread;
+	if (len > nread) {
+		for(int i = 0; i < len - nread; i++)
+			stream[nread + i] = 0;
+	}
 }
 
 static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 	switch (offset){
 		case 0:
-			s.freq = audio_base[0];
+			s.freq = audio_base[reg_freq];
 			break;
 		case 1:
-			s.channels = audio_base[1];
+			s.channels = audio_base[reg_channels];
 			break;
 		case 2:
-			s.samples = audio_base[2];
+			s.samples = audio_base[reg_samples];
 			break;
 		case 3:
-			audio_base[3] = STREAM_BUF_MAX_SIZE;
+			audio_base[reg_sbuf_size] = STREAM_BUF_MAX_SIZE;
 			break;
 		case 4:
 			s.format = AUDIO_S16SYS;
@@ -51,7 +76,16 @@ static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 			SDL_PauseAudio(0);
 			break;
 		case 5: 
-			audio_base[5] = count;
+			if(is_write) count = audio_base[reg_count];
+			else audio_base[reg_count] = count;
+			break;
+		case 6:
+			if (is_write) head = audio_base[reg_head];
+			else audio_base[reg_head] = head;
+			break;
+		case 7:
+			if (is_write) tail = audio_base[reg_tail];
+			else audio_base[reg_tail] = tail;
 			break;
 		default: TODO();
 	}
