@@ -40,13 +40,43 @@ int my_atoi(char *dst, int d, int type, int out_type) {
 #define CASE(fmt, type) \
 	fmt = fmt + concat(deal_, type)(fmt);
 
-int deal_width(const char *fmt){ return 0;}
-int deal_character(const char *fmt){ return 0;}
+#define CHARACTER_CASE(type) \
+	case type:\
+		concat(deal_character_, x)();\
+		break;
+
+static int width = 0;
+
+int deal_width(const char *fmt){
+	int len = 0;
+	width = 0;
+	if (*fmt == '0') {
+		fmt++; len++;
+		while(*fmt <= '9' && *fmt >= '0') {
+			width = width * 10 + *fmt;
+			fmt++; len++;
+		}
+	}
+	return len;
+}
+
+void deal_character_x() {
+	
+	
+}
+
+int deal_character(const char *fmt) { 
+	int len = 0;
+	switch(*fmt) {
+		CHARACTER_CASE('x');
+    }
+	return len;
+}
+
 int printf(const char *fmt, ...) {
   va_list ap;
   va_start(ap, fmt);
   int d, len = 0;
-  int width = 0;
 //  char width_type = ' ';
   char *s;
   while (*fmt != '\0') {
@@ -55,13 +85,6 @@ int printf(const char *fmt, ...) {
 		fmt++;
 		CASE(fmt, width)
 		CASE(fmt, character)
-		if (*fmt == '0') {
-			fmt++;
-			while(*fmt <= '9' && *fmt >= '0') {
-				width = width * 10 + *fmt;
-				fmt++;
-			}
-		}
 		switch(*fmt) {
 			case 'd':
 				d = va_arg(ap, int);
