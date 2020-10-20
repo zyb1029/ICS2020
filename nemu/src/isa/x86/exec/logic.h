@@ -35,7 +35,22 @@ static inline def_EHelper(or) {
   rtl_update_ZFSF(s, ddest, s->dest.width);
   print_asm_template2(or);
 }
-
+/*
+static inline def_EHelper(bsr) {
+  uint32_t val = *dsrc1;
+  if (val == 0) {
+	  rtl_li(s, s0, 1);
+	  rtl_set_ZF(s, s0);
+  }
+  else {
+	int tmp = s->isa.is_operand_size_16 ? 15 : 31;
+	while ((val & (1u << tmp)) == 0) {
+		tmp = tmp - 1;
+		rtl_li(s, s1, tmp);		
+		operand_write(s, id_dest, s1);
+	}
+  print_asm_template2(bsr);
+}*/
 static inline def_EHelper(sar) {
   rtl_sext(s, s1, ddest, id_dest -> width);
   rtl_sar(s, s0, s1, dsrc1);
