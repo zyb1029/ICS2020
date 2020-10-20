@@ -105,6 +105,22 @@ static inline def_EHelper(shl) {
   print_asm_template2(shl);
 }
 
+static inline def_EHelper(shrd) {
+  //TODO();
+  uint32_t ShiftAmt = *dsrc1 % 32;
+  uint32_t size = (s->isa.is_operand_size_16) ? 16 : 32;
+  assert(size > ShiftAmt);
+  rtl_li(s, s1, ShiftAmt);
+  rtl_shr(s, s0, ddest, s1);
+  rtl_li(s, s1, size - ShiftAmt);
+  rtl_shl(s, s2, dsrc2, s1);
+  rtl_or(s, ddest, s1, s2);
+  operand_write(s, id_dest, ddest);
+  // unnecessary to update CF and OF in NEMU
+
+  print_asm_template3(shld);
+}
+
 static inline def_EHelper(shld) {
   //TODO();
   uint32_t ShiftAmt = *dsrc1 % 32;
