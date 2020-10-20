@@ -72,7 +72,7 @@ static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 			s.userdata = NULL;
 			s.callback = audio_play;
 		    int ret	= SDL_InitSubSystem(SDL_INIT_AUDIO);
-			if(ret > 0) {
+			if(ret == 0) {
 				SDL_OpenAudio(&s, 0);
 				SDL_PauseAudio(0);
 			}
