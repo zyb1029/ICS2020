@@ -87,7 +87,7 @@ static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 			if (is_write) tail = audio_base[reg_tail];
 			else audio_base[reg_tail] = tail;
 			break;
-		default: TODO();
+		default: {printf("%d\n", offset);TODO();}
 	}
 	 
 }
