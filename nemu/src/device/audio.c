@@ -10,7 +10,6 @@
 #define STREAM_BUF 0xa0800000
 #define STREAM_BUF_MAX_SIZE 65536
 
-SDL_AudioSpec s = {};
 
 enum {
   reg_freq,
@@ -53,16 +52,15 @@ static inline void audio_play(void *userdata, uint8_t *stream, int len) {
 	}
 }
 
+SDL_AudioSpec s = {};
+
 static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 	switch (offset){
 		case 0:
-			s.freq = audio_base[reg_freq];
 			break;
 		case 4:
-			s.channels = audio_base[reg_channels];
 			break;
 		case 8:
-			s.samples = audio_base[reg_samples];
 			break;
 		case 12:
 			audio_base[reg_sbuf_size] = STREAM_BUF_MAX_SIZE;
@@ -70,10 +68,13 @@ static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 		case 16:
 			s.format = AUDIO_S16SYS;
 			s.userdata = NULL;
+			s.channels = audio_base[reg_channels];
+			s.samples = audio_base[reg_samples];
+			s.freq = audio_base[reg_freq];
 			s.callback = audio_play;
 		    int ret	= SDL_InitSubSystem(SDL_INIT_AUDIO);
 			if(ret == 0) {
-				SDL_OpenAudio(&s, 0);
+				SDL_OpenAudio(&s, NULL);
 				SDL_PauseAudio(0);
 			}
 			count = 0;
