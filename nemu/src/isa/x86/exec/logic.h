@@ -35,7 +35,7 @@ static inline def_EHelper(or) {
   rtl_update_ZFSF(s, ddest, s->dest.width);
   print_asm_template2(or);
 }
-/*
+
 static inline def_EHelper(bsr) {
   uint32_t val = *dsrc1;
   if (val == 0) {
@@ -49,8 +49,9 @@ static inline def_EHelper(bsr) {
 		rtl_li(s, s1, tmp);		
 		operand_write(s, id_dest, s1);
 	}
+  }
   print_asm_template2(bsr);
-}*/
+}
 static inline def_EHelper(sar) {
   rtl_sext(s, s1, ddest, id_dest -> width);
   rtl_sar(s, s0, s1, dsrc1);
