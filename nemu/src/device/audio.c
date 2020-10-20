@@ -24,11 +24,38 @@ enum {
 
 static uint8_t *sbuf = NULL;
 static uint32_t *audio_base = NULL;
-
+static uint32_t count = 0;
 static inline void audio_play(void *userdata, uint8_t *stream, int len) {
 }
 
 static void audio_io_handler(uint32_t offset, int len, bool is_write) {
+	switch (offset){
+		case 0:
+			s.freq = audio_base[0];
+			break;
+		case 1:
+			s.channels = audio_base[1];
+			break;
+		case 2:
+			s.samples = audio_base[2];
+			break;
+		case 3:
+			audio_base[3] = STREAM_BUF_MAX_SIZE;
+			break;
+		case 4:
+			s.format = AUDIO_S16SYS;
+			s.userdata = NULL;
+			s.callback = audio_play;
+			SDL_InitSubSystem(SDL_INIT_AUDIO);
+			SDL_OpenAudio(&s, 0);
+			SDL_PauseAudio(0);
+			break;
+		case 5: 
+			audio_base[5] = count;
+			break;
+		default: TODO();
+	}
+	 
 }
 
 void init_audio() {
@@ -39,5 +66,6 @@ void init_audio() {
 
   sbuf = (void *)new_space(STREAM_BUF_MAX_SIZE);
   add_mmio_map("audio-sbuf", STREAM_BUF, (void *)sbuf, STREAM_BUF_MAX_SIZE, NULL);
+
 }
 #endif	/* HAS_IOE */
