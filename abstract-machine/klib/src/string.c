@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
-
+// finish testing
 size_t strlen(const char *s) {
   size_t ans = 0;
   for (int i = 0; s[i] != 0; i++) ans++;
@@ -41,7 +41,7 @@ char* strcat(char* dst, const char* src) {
 	*(dst + i + j) = '\0';
 	return dst;
 }
-
+// finish testing
 int strcmp(const char* s1, const char* s2) {
 	assert (s1 != NULL && s2 != NULL);
 	while (*s1 == *s2) {

@@ -35,6 +35,13 @@ int my_atoi(char *dst, int d, int type, int out_type) {
 	else return 0;
 }
 
+#define concat(x, y) x ## y
+
+#define CASE(fmt, type) \
+	fmt = fmt + concat(deal_, type)(fmt);
+
+int deal_width(const char *fmt){ return 0;}
+int deal_character(const char *fmt){ return 0;}
 int printf(const char *fmt, ...) {
   va_list ap;
   va_start(ap, fmt);
@@ -46,6 +53,8 @@ int printf(const char *fmt, ...) {
 	switch(*fmt) {
       case '%':
 		fmt++;
+		CASE(fmt, width)
+		CASE(fmt, character)
 		if (*fmt == '0') {
 			fmt++;
 			while(*fmt <= '9' && *fmt >= '0') {
