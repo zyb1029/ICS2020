@@ -36,6 +36,7 @@ int my_atoi(char *dst, int d, int type, int out_type) {
 }
 
 int printf(const char *fmt, ...) {
+  return 0;
   va_list ap;
   va_start(ap, fmt);
   int d, len = 0;
