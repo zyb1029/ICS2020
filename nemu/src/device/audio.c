@@ -31,22 +31,17 @@ static inline void audio_play(void *userdata, uint8_t *stream, int len) {
 	
 	if (nread + tail < STREAM_BUF_MAX_SIZE) {
 		memcpy(stream, sbuf + tail, nread);
-	/*	for (int i = 0; i < nread; i++)
-			stream[i] = sbuf[tail + i];*/
 		tail += nread;	
 	}
 	else {
 		int first_cpy_len = STREAM_BUF_MAX_SIZE - tail;
-		for (int i = 0; i < first_cpy_len; i++) 
-			stream[i] = sbuf[tail + i];	
-		for (int i = 0; i < nread - first_cpy_len; i++)
-			stream[first_cpy_len + i] = sbuf[i];
+		memcpy(stream, sbuf + tail, first_cpy_len);
+		memcpy(stream + first_cpy_len, sbuf, nread - first_cpy_len);
 		tail = nread - first_cpy_len;
 	}
 	count -= nread;
 	if (len > nread) {
-		for(int i = 0; i < len - nread; i++)
-			stream[nread + i] = 0;
+		memset(stream + nread, 0, len - nread);
 	}
 }
 
