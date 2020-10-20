@@ -58,16 +58,16 @@ static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 		case 0:
 			s.freq = audio_base[reg_freq];
 			break;
-		case 1:
+		case 4:
 			s.channels = audio_base[reg_channels];
 			break;
-		case 2:
+		case 8:
 			s.samples = audio_base[reg_samples];
 			break;
-		case 3:
+		case 12:
 			audio_base[reg_sbuf_size] = STREAM_BUF_MAX_SIZE;
 			break;
-		case 4:
+		case 16:
 			s.format = AUDIO_S16SYS;
 			s.userdata = NULL;
 			s.callback = audio_play;
@@ -75,19 +75,19 @@ static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 			SDL_OpenAudio(&s, 0);
 			SDL_PauseAudio(0);
 			break;
-		case 5: 
+		case 20: 
 			if(is_write) count = audio_base[reg_count];
 			else audio_base[reg_count] = count;
 			break;
-		case 6:
+		case 24:
 			if (is_write) head = audio_base[reg_head];
 			else audio_base[reg_head] = head;
 			break;
-		case 7:
+		case 28:
 			if (is_write) tail = audio_base[reg_tail];
 			else audio_base[reg_tail] = tail;
 			break;
-		default: {printf("%d\n", offset);TODO();}
+		default: TODO();
 	}
 	 
 }
