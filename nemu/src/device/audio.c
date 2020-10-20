@@ -18,15 +18,12 @@ enum {
   reg_sbuf_size,
   reg_init,
   reg_count,
-  reg_head,
-  reg_tail,
   nr_reg
 };
 
 static uint8_t *sbuf = NULL;
 static uint32_t *audio_base = NULL;
 static uint32_t count = 0;
-static uint32_t head = 0;
 static uint32_t tail = 0;
 static inline void audio_play(void *userdata, uint8_t *stream, int len) {
 	int nread = len;
@@ -78,20 +75,11 @@ static void audio_io_handler(uint32_t offset, int len, bool is_write) {
 				SDL_PauseAudio(0);
 			}
 			count = 0;
-			head = 0;
 			tail = 0;
 			break;
 		case 20: 
 			if(is_write) count = audio_base[reg_count];
 			else audio_base[reg_count] = count;
-			break;
-		case 24:
-			if (is_write) head = audio_base[reg_head];
-			else audio_base[reg_head] = head;
-			break;
-		case 28:
-			if (is_write) tail = audio_base[reg_tail];
-			else audio_base[reg_tail] = tail;
 			break;
 		default: TODO();
 	}

@@ -7,10 +7,8 @@
 #define AUDIO_SBUF_SIZE_ADDR (AUDIO_ADDR + 0x0c)
 #define AUDIO_INIT_ADDR      (AUDIO_ADDR + 0x10)
 #define AUDIO_COUNT_ADDR     (AUDIO_ADDR + 0x14)
-#define AUDIO_HEAD_ADDR      (AUDIO_ADDR + 0x18)
-#define AUDIO_TAIL_ADDR      (AUDIO_ADDR + 0x1c)
 static int SBUF_SIZE_MAX;
-
+static int head;
 void __am_audio_config(AM_AUDIO_CONFIG_T *cfg) {
   cfg -> present = true;
   SBUF_SIZE_MAX =  inl(AUDIO_SBUF_SIZE_ADDR);
@@ -22,6 +20,7 @@ void __am_audio_ctrl(AM_AUDIO_CTRL_T *ctrl) {
 	outl(AUDIO_SAMPLES_ADDR, ctrl -> samples);
 	outl(AUDIO_CHANNELS_ADDR, ctrl -> channels);
 	outl(AUDIO_INIT_ADDR, 1);
+	head = 0;
 }
 
 void __am_audio_status(AM_AUDIO_STATUS_T *stat) {
@@ -34,7 +33,6 @@ void __am_audio_play(AM_AUDIO_PLAY_T *ctl) {
 	int free = SBUF_SIZE_MAX - inl(AUDIO_COUNT_ADDR);
 	int nwrite = len;
 	if (free < len) nwrite = free;
-	int head = inl(AUDIO_HEAD_ADDR);
 	uint8_t *sbuf = (uint8_t *)(uintptr_t)AUDIO_SBUF_ADDR;
 	uint8_t *buf = ctl->buf.start;
 	if (nwrite + head < SBUF_SIZE_MAX) {
@@ -50,6 +48,5 @@ void __am_audio_play(AM_AUDIO_PLAY_T *ctl) {
 			sbuf[i] = buf[first_cpy_len + i];
 		head = nwrite - first_cpy_len;		
 	}
-	outl(AUDIO_HEAD_ADDR, head);
 	outl(AUDIO_COUNT_ADDR, inl(AUDIO_COUNT_ADDR) + nwrite);
 }
