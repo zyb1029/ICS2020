@@ -10,6 +10,8 @@
 #define STREAM_BUF 0xa0800000
 #define STREAM_BUF_MAX_SIZE 65536
 
+SDL_AudioSpec s = {};
+
 enum {
   reg_freq,
   reg_channels,

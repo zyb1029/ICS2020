@@ -42,7 +42,6 @@ void vga_update_screen(uint32_t offset, int len, bool is_write) {
 	update_screen();
 	vgactl_port_base[1] = 0;	  
   }
-  else TODO();
   // TODO: call `update_screen()` when writing to the sync register is non_zero, 
   // then zero out the sync register
 }
