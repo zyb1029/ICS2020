@@ -42,7 +42,7 @@ int my_atoi(char *dst, int d, int type, int out_type) {
 
 #define CHARACTER_CASE(type) \
 	case type:\
-		concat(deal_character_, x)();\
+		concat(deal_character, type)();\
 		break;
 
 static int width = 0;
@@ -60,15 +60,15 @@ int deal_width(const char *fmt){
 	return len;
 }
 
-void deal_character_x() {
+void deal_character4() {
 	
 	
 }
 
 int deal_character(const char *fmt) { 
-	int len = 0;
-	switch(*fmt) {
-		CHARACTER_CASE('x');
+	int len = 0, bias = *fmt - 'a' + 1;
+	switch(bias) {
+		CHARACTER_CASE(4) // d
     }
 	return len;
 }
