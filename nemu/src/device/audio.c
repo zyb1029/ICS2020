@@ -30,8 +30,9 @@ static inline void audio_play(void *userdata, uint8_t *stream, int len) {
 	if (count < len) nread = count;
 	
 	if (nread + tail < STREAM_BUF_MAX_SIZE) {
-		for (int i = 0; i < nread; i++)
-			stream[i] = sbuf[tail + i];
+		memcpy(stream, sbuf + tail, nread);
+	/*	for (int i = 0; i < nread; i++)
+			stream[i] = sbuf[tail + i];*/
 		tail += nread;	
 	}
 	else {
