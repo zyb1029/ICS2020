@@ -81,7 +81,6 @@ void deal_character24() { // x
 
 int deal_character(const char *fmt) { 
 	int len = 1, bias = *fmt - 'a' + 1;
-	printf("%d\n",bias);
 	switch(bias) {
 		CHARACTER_CASE(3) // c
 		CHARACTER_CASE(4) // d
@@ -136,7 +135,6 @@ int sprintf(char *out, const char *fmt, ...) {
 		CASE(fmt, character)
 		strcpy(out, _out);
 		out += strlen(_out);
-		printf("%s", _out);
 		break;
 	  default:	
 		*out = *fmt; out++;
