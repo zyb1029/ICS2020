@@ -81,6 +81,7 @@ void deal_character24() { // x
 
 int deal_character(const char *fmt) { 
 	int len = 1, bias = *fmt - 'a' + 1;
+	printf("%d\n",bias);
 	switch(bias) {
 		CHARACTER_CASE(3) // c
 		CHARACTER_CASE(4) // d
