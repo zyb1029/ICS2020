@@ -38,12 +38,10 @@ static char buff[32];
 static bool number_sign = false;
 void deal_number(int x,int len, int mod) {
 	if (x) {
-		if (x < 0) {
-			number_sign = true;
-			x *= -1;
-		}
+		if (x < 0) number_sign = true;
 		while (x) {
-			buff[len++] = x % mod + '0';
+			int t = x % mod;
+			buff[len++] = (t < 0 ? -t : t) + '0';
 			buff[len] = '\0';
 			x /= mod;
 		}
