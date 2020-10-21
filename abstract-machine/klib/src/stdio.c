@@ -156,35 +156,18 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
   va_start(ap, fmt);
-  int d, len = 0;
-  char *s;
+  int len = 0, len_tmp = 0;
   while (*fmt != '\0') {
 	switch(*fmt) {
       case '%':
 		fmt++;
-		switch(*fmt) {
-			case 'd':
-				d = va_arg(ap, int);
-				int tmpd =  my_atoi(out, d, 1, 0);
-				out = out + tmpd; fmt++;
-			    len += tmpd;
-				break;
-			case 's':
-				s = va_arg(ap, char *);
-				strcpy(out, s);
-				int tmps = strlen(out);
-				out = out + tmps; fmt++;
-				len += tmps;
-				break;
-			default:
-				*out = '%'; out++;
-				*out = *fmt; fmt++;
-				len += 2;
-		}
+		CASE(fmt, width)
+		CASE(fmt, character)
+		strcpy(out, _out);
+		out += strlen(_out);
 		break;
 	  default:	
-		*out = *fmt;
-		out++;
+		*out = *fmt; out++;
 		fmt++;
 		len++;
 	}	  
