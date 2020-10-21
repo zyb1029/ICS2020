@@ -69,8 +69,7 @@ void deal_character4() { // d
     deal_number(d, 0, 10);	
 }
 
-void deal_character16() { // s
-	assert(0);
+void deal_character19() { // s
 	_out = va_arg(ap, char *);
 }
 
@@ -84,10 +83,9 @@ int deal_character(const char *fmt) {
 	switch(bias) {
 		CHARACTER_CASE(3) // c
 		CHARACTER_CASE(4) // d
-		CHARACTER_CASE(16) // s
+		CHARACTER_CASE(19) // s
 		CHARACTER_CASE(24) // x
 		default:
-			printf("%d", bias);
 			buff[0] = *fmt; buff[1] = '\0';
 			_out = buff;
     }
