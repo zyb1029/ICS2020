@@ -35,9 +35,13 @@ int deal_width(const char *fmt){
 }
 
 static char buff[32];
-
+static bool number_sign = false;
 void deal_number(int x,int len, int mod) {
 	if (x) {
+		if (x < 0) {
+			number_sign = true;
+			x *= -1;
+		}
 		while (x) {
 			buff[len++] = x % mod + '0';
 			buff[len] = '\0';
@@ -45,16 +49,22 @@ void deal_number(int x,int len, int mod) {
 		}
     }
 	else {buff[len++] = '0'; buff[len] = '\0';}
-
+	int bj = 0;
 	for (int i = len; i < width; i++) { 
+		bj = 1;
 		buff[len++] = '0'; buff[len] = '\0';
 	}
-	width = 0;
+	if (number_sign){
+		if (bj) buff[len - 1] = '-';
+		else { buff[len++] = '-';buff[len] = '\0';}
+		number_sign = false;
+	}
 	for (int i = 0; i < len / 2; i++) {
 		char tmp = buff[len - 1 - i];
 		buff[len - 1 - i] = buff[i];	
 		buff[i] = tmp;
 	}
+	width = 0;
 	_out = buff;
 }
 
