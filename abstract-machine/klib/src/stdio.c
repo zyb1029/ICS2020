@@ -124,7 +124,7 @@ int deal_character(const char *fmt) {
 }
 
 void Print() {
-	for (int i = 0; out[i] != '\0'; i++) putch(out[i]);
+	for (int i = 0; out[i] != '\0'; i++) {assert(0);putch(out[i]);}
 }
 
 int printf(const char *fmt, ...) {
