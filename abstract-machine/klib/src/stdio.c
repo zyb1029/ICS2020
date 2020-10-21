@@ -76,9 +76,8 @@ void deal_number(int x,int len, int mod) {
     }
 	else {buff[len++] = '0'; buff[len] = '\0';}
 
-	for (int i = len; i < width; i++) {
+	for (int i = len; i < width; i++) { 
 		buff[len++] = '0'; buff[len] = '\0';
-		len++;
 	}
 	width = 0;
 	for (int i = 0; i < len / 2; i++) {
@@ -124,7 +123,7 @@ int deal_character(const char *fmt) {
 }
 
 void Print() {
-	for (int i = 0; out[i] != '\0'; i++) {assert(0);putch(out[i]);}
+	for (int i = 0; out[i] != '\0'; i++) putch(out[i]);
 }
 
 int printf(const char *fmt, ...) {
