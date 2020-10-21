@@ -134,6 +134,7 @@ int sprintf(char *out, const char *fmt, ...) {
 		CASE(fmt, character)
 		strcpy(out, _out);
 		out += strlen(_out);
+		printf("%s", _out);
 		break;
 	  default:	
 		*out = *fmt; out++;
