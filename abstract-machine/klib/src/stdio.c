@@ -133,6 +133,7 @@ int sprintf(char *out, const char *fmt, ...) {
 		CASE(fmt, width)
 		CASE(fmt, character)
 		strcpy(out, _out);
+		printf("%s", _out);
 		out += strlen(_out);
 		break;
 	  default:	
