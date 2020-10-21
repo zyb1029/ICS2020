@@ -41,8 +41,10 @@ void deal_number(int x,int len, int mod) {
 		if (x < 0) number_sign = true;
 		while (x) {
 			int t = x % mod;
-			buff[len++] = (t < 0 ? -t : t) + '0';
-			buff[len] = '\0';
+			buff[len] = (t < 0 ? -t : t) + '0';
+			buff[len] = (buff[len] > '9') ? buff[len] - '9' - 1 + 'a'
+										  : buff[len];
+			buff[++len] = '\0';
 			x /= mod;
 		}
     }
