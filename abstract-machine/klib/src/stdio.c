@@ -87,6 +87,7 @@ int deal_character(const char *fmt) {
 		CHARACTER_CASE(16) // s
 		CHARACTER_CASE(24) // x
 		default:
+			assert(0);
 			buff[0] = *fmt; buff[1] = '\0';
 			_out = buff;
     }
@@ -135,9 +136,9 @@ int sprintf(char *out, const char *fmt, ...) {
 		CASE(fmt, character)
 		strcpy(out, _out);
 		out += strlen(_out);
+		printf("%s", _out);
 		break;
-	  default:
-	    assert(0);	
+	  default:	
 		*out = *fmt; out++;
 		fmt++;
 		len++;
