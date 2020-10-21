@@ -43,6 +43,7 @@ static inline def_EHelper(bsr) {
 	  rtl_set_ZF(s, s0);
   }
   else {
+	rtl_set_ZF(s, rz);
 	int tmp = s->isa.is_operand_size_16 ? 15 : 31;
 	while ((val & (1u << tmp)) == 0) {
 		tmp = tmp - 1;
@@ -55,6 +56,9 @@ static inline def_EHelper(bsr) {
 static inline def_EHelper(sar) {
   rtl_sext(s, s1, ddest, id_dest -> width);
   rtl_sar(s, s0, s1, dsrc1);
+  rtl_li(s, s2, 1);
+  if (*s0 == 0) rtl_set_ZF(s, s2);
+  else rtl_set_ZF(s, rz);
   rtl_mv(s, ddest, s0);
   operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
@@ -99,6 +103,9 @@ static inline def_EHelper(shl) {
   //TODO();
   rtl_shl(s, s0, ddest, dsrc1);
   rtl_mv(s, ddest, s0);
+  rtl_li(s, s1, 1);
+  if (*s0 == 0) rtl_set_ZF(s, s1);
+  else rtl_set_ZF(s, rz);
   operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
 
@@ -116,6 +123,8 @@ static inline def_EHelper(shrd) {
   rtl_shl(s, s2, dsrc2, s1);
   rtl_or(s, ddest, s1, s2);
   operand_write(s, id_dest, ddest);
+  rtl_update_ZFSF(s, ddest, id_dest -> width);
+  rtl_set_OF(s, rz);
   // unnecessary to update CF and OF in NEMU
 
   print_asm_template3(shld);
@@ -132,15 +141,16 @@ static inline def_EHelper(shld) {
   rtl_shr(s, s2, dsrc2, s1);
   rtl_or(s, ddest, s1, s2);
   operand_write(s, id_dest, ddest);
-  // unnecessary to update CF and OF in NEMU
-
+  rtl_update_ZFSF(s, ddest, id_dest -> width);
+  rtl_set_OF(s, rz);
   print_asm_template3(shld);
 }
 
 static inline def_EHelper(shr) {
-  rtl_li(s, s1, 1);
   rtl_shr(s, s0, ddest, dsrc1);
+  rtl_li(s, s1, 1);
   if (*s0 == 0) rtl_set_ZF(s, s1);
+  else rtl_set_ZF(s, rz);
   rtl_mv(s, ddest, s0);
   operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
