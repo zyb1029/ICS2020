@@ -5,36 +5,6 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int my_atoi(char *dst, int d, int type, int out_type) {
-	if (type == 1) {
-		char s[20];
-		int len = 0;
-		if (d == 0) {
-			len = 1;
-			if (out_type == 0) *dst = 0 + '0';	
-			else if (out_type == 1) putch('0');
-		}
-        else {
-			while (d) {
-			 s[len++] = d % 10 + '0';	
-			 d = d / 10;	
-			}
-			if (out_type == 0) {
-				for (int i = len - 1; i >= 0; i--) {
-					*(dst + len - 1 -i) = *(s + i);
-				}
-			}
-			else if (out_type == 1) {
-				for (int i = len - 1; i >= 0; i--) {
-					putch(s[i]);	
-				}	
-			}
-		}
-		return len;
-	}	
-	else return 0;
-}
-
 #define concat(x, y) x ## y
 
 #define CASE(fmt, type) \
@@ -154,7 +124,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 
 int sprintf(char *out, const char *fmt, ...) {
-  va_list ap;
   va_start(ap, fmt);
   int len = 0, len_tmp = 0;
   while (*fmt != '\0') {
