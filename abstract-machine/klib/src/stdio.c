@@ -69,7 +69,7 @@ static char buff[32];
 void deal_number(int x,int len, int mod) {
 	if (x) {
 		while (x) {
-			buff[len++] = x % mod;
+			buff[len++] = x % mod + '0';
 			buff[len] = '\0';
 			x /= mod;
 		}
