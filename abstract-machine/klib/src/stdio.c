@@ -135,7 +135,7 @@ int printf(const char *fmt, ...) {
       case '%':
 		fmt++;
 		CASE(fmt, width)
-		CASE(fmt, character)
+//		CASE(fmt, character)
 		Print();
 		break;
 	  default:	
