@@ -52,13 +52,13 @@ void deal_number(int x,int len, int mod) {
 	else if (mod == 16) {
 		uint32_t y = x;
 		if (y) {
-			while (x) {
-				int t = x % mod;
+			while (y) {
+				int t = y % mod;
 				buff[len] = (t < 0 ? -t : t) + '0';
 				buff[len] = (buff[len] > '9') ? buff[len] - '9' - 1 + 'a'
 										  : buff[len];
 				buff[++len] = '\0';
-				x /= mod;
+				y /= mod;
 			}
 		}
 		else {buff[len++] = '0'; buff[len] = '\0';}
