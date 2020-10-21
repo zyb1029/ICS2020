@@ -71,7 +71,6 @@ void deal_character4() { // d
 
 void deal_character16() { // s
 	_out = va_arg(ap, char *);
-    printf("sdadas");
 }
 
 void deal_character24() { // x
@@ -134,7 +133,6 @@ int sprintf(char *out, const char *fmt, ...) {
 		CASE(fmt, width)
 		CASE(fmt, character)
 		strcpy(out, _out);
-		printf("%s", _out);
 		out += strlen(_out);
 		break;
 	  default:	
