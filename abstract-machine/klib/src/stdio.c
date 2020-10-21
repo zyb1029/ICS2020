@@ -48,7 +48,7 @@ int my_atoi(char *dst, int d, int type, int out_type) {
 		break;
 
 static int width = 0;
-static char* out;
+static char* _out;
 va_list ap;
 
 int deal_width(const char *fmt){
@@ -85,13 +85,13 @@ void deal_number(int x,int len, int mod) {
 		buff[len - 1 - i] = buff[i];	
 		buff[i] = tmp;
 	}
-	out = buff;
+	_out = buff;
 }
 
 void deal_character3() { // c
 	int d = va_arg(ap, int);
 	buff[0] = d; buff[1] = '\0';
-	out = buff;
+	_out = buff;
 }
 
 void deal_character4() { // d
@@ -100,7 +100,7 @@ void deal_character4() { // d
 }
 
 void deal_character16() { // s
-	out = va_arg(ap, char *);
+	_out = va_arg(ap, char *);
 }
 
 void deal_character24() { // x
@@ -117,13 +117,13 @@ int deal_character(const char *fmt) {
 		CHARACTER_CASE(24) // x
 		default:
 			buff[0] = *fmt; buff[1] = '\0';
-			out = buff;
+			_out = buff;
     }
 	return len;
 }
 
 void Print() {
-	for (int i = 0; out[i] != '\0'; i++) putch(out[i]);
+	for (int i = 0; _out[i] != '\0'; i++) putch(_out[i]);
 }
 
 int printf(const char *fmt, ...) {
