@@ -87,7 +87,7 @@ int deal_character(const char *fmt) {
 		CHARACTER_CASE(16) // s
 		CHARACTER_CASE(24) // x
 		default:
-			assert(0);
+			printf("%d", bias);
 			buff[0] = *fmt; buff[1] = '\0';
 			_out = buff;
     }
