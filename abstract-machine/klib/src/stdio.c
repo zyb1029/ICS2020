@@ -38,7 +38,9 @@ int my_atoi(char *dst, int d, int type, int out_type) {
 #define concat(x, y) x ## y
 
 #define CASE(fmt, type) \
-	fmt = fmt + concat(deal_, type)(fmt);
+    len_tmp = concat(deal_, type)(fmt); \
+	fmt = fmt + len_tmp;\
+	len = len + len_tmp;
 
 #define CHARACTER_CASE(type) \
 	case type:\
@@ -78,6 +80,7 @@ void deal_number(int x,int len, int mod) {
 		buff[len++] = '0'; buff[len] = '\0';
 		len++;
 	}
+	width = 0;
 	for (int i = 0; i < len / 2; i++) {
 		char tmp = buff[len - 1 - i];
 		buff[len - 1 - i] = buff[i];	
@@ -86,53 +89,54 @@ void deal_number(int x,int len, int mod) {
 	out = buff;
 }
 
-void deal_character4() {
+void deal_character3() { // c
+	int d = va_arg(ap, int);
+	buff[0] = d; buff[1] = '\0';
+	out = buff;
+}
+
+void deal_character4() { // d
 	int d = va_arg(ap, int);
     deal_number(d, 0, 10);	
 }
 
+void deal_character16() { // s
+	out = va_arg(ap, char *);
+}
+
+void deal_character24() { // x
+	int d = va_arg(ap, int);
+	deal_number(d, 0, 16);
+}
+
 int deal_character(const char *fmt) { 
-	int len = 0, bias = *fmt - 'a' + 1;
+	int len = 1, bias = *fmt - 'a' + 1;
 	switch(bias) {
+		CHARACTER_CASE(3) // c
 		CHARACTER_CASE(4) // d
+		CHARACTER_CASE(16) // s
+		CHARACTER_CASE(24) // x
+		default:
+			buff[0] = *fmt; buff[1] = '\0';
+			out = buff;
     }
 	return len;
 }
 
+void Print() {
+	for (int i = 0; out[i] != '\0'; i++) putch(out[i]);
+}
+
 int printf(const char *fmt, ...) {
+  int len = 0, len_tmp = 0;
   va_start(ap, fmt);
-  int d, len = 0;
-//  char width_type = ' ';
-  char *s;
   while (*fmt != '\0') {
 	switch(*fmt) {
       case '%':
 		fmt++;
 		CASE(fmt, width)
 		CASE(fmt, character)
-		switch(*fmt) {
-			case 'd':
-				break;
-			case 'c':
-			    d = va_arg(ap, int);
-				putch(d);
-				fmt++;
-			    len += 1;
-				break;
- 
-			case 's':
-				s = va_arg(ap, char *);
-				for (int i = 0; s[i] != '\0'; i++) putch(s[i]);
-				int tmps = strlen(s);
-			     fmt++;
-				len += tmps;
-				break;
-			default:
-				putch('%');	putch(*fmt);
-			    fmt++;
-				len += 2;
-				break;
-		}
+		Print();
 		break;
 	  default:	
 		putch(*fmt);
