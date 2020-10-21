@@ -43,7 +43,7 @@ void deal_number(int x,int len, int mod) {
 			while (x) {
 				int t = x % mod;
 				buff[len++] = (t < 0 ? -t : t) + '0';
-				buff[++len] = '\0';
+				buff[len] = '\0';
 				x /= mod;
 			}
 		}
