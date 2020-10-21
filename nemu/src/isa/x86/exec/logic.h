@@ -139,6 +139,8 @@ static inline def_EHelper(shld) {
 
 static inline def_EHelper(shr) {
   rtl_shr(s, s0, ddest, dsrc1);
+  rtl_li(s, s1, 1);
+  if (*s0 == 0) rtl_set_CF(s, s1);
   rtl_mv(s, ddest, s0);
   operand_write(s, id_dest, ddest);
   // unnecessary to update CF and OF in NEMU
