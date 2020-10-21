@@ -96,6 +96,7 @@ void deal_character3() { // c
 }
 
 void deal_character4() { // d
+	assert(0);
 	int d = va_arg(ap, int);
     deal_number(d, 0, 10);	
 }
