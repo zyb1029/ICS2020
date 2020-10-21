@@ -37,7 +37,7 @@ int deal_width(const char *fmt){
 static char buff[32];
 static bool number_sign = false;
 void deal_number(int x,int len, int mod) {
-	if (mod ) {
+	if (mod == 10) {
 		if (x) {
 			if (x < 0) number_sign = true;
 			while (x) {
@@ -52,13 +52,13 @@ void deal_number(int x,int len, int mod) {
 	else if (mod == 16) {
 		uint32_t y = x;
 		if (y) {
-			while (y) {
-				int t = y % mod;
+			while (x) {
+				int t = x % mod;
 				buff[len] = (t < 0 ? -t : t) + '0';
 				buff[len] = (buff[len] > '9') ? buff[len] - '9' - 1 + 'a'
 										  : buff[len];
 				buff[++len] = '\0';
-				y /= mod;
+				x /= mod;
 			}
 		}
 		else {buff[len++] = '0'; buff[len] = '\0';}
