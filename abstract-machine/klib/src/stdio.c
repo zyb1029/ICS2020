@@ -71,7 +71,7 @@ void deal_character4() { // d
 
 void deal_character16() { // s
 	_out = va_arg(ap, char *);
-	printf("%d\n",strlen(_out));
+    printf("sdadas");
 }
 
 void deal_character24() { // x
