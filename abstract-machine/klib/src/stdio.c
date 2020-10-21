@@ -70,7 +70,7 @@ void deal_character4() { // d
 }
 
 void deal_character16() { // s
-	printf("2121");
+	assert(0);
 	_out = va_arg(ap, char *);
 }
 
