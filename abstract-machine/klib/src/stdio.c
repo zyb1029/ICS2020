@@ -57,7 +57,7 @@ int deal_width(const char *fmt){
 	if (*fmt == '0') {
 		fmt++; len++;
 		while(*fmt <= '9' && *fmt >= '0') {
-			width = width * 10 + *fmt;
+			width = width * 10 + *fmt - '0';
 			fmt++; len++;
 		}
 	}
@@ -133,7 +133,7 @@ int printf(const char *fmt, ...) {
 	switch(*fmt) {
       case '%':
 		fmt++;
-    	CASE(fmt, width)
+//    	CASE(fmt, width)
 		CASE(fmt, character)
 		Print();
 		break;
