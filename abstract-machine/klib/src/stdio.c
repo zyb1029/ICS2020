@@ -136,7 +136,8 @@ int sprintf(char *out, const char *fmt, ...) {
 		strcpy(out, _out);
 		out += strlen(_out);
 		break;
-	  default:	
+	  default:
+	    assert(0);	
 		*out = *fmt; out++;
 		fmt++;
 		len++;
