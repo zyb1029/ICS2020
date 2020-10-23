@@ -24,7 +24,7 @@ static inline def_rtl(neg, rtlreg_t *dest, const rtlreg_t* src1) {
 	*dest = *src1 * (-1);  
 }
 
- inline def_rtl(sext, rtlreg_t* dest, const rtlreg_t* src1, int width) {
+static inline def_rtl(sext, rtlreg_t* dest, const rtlreg_t* src1, int width) {
   assert(width == 1 || width == 2 || width ==4);
   if (width == 1) *dest = (int8_t)*src1;
   else if (width == 2) *dest = (int16_t)*src1;
