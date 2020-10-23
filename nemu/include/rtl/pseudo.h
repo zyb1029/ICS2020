@@ -20,7 +20,7 @@ static inline def_rtl(not, rtlreg_t *dest, const rtlreg_t* src1) {
   TODO();
 }
 
-static inline def_rtl(neg, rtlreg_t *dest, const rtlreg_t* src1) {
+ inline def_rtl(neg, rtlreg_t *dest, const rtlreg_t* src1) {
 	*dest = *src1 * (-1);  
 }
 
