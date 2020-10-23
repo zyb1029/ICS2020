@@ -61,7 +61,7 @@ static inline def_rtl(div64_q, rtlreg_t* dest,
   *dest = dividend / divisor;
 }
 
- inline def_rtl(div64_r, rtlreg_t* dest,
+static inline def_rtl(div64_r, rtlreg_t* dest,
     const rtlreg_t* src1_hi, const rtlreg_t* src1_lo, const rtlreg_t* src2) {
   uint64_t dividend = ((uint64_t)(*src1_hi) << 32) | (*src1_lo);
   uint32_t divisor = (*src2);
@@ -122,7 +122,7 @@ static inline def_rtl(host_sm, void *addr, const rtlreg_t *src1, int len) {
 
 // control
 
-static inline def_rtl(j, vaddr_t target) {
+static  def_rtl(j, vaddr_t target) {
   s->jmp_pc = target;
   s->is_jmp = true;
 }
