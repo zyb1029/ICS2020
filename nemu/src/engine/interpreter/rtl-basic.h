@@ -37,7 +37,7 @@ static inline def_rtl(setrelop, uint32_t relop, rtlreg_t *dest,
   *dest = interpret_relop(relop, *src1, *src2);
 }
 
-def_rtl(setrelopi, uint32_t relop, rtlreg_t *dest,
+static inline def_rtl(setrelopi, uint32_t relop, rtlreg_t *dest,
     const rtlreg_t *src1, sword_t imm) {
   *dest = interpret_relop(relop, *src1, imm);
 }
@@ -54,7 +54,7 @@ def_rtl_compute_reg(idiv_q)
 def_rtl_compute_reg(idiv_r)
 
 
-static inline def_rtl(div64_q, rtlreg_t* dest,
+ inline def_rtl(div64_q, rtlreg_t* dest,
     const rtlreg_t* src1_hi, const rtlreg_t* src1_lo, const rtlreg_t* src2) {
   uint64_t dividend = ((uint64_t)(*src1_hi) << 32) | (*src1_lo);
   uint32_t divisor = (*src2);
