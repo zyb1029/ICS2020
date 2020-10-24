@@ -32,7 +32,7 @@ int atoi(const char* nptr) {
 static char *addr;
 
 void *malloc(size_t size) {
-  return NULL;
+
   if (addr == NULL) addr = (void *)ROUNDUP(heap.start, 8);
   size = (size_t)ROUNDUP(size, 8);
   char *old = addr;
