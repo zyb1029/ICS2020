@@ -92,6 +92,7 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Parse arguments. */
   parse_args(argc, argv);
+  printf("%s\n", log_file);
   printf("%s\n", img_file);
   /* Open the log file. */
   init_log(log_file);
