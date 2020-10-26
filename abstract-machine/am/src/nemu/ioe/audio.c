@@ -10,7 +10,7 @@
 static int SBUF_SIZE_MAX;
 static int head;
 void __am_audio_config(AM_AUDIO_CONFIG_T *cfg) {
-  cfg -> present = false;
+  cfg -> present = true;
   SBUF_SIZE_MAX =  inl(AUDIO_SBUF_SIZE_ADDR);
   cfg -> bufsize = SBUF_SIZE_MAX;
 }
