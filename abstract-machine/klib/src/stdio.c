@@ -103,11 +103,16 @@ void deal_character24() { // x
 	deal_number(d, 0, 16);
 }
 
+void deal_character16() { // p
+	deal_character24();
+}
+
 int deal_character(const char *fmt) { 
 	int len = 1, bias = *fmt - 'a' + 1;
 	switch(bias) {
 		CHARACTER_CASE(3) // c
 		CHARACTER_CASE(4) // d
+		CHARACTER_CASE(16) // p 
 		CHARACTER_CASE(19) // s
 		CHARACTER_CASE(24) // x
 		default:
