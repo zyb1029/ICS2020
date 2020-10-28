@@ -13,12 +13,11 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	vaddr_t Jpc = (*s0) & 0xffff;
 	rtl_lm(s, s0, s1, NO * 8 + 4, 4);
 	Jpc += (*s0) & (0xffff << 16);
-	printf("%08x", Jpc);
+	rtl_j(s, Jpc);
   /* TODO: Trigger an interrupt/exception with ``NO''.
    * That is, use ``NO'' to index the IDT.
    */
 
-  TODO();
 }
 
 void query_intr(DecodeExecState *s) {
