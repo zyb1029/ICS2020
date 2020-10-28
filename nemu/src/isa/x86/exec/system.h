@@ -1,8 +1,8 @@
 #include <monitor/difftest.h>
 
 static inline def_EHelper(lidt) {
-  rtl_lm(s, s0, ddest, 0, 2);
-  rtl_lm(s, s1, ddest, 2, 4);
+//  rtl_lm(s, s0, ddest, 0, 2);
+ // rtl_lm(s, s1, ddest, 2, 4);
   cpu.IDTR.size = (int16_t) *s0;
   cpu.IDTR.addr = *s1;
   printf("%x %x %x\n",*ddest, *s0, *s1);
