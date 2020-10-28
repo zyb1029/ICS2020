@@ -5,24 +5,44 @@ static inline def_EHelper(mov) {
 
 static inline def_EHelper(push) {
  // TODO();
+  if (s->isa.is_operand_size_16) assert(0);
   rtl_push(s, ddest);
   print_asm_template1(push);
 }
 
 static inline def_EHelper(pop) {
  // TODO();
+  if (s->isa.is_operand_size_16) assert(0);
   rtl_pop(s, ddest);
   print_asm_template1(pop);
 }
 
 static inline def_EHelper(pusha) {
-  TODO();
-
+  int size = 4;
+  if (s->isa.is_operand_size_16) assert(0);
+  rtl_lr(s, s0, R_ESP, size);
+  rtl_sr(s, R_EAX, s1, size);
+  rtl_push(s, s1);
+  rtl_sr(s, R_ECX, s1, size);
+  rtl_push(s, s1);
+  rtl_sr(s, R_EDX, s1, size);
+  rtl_push(s, s1);
+  rtl_sr(s, R_EBX, s1, size);
+  rtl_push(s, s1);
+  rtl_push(s, s0);
+  rtl_sr(s, R_EBP, s1, size);
+  rtl_push(s, s1);
+  rtl_sr(s, R_ESI, s1, size);
+  rtl_push(s, s1);
+  rtl_sr(s, R_EDI, s1, size);
+  rtl_push(s, s1);
   print_asm("pusha");
 }
 
 static inline def_EHelper(popa) {
-  TODO();
+  if (s->isa.is_operand_size_16) assert(0);
+  
+  
 
   print_asm("popa");
 }
