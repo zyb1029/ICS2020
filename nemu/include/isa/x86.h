@@ -53,6 +53,7 @@ typedef struct {
 		int16_t size;
 		vaddr_t addr;		
 	}IDTR;
+	uint32_t cs;
 
 } x86_CPU_state;
 

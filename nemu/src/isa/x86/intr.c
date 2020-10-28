@@ -2,6 +2,10 @@
 #include "local-include/rtl.h"
 
 void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
+	rtl_li(s, s0, cpu.eflags.val);
+	rtl_push(s, s0);
+	rtl_li(s, s0, cpu.cs);
+	rtl_push(s, s0);
 	rtl_li(s, s0, cpu.pc);
 	rtl_push(s, s0);
   /* TODO: Trigger an interrupt/exception with ``NO''.
