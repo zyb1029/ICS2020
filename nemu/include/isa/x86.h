@@ -49,6 +49,11 @@ typedef struct {
 		};	
 		uint32_t val;
 	}eflags;
+	struct {
+		uint32_t size;
+		vaddr_t addr;		
+	}IDTR;
+
 } x86_CPU_state;
 
 // decode
