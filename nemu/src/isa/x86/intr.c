@@ -13,7 +13,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	vaddr_t Jpc = (*s0) >> 16;
 	rtl_lm(s, s0, s1, NO * 8 + 4, 4);
 	Jpc += (*s0) << 16;
-	printf("%08x", *s1 + NO * 8);
+	printf("%08x", ret_addr);
   /* TODO: Trigger an interrupt/exception with ``NO''.
    * That is, use ``NO'' to index the IDT.
    */
