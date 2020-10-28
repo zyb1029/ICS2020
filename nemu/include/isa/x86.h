@@ -50,7 +50,7 @@ typedef struct {
 		uint32_t val;
 	}eflags;
 	struct {
-		uint32_t size;
+		int16_t size;
 		vaddr_t addr;		
 	}IDTR;
 
