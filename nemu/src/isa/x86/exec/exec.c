@@ -228,6 +228,7 @@ again:
 	IDEX (0x31, G2E, xor)
 	IDEX (0x57, r, push)
 	IDEX (0x56, r, push)
+	IDEX (0x54, r, push)
 	IDEX (0x53, r, push)
 	IDEX (0x51, r, push)
 	IDEX (0x52, r, push)
