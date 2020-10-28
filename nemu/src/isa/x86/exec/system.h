@@ -5,7 +5,6 @@ static inline def_EHelper(lidt) {
   cpu.IDTR.size = (int16_t) *ddest;
   rtl_lm(s, s1, s->isa.mbase, s->isa.moff + 2, 4);
   cpu.IDTR.addr = *s1;
-  printf("%x %x %x\n",*ddest, *s0, *s1);
   print_asm_template1(lidt);
 }
 
