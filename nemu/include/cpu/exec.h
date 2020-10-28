@@ -20,6 +20,8 @@
 // set_width() is defined in src/isa/$isa/exec/exec.c
 #define CASE_ENTRY(idx, id, ex, w) case idx: set_width(s, w); id(s); ex(s); break;
 
+void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr);
+
 static inline uint32_t instr_fetch(vaddr_t *pc, int len) {
   uint32_t instr = vaddr_ifetch(*pc, len);
 #ifdef DEBUG

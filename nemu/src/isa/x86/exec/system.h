@@ -36,9 +36,8 @@ static inline def_EHelper(movsb) {
 //  print_asm("movl %%cr%d,%%%s", id_src1->reg, reg_name(id_dest->reg, 4));
 
 }
-static inline def_EHelper(int) {
-  TODO();
-
+static inline def_EHelper(int) { 
+  raise_intr(s, 0,0);
   print_asm("int %s", id_dest->str);
 
 #ifndef __DIFF_REF_NEMU__

@@ -30,7 +30,7 @@ Context* __am_irq_handle(Context *c) {
 
 bool cte_init(Context*(*handler)(Event, Context*)) {
   static GateDesc32 idt[NR_IRQ];
-
+  
   // initialize IDT
   for (unsigned int i = 0; i < NR_IRQ; i ++) {
     idt[i]  = GATE32(STS_TG, KSEL(SEG_KCODE), __am_vecnull, DPL_KERN);
