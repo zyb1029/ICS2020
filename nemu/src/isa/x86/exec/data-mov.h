@@ -21,20 +21,20 @@ static inline def_EHelper(pusha) {
   int size = 4;
   if (s->isa.is_operand_size_16) assert(0);
   rtl_lr(s, s0, R_ESP, size);
-  rtl_sr(s, R_EAX, s1, size);
+  rtl_lr(s, s1, R_EAX, size);
   rtl_push(s, s1);
-  rtl_sr(s, R_ECX, s1, size);
+  rtl_lr(s, s1, R_ECX, size);
   rtl_push(s, s1);
-  rtl_sr(s, R_EDX, s1, size);
+  rtl_lr(s, s1, R_EDX, size);
   rtl_push(s, s1);
-  rtl_sr(s, R_EBX, s1, size);
+  rtl_lr(s, s1, R_EBX, size);
   rtl_push(s, s1);
   rtl_push(s, s0);
-  rtl_sr(s, R_EBP, s1, size);
+  rtl_lr(s, s1, R_EBP, size);
   rtl_push(s, s1);
-  rtl_sr(s, R_ESI, s1, size);
+  rtl_lr(s, s1, R_ESI, size);
   rtl_push(s, s1);
-  rtl_sr(s, R_EDI, s1, size);
+  rtl_lr(s, s1, R_EDI, size);
   rtl_push(s, s1);
   print_asm("pusha");
 }
