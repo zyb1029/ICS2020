@@ -15,9 +15,9 @@ void __am_vecnull();
 
 
 Context* __am_irq_handle(Context *c) {
-  printf("%08x %08x %08x %08x %08x %08x %08x %08x\n",c->eax, c->ecx,c->edx,c->ebx, c->esp, c->ebp, c->esi, c->edi);
-  printf("%08x \n", c->irq);
-  printf("%08x %08x %08x\n", c->eip, c->cs, c->eflags);
+ // printf("%08x %08x %08x %08x %08x %08x %08x %08x\n",c->eax, c->ecx,c->edx,c->ebx, c->esp, c->ebp, c->esi, c->edi);
+ // printf("%08x \n", c->irq);
+//  printf("%08x %08x %08x\n", c->eip, c->cs, c->eflags);
 
   if (user_handler) {
     Event ev = {0};
@@ -26,7 +26,6 @@ Context* __am_irq_handle(Context *c) {
 		ev.event = EVENT_YIELD; break;
       default: ev.event = EVENT_ERROR; break;
     }
-	printf("%x\n", ev.event);
     c = user_handler(ev, c);
     assert(c != NULL);
   }
