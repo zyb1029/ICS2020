@@ -313,13 +313,14 @@ again:
 	IDEXW (0x08, G2E, or, 1)
 	IDEX (0x2d, I2a, sub)
 	IDEXW (0xcd, I, int, 1)
-	EX (0x60, pusha);
+	EX (0x60, pusha)
+	EX (0x61, popa)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
 }
 
-vaddr_t isa_exec_once() {
+paddr_t isa_exec_once() {
   DecodeExecState s;
   s.is_jmp = 0;
   s.isa = (ISADecodeInfo) { 0 };

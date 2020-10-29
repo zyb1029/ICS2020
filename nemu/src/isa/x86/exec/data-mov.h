@@ -41,7 +41,7 @@ static inline def_EHelper(pusha) {
 
 static inline def_EHelper(popa) {
   if (s->isa.is_operand_size_16) assert(0);
-  
+    
   
 
   print_asm("popa");
