@@ -5,7 +5,6 @@ struct Context {
   void *cr3;
   uintptr_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
   int irq;
-  int not_used;
   uintptr_t eip, cs, eflags;	
 };
 
