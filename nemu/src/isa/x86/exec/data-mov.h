@@ -41,9 +41,22 @@ static inline def_EHelper(pusha) {
 
 static inline def_EHelper(popa) {
   if (s->isa.is_operand_size_16) assert(0);
-    
-  
-
+  int size = 4;
+  rtl_pop(s, s0);
+  rtl_sr(s, R_EDI, s0 ,size);
+  rtl_pop(s, s0);
+  rtl_sr(s, R_ESI, s0 ,size);
+  rtl_pop(s, s0);
+  rtl_sr(s, R_EBP, s0 ,size);
+  rtl_pop(s, s0);
+  rtl_pop(s, s0);
+  rtl_sr(s, R_EBX, s0 ,size);
+  rtl_pop(s, s0);
+  rtl_sr(s, R_EDX, s0 ,size);
+  rtl_pop(s, s0);
+  rtl_sr(s, R_ECX, s0 ,size);
+  rtl_pop(s, s0);
+  rtl_sr(s, R_EAX, s0 ,size);
   print_asm("popa");
 }
 
