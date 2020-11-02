@@ -249,7 +249,7 @@ again:
 	IDEX (0x5e, r, pop)
 	IDEX (0x5f, r, pop)
 	IDEX (0x5d, r, pop)
-    IDEX (0x5c, r, pop)
+//    IDEX (0x5c, r, pop)
 	IDEX (0x03, E2G, add)
 	IDEX (0x39, G2E, cmp)
 	IDEX (0x43, r, inc)
