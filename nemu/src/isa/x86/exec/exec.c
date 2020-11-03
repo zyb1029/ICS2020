@@ -314,7 +314,7 @@ again:
 	IDEXW (0x08, G2E, or, 1)
 	IDEX (0x2d, I2a, sub)
 	IDEXW (0xcd, I, int, 1)
-	IDEXW (0x20, G2E, and, 1)
+//	IDEXW (0x20, G2E, and, 1)
 	EX (0x60, pusha)
 	EX (0x61, popa)
 	EX (0xcf, iret)
