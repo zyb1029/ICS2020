@@ -14,11 +14,10 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr elf_head;
   ramdisk_read(&elf_head, 0, sizeof(Elf_Ehdr));
   Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
-  printf("%d\n", elf_head.e_phnum);
   ramdisk_read(phdr, 0, sizeof(Elf_Phdr) * elf_head.e_phnum);
- // for (int i = 0; i < elf_head.e_phnum; i++){
-//	printf("0x%x\n", phdr[i].p_offset);  
-//	}
+  for (int i = 0; i < elf_head.e_phnum; i++){
+	printf("0x%x\n", phdr[i].p_offset);  
+	}
   return 0;
 }
 
