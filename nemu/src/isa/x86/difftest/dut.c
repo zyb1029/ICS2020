@@ -56,6 +56,10 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 	  printf("ebx should be %x\n", ref_r ->ebx);
 	  return false;
   }
+  if (cpu.pc != ref_r -> pc) {
+	  printf("pc %x\n should be %x\n", cpu.pc, ref_r ->pc);
+	  return false;
+  }
   return true;
 }
 
