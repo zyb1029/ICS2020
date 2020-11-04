@@ -16,7 +16,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
   ramdisk_read(phdr, elf_head.e_phoff, sizeof(Elf_Phdr) * elf_head.e_phnum);
   for (int i = 0; i < elf_head.e_phnum; i++){
-	printf("0x%x\n", phdr[i].p_type);  
+	printf("0x%x\n", phdr[i].p_offset);  
 	}
   return 0;
 }
