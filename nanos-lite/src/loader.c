@@ -21,7 +21,10 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
 	 size_t offset = phdr[i].p_offset;
 	 uint32_t *fb = (uint32_t *)VirtAddr;
+	 if (type != 1) continue;
 	 printf("%08x %08x %08x %08x %08x %08x\n", fb, type, offset, VirtAddr, FileSiz, Memsiz); 
+	 ramdisk_read(fb, offset, FileSiz);
+	 memset(fb + FileSiz, 0, Memsiz - FileSiz);
   }
   return 0;
 }
