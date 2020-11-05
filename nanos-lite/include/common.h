@@ -5,7 +5,6 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 
 
-
 /* Uncomment these macros to enable corresponding functionality. */
 #define HAS_CTE
 //#define HAS_VME
