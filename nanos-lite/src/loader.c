@@ -24,8 +24,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr elf_head;
   ramdisk_read(&elf_head, 0, sizeof(Elf_Ehdr));
    if (elf_head.e_machine != EXPECT_TYPE) {
-//	panic("The ISA counldn't be matched!");	  
-	printf("ss");
+	panic("The ISA counldn't be matched!");	  
   }
   Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
   ramdisk_read(phdr, elf_head.e_phoff, sizeof(Elf_Phdr) * elf_head.e_phnum);
