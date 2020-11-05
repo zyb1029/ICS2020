@@ -8,10 +8,10 @@ struct Context {
   uintptr_t eip, cs, eflags;	
 };
 
-#define GPR1 eax
-#define GPR2 ebx
-#define GPR3 ecx
-#define GPR4 edx
+#define GPR1 edx
+#define GPR2 ecx
+#define GPR3 ebx
+#define GPR4 eax
 #define GPRx eip
 
 #endif
