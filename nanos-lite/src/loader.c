@@ -26,11 +26,10 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	 ramdisk_read(fb, offset, FileSiz);
 	 memset(fb + FileSiz, 0, Memsiz - FileSiz);
   }
-  return 0;
+  return 0x3000000;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
-  loader(NULL, NULL);return;
   uintptr_t entry = loader(pcb, filename);
   Log("Jump to entry = %p", entry);
   ((void(*)())entry) ();
