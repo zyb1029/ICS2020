@@ -15,6 +15,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   ramdisk_read(&elf_head, 0, sizeof(Elf_Ehdr));
   Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
   ramdisk_read(phdr, elf_head.e_phoff, sizeof(Elf_Phdr) * elf_head.e_phnum);
+  uintptr_t addr = 0;
   for (int i = 0; i < elf_head.e_phnum; i++){
 	 uint32_t type = phdr[i].p_type; 
      uintptr_t VirtAddr = phdr[i].p_vaddr;
@@ -22,11 +23,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	 size_t offset = phdr[i].p_offset;
 	 uint32_t *fb = (uint32_t *)VirtAddr;
 	 if (type != 1) continue;
-	 printf("%08x %08x %08x %08x %08x %08x\n", fb, type, offset, VirtAddr, FileSiz, Memsiz); 
+	// printf("%08x %08x %08x %08x %08x %08x\n", fb, type, offset, VirtAddr, FileSiz, Memsiz); 
 	 ramdisk_read(fb, offset, FileSiz);
 	 memset(fb + FileSiz, 0, Memsiz - FileSiz);
+	 if (i == 1) addr = VirtAddr;
   }
-  return 0x3001000;
+  return addr;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
