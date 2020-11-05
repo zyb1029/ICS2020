@@ -4,11 +4,11 @@
 #include "difftest.h"
 
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
-  if (cpu.eflags.val != ref_r -> eflags.val) {
+/*  if (cpu.eflags.val != ref_r -> eflags.val) {
 	  printf("ZF should be %x\n", ref_r ->eflags.val);
 	  return false;
   }
-/*  if (cpu.eflags.CF != ref_r -> eflags.CF) {
+  if (cpu.eflags.CF != ref_r -> eflags.CF) {
 	  printf("CF should be %x\n", ref_r ->eflags.CF);
 	  return false;
   }

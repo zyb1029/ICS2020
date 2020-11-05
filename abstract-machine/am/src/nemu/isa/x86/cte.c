@@ -14,7 +14,7 @@ void __am_vectrap();
 void __am_vecnull();
 
 
-Context* __am_irq_handle(Context *c) {
+Context* __am_irq_handle(Context *c) {return c;
   printf("%08x %08x %08x %08x %08x %08x %08x %08x\n",c->eax, c->ecx,c->edx,c->ebx, c->esp, c->ebp, c->esi, c->edi);
   printf("%08x \n", c->irq);
   printf("%08x %08x %08x\n", c->eip, c->cs, c->eflags);
