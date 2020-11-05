@@ -20,7 +20,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
      uintptr_t VirtAddr = phdr[i].p_vaddr;
 	 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
 	 size_t offset = phdr[i].p_offset;
-	 printf("%08x %08x %08x %08x %08x\n", type, offset, VirtAddr, FileSiz, Memsiz); 
+	 uint32_t *fb = (uint32_t *)VirtAddr;
+	 printf("%08x %08x %08x %08x %08x %08x\n", fb, type, offset, VirtAddr, FileSiz, Memsiz); 
   }
   return 0;
 }
