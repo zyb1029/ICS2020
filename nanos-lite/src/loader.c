@@ -13,6 +13,7 @@
 static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr elf_head;
   ramdisk_read(&elf_head, 0, sizeof(Elf_Ehdr));
+  printf("%08x\n", elf_head.e_machine);
   Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
   ramdisk_read(phdr, elf_head.e_phoff, sizeof(Elf_Phdr) * elf_head.e_phnum);
   uintptr_t addr = 0;
