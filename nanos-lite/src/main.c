@@ -31,8 +31,8 @@ int main() {
 
   Log("Finish initialization");
 
-printf("sss");
 #ifdef HAS_CTE
+printf("sss");
   yield();
 #endif
 
