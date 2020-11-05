@@ -23,6 +23,7 @@
 static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr elf_head;
   ramdisk_read(&elf_head, 0, sizeof(Elf_Ehdr));
+  printf("EXCEDPT_TYPE\n");
    if (elf_head.e_machine != EXPECT_TYPE) {
 	panic("The ISA counldn't be matched!");	  
   }
