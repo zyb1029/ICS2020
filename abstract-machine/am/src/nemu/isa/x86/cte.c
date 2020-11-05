@@ -62,6 +62,7 @@ Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
 }
 
 void yield() {
+	printf("ss");
   asm volatile("int $0x81");
 }
 
