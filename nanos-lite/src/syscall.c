@@ -17,7 +17,6 @@ void do_syscall(Context *c) {
 		}
 		else {
 			char * p = (char *)c->GPR3;
-			printf("%d\n", c->GPR4);
 			for (int i = 0; i < c->GPR4; i++)
 				putch(*(p + i));
 			c->GPRx = c->GPR4;
