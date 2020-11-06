@@ -21,6 +21,7 @@ void do_syscall(Context *c) {
 				putch(*(p + i));
 			c->GPRx = c->GPR4;
 		}
+		break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 }
