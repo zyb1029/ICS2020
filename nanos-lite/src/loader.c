@@ -43,7 +43,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	 ramdisk_read(fb, offset, FileSiz);
 	 memset(fb + FileSiz, 0, Memsiz - FileSiz);
   }
-  return addr;
+  if (!addr) return 0;
+  return 0x3001000;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
