@@ -9,7 +9,7 @@
 #elif defined(__ISA_X86__)
 #define EXPECT_TYPE EM_386
 #else
-#define EXPECT_TYPE Unsupported_ISA
+#define EXPECT_TYPE EM_X86_64
 #endif
 
 
