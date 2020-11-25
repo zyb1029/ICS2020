@@ -2,14 +2,13 @@
 #include <elf.h>
 #include <common.h>
 
-#define Unsupported_ISA 0
 
-#if defined(__ISA_NATIVE__)
+#if defined(__ISA_AM_NATIVE__)
 #define EXPECT_TYPE EM_X86_64 
 #elif defined(__ISA_X86__)
 #define EXPECT_TYPE EM_386
 #else
-#define EXPECT_TYPE EM_X86_64
+#error Unsupported_ISA
 #endif
 
 
@@ -44,7 +43,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	 memset(fb + FileSiz, 0, Memsiz - FileSiz);
   }
   if (!addr) return 0;
-  return 0x3001000;
+  return addr;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
