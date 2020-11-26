@@ -31,6 +31,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	  }
 	  Elf_Ehdr elf_head;
 	  ramdisk_read(&elf_head, head_addr, sizeof(Elf_Ehdr));
+	  return 0;
 	   if (elf_head.e_machine != EXPECT_TYPE) {
 		uint32_t tep = EXPECT_TYPE;   
 		printf("%08x %08x\n", elf_head.e_machine, tep);
