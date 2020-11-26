@@ -5,7 +5,8 @@
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 int fs_open(const char *pathname, int flags, int mode);
-
+int fs_close(int fb);
+int get_head(int fb);
 
 /* Uncomment these macros to enable corresponding functionality. */
 #define HAS_CTE

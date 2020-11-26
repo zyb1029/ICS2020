@@ -31,11 +31,25 @@ static Finfo file_table[] __attribute__((used)) = {
 #include "files.h"
 };
 
+int open_offset[65536];
+
 int fs_open(const char *pathname, int flags, int mode) {
 	int sz = sizeof(file_table) / sizeof(Finfo);
-	printf("%d\n", sz);	
-	return sz;	
-	
+	for (int i = 0; i < sz; i++) 
+		if (strcmp(file_table[i].name, pathname) == 0) {
+			open_offset[i] = 0;
+			return i;
+		}
+	return -1;	
+}
+
+int fs_close(int fb) {
+	return 0;
+}
+
+int get_head(int fb) {
+	assert(fb != -1);
+	return file_table[fb].disk_offset;
 }
 
 void init_fs() {
