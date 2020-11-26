@@ -8,6 +8,7 @@ int main() {
   while(1) {		  
      gettimeofday(&tv, NULL);
 	 while((tv.tv_sec * 1000000 + tv.tv_usec + 500) / 1000000 < sec){
+		printf("%d %d\n", tv.tv_sec, tv.tv_usec);
 		gettimeofday(&tv, NULL);	 
 	}
 	 if (sec == 1) printf("%d second\n", sec);
