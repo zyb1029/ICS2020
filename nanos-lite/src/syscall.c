@@ -6,7 +6,6 @@ void do_syscall(Context *c) {
   a[0] = c->GPR1;
   switch (a[0]) {
 	case SYS_exit:
-		printf("%d\n", c->GPR2);
 		halt(c->GPR2);
 		break;
 	case SYS_yield:
@@ -16,6 +15,10 @@ void do_syscall(Context *c) {
 	case SYS_open:
 		p = (char *) c->GPR2;
 		c->GPRx = fs_open(p, c->GPR3, c->GPR4);
+		break;
+	case SYS_read:
+		p = (char *) c->GPR3;
+		c->GPRx = fs_read(c->GPR2, p, c->GPR3);
 		break;
 	case SYS_write:
 		if (c -> GPR2 != 1 && c -> GPR2 != 2){
