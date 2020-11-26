@@ -23,7 +23,7 @@ void init_proc() {
   switch_boot_pcb();
 
   Log("Initializing processes...");
-  char *pathname = "/bin/timer-test";
+  char *pathname = "/bin/event-test";
   naive_uload(NULL, pathname);
   // load program here
 
