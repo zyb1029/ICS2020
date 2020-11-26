@@ -23,7 +23,7 @@ void init_proc() {
   switch_boot_pcb();
 
   Log("Initializing processes...");
-  char *pathname = "/bin/dummy";
+  char *pathname = "/bin/hello";
   naive_uload(NULL, pathname);
   // load program here
 

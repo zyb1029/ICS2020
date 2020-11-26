@@ -37,7 +37,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 		panic("The ISA counldn't be matched!");	  
 	  }
 	  uintptr_t addr = elf_head.e_entry;
-	  printf("%08x\n", addr);
 	  Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
 	  ramdisk_read(phdr, elf_head.e_phoff + head_addr, sizeof(Elf_Phdr) * elf_head.e_phnum);
 	  for (int i = 0; i < elf_head.e_phnum; i++){
