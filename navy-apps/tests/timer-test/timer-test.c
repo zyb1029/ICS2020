@@ -12,6 +12,7 @@ int main() {
 	}
 	 if (sec == 1) printf("%d second\n", sec);
 	 else printf("%d seconds\n", sec);
+	 sec++;
   }
   return 0;
 }
