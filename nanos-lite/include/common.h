@@ -12,6 +12,8 @@ size_t fs_lseek(int fb, size_t offset, int whence);
 int fs_close(int fb);
 int get_head(int fb);
 
+size_t serial_write(const void *buf, size_t offset, size_t len);
+
 /* Uncomment these macros to enable corresponding functionality. */
 #define HAS_CTE
 //#define HAS_VME
