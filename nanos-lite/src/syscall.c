@@ -48,9 +48,8 @@ void do_syscall(Context *c) {
 	case SYS_gettimeofday:
 		tv = (timeval *) c->GPR2;
 	    uint64_t tep = io_read(AM_TIMER_UPTIME).us;	
-		tv->seconds = (tep - 500) / 1000000;
-		tv->useconds = tep - 500 - tv->seconds * 1000000;
-//		printf("%d %d\n", tv->seconds, tv->useconds);
+		tv->seconds = tep / 1000000;
+		tv->useconds = tep - tv->seconds * 1000000;
 		c->GPRx = 0;  
 		break; 
     default: panic("Unhandled syscall ID = %d", a[0]);

@@ -15,8 +15,8 @@ int get_head(int fb);
 size_t serial_write(const void *buf, size_t offset, size_t len);
 
 typedef struct{
-	long useconds;
 	long seconds;
+	long useconds;
 }timeval;
 
 /* Uncomment these macros to enable corresponding functionality. */
