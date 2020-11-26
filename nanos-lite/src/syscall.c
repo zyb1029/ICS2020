@@ -15,7 +15,7 @@ void do_syscall(Context *c) {
 		break;
 	case SYS_open:
 		p = (char *) c->GPR2;
-		fs_open(p, c->GPR3, c->GPR4);
+		c->GPRx = fs_open(p, c->GPR3, c->GPR4);
 		break;
 	case SYS_write:
 		if (c -> GPR2 != 1 && c -> GPR2 != 2){
@@ -27,6 +27,9 @@ void do_syscall(Context *c) {
 				putch(*(p + i));
 			c->GPRx = c->GPR4;
 		}
+		break;
+	case SYS_lseek:
+		c->GPRx = fs_lseek(c->GPR2, c->GPR3, c->GPR4);
 		break;
 	case SYS_brk:
 		c->GPRx = 0;
