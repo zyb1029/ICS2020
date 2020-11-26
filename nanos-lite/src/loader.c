@@ -32,7 +32,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	  uintptr_t addr = elf_head.e_entry;
 	  Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
 	  ramdisk_read(phdr, elf_head.e_phoff, sizeof(Elf_Phdr) * elf_head.e_phnum);
-	  for (int i = 0; i < elf_head.e_phnum; i++){
+/*	  for (int i = 0; i < elf_head.e_phnum; i++){
 		 uint32_t type = phdr[i].p_type; 
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
 		 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
@@ -42,7 +42,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 		// printf("%08x %08x %08x %08x %08x %08x\n", fb, type, offset, VirtAddr, FileSiz, Memsiz); 
 		 ramdisk_read(fb, offset, FileSiz);
 		 memset(fb + FileSiz, 0, Memsiz - FileSiz);
-	  }
+	  }*/
 	  return addr;
    }
    else {
