@@ -320,7 +320,7 @@ again:
 	EX (0x60, pusha)
 	EX (0x61, popa)
 	EX (0xcf, iret)
-	IDEX (0x6b, I_E2G, imul3)
+	IDEX (0x6b, SI_E2G, imul3)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
