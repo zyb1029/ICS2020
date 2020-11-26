@@ -3,6 +3,7 @@
 void do_syscall(Context *c) {
   uintptr_t a[4];
   char *p;
+  timeval *tv;
   a[0] = c->GPR1;
   switch (a[0]) {
 	case SYS_exit:
@@ -44,6 +45,13 @@ void do_syscall(Context *c) {
 	case SYS_brk:
 		c->GPRx = 0;
 		break;
+	case SYS_gettimeofday:
+		tv = (timeval *) c->GPR2;
+	    uint64_t tep = io_read(AM_TIMER_UPTIME).us;	
+		tv->seconds = (tep - 500) / 1000000;
+		tv->useconds = tep - 500 - tv->seconds * 1000000;
+		c->GPRx = 0;  
+		break; 
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 }

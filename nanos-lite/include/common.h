@@ -14,6 +14,11 @@ int get_head(int fb);
 
 size_t serial_write(const void *buf, size_t offset, size_t len);
 
+typedef struct{
+	long useconds;
+	long seconds;
+}timeval;
+
 /* Uncomment these macros to enable corresponding functionality. */
 #define HAS_CTE
 //#define HAS_VME
