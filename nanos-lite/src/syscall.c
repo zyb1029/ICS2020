@@ -6,7 +6,6 @@ void do_syscall(Context *c) {
   a[0] = c->GPR1;
   switch (a[0]) {
 	case SYS_exit:
-		printf("%d\n", c->GPR2);
 		halt(c->GPR2);
 		break;
 	case SYS_yield:
@@ -38,6 +37,9 @@ void do_syscall(Context *c) {
 		break;
 	case SYS_lseek:
 		c->GPRx = fs_lseek(c->GPR2, c->GPR3, c->GPR4);
+		break;
+	case SYS_close:
+		c->GPRx = fs_close(c->GPR2);
 		break;
 	case SYS_brk:
 		c->GPRx = 0;
