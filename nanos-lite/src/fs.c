@@ -77,6 +77,7 @@ size_t fs_lseek(int fd, size_t offset, int whence) {
 		case SEEK_END:
 			open_offset[fd] = file_table[fd].size - offset;
 			if (open_offset[fd] < 0) open_offset[fd] = 0;
+			break;
 		default:
 			panic("Unsupported seek!");
 	}
