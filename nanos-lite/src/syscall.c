@@ -50,6 +50,7 @@ void do_syscall(Context *c) {
 	    uint64_t tep = io_read(AM_TIMER_UPTIME).us;	
 		tv->seconds = (tep - 500) / 1000000;
 		tv->useconds = tep - 500 - tv->seconds * 1000000;
+		printf("%d %d\n", tv->seconds, tv->useconds);
 		c->GPRx = 0;  
 		break; 
     default: panic("Unhandled syscall ID = %d", a[0]);
