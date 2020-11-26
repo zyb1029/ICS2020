@@ -46,6 +46,9 @@ int fs_open(const char *pathname, int flags, int mode) {
 
 size_t fs_read(int fb, void *buf, int len) {
 	assert(fb != -1);
+	if (fb == FD_EVENTS) {
+		return file_table[FD_EVENTS].read(buf, 0, len);
+	}
     if (open_offset[fb] + len > file_table[fb].size) 
 		len = file_table[fb].size - open_offset[fb];
 	ramdisk_read(buf, file_table[fb].disk_offset + open_offset[fb], len);	  open_offset[fb] += len;  
