@@ -239,6 +239,7 @@ again:
 	IDEX (0x3b, E2G, cmp)
 	IDEXW (0x74, J, jcc, 1)
 	EX (0xc9, leave)
+	IDEX (0x45, r, inc)
 	IDEX (0x47, r, inc)
 	IDEXW (0x75, J, jcc, 1)
 	IDEXW (0x6a, push_SI, push, 1)
