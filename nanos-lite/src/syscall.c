@@ -19,11 +19,15 @@ void do_syscall(Context *c) {
 		break;
 	case SYS_read:
 		p = (char *) c->GPR3;
-		c->GPRx = fs_read(c->GPR2, p, c->GPR3);
+		c->GPRx = fs_read(c->GPR2, p, c->GPR4);
 		break;
 	case SYS_write:
-		if (c -> GPR2 != 1 && c -> GPR2 != 2){
-			c -> GPRx = -1;	
+		if (c->GPR2 == 0) {
+			c->GPRx = -1;
+		} 
+		else if (c -> GPR2 > 2) {
+			p = (char *) c->GPR3;
+			c->GPRx = fs_write(c->GPR2, p, c->GPR4);
 		}
 		else {
 			p = (char *)c->GPR3;

@@ -57,8 +57,7 @@ void _exit(int status) {
 }
 
 int _open(const char *path, int flags, mode_t mode) {
-  int fd = _syscall_(SYS_open, (intptr_t)path, flags, mode);
-  return fd;
+  return _syscall_(SYS_open, (intptr_t)path, flags, mode);
 }
 
 int _write(int fd, void *buf, size_t count) {
