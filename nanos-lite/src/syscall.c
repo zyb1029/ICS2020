@@ -15,7 +15,7 @@ void do_syscall(Context *c) {
 	case SYS_open:
 		p = (char *) c->GPR2;
 		c->GPRx = fs_open(p, c->GPR3, c->GPR4);
-		printf("%s\n", p);
+	//	printf("%s\n", p);
 		break;
 	case SYS_write:
 		if (c -> GPR2 != 1 && c -> GPR2 != 2){
