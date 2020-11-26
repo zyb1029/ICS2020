@@ -59,6 +59,31 @@ size_t fs_write(int fb, void * buf, int len) {
 	return len;
 }
 
+
+size_t fs_lseek(int fd, size_t offset, int whence) {
+	assert(fd != -1);
+	switch (whence) {
+		case SEEK_SET:
+			if (offset > file_table[fd].size) 
+				offset = file_table[fd].size;
+			open_offset[fd] = offset;
+			break;
+		case SEEK_CUR:
+			if (open_offset[fd] + offset > file_table[fd].size) 
+				open_offset[fd] = file_table[fd].size;
+			else 
+				open_offset[fd] += offset;
+			break;
+		case SEEK_END:
+			open_offset[fd] = file_table[fd].size - offset;
+			if (open_offset[fd] < 0) open_offset[fd] = 0;
+		default:
+			panic("Unsupported seek!");
+	}
+	return 0;
+}
+
+
 int fs_close(int fb) {
 	return 0;
 }
