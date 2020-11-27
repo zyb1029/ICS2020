@@ -45,7 +45,7 @@ void NDL_OpenCanvas(int *w, int *h) {
   else {
 	  int fd = open("/proc/dospinfo", O_RDONLY);
 	  char buf[32], tep[32];
-	  read(fd, buf, len);
+	  read(fd, buf, 32);
 	  sscanf(buf, "%s %s %d %s %s %d", tep, tep, screen_w, tep, tep, screen_h);
 	  close(fd);
 	  printf("%d %d\n", screen_w, screen_h);
