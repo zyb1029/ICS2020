@@ -42,6 +42,14 @@ void NDL_OpenCanvas(int *w, int *h) {
     }
     close(fbctl);
   }
+  else {
+	  int fd = open("/proc/dospinfo", O_RDONLY);
+	  char buf[32], tep[32];
+	  read(fd, buf, len);
+	  sscanf(buf, "%s %s %d %s %s %d", tep, tep, screen_w, tep, tep, screen_h);
+	  close(fd);
+	  printf("%d %d\n", screen_w, screen_h);
+   }
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {

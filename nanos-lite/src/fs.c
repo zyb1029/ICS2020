@@ -11,7 +11,7 @@ typedef struct {
   WriteFn write;
 } Finfo;
 
-enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_EVENTS, FD_FB};
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_EVENTS, FD_FB, FD_dispinfo};
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -29,6 +29,7 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
   [FD_EVENTS] = {"/dev/events", 0, 0, events_read, invalid_write},
+  [FD_dispinfo] = {"/proc/dispinfo", 0, 0, dispinfo_read, invalid_write},
 #include "files.h"
 };
 
@@ -46,7 +47,7 @@ int fs_open(const char *pathname, int flags, int mode) {
 
 size_t fs_read(int fb, void *buf, int len) {
 	assert(fb != -1);
-	if (fb == FD_EVENTS) {
+	if (file_table[fb].read != NULL) {
 		return file_table[FD_EVENTS].read(buf, 0, len);
 	}
     if (open_offset[fb] + len > file_table[fb].size) 
