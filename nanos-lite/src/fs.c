@@ -49,7 +49,7 @@ int fs_open(const char *pathname, int flags, int mode) {
 size_t fs_read(int fb, void *buf, int len) {
 	assert(fb != -1);
 	if (file_table[fb].read != NULL) {
-		return file_table[FD_EVENTS].read(buf, 0, len);
+		return file_table[fb].read(buf, 0, len);
 	}
     if (open_offset[fb] + len > file_table[fb].size) 
 		len = file_table[fb].size - open_offset[fb];
