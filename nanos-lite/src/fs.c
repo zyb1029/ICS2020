@@ -36,6 +36,7 @@ static Finfo file_table[] __attribute__((used)) = {
 int open_offset[65536];
 
 int fs_open(const char *pathname, int flags, int mode) {
+	printf("%s\n", pathname);
 	int sz = sizeof(file_table) / sizeof(Finfo);
 	for (int i = 0; i < sz; i++) 
 		if (strcmp(file_table[i].name, pathname) == 0) {
