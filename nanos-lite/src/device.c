@@ -48,7 +48,6 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   if(event_len > len) event_len = len;
   for (int i = 0; i < event_len; i++) buff[i] = tep[i];
   buff[event_len] = '\0';
-  printf("%s", buff);
   return event_len;
 }
 
