@@ -44,9 +44,9 @@ void NDL_OpenCanvas(int *w, int *h) {
   }
   else {
 	  int fd = open("/proc/dispinfo", O_RDONLY);
-	  char buf[32], tep[32];
+	  char buf[32], tep1[10], tep2[10], tep3[10], tep4[10];
 	  read(fd, buf, 32);
-//	  sscanf(buf, "%s %s %d %s %s %d", tep, tep, screen_w, tep, tep, screen_h);
+	  sscanf(buf, "%s %s %d %s %s %d", tep1, tep2, screen_w, tep3, tep4, screen_h);
 	  close(fd);
 	  printf("%s %d %d\n", buf, screen_w, screen_h);
    }
