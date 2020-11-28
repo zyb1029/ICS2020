@@ -159,6 +159,7 @@ static inline fixedpt fixedpt_floor(fixedpt A) {
 }
 
 static inline fixedpt fixedpt_ceil(fixedpt A) {
+	printf("%d\n", A);
 	if (A & ((1 << FIXEDPT_FBITS) - 1)) {
 		A = A - ( A & ((1 << FIXEDPT_FBITS) - 1));
 		A = A + (1 << FIXEDPT_FBITS);
