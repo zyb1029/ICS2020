@@ -23,7 +23,7 @@ void init_proc() {
   switch_boot_pcb();
 
   Log("Initializing processes...");
-  char *pathname = "/bin/bmp-test";
+  char *pathname = "/bin/fixedpt-test";
   naive_uload(NULL, pathname);
   // load program here
 
