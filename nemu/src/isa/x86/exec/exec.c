@@ -263,6 +263,7 @@ again:
 	IDEX (0x4a, r, dec)
 	IDEX (0x4d, r, dec)
 	IDEX (0x4e, r, dec)
+	IDEX (0x4f, r, dec)
 	IDEXW (0x7f, J, jcc, 1)
 	IDEXW (0xeb, J, jmp, 1)
 	IDEX (0x41, r, inc)
