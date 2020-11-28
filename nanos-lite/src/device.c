@@ -48,14 +48,13 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
   if(event_len > len) event_len = len;
   for (int i = 0; i < event_len; i++) buff[i] = tep[i];
   buff[event_len] = '\0';
-  printf("%d\n", w);
   return event_len;
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
   int y = offset / io_read(AM_GPU_CONFIG).width;
   int x = offset - y * io_read(AM_GPU_CONFIG).width;
-  //printf("%d %d\n", x, y);
+  printf("%d %d\n", x, y);
   uint32_t * p = (uint32_t *)buf; 
   io_write(AM_GPU_FBDRAW, x, y, p, len, 1, true);
   return len;
