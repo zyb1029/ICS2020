@@ -4,7 +4,7 @@
 int main() {
   fixedpt a = fixedpt_rconst(-21.5);
   fixedpt b = fixedpt_fromint(10);
-  int c = fixedpt_toint(fixedpt_abs(fixedpt_div(a, b)));
+  int c = fixedpt_toint(fixedpt_floor(fixedpt_div(a, b)));
   printf("%d\n", c);
   return 0;
 }
