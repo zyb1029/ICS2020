@@ -152,7 +152,7 @@ static inline fixedpt fixedpt_abs(fixedpt A) {
 }
 
 static inline fixedpt fixedpt_floor(fixedpt A) {
-	if (A & ((1 << FIXEDPT_FBITS) - 1)) A = A - (1 << FIXEDPT_FBITS);
+	if (A & ((1 << FIXEDPT_FBITS) - 1)) A = A - ((1 << FIXEDPT_FBITS) - 1);
 	return A;
 }
 
