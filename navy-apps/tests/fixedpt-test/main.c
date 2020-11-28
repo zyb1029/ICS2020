@@ -5,14 +5,9 @@
 #include <stdlib.h>
 
 int main() {
-  int T = 100;
-  while(T--) {
-  int p = rand() % 100, q = rand() % 100 + 1;
-  fixedpt a = fixedpt_rconst(p/q);
-  fixedpt b = fixedpt_fromint(p - q);
-  int c = fixedpt_toint(fixedpt_floor(fixedpt_mul(a, b)));
-  assert(c == floor((p/q) * (p - q)));
-  printf("%d\n", c);
-  }
+  int a = fixedpt_rconst(1.666);
+  int b = fixedpt_rconst(2);
+  int c = fixedpt_toint(fixedpt_div(a, b));
+  printf("%d %d %d \n", c, fixedpt_toint(fixedpt_ceil(fixedpt_div(a, b))),fixedpt_toint(fixedpt_floor(fixedpt_div(a, b))));
   return 0;
 }
