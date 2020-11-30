@@ -100,7 +100,7 @@ static inline def_DopHelper(O) {
     rtl_lm(s, &op->val, s->isa.mbase, s->isa.moff, op->width);
     op->preg = &op->val;
   }
-  print_Dop(op->str, OP_STR_SIZE, "0x%x", op->val);
+  print_Dop(op->str, OP_STR_SIZE, "0x%x", s->isa.moff);
 }
 
 /* Eb <- Gb
