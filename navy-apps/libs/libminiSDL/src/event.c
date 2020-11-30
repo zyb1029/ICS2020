@@ -18,7 +18,7 @@ int SDL_PollEvent(SDL_Event *ev) {
 }
 
 
-int SDL_WaitEvent(SDL_Event *event) {
+int SDL_WaitEvent(SDL_Event *event) {return 1;
   event -> key.keysym.sym = 0;
   event -> type = 1029;
   char buf[64];
