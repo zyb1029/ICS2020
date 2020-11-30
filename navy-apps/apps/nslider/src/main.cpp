@@ -19,7 +19,7 @@ void render() {
   if (slide != NULL) {
 	  assert(0);
   }
-  slide = Slide;
+  slide = slide;
 }
 
 int main() {
