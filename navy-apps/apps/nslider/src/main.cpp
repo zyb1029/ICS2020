@@ -12,7 +12,7 @@
 //   gg - first page
 
 // number of slides
-struct node{int a, b;};
+struct node{int a;};
 
 node *slide = NULL;
 void render() {
