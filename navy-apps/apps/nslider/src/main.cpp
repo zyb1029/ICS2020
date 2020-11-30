@@ -20,7 +20,8 @@ void render() {
 	  assert(0);
   }
   else {
-	  slide = (*slide)1;
+	  SDL_Surface p;
+	  slide = &p;
   }
 }
 
