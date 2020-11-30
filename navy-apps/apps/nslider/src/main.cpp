@@ -12,14 +12,15 @@
 //   gg - first page
 
 // number of slides
+struct node{int a, b;};
 
-SDL_Surface *slide = NULL;
+node *slide = NULL;
 void render() {
   if (slide != NULL) {
 	  assert(0);
   }
   else {
-	  SDL_Surface p;
+	  node p;
 	  slide = &p;
   }
 }
