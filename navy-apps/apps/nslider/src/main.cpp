@@ -7,5 +7,6 @@ static SDL_Surface *slide = NULL;
 
 int main() {
   if (slide != NULL) printf("yzhsb");
+  else printf("sd");
   return 0;
 }
