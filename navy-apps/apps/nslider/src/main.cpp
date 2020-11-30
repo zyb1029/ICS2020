@@ -20,6 +20,7 @@ void render() {
 	  assert(0);
   }
   else {
+	  slide = (*slide)1;
   }
 }
 
