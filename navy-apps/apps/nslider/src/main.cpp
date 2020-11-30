@@ -15,16 +15,13 @@
 
 static SDL_Surface *slide = NULL;
 
-SDL_Surface* chy() {
-	SDL_Surface *w;
-	return w;
-}
 void render() {
   if (slide != NULL) {
 	  assert(0);
   }
   else {
-	slide = chy();
+	char fname[256];
+	slide = SDL_LoadBMP(fname);
   }
 }
 
