@@ -18,9 +18,9 @@ int SDL_PollEvent(SDL_Event *ev) {
 }
 
 
-int SDL_WaitEvent(SDL_Event *event) {return 1;
+int SDL_WaitEvent(SDL_Event *event) {
   event -> key.keysym.sym = 0;
-  event -> type = 1029;
+  event -> type = 10;
   char buf[64];
   int val = NDL_PollEvent(buf, sizeof(buf));
   if (val == 0) return 1;
