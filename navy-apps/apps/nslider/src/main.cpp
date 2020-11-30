@@ -20,8 +20,6 @@ void render() {
 	  assert(0);
   }
   else {
-	char fname[256];
-	slide = SDL_LoadBMP(fname);
   }
 }
 
