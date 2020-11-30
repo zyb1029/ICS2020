@@ -12,16 +12,15 @@
 //   gg - first page
 
 // number of slides
-struct node{int a;};
 
-node *slide = NULL;
+int *a = NULL;
 void render() {
-  if (slide != NULL) {
+  if (a != NULL) {
 	  assert(0);
   }
   else {
-	  node p;
-	  slide = &p;
+	  int p;
+	  a = &p;
   }
 }
 
