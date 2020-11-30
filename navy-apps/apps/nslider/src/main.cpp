@@ -23,7 +23,6 @@ void render() {
   if (slide != NULL) {
 	  assert(0);
   }
-  assert(slide);
   SDL_UpdateRect(slide, 0, 0, 0, 0);
 }
 
