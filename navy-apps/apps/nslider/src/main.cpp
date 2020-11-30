@@ -21,6 +21,7 @@ static int cur = 0;
 
 void render() {
   if (slide) {
+	return;
     SDL_FreeSurface(slide);
   }
   char fname[256];
