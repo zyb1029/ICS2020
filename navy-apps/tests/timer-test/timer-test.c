@@ -1,8 +1,14 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <NDL.h>
-
+#include <assert.h>
+int *a = NULL;
 int main() {
+	int p;
+  if (a!=NULL)assert(0);
+  else {
+	a = &p;  
+	}
   int sec = 1;
   NDL_Init(0);
   while(1) {		  
