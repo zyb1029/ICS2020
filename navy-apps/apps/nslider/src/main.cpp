@@ -23,9 +23,10 @@ void render() {
   if (slide != NULL) {
 	  assert(0);
   }
-  slide = SDL_LoadBMP(slide);
+  char fname[256];
+  slide = SDL_LoadBMP(fname);
   assert(slide);
-  //SDL_UpdateRect(slide, 0, 0, 0, 0);
+//  SDL_UpdateRect(slide, 0, 0, 0, 0);
 }
 
 int main() {
