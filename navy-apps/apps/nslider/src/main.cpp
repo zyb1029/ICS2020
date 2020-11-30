@@ -32,10 +32,6 @@ void render() {
 
 int main() {
   SDL_Init(0);
-  SDL_Surface *screen = SDL_SetVideoMode(W, H, 32, SDL_HWSURFACE);
-
-  int rep = 0, g = 0;
-  
   render();
   return 0;
 }
