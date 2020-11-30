@@ -19,7 +19,7 @@ void render() {
   if (slide != NULL) {
 	  assert(0);
   }
-  slide = SDL_LoadBMP("l");
+  slide = Slide;
 }
 
 int main() {
