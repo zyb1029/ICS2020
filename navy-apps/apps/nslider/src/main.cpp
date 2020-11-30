@@ -13,8 +13,7 @@
 
 // number of slides
 
-static SDL_Surface *slide = NULL;
-
+SDL_Surface *slide = NULL;
 void render() {
   if (slide != NULL) {
 	  assert(0);
