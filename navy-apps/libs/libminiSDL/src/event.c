@@ -17,18 +17,26 @@ int SDL_PollEvent(SDL_Event *ev) {
   return 0;
 }
 
+
 int SDL_WaitEvent(SDL_Event *event) {
+  event -> key.keysym.sym = 0;
+  event -> type = 1029;
   char buf[64];
-  char tep1[10], tep2[10], tep3[10], tep4[10];
-  NDL_PollEvent(buf, sizeof(buf));
-  sprintf(buf, "%s %s %s %s", tep1, tep2, tep3, tep4);
-  bool kd_flag = true;
-  if (strcmp(tep3, "ku"))event -> type = SDL_KEYUP, kd_flag = true;
-  else if(strcmp(tep3, "kd"))event -> type = SDL_KEYDOWN, kd_flag = true;
+  int val = NDL_PollEvent(buf, sizeof(buf));
+  if (val == 0) return 1;
+  char tep1[10], tep2[10];
+  sscanf(buf, "%s %s", tep1, tep2);
+  bool kd_flag = false;
+  if (strcmp(tep1, "ku") == 0)event -> type = SDL_KEYUP, kd_flag = true;
+  else if(strcmp(tep1, "kd") == 0)event -> type = SDL_KEYDOWN, kd_flag = true;
   else kd_flag = false;
-  for (int i = 0; i < )
-//  event -> key.keysym.sym = tep4;
-  printf("%d\n", SDLK_L);
+  if (kd_flag){
+	for (int i = 0; i < 83; i++)
+		if (strcmp(tep2, keyname[i]) == 0) {
+			event -> key.keysym.sym = i;
+			break;
+		}
+  }
   return 1;
 }
 
