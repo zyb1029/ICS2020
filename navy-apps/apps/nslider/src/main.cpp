@@ -1,18 +1,5 @@
-#include <SDL.h>
-#include <SDL_bmp.h>
-#include <stdio.h>
 #include <assert.h>
-
-#define W 400
-#define H 300
-
-// USAGE:
-//   j/down - page down
-//   k/up - page up
-//   gg - first page
-
-// number of slides
-
+#include <cstddef>
 int *a = NULL;
 void render() {
   if (a != NULL) {
@@ -25,7 +12,6 @@ void render() {
 }
 
 int main() {
-  SDL_Init(0);
   render();
   return 0;
 }
