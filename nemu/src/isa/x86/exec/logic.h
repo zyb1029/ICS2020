@@ -3,7 +3,7 @@
 
 static inline def_EHelper(test) {
   rtl_and(s, s0, ddest, dsrc1);
-  printf("0x%x 0x%x\n", *ddest, *dsrc1);
+  printf("0x%x 0x%x 0x%x\n", *ddest, *dsrc1,*s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
   rtl_update_ZFSF(s, s0, s->dest.width);
