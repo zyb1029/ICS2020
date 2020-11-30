@@ -22,8 +22,11 @@ int SDL_WaitEvent(SDL_Event *event) {
   char tep1[10], tep2[10], tep3[10], tep4[10];
   NDL_PollEvent(buf, sizeof(buf));
   sprintf(buf, "%s %s %s %s", tep1, tep2, tep3, tep4);
-  if (strcmp(tep3, "ku"))event -> type = SDL_KEYUP;
-  else if(strcmp(tep3, "kd"))event -> type = SDL_KEYDOWN;
+  bool kd_flag = true;
+  if (strcmp(tep3, "ku"))event -> type = SDL_KEYUP, kd_flag = true;
+  else if(strcmp(tep3, "kd"))event -> type = SDL_KEYDOWN, kd_flag = true;
+  else kd_flag = false;
+  for (int i = 0; i < )
 //  event -> key.keysym.sym = tep4;
   printf("%d\n", SDLK_L);
   return 1;
