@@ -13,14 +13,16 @@
 
 // number of slides
 
-SDL_Surface *slide = NULL;
+static SDL_Surface *slide = NULL;
 
 void render() {
   if (slide != NULL) {
 	  assert(0);
   }
-  char fname[256];
-  slide = SDL_LoadBMP(fname);
+  else {
+	char fname[256];
+	slide = SDL_LoadBMP(fname);
+  }
 }
 
 int main() {
