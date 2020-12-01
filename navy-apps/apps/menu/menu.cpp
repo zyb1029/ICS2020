@@ -65,6 +65,8 @@ static void prev() {
 
 static void clear_display(void) {
   SDL_FillRect(screen, NULL, 0xffffff);
+
+  printf("0x%x\n", screen -> pixels[0]);
 }
 
 int main(int argc, char *argv[], char *envp[]) {
@@ -140,7 +142,6 @@ static void draw_text_row(char *s, int r) {
 
 static void display_menu(int n) {
   clear_display();
-  printf("0x%x\n", screen -> pixels[0]);
   SDL_Rect rect = { .x = screen->w - logo_sf->w, .y = 0 };
   SDL_BlitSurface(logo_sf, NULL, screen, &rect);
   printf("Available applications:\n");
