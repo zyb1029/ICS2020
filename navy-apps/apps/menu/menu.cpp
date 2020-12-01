@@ -66,7 +66,7 @@ static void prev() {
 static void clear_display(void) {
   SDL_FillRect(screen, NULL, 0xffffff);
 
-  printf("0x%x\n", screen -> pixels[0]);
+  printf("0x%p\n", screen -> pixels);
 }
 
 int main(int argc, char *argv[], char *envp[]) {
