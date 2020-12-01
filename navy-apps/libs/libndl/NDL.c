@@ -44,11 +44,9 @@ void NDL_OpenCanvas(int *w, int *h) {
     close(fbctl);
   }
   else {
-	  int fd = open("/proc/dispinfo", O_RDONLY);
 	  char buf[32], tep1[10], tep2[10];
-	  read(fd, buf, 32);
+	  read(evtdev, buf, 32);
 	  sscanf(buf, "%s %d %s %d", tep1, &screen_w, tep2, &screen_h);
-	  close(fd);
 	  if (*w == 0 && *h == 0) *w = screen_w, *h = screen_h;
 	  canvas_w = *w;
 	  canvas_h = *h;
@@ -84,9 +82,11 @@ int NDL_Init(uint32_t flags) {
     evtdev = 3;
   }
   fbdev = open("/dev/fb", O_WRONLY);
+  evtdev = open("/dev/events", O_RDONLY);
   return 0;
 }
 
 void NDL_Quit() {
 	if (fbdev != -1)close(fbdev);	
+	if (evtdev != -1)close(evtdev);
 }
