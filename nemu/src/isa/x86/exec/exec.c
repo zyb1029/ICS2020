@@ -313,6 +313,7 @@ again:
 	IDEX (0x05, I2a, add)
     IDEX (0x0d, I2a, or)
 	EX (0xa4, movsb)
+	EX (0xa5, movsl)
 	IDEX (0x11, G2E, adc)
 	IDEXW (0x24, I2a, and, 1)
 	IDEXW (0x08, G2E, or, 1)

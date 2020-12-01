@@ -36,6 +36,19 @@ static inline def_EHelper(movsb) {
 //  print_asm("movl %%cr%d,%%%s", id_src1->reg, reg_name(id_dest->reg, 4));
 
 }
+
+static inline def_EHelper(movsl) {
+  if (s->isa.is_operand_size_16) {
+	TODO();   
+  }
+  else {
+	rtl_lm(s, s0, &reg_l(R_ESI), 0, 4);
+	rtl_sm(s, &reg_l(R_EDI), 0, s0, 4);
+	rtl_addi(s, &reg_l(R_EDI), &reg_l(R_EDI), 4);	  
+	rtl_addi(s, &reg_l(R_ESI), &reg_l(R_ESI), 4);	  
+   }
+}
+
 static inline def_EHelper(int) { 
   raise_intr(s, *ddest, cpu.IDTR.addr);
   print_asm("int %s", id_dest->str);
