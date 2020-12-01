@@ -23,7 +23,7 @@ void init_proc() {
   switch_boot_pcb();
 
   Log("Initializing processes...");
-  char *pathname = "/bin/menu";
+  char *pathname = "/bin/nslider";
   naive_uload(NULL, pathname);
   // load program here
 
