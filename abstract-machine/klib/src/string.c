@@ -60,7 +60,6 @@ int strncmp(const char* s1, const char* s2, size_t n) {
 // finsh testing
 void* memset(void* v,int c,size_t n) {
   unsigned char *dst = (unsigned char *)v;
-	printf("%p %d\n", dst, n);
   for (int i = 0; i < n; i++) {
 	  *(dst + i) = c;	  
   }
