@@ -71,7 +71,6 @@ static char* program_break = &end;
 void *_sbrk(intptr_t increment) {
  //printf("%p\n", end);
   if (_syscall_(SYS_brk, (intptr_t)program_break + increment, 0, 0) == 0 ) {
-	printf("%p\n", program_break);
 	program_break += increment;
 	return (void *)(program_break - increment);  
 	}
