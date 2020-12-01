@@ -48,7 +48,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 		// if (type != 1) continue;
 	//	ramdisk_read(fb, offset + head_addr, FileSiz);
 		printf("%p %p %p %p\n", fb, FileSiz, Memsiz, offset); 
-		memset(fb + FileSiz, 0, Memsiz - FileSiz);
+	//	memset(fb + FileSiz, 0, Memsiz - FileSiz);
 	  }
 	  return addr;
 }
