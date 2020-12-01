@@ -7,12 +7,38 @@
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+  int src_x, src_y, src_w, src_h, dst_x, dst_y, dst_w;
+  if (srcrect != NULL) 
+	  src_x = srcrect->x, src_y = srcrect->y, 
+	  src_w = srcrect->w, src_h = srcrect->h;
+  else src_x = 0, src_y = 0, src_h = src -> h, src_w = src->w;
+  if (dstrect != NULL) 
+	  dst_x = dstrect->x, dst_y = dstrect->y;
+  else dst_x = 0, dst_y = 0;
+  uint32_t loc = dst_y * dst->w + dst_x;
+  for (int i = src_y; i < src_y + src_h; i++) {
+	  	uint32_t fr = i * src->w + src_x;
+	     memcpy(dst -> pixels + (loc << 2), src -> pixels + (fr << 2),
+	            src_w << 2); 
+		loc += dst -> w;
+  }
 }
 
+static uint32_t tep_pixels[400 * 300 + 5];
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+	assert(dst != NULL);
+	NDL_OpenCanvas(&(dst->w), &(dst->h));
+	for (int i = 0; i < dst->w * dst->h; i++)
+		tep_pixels[i] = color;
+	if (dstrect == NULL)
+		 NDL_DrawRect(tep_pixels, 0, 0, dst->w, dst->h);
+	else 
+		 NDL_DrawRect(tep_pixels, dstrect->x, dstrect->y,
+								  dstrect->w, dstrect->h);
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
+	assert(s != NULL);
 	NDL_OpenCanvas(&(s -> w), &(s -> h));
 	if (x == 0 && y == 0 && w == 0 && h == 0) w = s->w, h = s->h;
 	NDL_DrawRect((unsigned int *)s->pixels, x, y, w, h);

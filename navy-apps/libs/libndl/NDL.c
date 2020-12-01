@@ -49,7 +49,7 @@ void NDL_OpenCanvas(int *w, int *h) {
 	  read(fd, buf, 32);
 	  sscanf(buf, "%s %d %s %d", tep1, &screen_w, tep2, &screen_h);
 	  close(fd);
-	  if (w == 0 && h == 0) *w = screen_w, *h = screen_h;
+	  if (*w == 0 && *h == 0) *w = screen_w, *h = screen_h;
 	  canvas_w = *w;
 	  canvas_h = *h;
    }
@@ -84,7 +84,6 @@ int NDL_Init(uint32_t flags) {
     evtdev = 3;
   }
   fbdev = open("/dev/fb", O_WRONLY);
-  printf("%d\n", fbdev);
   return 0;
 }
 
