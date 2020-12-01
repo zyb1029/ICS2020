@@ -43,13 +43,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 //		 uint32_t type = phdr[i].p_type; 
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
 		 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
-		 size_t offset = phdr[i].p_offset;
+//		 size_t offset = phdr[i].p_offset;
 		 uint32_t *fb = (uint32_t *)VirtAddr;
 		// if (type != 1) continue;
-		// printf("%08x %08x %08x %08x %08x %08x\n", fb, type, offset, VirtAddr, FileSiz, Memsiz);
 		printf("%p %p %p \n", fb, FileSiz, Memsiz); 
-		 ramdisk_read(fb, offset + head_addr, FileSiz);
-		 memset(fb + FileSiz, 0, Memsiz - FileSiz);
+	//	ramdisk_read(fb, offset + head_addr, FileSiz);
+		memset(fb + FileSiz, 0, Memsiz - FileSiz);
 	  }
 	  return addr;
 }
