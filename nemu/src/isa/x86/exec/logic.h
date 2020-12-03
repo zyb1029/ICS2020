@@ -15,7 +15,7 @@ static inline def_EHelper(and) {
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
   rtl_update_ZFSF(s, ddest, s->dest.width);
-  printf("%8x  %8x %8x %8x %d\n", cpu.pc,*ddest, *dsrc1, *s0, cpu.eflags.ZF);
+  if(cpu.pc==0x30298de)printf("%8x  %8x %8x %8x %d\n", cpu.pc,*ddest, *dsrc1, *s0, cpu.eflags.ZF);
   print_asm_template2(and);
 }
 
