@@ -40,7 +40,8 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 	for (int i = y; i < y + h; i++){
 		int W = x + w < dst->w ? x + w : dst->w;
 		for (int j = x; j < W; j++)
-			*(p + i * dst->w + j) = color;
+			if (dst->format->palette == NULL)*(p + i * dst->w + j) = color;
+			else *((uint8_t *)p + i * dst->w + j) = color;
 	}
 	SDL_UpdateRect(dst, x, y, w, h);
 //	NDL_OpenCanvas(&(dst->w), &(dst->h));
