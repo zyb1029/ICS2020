@@ -11,6 +11,7 @@ static inline def_EHelper(test) {
 
 static inline def_EHelper(and) {
   rtl_and(s, s0, ddest, dsrc1);
+  if(cpu.pc >= 0x30298dc && cpu.pc <= 0x30298df)printf("%8x  %8x %8x %8x %d\n", cpu.pc,*ddest, *dsrc1, *s0, cpu.eflags.ZF);
   operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
