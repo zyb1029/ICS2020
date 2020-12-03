@@ -30,7 +30,8 @@ uint32_t buf[65536 << 2];
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 	assert(dst != NULL);
-//	assert(dst->format->palette == NULL);
+	//assert(dst->format->palette == NULL);
+//	assert(color < 256);
 	uint32_t *p = (uint32_t *)dst->pixels;
 	int w, h, x, y;
 	if (dstrect != NULL) 
@@ -41,8 +42,9 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 		for (int j = x; j < W; j++)
 			*(p + i * dst->w + j) = color;
 	}
-	NDL_OpenCanvas(&(dst->w), &(dst->h));
-    NDL_DrawRect((uint32_t *)dst->pixels, 0, 0, dst->w, dst->h);
+	SDL_UpdateRect(dst, x, y, w, h);
+//	NDL_OpenCanvas(&(dst->w), &(dst->h));
+//   NDL_DrawRect((uint32_t *)dst->pixels, 0, 0, dst->w, dst->h);
 /*	else {
 		uint32_t *p = (uint32_t *)s->pixels;
 		for (int i = y * s->w; i < (y + h) * s->w; i+= s->w) 
