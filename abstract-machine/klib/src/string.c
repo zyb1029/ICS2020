@@ -58,7 +58,7 @@ int strncmp(const char* s1, const char* s2, size_t n) {
   return 0;
 }
 // finsh testing
-void* memset(void* v,int c,size_t n) {
+void* memset(void* v,int c,size_t n) {printf("122\n");
   unsigned char *dst = (unsigned char *)v;
   for (int i = 0; i < n; i++) {
 	  *(dst + i) = c;	  
