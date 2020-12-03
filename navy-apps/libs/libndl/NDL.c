@@ -53,8 +53,8 @@ void NDL_OpenCanvas(int *w, int *h) {
 }
 // (x,y)   w * h
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
-	w = w < screen_w ? w : screen_w;
-	h = h < screen_h ? h : screen_h;
+//	w = w < screen_w ? w : screen_w;
+//	h = h < screen_h ? h : screen_h;
 	x = ((screen_w - canvas_w) >> 1) + x;
 	y = ((screen_h - canvas_h) >> 1) + y;
 	for (int i = 0; i < h; i++) {
