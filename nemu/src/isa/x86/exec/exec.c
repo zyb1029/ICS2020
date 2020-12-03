@@ -241,7 +241,7 @@ again:
 	IDEX (0x8d, lea_M2G, lea)
 	IDEX (0x01, G2E, add)
 	IDEX (0x3b, E2G, cmp)
-//	IDEXW (0x3a, E2G, cmp, 1)
+	IDEXW (0x3a, E2G, cmp, 1)
 	IDEXW (0x74, J, jcc, 1)
 	EX (0xc9, leave)
 	IDEX (0x45, r, inc)
