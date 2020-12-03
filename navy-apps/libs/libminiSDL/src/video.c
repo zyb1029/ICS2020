@@ -30,7 +30,7 @@ uint32_t buf[65536 << 2];
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 	assert(dst != NULL);
-	assert(dst->format->palette == NULL);
+//	assert(dst->format->palette == NULL);
 	uint32_t *p = (uint32_t *)dst->pixels;
 	int w, h, x, y;
 	if (dstrect != NULL) 
