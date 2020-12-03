@@ -8,6 +8,7 @@
 
 static int evtdev = -1;
 static int fbdev = -1;
+static int nfodev = -1;
 static int screen_w = 0, screen_h = 0;
 static int canvas_w = 0, canvas_h = 0;
 
@@ -42,19 +43,18 @@ void NDL_OpenCanvas(int *w, int *h) {
     close(fbctl);
   }
   else {
-	  int fd = open("/proc/dispinfo", O_RDONLY);
-	  char buf[32], tep1[10], tep2[10];
-	  read(fd, buf, 32);
+	  char buf[64], tep1[64], tep2[64];
+	  read(nfodev, buf, 40);
 	  sscanf(buf, "%s %d %s %d", tep1, &screen_w, tep2, &screen_h);
-	  close(fd);
 	  if (*w == 0 && *h == 0) *w = screen_w, *h = screen_h;
 	  canvas_w = *w;
 	  canvas_h = *h;
    }
 }
 // (x,y)   w * h
-
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
+	w = w < screen_w ? w : screen_w;
+	h = h < screen_h ? h : screen_h;
 	x = ((screen_w - canvas_w) >> 1) + x;
 	y = ((screen_h - canvas_h) >> 1) + y;
 	for (int i = 0; i < h; i++) {
@@ -81,6 +81,7 @@ int NDL_Init(uint32_t flags) {
   if (getenv("NWM_APP")) {
     evtdev = 3;
   }
+  nfodev  = open("/proc/dispinfo", O_RDONLY);
   fbdev = open("/dev/fb", O_WRONLY);
   evtdev = open("/dev/events", O_RDONLY);
   return 0;
@@ -89,4 +90,5 @@ int NDL_Init(uint32_t flags) {
 void NDL_Quit() {
 	if (fbdev != -1)close(fbdev);	
 	if (evtdev != -1)close(evtdev);
+	if (nfodev != -1)close(nfodev);
 }

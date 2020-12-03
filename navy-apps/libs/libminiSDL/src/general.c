@@ -1,4 +1,5 @@
 #include <NDL.h>
+#include <stdio.h>
 
 int SDL_Init(uint32_t flags) {
   return NDL_Init(flags);
@@ -13,6 +14,8 @@ char *SDL_GetError() {
 }
 
 int SDL_SetError(const char* fmt, ...) {
+
+  printf("SDL_SetError: %s\n", fmt);
   return -1;
 }
 
