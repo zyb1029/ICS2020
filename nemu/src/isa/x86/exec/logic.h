@@ -11,7 +11,7 @@ static inline def_EHelper(test) {
 
 static inline def_EHelper(and) {
   rtl_and(s, s0, ddest, dsrc1);
-  printf("%8x %8x %8x\n", *ddest, *dsrc1, *s0);
+  printf("%d  %8x %8x %8x\n", cpu.pc,*ddest, *dsrc1, *s0);
   operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
