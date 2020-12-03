@@ -172,7 +172,7 @@ static inline def_EHelper(2byte_esc) {
 	IDEX (0xa5, cl_G2E, shld)
 //	IDEX (0xa4, Ib_G2E, shld) //2020 12 3
 	IDEXW (0x9e, E, setcc, 1)
-//	IDEXW (0x96, E, setcc, 1)
+	IDEXW (0x96, setcc_E, setcc, 1)
 	IDEX (0xbd, E2G, bsr)
 	IDEX (0xac, Ib_G2E, shrd)
     default: exec_inv(s);
