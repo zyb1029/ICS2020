@@ -11,12 +11,10 @@ static inline def_EHelper(test) {
 
 static inline def_EHelper(and) {
   rtl_and(s, s0, ddest, dsrc1);
-  if(cpu.pc >= 0x30298dc && cpu.pc <= 0x30298df)printf("%8x  %8x %8x %8x %d\n", cpu.pc,*ddest, *dsrc1, *s0, cpu.eflags.ZF);
   operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
-  rtl_update_ZFSF(s, ddest, s->dest.width);
-  if(cpu.pc >= 0x30298dc && cpu.pc <= 0x30298df)printf("%8x  %8x %8x %8x %d\n", cpu.pc,*ddest, *dsrc1, *s0, cpu.eflags.ZF);
+  rtl_update_ZFSF(s, s0, s->dest.width);
   print_asm_template2(and);
 }
 
@@ -25,7 +23,7 @@ static inline def_EHelper(xor) {
   operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
-  rtl_update_ZFSF(s, ddest, s->dest.width);
+  rtl_update_ZFSF(s, s0, s->dest.width);
   print_asm_template2(xor);
 }
 
@@ -34,7 +32,7 @@ static inline def_EHelper(or) {
   operand_write(s, id_dest, s0);
   rtl_set_CF(s, rz);
   rtl_set_OF(s, rz);
-  rtl_update_ZFSF(s, ddest, s->dest.width);
+  rtl_update_ZFSF(s, s0, s->dest.width);
   print_asm_template2(or);
 }
 
