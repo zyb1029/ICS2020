@@ -13,7 +13,6 @@ void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
   long useconds = inl(RTC_ADDR) - boot_time_usec;
   long seconds = inl(RTC_ADDR + 4) - boot_time_sec;
   uptime->us = seconds * 1000000 + (useconds + 500);
-  printf("%d\n", uptime-> us);
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc) {
