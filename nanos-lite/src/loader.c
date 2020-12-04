@@ -25,7 +25,9 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       if (filename == NULL) head_addr = 0;
 	  else {
 	     int fd = fs_open(filename, 0, 0);
-		 assert(fd != -1);
+		 if (fd == -1) {
+			return 0;	 
+		 }
 		 head_addr = get_head(fd);
 		 fs_close(fd);			  
 	  }
@@ -34,7 +36,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	  if (elf_head.e_machine != EXPECT_TYPE) {
 		uint32_t tep = EXPECT_TYPE;   
 		printf("%08x %08x\n", elf_head.e_machine, tep);
-		panic("The ISA counldn't be matched!");	  
+		printf("The ISA counldn't be matched!\n");
+		return 0;	  
 	  }
 	  uintptr_t addr = elf_head.e_entry;
 	  Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
@@ -50,8 +53,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 	  return addr;
 }
 void naive_uload(PCB *pcb, const char *filename) {
+
   uintptr_t entry = loader(pcb, filename);
-  Log("Jump to entry = %p", entry);
-  ((void(*)())entry) ();
+  if (entry != 0) {
+	  Log("Jump to entry = %p", entry);
+	  ((void(*)())entry) ();
+  }
+  else return;
 }
 
