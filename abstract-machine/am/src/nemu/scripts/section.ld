@@ -11,10 +11,10 @@ SECTIONS {
   .rodata : {
     *(.rodata*)
   }
-  _stack_pointer = .;
   .data : {
     *(.data)
   }
+  _stack_pointer = .;
   edata = .;
   _data = .;
   .bss : {
