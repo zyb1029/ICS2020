@@ -23,8 +23,8 @@ void init_proc() {
   switch_boot_pcb();
 
   Log("Initializing processes...");
-  char *pathname = "/bin/pal";
-  naive_uload(NULL, pathname);
+//`  char *pathname = "/bin/pal";
+ // naive_uload(NULL, pathname);
   // load program here
 
 }
