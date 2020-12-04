@@ -16,6 +16,7 @@ static uint32_t lst_sec = 0 ,lst_usec = 0;
 uint32_t NDL_GetTicks() {
   struct timeval tv;
   gettimeofday(&tv, NULL);
+  printf("%u\n",  (tv.tv_sec - lst_sec) * 1000 + (tv.tv_usec - lst_usec)/ 1000);
   return (tv.tv_sec - lst_sec) * 1000 + (tv.tv_usec - lst_usec)/ 1000;
 }
 
