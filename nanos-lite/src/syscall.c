@@ -7,9 +7,11 @@ void do_syscall(Context *c) {
   char *p;
   timeval *tv;
   a[0] = c->GPR1;
+  bool ex_flag = false;
   switch (a[0]) {
 	case SYS_exit:
-		halt(c->GPR2);
+		if (ex_flag) naive_uload(NULL, "/bin/menu");
+		else halt(c->GPR2);
 		break;
 	case SYS_yield:
 		yield();
@@ -56,6 +58,7 @@ void do_syscall(Context *c) {
 		c->GPRx = 0;  
 		break; 
 	case SYS_execve:
+		ex_flag = true;
 		naive_uload(NULL, (char *)c->GPR2);
 		c->GPRx = -1;
 		break;
