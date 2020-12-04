@@ -1,7 +1,5 @@
 #include <common.h>
-#include <proc.h>
 #include "syscall.h"
-
 void do_syscall(Context *c) {
   uintptr_t a[4];
   char *p;
@@ -55,10 +53,6 @@ void do_syscall(Context *c) {
 		tv->useconds = tep - tv->seconds * 1000000;
 		c->GPRx = 0;  
 		break; 
-	case SYS_execve:
-		naive_uload(NULL, (char *)c->GPR2);
-		c->GPRx = -1;
-		break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 }
