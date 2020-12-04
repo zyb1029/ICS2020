@@ -10,7 +10,7 @@ void do_syscall(Context *c) {
   bool ex_flag = false;
   switch (a[0]) {
 	case SYS_exit:
-		if(ex_flag == true) naive_uload(NULL, "/bin/menu");
+		if(ex_flag == false) naive_uload(NULL, "/bin/menu");
 		else halt(c->GPR2);
 		break;
 	case SYS_yield:
