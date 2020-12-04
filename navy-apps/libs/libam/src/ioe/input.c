@@ -11,4 +11,5 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
 	SDL_PollEvent(&ev);
 	kbd->keydown = (ev.type == SDL_KEYUP ? true : false);
 	kbd->keycode = ev.key.keysym.sym;
+	if (kbd->keycode != 0) printf("%u\n", kbd->keycode);
 }
