@@ -6,7 +6,6 @@ SECTIONS {
     *(entry)
     *(.text*)
   }
-  chy = .;
   etext = .;
   _etext = .;
   .rodata : {
@@ -15,6 +14,7 @@ SECTIONS {
   .data : {
     *(.data)
   }
+  chy = .;
   edata = .;
   _data = .;
   .bss : {
