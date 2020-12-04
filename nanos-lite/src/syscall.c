@@ -17,6 +17,7 @@ void do_syscall(Context *c) {
 		break;
 	case SYS_open:
 		p = (char *) c->GPR2;
+		printf("%s\n", p);
 		c->GPRx = fs_open(p, c->GPR3, c->GPR4);
 		assert(c->GPRx != -1);
 		break;
