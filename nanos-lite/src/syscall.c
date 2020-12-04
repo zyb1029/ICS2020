@@ -10,7 +10,7 @@ void do_syscall(Context *c) {
   bool ex_flag = false;
   switch (a[0]) {
 	case SYS_exit:
-		printf("%d\n", ex_flag);
+		printf("%d   234323333332\n", ex_flag);
 		if(ex_flag == false) naive_uload(NULL, "/bin/menu");
 		else halt(c->GPR2);
 		break;
