@@ -7,7 +7,6 @@ void init_irq(void);
 void init_fs(void);
 void init_proc(void);
 
-extern uint8_t _data;
 int main() {
   extern const char logo[];
   printf("%s", logo);
@@ -27,6 +26,7 @@ int main() {
 #endif
 
   init_fs();
+extern uint8_t _data;
 printf("%p\n", _data);
   init_proc();
 
