@@ -161,7 +161,7 @@ static inline def_EHelper(2byte_esc) {
 	IDEX (0x8e, J, jcc)
 	IDEX (0x86, J, jcc)
 	IDEXW (0x9f, E, setcc, 1)
-//	IDEXW (0x93, E, setcc, 1)
+	IDEXW (0x93, E, setcc, 1)
 	IDEX (0x83, J, jcc)
 	IDEX (0x8f, J, jcc)
 	IDEX (0x8c, J, jcc)
@@ -283,7 +283,7 @@ again:
 	EX (0x99, cltd)
 	IDEX (0x4b, r, dec)
 	IDEX (0x85, G2E, test)
-//	IDEX (0xa9, I2a, test)
+	IDEX (0xa9, I2a, test)
 	IDEXW (0x84, G2E, test, 1)
 	IDEXW (0x0a, E2G, or, 1)
 	IDEXW (0x22, E2G, and, 1)
@@ -328,7 +328,7 @@ again:
 	EX (0x60, pusha)
 	EX (0x61, popa)
 	EX (0xcf, iret)
-//	IDEX (0x6b, SI_E2G, imul3)
+	IDEX (0x6b, SI_E2G, imul3)
   case 0x66: s->isa.is_operand_size_16 = true; goto again;
   default: exec_inv(s);
   }
