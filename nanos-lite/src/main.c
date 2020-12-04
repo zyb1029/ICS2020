@@ -26,8 +26,6 @@ int main() {
 #endif
 
   init_fs();
-extern uint8_t _data;
-printf("%p\n", _data);
   init_proc();
 
   Log("Finish initialization");
