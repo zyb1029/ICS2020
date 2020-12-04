@@ -7,7 +7,7 @@ void init_irq(void);
 void init_fs(void);
 void init_proc(void);
 
-extern uint8_t _data;
+extern uint8_t chy;
 int main() {
   extern const char logo[];
   printf("%s", logo);
@@ -27,7 +27,7 @@ int main() {
 #endif
 
   init_fs();
-printf("%08x\n", _data);
+printf("%p\n", main);
   init_proc();
 
   Log("Finish initialization");
