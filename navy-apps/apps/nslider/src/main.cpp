@@ -2,7 +2,7 @@
 #include <SDL_bmp.h>
 #include <stdio.h>
 #include <assert.h>
-
+#include<stdlib.h>
 #define W 400
 #define H 300
 
@@ -79,6 +79,7 @@ int main() {
             rep = 0; g = 0;
           }
           break;
+	   case SDLK_ESCAPE: exit(0); break;  
       }
     }
   }
