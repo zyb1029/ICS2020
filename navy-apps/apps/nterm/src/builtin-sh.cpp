@@ -23,30 +23,13 @@ static void sh_prompt() {
   sh_printf("sh> ");
 }
 
-struct MenuItem {
-  const char *name, *bin, *arg1;
-} items[] = {
-  {"NJU Terminal", "/bin/nterm", NULL},
-  {"NSlider", "/bin/nslider", NULL},
-  {"FCEUX (Super Mario Bros)", "/bin/fceux", "/share/games/nes/mario.nes"},
-  {"FCEUX (100 in 1)", "/bin/fceux", "/share/games/nes/100in1.nes"},
-  {"Flappy Bird", "/bin/bird", NULL},
-  {"PAL - Xian Jian Qi Xia Zhuan", "/bin/pal", NULL},
-  {"NPlayer", "/bin/nplayer", NULL},
-  {"coremark", "/bin/coremark", NULL},
-  {"dhrystone", "/bin/dhrystone", NULL},
-  {"typing-game", "/bin/typing-game", NULL},
-  {"ONScripter", "/bin/onscripter", NULL},
-};
 
 static void sh_handle_cmd(const char *cmd) {
-	for(int i = 0; i < 11; i++){
-		if (strlen(cmd) < strlen(items[i].bin)) continue;
-		if(strncmp(cmd, items[i].bin, strlen(items[i].bin)) == 0){
-			execve(items[i].bin, NULL, NULL);
-			exit(0);
-		}
-	}
+	char *p = (char *)cmd;
+	int len = strlen(p);
+	p[len - 1] = '\0';
+    if(execvp(p, NULL) == -1)
+		fprintf(stderr, "\033[31m[ERROR]\033[0m Exec %s failed.\n\n", p);
 }
 
 void builtin_sh_run() {
