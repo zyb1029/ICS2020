@@ -29,13 +29,13 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 
 
 void init_proc() {
-  context_kload(&pcb[0], (void *)hello_fun, NULL);
+ // context_kload(&pcb[0], (void *)hello_fun, NULL);
   switch_boot_pcb();
-  /*
+  
   Log("Initializing processes...");
   char *pathname = "/bin/nterm";
   naive_uload(NULL, pathname);
-  */
+  
   // load program here
 
 }
