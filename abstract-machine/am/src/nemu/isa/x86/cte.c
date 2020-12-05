@@ -59,7 +59,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
   printf("%p %p %p\n", kstack.start, kstack.end, entry);
   Context *c = (Context *)kstack.end - 1;
-  printf("%p %p\n", &(c->cr3), &(c->eflags));
+  printf("%p %p %p\n", &(c->cr3), &(c->eflags), c);
   return NULL;
 }
 
