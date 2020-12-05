@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <SDL.h>
+#include <string.h>
 
 char handle_key(SDL_Event *ev);
 
@@ -39,10 +40,9 @@ struct MenuItem {
 };
 
 static void sh_handle_cmd(const char *cmd) {
-	printf("%s\n", cmd);
 	for(int i = 0; i < 11; i++){
-		printf("%s\n", items[i].bin);
-		if(strcmp(cmd, items[i].bin) == 0){
+		if (strlen(cmd) < strlen(items[i].bin)) continue;
+		if(strncmp(cmd, items[i].bin, strlen(items[i].bin)) == 0){
 			execve(items[i].bin, NULL, NULL);
 			exit(0);
 		}
