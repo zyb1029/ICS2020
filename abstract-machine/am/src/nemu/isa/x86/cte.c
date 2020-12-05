@@ -61,7 +61,7 @@ Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
   intptr_t* loc;
   loc = (intptr_t *)(&(c->eflags) + 2);
  // *loc = (char *)arg;
-//  *loc = (intptr_t)((char *)arg);
+  *loc = (intptr_t)((char *)arg);
   printf("%s  xs\n", *loc);
  // printf("%d %s\n", (char *) arg);return c;
   c->cr3 = 0;
