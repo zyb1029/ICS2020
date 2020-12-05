@@ -58,9 +58,11 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 
 Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
   Context *c = (Context *)kstack.end - 1;
-  char *loc = (char *)(&(c->eflags) + 2);
-  *loc = (intptr_t)((char *)arg);
-  printf("%s  xs\n", loc);
+  intptr_t* loc;
+  loc = (intptr_t *)(&(c->eflags) + 2);
+ // *loc = (char *)arg;
+//  *loc = (intptr_t)((char *)arg);
+  printf("%s  xs\n", *loc);
  // printf("%d %s\n", (char *) arg);return c;
   c->cr3 = 0;
   c->edi = 0, c->esi = 0, c->ebp = 0, c->esp = 0, c->ebx = 0, c->edx = 0;
