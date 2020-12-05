@@ -33,7 +33,7 @@ void init_proc() {
   switch_boot_pcb();
   
   Log("Initializing processes...");
-  char *pathname = "/bin/nemu";
+  char *pathname = "/bin/menu";
   naive_uload(NULL, pathname);
   
   // load program here
