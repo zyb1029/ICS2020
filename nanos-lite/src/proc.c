@@ -14,7 +14,7 @@ void switch_boot_pcb() {
 void hello_fun(void *arg) {
   int j = 1;
   while (1) {
-    Log("Hello World from Nanos-lite with arg '%p' for the %dth time!", (uintptr_t)arg, j);
+    Log("Hello World from Nanos-lite with arg '%s' for the %dth time!", (uintptr_t)arg, j);
     j ++;
     yield();
   }
@@ -44,6 +44,6 @@ void init_proc() {
 Context* schedule(Context *prev) {
   current -> cp = prev;
   current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
-  printf("%p %p %d\n", (intptr_t) current, &(current->as.pgsize), current->as.pgsize);
+  printf("%p %p %x\n", (intptr_t) current, &(current->as.pgsize), current->as.pgsize);
   return current -> cp;
 }
