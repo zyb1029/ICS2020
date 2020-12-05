@@ -16,7 +16,6 @@ void hello_fun(void *arg) {
   while (1) {
     Log("Hello World from Nanos-lite with arg '%s' for the %dth time!", (uintptr_t)arg, j);
     j ++;
-	if (j > 2)while(1);
     yield();
   }
 }
@@ -31,7 +30,6 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 
 void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  context_kload(&pcb[1], (void *)hello_fun, (void *)"-aa");
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
@@ -44,6 +42,7 @@ void init_proc() {
 
 Context* schedule(Context *prev) {
   current -> cp = prev;
-  current = &pcb[0];
+  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  printf("%p\n", (intptr_t) current);
   return current -> cp;
 }
