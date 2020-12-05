@@ -29,7 +29,7 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 
 
 void init_proc() {
-  context_kload(&pcb[0], (void *)hello_fun, (void *)"-b");
+  context_kload(&pcb[0], (void *)hello_fun, (void *)"0");
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
