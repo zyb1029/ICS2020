@@ -97,6 +97,7 @@ int main(int argc, char *argv[], char *envp[]) {
       case SDLK_9: i = 9; break;
       case SDLK_LEFT: prev(); break;
       case SDLK_RIGHT: next(); break;
+	  case SDLK_ESCAPE: return 0; break;
     }
 
     if (i != -1 && i <= i_max) {
