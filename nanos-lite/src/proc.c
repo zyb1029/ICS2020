@@ -1,4 +1,5 @@
 #include <proc.h>
+#include <common.h>
 
 #define MAX_NR_PROC 4
 
@@ -19,12 +20,20 @@ void hello_fun(void *arg) {
   }
 }
 
-void init_proc() {
-  switch_boot_pcb();
+void context_kload(PCB * pcb, void* loc, void* arg) {
+	Area area;
+	area.start = pcb;
+	area.end = pcb + sizeof(pcb);
+	pcb -> cp = kcontext(area, loc, arg);
+}
 
-  Log("Initializing processes...");
-   char *pathname = "/bin/nterm";
-   naive_uload(NULL, pathname);
+
+void init_proc() {
+  context_kload(&pcb[0], (void *)hello_fun, NULL);
+  switch_boot_pcb();
+//  Log("Initializing processes...");
+//   char *pathname = "/bin/nterm";
+//   naive_uload(NULL, pathname);
   // load program here
 
 }
