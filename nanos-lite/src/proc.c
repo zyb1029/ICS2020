@@ -23,7 +23,7 @@ void hello_fun(void *arg) {
 void context_kload(PCB * pcb, void* loc, void* arg) {
 	Area area;
 	area.start = pcb;
-	area.end = &pcb[1];//pcb + sizeof(pcb);
+	area.end = pcb + sizeof(pcb);
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
