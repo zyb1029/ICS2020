@@ -41,8 +41,10 @@ struct MenuItem {
 static void sh_handle_cmd(const char *cmd) {
 	printf("%s/n", cmd);
 	for(int i = 0; i < 11; i++)
-		if(strcmp(cmd, items[i].bin) == 0)
+		if(strcmp(cmd, items[i].bin) == 0){
 			execve(items[i].bin, NULL, NULL);
+			exit(0);
+		}
 }
 
 void builtin_sh_run() {
