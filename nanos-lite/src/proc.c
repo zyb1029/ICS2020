@@ -27,10 +27,15 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
+void context_uload(PCB * pcb, const char* filename) {
+	Area area;
+	area.end = heap.end;
+	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
+}
 
 void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  context_kload(&pcb[1], (void *)hello_fun, (void *)"-aa");
+  //context_kload(&pcb[1], (void *)hello_fun, (void *)"-aa");
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");

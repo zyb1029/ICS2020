@@ -27,7 +27,6 @@ static void irq_handle(Context *c) {
   assert(c != NULL);
 
   __am_switch(c);
-
   // magic call to restore context
   asm volatile("call *0x100010" : : "a" (c));
   __am_panic_on_return();
@@ -163,10 +162,9 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
   Context *c = (Context*)kstack.end - 1;
 
-  __am_get_example_uc(c);
+//  __am_get_example_uc(c);
   c->uc.uc_mcontext.gregs[REG_RIP] = (uintptr_t)__am_kcontext_start;
   c->uc.uc_mcontext.gregs[REG_RSP] = (uintptr_t)kstack.end;
-
   int ret = sigemptyset(&(c->uc.uc_sigmask)); // enable interrupt
   assert(ret == 0);
 

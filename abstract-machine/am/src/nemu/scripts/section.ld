@@ -14,7 +14,6 @@ SECTIONS {
   .data : {
     *(.data)
   }
-  chy = .;
   edata = .;
   _data = .;
   .bss : {
