@@ -25,6 +25,7 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	area.start = pcb;
 	area.end = (char *)pcb + sizeof(PCB);
 	printf("%p\n", arg);
+	while(1);
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
