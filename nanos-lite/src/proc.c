@@ -24,12 +24,13 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	Area area;
 	area.start = pcb;
 	area.end = (char *)pcb + sizeof(PCB);
+	printf("%p\n", arg);
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
 
 void init_proc() {
-  context_kload(&pcb[0], (void *)hello_fun, (void *)"0");
+  context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
