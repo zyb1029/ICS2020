@@ -31,6 +31,7 @@ void context_uload(PCB * pcb, const char* filename) {
 	Area area;
 	area.end = heap.end;
 	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
+	pcb -> cp -> GPRx = (intptr_t)heap.end;
 }
 
 void init_proc() {
