@@ -41,5 +41,7 @@ void init_proc() {
 }
 
 Context* schedule(Context *prev) {
-  return NULL;
+  current -> cp = prev;
+  current = &pcb[0];
+  return current -> cp;
 }
