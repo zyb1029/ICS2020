@@ -121,7 +121,6 @@ static void sig_handler(int sig, siginfo_t *info, void *ucontext) {
   }
   assert(thiscpu->ev.event != EVENT_ERROR);
   setup_stack(thiscpu->ev.event, ucontext);
-  assert(0);
 }
 
 // signal handlers are inherited across fork()
