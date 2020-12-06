@@ -2,7 +2,6 @@
 __am_kcontext_start:
   // rdi = arg, rsi = entry
 
-  call __am_panic_on_return
   // (rsp + 8) should be multiple of 16 when
   // control is transfered to the function entry point.
   // See amd64 ABI manual for more details
