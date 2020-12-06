@@ -19,7 +19,7 @@ __am_cpu_t *__am_cpu_struct = NULL;
 int __am_ncpu = 0;
 int __am_pgsize;
 
-static void save_context_handler(int sig, siginfo_t *info, void *ucontext) {
+static void save_context_handler(int sig, siginfo_t *info, void *ucontext) { 
   memcpy(&uc_example, ucontext, sizeof(uc_example));
 }
 
