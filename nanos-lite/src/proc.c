@@ -53,6 +53,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 }
 
 void init_proc() {
+	printf("222\n");
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
 //  char *argv[] = {"--skip", "a", NULL};
 
