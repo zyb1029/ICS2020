@@ -29,7 +29,6 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 	Area area;
-	return;
 	area.end = heap.end - 1;
 	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
 	pcb -> cp -> GPRx = (uintptr_t)heap.end - 1;
@@ -55,9 +54,10 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  char *argv[] = {"--skip", "a", NULL};
-  char *envp[] = {NULL};
-  context_uload(&pcb[1], "/bin/pal", argv, envp);
+//  char *argv[] = {"--skip", "a", NULL};
+
+ // char *envp[] = {NULL};
+ // context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();assert(0);
  /* 
   Log("Initializing processes...");
