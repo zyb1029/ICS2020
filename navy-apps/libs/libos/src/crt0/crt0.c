@@ -5,17 +5,14 @@
 int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
-  printf("%p\n", args[2]);
   int* tep;
   tep = (int *)args[0];
   int argc = *tep;
-  printf("%d\n", argc);
   char **argv, **envp;
-  argv = args[1];
-  envp = args[2];
-  while(1);	
-  char *empty[] =  {NULL };
-  environ = empty;
-  exit(main(0, empty, empty));
+  argv = (char **)args[1];
+  envp = (char **)args[2];
+  printf("%s %s\n", argv[0], envp[0]);
+  environ = envp;
+  exit(main(argc, argv, envp));
   assert(0);
 }

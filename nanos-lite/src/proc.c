@@ -48,7 +48,7 @@ void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
   char *argv[] = {"--skip", "a", NULL};
 
-  char *envp[] = {NULL};
+  char *envp[] = {"PATH=chy"};
   context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
