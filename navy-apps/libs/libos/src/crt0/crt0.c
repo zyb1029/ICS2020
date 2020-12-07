@@ -13,6 +13,7 @@ void call_main(uintptr_t *args) {
   envp = (char **)args[2];
   printf("%s %s\n", argv[0], envp[0]);
   environ = envp;
+  while(1);
   exit(main(argc, argv, envp));
   assert(0);
 }
