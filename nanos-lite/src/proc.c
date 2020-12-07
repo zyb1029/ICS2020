@@ -50,7 +50,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*(loc - 1) = argc;
 	pcb -> cp -> GPRx = (intptr_t)(loc - 1);
 	printf("%p\n", pcb->cp->GPRx);
-	while(1);
 }
 
 void init_proc() {
