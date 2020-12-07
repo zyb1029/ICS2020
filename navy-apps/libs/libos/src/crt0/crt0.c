@@ -10,7 +10,9 @@ void call_main(uintptr_t *args) {
   tep = (int *)args[0];
   int argc = *tep;
   printf("%d\n", argc);
-
+  char **argv, **envp;
+  argv = args[1];
+  envp = args[2];
   while(1);	
   char *empty[] =  {NULL };
   environ = empty;
