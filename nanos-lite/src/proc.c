@@ -41,7 +41,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		else break;
 	printf("%d\n", argc_env);
 	intptr_t *loc;
-	loc = (heap.end - argc_env - argc);
+	loc = ((intptr_t *)heap.end - argc_env - argc);
 	printf("%p\n", loc);
 	while(1);
 	pcb -> cp -> GPRx = (intptr_t)heap.end;
