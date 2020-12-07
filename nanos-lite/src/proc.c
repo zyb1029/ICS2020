@@ -58,7 +58,7 @@ void init_proc() {
   char *argv[] = {"--skip", "a", NULL};
   char *envp[] = {NULL};
   context_uload(&pcb[1], "/bin/pal", argv, envp);
-  switch_boot_pcb();
+  switch_boot_pcb();assert(0);
  /* 
   Log("Initializing processes...");
   char *pathname = "/bin/menu";
