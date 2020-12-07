@@ -32,10 +32,10 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	area.end = heap.end;
 	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
 	int argc = 0;
-	if (argv[2] == NULL) printf("3232");
 	for (int i = 0; ;i++)
 		if(argv[argc] != NULL) argc++;
-	printf("%d\n", argc);
+		else break;
+	printf("%d\n", argc);while(1);
 	pcb -> cp -> GPRx = (intptr_t)heap.end;
 }
 
