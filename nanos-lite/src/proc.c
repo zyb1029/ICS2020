@@ -40,7 +40,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	p[0] = (uintptr_t )(&argc);
 	p[1] = (uintptr_t )(argv);
 	p[2] = (uintptr_t )(envp);
-	printf("%p\n", p[1]);
+	printf("%p %p %p\n", p[0], p[1], p[2]);
 	pcb -> cp -> GPR2 = (uintptr_t)p;
 }
 
