@@ -40,7 +40,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		if (envp[argc_env] != NULL) argc_env++;
 		else break;
 	printf("%d\n", argc_env);
-	while(1);
 	pcb -> cp -> GPRx = (intptr_t)heap.end;
 }
 
