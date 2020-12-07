@@ -6,9 +6,9 @@ int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
   printf("%p\n", args);
-  uintptr_t* argc;
+  uintptr_t argc;
   argc = (uintptr_t)args[0]; 
-  printf("%p\n", argc);
+  printf("%d\n", argc);
 
   while(1);	
   char *empty[] =  {NULL };
