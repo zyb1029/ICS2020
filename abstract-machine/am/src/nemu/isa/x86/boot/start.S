@@ -4,5 +4,5 @@
 
 _start:
   mov $0, %ebp
-  mov $_stack_pointer, %esp
+  mov %eax, %esp
   call _trm_init                 # never return
