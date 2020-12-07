@@ -6,8 +6,8 @@ int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
   printf("%p\n", args);
-  int* argc;
-  argc = (uintptr_t )args[0]; 
+  uintptr_t* argc;
+  argc = args; 
   printf("%d\n", *argc);
 
   while(1);	
