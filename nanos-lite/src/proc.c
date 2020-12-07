@@ -36,6 +36,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	for (int i = 0; ;i++)
 		if (argv[argc] != NULL) argc++;
 		else break;
+	argc = 5;
 	uintptr_t p[3];
 	p[0] = (uintptr_t )(&argc);
 	p[1] = (uintptr_t )(argv);
