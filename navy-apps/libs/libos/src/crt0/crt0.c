@@ -11,15 +11,10 @@ void call_main(uintptr_t *args) {
 
   char **argv, **envp;
 
-  char *tep1;
-  tep1 = (char *) args[1];
-  argv = (char **)(*tep1);
+  argv = (char **) args[1];
+  envp = (char **) args[2];
 
-  uintptr_t *tep2;
-  tep2 = (char *) args[2];
-  envp = (char **)(*tep2);
-
-  printf("%d %p %p\n", argc, tep1, tep2);
+  printf("%d %s %s\n", argc, args[0], envp[0]);
   environ = envp;
   while(1);
   exit(main(argc, argv, envp));
