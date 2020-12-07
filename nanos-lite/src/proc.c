@@ -54,10 +54,10 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-//  char *argv[] = {"--skip", "a", NULL};
+  char *argv[] = {"--skip", "a", NULL};
 
- // char *envp[] = {NULL};
- // context_uload(&pcb[1], "/bin/pal", argv, envp);
+  char *envp[] = {NULL};
+  context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
@@ -70,6 +70,6 @@ void init_proc() {
 
 Context* schedule(Context *prev) {
   current -> cp = prev;
-  current = (current == &pcb[0] ? &pcb[0] : &pcb[0]);
+  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
   return current -> cp;
 }
