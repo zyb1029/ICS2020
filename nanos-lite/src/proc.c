@@ -27,7 +27,7 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
-void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
+void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {return;
 	Area area;
 	area.end = heap.end;
 	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
@@ -67,7 +67,7 @@ void init_proc() {
 
 }
 
-Context* schedule(Context *prev) {return prev;
+Context* schedule(Context *prev) {
   current -> cp = prev;
   current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
   return current -> cp;
