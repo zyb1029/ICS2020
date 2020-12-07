@@ -44,11 +44,11 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	pcb -> cp -> GPR2 = (uintptr_t)p;
 }
 
+static char *argv[] = {"--skip", "a", NULL};
+static char *envp[] = {"PATH=chy"};
 void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  char *argv[] = {"--skip", "a", NULL};
 
-  char *envp[] = {"PATH=chy"};
   context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
