@@ -40,12 +40,12 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	for (int i = 0; ; i++)
 		if (envp[argc_env] != NULL) argc_env++;
 		else break;
-	return;
 	intptr_t *loc;
 	loc = ((intptr_t *)heap.end - argc_env - argc - 3);
 	for (int i = 0; i <= argc; i++) 
 		*(loc + i) = (intptr_t)argv[i];
 
+	return;
 	for (int i = 0; i <= argc_env; i++) 
 		*(loc + argc + 1 + i) = (intptr_t)envp[i];
 	*(loc - 1) = argc;
