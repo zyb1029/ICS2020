@@ -5,21 +5,21 @@
 int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
-  uintptr_t* tep;
-  tep = (uintptr_t *)args[0];
-  int argc = (int)(*tep);
+  int* tep;
+  tep = (int *)args[0];
+  int argc = *tep;
 
   char **argv, **envp;
 
-  uintptr_t *tep1;
-  tep1 = (uintptr_t *) args[1];
+  char *tep1;
+  tep1 = (char *) args[1];
   argv = (char **)(*tep1);
 
   uintptr_t *tep2;
-  tep2 = (uintptr_t *) args[2];
+  tep2 = (char *) args[2];
   envp = (char **)(*tep2);
 
-  printf("%d %s %s\n", argc, argv[0], envp[0]);
+  printf("%d %p %p\n", argc, tep1, tep2);
   environ = envp;
   while(1);
   exit(main(argc, argv, envp));
