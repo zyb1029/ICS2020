@@ -52,13 +52,13 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	pcb -> cp -> GPRx = (intptr_t)(loc - 1);
 }
 
-void init_proc() {return;
+void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
 //  char *argv[] = {"--skip", "a", NULL};
 
  // char *envp[] = {NULL};
  // context_uload(&pcb[1], "/bin/pal", argv, envp);
-  switch_boot_pcb();assert(0);
+  switch_boot_pcb();
  /* 
   Log("Initializing processes...");
   char *pathname = "/bin/menu";
