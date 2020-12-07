@@ -7,7 +7,7 @@ extern char **environ;
 void call_main(uintptr_t *args) {
   printf("%p\n", args);
   int* argc;
-  argc = (uintptr_t *)args[0]; 
+  argc = (uintptr_t )args[0]; 
   printf("%d\n", *argc);
 
   while(1);	
