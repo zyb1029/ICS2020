@@ -27,18 +27,18 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
-int argc = 0;
+uintptr_t p[3];
 
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 	Area area;
 	area.end = heap.end - 1;
 	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
 	pcb -> cp -> GPRx = (uintptr_t)heap.end - 1;
+	int argc = 0;
 	for (int i = 0; ;i++)
 		if (argv[argc] != NULL) argc++;
 		else break;
 	argc = 5;
-	uintptr_t p[3];
 	p[0] = (uintptr_t )(&argc);
 	p[1] = (uintptr_t )(argv);
 	p[2] = (uintptr_t )(envp);
