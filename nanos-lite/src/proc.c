@@ -27,25 +27,27 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
-static uintptr_t p[3];
-static int argc = 0;
+static uintptr_t p[MAX_NR_PROC][3];
+static int argc[MAX_NR_PROC];
+static int tot = 0;
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 	Area area;
 	area.end = heap.end - 1;
 	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
 	pcb -> cp -> GPRx = (uintptr_t)heap.end - 1;
 	for (int i = 0; ;i++)
-		if (argv[argc] != NULL) argc++;
+		if (argv[argc[tot]] != NULL) argc[tot]++;
 		else break;
-	p[0] = (uintptr_t )(&argc);
-	p[1] = (uintptr_t )(argv);
-	p[2] = (uintptr_t )(envp);
-	printf("%p %p %p\n", p[0], p[1], p[2]);
-	pcb -> cp -> GPR2 = (uintptr_t)p;
+	p[tot][0] = (uintptr_t )(&argc[tot]);
+	p[tot][1] = (uintptr_t )(argv);
+	p[tot][2] = (uintptr_t )(envp);
+	pcb -> cp -> GPR2 = (uintptr_t)p[tot];
+	tot++;
 }
 
 static char *argv[] = {"--skip", "a", NULL};
 static char *envp[] = {"PATH=chy"};
+
 void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
 
