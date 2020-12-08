@@ -6,4 +6,5 @@ _start:
   // See amd64 ABI manual for more details
   andq $0xfffffffffffffff0, %rsp
   movq %rax, %rdi
+  pushq %rsi
   call call_main

@@ -30,10 +30,11 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 static uintptr_t p[MAX_NR_PROC][3];
 static int argc[MAX_NR_PROC];
 static int tot = 0;
+
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 	Area area;
 	area.end = heap.end - 1;
-	pcb -> cp = ucontext(NULL, area, (void *)loader(NULL, filename));
+	pcb -> cp = ucontext(&(pcb->as), area, (void *)loader(NULL, filename));
 	pcb -> cp -> GPRx = (uintptr_t)heap.end - 1;
 	for (int i = 0; ;i++)
 		if (argv[argc[tot]] != NULL) argc[tot]++;
@@ -42,16 +43,17 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	p[tot][1] = (uintptr_t )(argv);
 	p[tot][2] = (uintptr_t )(envp);
 	pcb -> cp -> GPR2 = (uintptr_t)p[tot];
-	tot++;
+	tot++; 
 }
 
+/*
 static char *argv[] = {"--skip", "a", NULL};
 static char *envp[] = {"PATH=chy"};
-
+*/
 void init_proc() {
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
 
-  context_uload(&pcb[1], "/bin/pal", argv, envp);
+//  context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
@@ -63,7 +65,7 @@ void init_proc() {
 }
 
 Context* schedule(Context *prev) {
-  current -> cp = prev;
-  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  current -> cp = prev; 
+  current = (current == &pcb[0] ? &pcb[0] : &pcb[0]);
   return current -> cp;
 }
