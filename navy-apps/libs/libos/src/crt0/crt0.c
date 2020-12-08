@@ -12,7 +12,7 @@ void call_main(uintptr_t *args) {
   for (int i = now; ; i++){
 	  argv[i] = (char *)args[i];
 	  printf("%s\n", argv[i]);
-	  if(argv[i] == now)break;
+	  if(argv[i] == NULL)break;
 	  else now++;
   }
   now = now + 1;
@@ -20,7 +20,7 @@ printf("\n");
   for (int i = now; ; i++){
 	  envp[i] = (char *)args[i];
 	  printf("%s\n", envp[i]);
-	  if(argv[i] == now)break;
+	  if(argv[i] == NULL)break;
 	  else now++;
   }
 
