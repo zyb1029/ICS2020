@@ -43,16 +43,16 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	p[tot][0] = (uintptr_t )(&argc[tot]);
 	p[tot][1] = (uintptr_t )(argv);
 	p[tot][2] = (uintptr_t )(envp);
-//	*loc = (uintptr_t)p[tot];
+	*loc = (uintptr_t)p[tot];
+	pcb -> cp -> GPRx = (*loc);/*
 	int env_argc = 0;
 	for (int i = 0; ; i++)
 		if (envp[env_argc] == NULL) break;
 		else envp++;
 	for (int i = env_argc; i >= 0; i--){
-		*loc = (uintptr_t)envp[i];
+		*loc = envp[i];
 		loc = loc - 1;	
-	}
-	pcb -> cp -> GPRx = (*loc);
+	}*/
 	tot++; 
 }
 
