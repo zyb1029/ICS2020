@@ -73,12 +73,12 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 
 static char *argv[] = {"--skip", "a", NULL};
-static char *envp[] = {"PATH=chy"};
+static char *envp[] = {"PATH=chy", NULL};
 
 void init_proc() {
 
   //context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/pal", argv, envp);
+  context_uload(&pcb[0], "/bin/menu", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
