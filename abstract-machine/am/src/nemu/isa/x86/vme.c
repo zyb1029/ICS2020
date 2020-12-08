@@ -67,6 +67,5 @@ Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
   c->irq = 0x81;
   c->esp  = (uintptr_t)((uintptr_t *)heap.end - 1);
   c->eip = (intptr_t)(entry); c->cs = 8; c->eflags = 0;
-  printf("%p\n", c->eip);
   return c;
 }
