@@ -13,9 +13,10 @@ void call_main(uintptr_t *args) {
 
   argv = (char **) args[1];
   envp = (char **) args[2];
-
   environ = envp;*/
+assert(0);
   char **empty = {NULL};
+  environ = empty;
   exit(main(0, empty, empty));
   assert(0);
 }
