@@ -34,18 +34,15 @@ static int tot = 0;
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 	Area area;
 	area.end = heap.end - 1;
-	printf("%p\n", area.end);
 	pcb -> cp = ucontext(&(pcb->as), area, (void *)loader(NULL, filename)); 
 	pcb -> cp -> GPRx = (uintptr_t)heap.end - 1;
-	printf("%p\n", (uintptr_t)(heap.end - 1));
-//	return;
 	for (int i = 0; ;i++)
 		if (argv[argc[tot]] != NULL) argc[tot]++;
 		else break;
 	p[tot][0] = (uintptr_t )(&argc[tot]);
 	p[tot][1] = (uintptr_t )(argv);
 	p[tot][2] = (uintptr_t )(envp);
-	pcb -> cp -> GPRx = (uintptr_t)p[tot];
+	pcb -> cp -> GPR2 = (uintptr_t)p[tot];
 	tot++; 
 }
 
