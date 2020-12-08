@@ -36,6 +36,16 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	area.end = heap.end;
 	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(NULL, filename));
 	pcb -> cp -> GPRx = (uintptr_t)((uintptr_t *)heap.end - 1);
+	uintptr_t *loc;
+	loc = ((uintptr_t *)heap.end - 1);
+        int env_argc = 0;
+	for (int i = 0; ; i++)
+		if (envp[env_argc] == NULL) break;
+		else envp++;
+	for (int i = env_argc; i >= 0; i--){
+		*loc = (uintptr_t)envp[i];
+		loc = loc - 1;	
+	}
 	for (int i = 0; ;i++)
 		if (argv[argc[tot]] != NULL) argc[tot]++;
 		else break;
