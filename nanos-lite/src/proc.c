@@ -26,11 +26,7 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	area.end = (char *)pcb + sizeof(PCB);
 	pcb -> cp = kcontext(area, loc, arg);
 }
-/*
-static uintptr_t p[MAX_NR_PROC][3];
-static int argc[MAX_NR_PROC];
-static int tot = 0;
-*/
+
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 
 	uintptr_t *loc;
@@ -77,8 +73,8 @@ static char *envp[] = {"PATH=chy", NULL};
 
 void init_proc() {
 
-  //context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/pal", argv, envp);
+  context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
+  context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
@@ -91,6 +87,6 @@ void init_proc() {
 
 Context* schedule(Context *prev) {
   current -> cp = prev;
-  current = (current == &pcb[0] ? &pcb[0] : &pcb[0]);
+  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
   return current -> cp;
 }
