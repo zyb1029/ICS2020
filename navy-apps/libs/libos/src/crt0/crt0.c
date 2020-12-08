@@ -7,9 +7,12 @@ extern char **environ;
 void call_main(uintptr_t *args) {
   int argc = (int)args[0];
   printf("%d\n", argc);
-  while(1);
   char **argv, **envp;
-
+  for (int i = 1; i <= argc; i++){
+	  argv[i] = (char *)args[i];
+	  printf("%d\n", argv[i]);
+  }
+  while(1);
   argv = (char **) args[1];
   envp = (char **) args[2];
   environ = envp;
