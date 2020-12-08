@@ -32,9 +32,9 @@ static int argc[MAX_NR_PROC];
 static int tot = 0;
 */
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
-//	Area area;
-//	area.end = heap.end;
-//	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(NULL, filename));
+	Area area;
+	area.end = heap.end;
+	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(NULL, filename));
 	uintptr_t *loc;
 	loc = ((uintptr_t *)heap.end - 1);
 
