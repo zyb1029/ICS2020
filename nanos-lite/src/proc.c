@@ -46,6 +46,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		*loc = (uintptr_t)envp[i];
 		loc = loc - 1;	
 	}
+	pcb -> cp -> GPRx = (uintptr_t)loc;
 	for (int i = 0; ;i++)
 		if (argv[argc[tot]] != NULL) argc[tot]++;
 		else break;
