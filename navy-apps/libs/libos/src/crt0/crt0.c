@@ -23,6 +23,7 @@ printf("\n");
 	  else now++;
 	  printf("%s\n", envp[j]);
   }
+  for (int i = 0; i < argc; i++) printf("%s\n", argv[i]);
   environ = envp;
   exit(main(argc, argv, envp));
   assert(0);
