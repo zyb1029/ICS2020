@@ -2,7 +2,6 @@
 #include "syscall.h"
 #include <proc.h>
 static Context* do_event(Event e, Context* c) {
-	printf("%d\n", e.event);
   switch (e.event) {
 	case EVENT_YIELD: return schedule(c);
 	// printf("touch yield!\n"); break;
