@@ -52,8 +52,8 @@ static char *envp[] = {"PATH=chy"};
 
 void init_proc() {
 
-  context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[1], "/bin/pal", argv, envp);
+  //context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
+  context_uload(&pcb[0], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
@@ -66,6 +66,6 @@ void init_proc() {
 
 Context* schedule(Context *prev) {
   current -> cp = prev;
-  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  current = (current == &pcb[0] ? &pcb[0] : &pcb[0]);
   return current -> cp;
 }
