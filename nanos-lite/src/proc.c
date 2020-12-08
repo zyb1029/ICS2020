@@ -26,27 +26,35 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	area.end = (char *)pcb + sizeof(PCB);
 	pcb -> cp = kcontext(area, loc, arg);
 }
-
+/*
 static uintptr_t p[MAX_NR_PROC][3];
 static int argc[MAX_NR_PROC];
 static int tot = 0;
-
+*/
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 	Area area;
 	area.end = heap.end;
 	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(NULL, filename));
-	pcb -> cp -> GPRx = (uintptr_t)((uintptr_t *)heap.end - 1);
 	uintptr_t *loc;
 	loc = ((uintptr_t *)heap.end - 1);
-        int env_argc = 0;
+    int env_argc = 0;
 	for (int i = 0; ; i++)
 		if (envp[env_argc] == NULL) break;
-		else envp++;
+		else env_argc++;
 	for (int i = env_argc; i >= 0; i--){
 		*loc = (uintptr_t)envp[i];
 		loc = loc - 1;	
 	}
+    int argc = 0;
+	for (int i = 0; ; i++)
+		if (argv[argc] == NULL) break;
+		else argc++;
+	for (int i = argc; i >= 0; i--){
+		*loc = (uintptr_t)argv[i];
+		loc = loc - 1;	
+	}
 	pcb -> cp -> GPRx = (uintptr_t)loc;
+	/*
 	for (int i = 0; ;i++)
 		if (argv[argc[tot]] != NULL) argc[tot]++;
 		else break;
@@ -54,7 +62,8 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	p[tot][1] = (uintptr_t )(argv);
 	p[tot][2] = (uintptr_t )(envp);return;
 	pcb -> cp -> GPRx = (uintptr_t)p[tot];
-	tot++; 
+	tot++;
+	*/ 
 }
 
 
