@@ -52,8 +52,8 @@ static char *envp[] = {"PATH=chy"};
 
 void init_proc() {
 
-//  context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/pal", argv, envp);
+  context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
+  context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
