@@ -26,7 +26,7 @@ static void irq_handle(Context *c) {
   c = user_handler(thiscpu->ev, c);
   assert(c != NULL);
 
-  __am_switch(c);
+  __am_switch(c); 
   // magic call to restore context
   asm volatile("call *0x100010" : : "a" (c));
   __am_panic_on_return();
