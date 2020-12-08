@@ -105,7 +105,6 @@ Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
   assert(ret == 0);
   c->vm_head = as->ptr;
   c->ksp = (uintptr_t)kstack.end;
-
   return c;
 }
 

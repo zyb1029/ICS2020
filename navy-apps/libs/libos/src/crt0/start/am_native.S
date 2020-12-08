@@ -1,6 +1,5 @@
 .globl  _start
 _start:
-  call __am_panic_on_return
   movq $0, %rbp
   // (rsp + 8) should be multiple of 16 when
   // control is transfered to the function entry point.
