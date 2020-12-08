@@ -10,7 +10,7 @@ void call_main(uintptr_t *args) {
   char **argv, **envp;
   for (int i = 1; i <= argc; i++){
 	  argv[i] = (char *)args[i];
-	  printf("%d\n", argv[i]);
+	  printf("%s\n", argv[i]);
   }
   while(1);
   argv = (char **) args[1];
