@@ -5,6 +5,7 @@
 int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
+	assert(0);
   int argc = (int)args[0];
   printf("%d\n", argc);
   char **argv, **envp;
