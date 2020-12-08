@@ -32,12 +32,12 @@ static int argc[MAX_NR_PROC];
 static int tot = 0;
 */
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
-	Area area;
-	area.end = heap.end;
-	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(NULL, filename));
+//	Area area;
+//	area.end = heap.end;
+//	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(NULL, filename));
 	uintptr_t *loc;
 	loc = ((uintptr_t *)heap.end - 1);
-/*
+
     int env_argc = 0;
 	for (int i = 0; ; i++)
 		if (envp[env_argc] == NULL) break;
@@ -45,7 +45,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	for (int i = env_argc; i >= 0; i--){
 		*loc = (uintptr_t)envp[i];
 		loc = loc - 1;	
-	}*/
+	}
 /*
     int argc = 0;
 	for (int i = 0; ; i++)
