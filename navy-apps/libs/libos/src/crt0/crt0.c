@@ -5,7 +5,7 @@
 int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
-  int* tep;
+/*  int* tep;
   tep = (int *)args[0];
   int argc = *tep;
 
@@ -14,7 +14,8 @@ void call_main(uintptr_t *args) {
   argv = (char **) args[1];
   envp = (char **) args[2];
 
-  environ = envp;
-  exit(main(argc, argv, envp));
+  environ = envp;*/
+  char **empty = {NULL};
+  exit(main(0, empty, empty));
   assert(0);
 }
