@@ -1,10 +1,12 @@
 .globl  _start
 _start:
+  call __am_panic_on_return
   movq $0, %rbp
   // (rsp + 8) should be multiple of 16 when
   // control is transfered to the function entry point.
   // See amd64 ABI manual for more details
   andq $0xfffffffffffffff0, %rsp
+ // movq %rax, %rdi
+ // pushq %rsi
   movq %rax, %rdi
-  pushq %rsi
   call call_main
