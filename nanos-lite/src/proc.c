@@ -31,7 +31,7 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
 
 	uintptr_t *loc;
-	loc = ((uintptr_t *)new_page(4) - 1);
+	loc = ((uintptr_t *)new_page(8) - 1);
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -79,7 +79,7 @@ static char *envp[] = {"PATH=/bin", NULL};
 void init_proc() {
 
 //  context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/nterm", argv, envp);
+  context_uload(&pcb[0], "/bin/exec-test", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
