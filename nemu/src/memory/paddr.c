@@ -72,8 +72,10 @@ word_t vaddr_mmu_read(vaddr_t addr, int len, int type) {
 			pg_base = isa_mmu_translate(addr + i,type, 1);
 			paddr_t paddr = pg_base;
 			tep = paddr_read(paddr, 1);
+			printf("%x ", tep);
 			ans = ans + (tep << (8 * i));
 		}
+		printf("%x\n", ans);
 		return ans;
 	}
 	return 0;
