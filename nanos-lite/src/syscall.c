@@ -67,7 +67,6 @@ void do_syscall(Context *c) {
 		ex_flag = true;
 		context_uload(current, (char *)c->GPR2, NULL, NULL);
 		naive_uload(NULL, (char *)c->GPR2);
-		printf("%s\n", (char *)c->GPR2);
 		switch_boot_pcb();
 		c->GPRx = -1;
 		yield();
