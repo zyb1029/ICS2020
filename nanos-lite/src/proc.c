@@ -33,6 +33,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(4) - 1);
 	printf("%p\n", (uintptr_t)loc);
+	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
@@ -43,7 +44,8 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			loc = loc - 1;
 		}
 	}
-
+	
+	assert(envp != NULL);
     int argc = 0;
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
