@@ -64,7 +64,7 @@ void vaddr_mmu_write(vaddr_t addr, word_t data, int len);
 
 int isa_vaddr_check(vaddr_t vaddr, int type, int len) {
 	if ((cpu.cr0 & 0x80000000) == 0)return MEM_RET_OK;
-	else assert(0);	
+	else return MEM_RET_NEED_TRANSLATE;	
 }
 
 #define def_vaddr_template(bytes) \
