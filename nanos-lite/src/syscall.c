@@ -12,8 +12,8 @@ void do_syscall(Context *c) {
   switch (a[0]) {
 	case SYS_exit:
 		if(ex_flag == true) {
-			naive_uload(NULL, "/bin/menu");
 			context_uload(current, "/bin/menu", NULL, NULL);
+			naive_uload(NULL, "/bin/menu");
 			switch_boot_pcb();
 			yield();
 		}
