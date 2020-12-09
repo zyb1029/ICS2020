@@ -24,7 +24,7 @@ static void sh_prompt() {
 }
 
 
-static void sh_handle_cmd(const char *cmd, char *argv) {
+static void sh_handle_cmd(const char *cmd, char *argv[]) {
 	char *p = (char *)cmd;
 	int len = strlen(p);
 	p[len - 1] = '\0';
