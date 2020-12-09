@@ -53,7 +53,7 @@ void __am_switch(Context *c) {
   }
 }
 
-void map(AddrSpace *as, void *va, void *pa, int prot) {
+void map(AddrSpace *as, void *va, void *pa, int prot) {assert(0);
 	assert(as != NULL);
 	uintptr_t *loc;
 	loc = (uintptr_t *)as->ptr;
