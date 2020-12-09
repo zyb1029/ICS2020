@@ -25,6 +25,7 @@ bool vme_init(void* (*pgalloc_f)(int), void (*pgfree_f)(void*)) {
       map(&kas, va, va, 0);
     }
   }
+  printf("%d\n", sizeof(Area));
   while(1);
   set_cr3(kas.ptr);
   set_cr0(get_cr0() | CR0_PG);
