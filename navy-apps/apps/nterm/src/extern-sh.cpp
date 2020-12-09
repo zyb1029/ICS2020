@@ -37,13 +37,13 @@ static void fork_child(const char *nterm_proc) {
   int flags = fcntl(read_fd, F_GETFL, 0);
   fcntl(read_fd, F_SETFL, flags | O_NONBLOCK);
 
+  assert(0);
   int stdin_fd = dup(0), stdout_fd = dup(1), stderr_fd = dup(2);
 
   dup2(nterm_to_app[0], 0);
   dup2(app_to_nterm[1], 1);
   dup2(app_to_nterm[1], 2);
 
-  assert(0);
   pid_t p = vfork();
   if (p == 0) {
     execve(argv[0], (char**)argv, (char**)envp);
