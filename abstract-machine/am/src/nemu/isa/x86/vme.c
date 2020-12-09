@@ -22,8 +22,8 @@ bool vme_init(void* (*pgalloc_f)(int), void (*pgfree_f)(void*)) {
   for (i = 0; i < LENGTH(segments); i ++) {
     void *va = segments[i].start;
     for (; va < segments[i].end; va += PGSIZE) {
-      map(&kas, va, va, 0);
-    }
+      map(&kas, va, va, 0); break;
+    }break;
   }
   set_cr3(kas.ptr);
   set_cr0(get_cr0() | CR0_PG);
@@ -65,8 +65,8 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 	uintptr_t dst = (uintptr_t)pa;
 	assert(dst % PGSIZE == 0);
 
-	loc = loc + ((src & ~0x3fffff) >> 22); // location in directry
     printf("%p\n", loc);	
+	loc = loc + ((src & ~0x3fffff) >> 22); // location in directry
 	uintptr_t *loc_pt; // page table's location
 	if (*loc == 0) {
 		uintptr_t *tep;
