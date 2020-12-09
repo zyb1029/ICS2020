@@ -44,6 +44,7 @@ static void fork_child(const char *nterm_proc) {
   dup2(app_to_nterm[1], 2);
 
   pid_t p = vfork();
+  assert(0);
   if (p == 0) {
     execve(argv[0], (char**)argv, (char**)envp);
     assert(0);
