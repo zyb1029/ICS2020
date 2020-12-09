@@ -17,6 +17,7 @@ static void poll_terminal() {
 static void fork_child(const char *nterm_proc) {
   const char *argv[] = {
     nterm_proc,
+	"--skip",
     NULL,
   };
   char env_lines[32]; sprintf(env_lines, "LINES=%d", H);
@@ -65,7 +66,7 @@ void extern_app_run(const char *app_path) {
       if (ch == '\n') break;
     }
     *p = '\0';
-    printf("2121\n");
+
     if (buf[0] == 'k') {
       const char *res = term->keypress(handle_key(buf + 1));
       if (res) {
