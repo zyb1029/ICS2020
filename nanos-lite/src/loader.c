@@ -25,7 +25,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
       if (filename == NULL) head_addr = 0;
 	  else {
 	     int fd = fs_open(filename, 0, 0);
-		 printf("%s\n", fd);
+		 printf("%s\n", filename);
 		 if (fd == -1) {
 			printf("Can't find the file!\n'");
 			return 0;	 
