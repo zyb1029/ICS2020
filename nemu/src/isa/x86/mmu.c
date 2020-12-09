@@ -5,7 +5,6 @@ paddr_t isa_mmu_translate(vaddr_t vaddr, int type, int len) {
    uint32_t *loc;
    loc = (uint32_t *)guest_to_host(cpu.cr3);
    loc = loc + ((vaddr & ~0x3fffff) >> 22);
-   printf("%x\n", *loc);
    assert(loc != NULL);
    assert(((*loc) & 0xfff) == 1);
    assert((*loc) != 0);

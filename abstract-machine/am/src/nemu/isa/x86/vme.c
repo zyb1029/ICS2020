@@ -73,7 +73,6 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 		assert(((uintptr_t)tep & 0xfff) == 0);
 		*loc = (((uintptr_t)tep) | 1);
 		loc_pt = tep;
-		printf("1: %x %x\n", loc, *loc);
 	}
 	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
 	
