@@ -9,8 +9,11 @@ static inline def_EHelper(lidt) {
 }
 
 static inline def_EHelper(mov_r2cr) {
-  TODO();
-
+  assert(id_dest->reg == 3 || id_dest->reg == 0);
+  assert(s->src1.width == 4);
+  rtl_lr(s, s0, id_src1->reg, 4);
+  if (id_dest ->reg == 3) cpu.cr3 = *s0;
+  else cpu.cr0 = *s0;
   print_asm("movl %%%s,%%cr%d", reg_name(id_src1->reg, 4), id_dest->reg);
 }
 
