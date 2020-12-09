@@ -4,7 +4,8 @@
 
 static bool ex_flag = false;
 
-static char *empty[] = {NULL};
+static char *argv[] = {"cat", NULL};
+static char *env[] = {"/bin/", NULL};
 
 void do_syscall(Context *c) {
   uintptr_t a[4];
@@ -14,7 +15,7 @@ void do_syscall(Context *c) {
   switch (a[0]) {
 	case SYS_exit:
 		if(ex_flag == true) {
-			context_uload(current, "/bin/nterm", empty, empty);
+			context_uload(current, "/bin/nterm", argv, env);
 			switch_boot_pcb();
 			yield();
 		}
