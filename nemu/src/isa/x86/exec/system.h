@@ -12,8 +12,8 @@ static inline def_EHelper(mov_r2cr) {
   assert(id_dest->reg == 3 || id_dest->reg == 0);
   assert(s->src1.width == 4);
   rtl_lr(s, s0, id_src1->reg, 4);
-  if (id_dest ->reg == 3) cpu.cr3 = *s0;
-  else cpu.cr0 = *s0;
+  if (id_dest ->reg == 3) cpu.cr3 = (uint32_t)*s0;
+  else cpu.cr0 = (uint32_t)*s0;
   printf("%8x %8d\n", cpu.cr3, cpu.cr0);
   print_asm("movl %%%s,%%cr%d", reg_name(id_src1->reg, 4), id_dest->reg);
 }
