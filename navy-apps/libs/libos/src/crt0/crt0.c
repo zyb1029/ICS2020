@@ -14,6 +14,7 @@ void call_main(uintptr_t *args) {
 	  argv[j] = (char *)args[i];
 	  if(argv[j] == NULL)break;
 	  else now++;
+	  printf("%d\n", j);
   }
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
