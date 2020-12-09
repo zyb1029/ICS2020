@@ -13,8 +13,8 @@ void do_syscall(Context *c) {
 	case SYS_exit:
 		if(ex_flag == true) {
 			context_uload(current, "/bin/menu", NULL, NULL);
-			assert(0);
 			switch_boot_pcb();
+			assert(0);
 			yield();
 		}
 		else halt(c->GPR2);
