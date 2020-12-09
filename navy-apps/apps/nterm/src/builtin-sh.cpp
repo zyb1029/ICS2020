@@ -24,15 +24,15 @@ static void sh_prompt() {
 }
 
 
-static void sh_handle_cmd(const char *cmd) {
+static void sh_handle_cmd(const char *cmd, char *argv) {
 	char *p = (char *)cmd;
 	int len = strlen(p);
 	p[len - 1] = '\0';
-    if(execvp(p, NULL) == -1)
+    if(execvp(p, argv) == -1)
 		fprintf(stderr, "\033[31m[ERROR]\033[0m Exec %s failed.\n\n", p);
 }
 
-void builtin_sh_run() {
+void builtin_sh_run(char* argv[]) {
   sh_banner();
   sh_prompt();
   while (1) {
@@ -41,7 +41,7 @@ void builtin_sh_run() {
       if (ev.type == SDL_KEYUP || ev.type == SDL_KEYDOWN) {
         const char *res = term->keypress(handle_key(&ev));
         if (res) {
-          sh_handle_cmd(res);
+          sh_handle_cmd(res, argv);
           sh_prompt();
         }
       }

@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   screen = SDL_SetVideoMode(win_w, win_h, 32, SDL_HWSURFACE);
   setenv("PATH", "/bin", 0);
   term = new Terminal(W, H);
-  if (argc < 2) { builtin_sh_run(); }
+  if (argc < 2) { builtin_sh_run(argv); }
   else { extern_app_run(argv[1]); }
 
   // should not reach here
