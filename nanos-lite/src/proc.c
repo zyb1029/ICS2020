@@ -32,7 +32,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(4) - 1);
-	printf("%p\n", (uintptr_t)heap.end);
+	printf("%p\n", (uintptr_t)loc);
     int env_argc = 0;
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
