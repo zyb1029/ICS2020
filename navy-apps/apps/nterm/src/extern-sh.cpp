@@ -35,7 +35,6 @@ static void fork_child(const char *nterm_proc) {
   write_fd = nterm_to_app[1];
 
 
-  assert(0);
   int flags = fcntl(read_fd, F_GETFL, 0);
   fcntl(read_fd, F_SETFL, flags | O_NONBLOCK);
   int stdin_fd = dup(0), stdout_fd = dup(1), stderr_fd = dup(2);
@@ -57,6 +56,7 @@ static void fork_child(const char *nterm_proc) {
 void extern_app_run(const char *app_path) {
   int elapse = -1, ntick = 0, last_k = 0;
 
+  assert(0);
   fork_child(app_path); // fork the child process and setup fds
 
   while (1) {
