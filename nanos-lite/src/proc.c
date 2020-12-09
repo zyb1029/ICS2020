@@ -73,8 +73,8 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 }
 
 
-static char *argv[] = {"echo","/share/music/little-star.ogg", NULL};
-static char *envp[] = {"PATH=/bin/", NULL};
+static char *argv[] = {"wc","/share/music/little-star.ogg", NULL};
+static char *envp[] = {"PATH=/bin/:/usr/bin/", NULL};
 
 void init_proc() {
 
