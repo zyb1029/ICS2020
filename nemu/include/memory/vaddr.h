@@ -3,6 +3,8 @@
 
 #include <common.h>
 
+int isa_vaddr_check(vaddr_t vaddr, int type, int len);
+ 
 static inline word_t vaddr_read(vaddr_t addr, int len) {
   word_t vaddr_read1(vaddr_t addr);
   word_t vaddr_read2(vaddr_t addr);
