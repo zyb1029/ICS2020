@@ -22,15 +22,15 @@ bool vme_init(void* (*pgalloc_f)(int), void (*pgfree_f)(void*)) {
   for (i = 0; i < LENGTH(segments); i ++) {
     void *va = segments[i].start;
     for (; va < segments[i].end; va += PGSIZE) {
-      map(&kas, va, va, 0); break;
-    }break;
+      map(&kas, va, va, 0); 
+    }
   }
-  set_cr3(kas.ptr);
-  set_cr0(get_cr0() | CR0_PG);while(1);
-  vme_enable = 1;
   uintptr_t* p;
   p = (uintptr_t *)0x24d5000;
   printf("%x     \n", *p);
+  set_cr3(kas.ptr);
+  set_cr0(get_cr0() | CR0_PG);
+  vme_enable = 1;
   return true;
 }
 
