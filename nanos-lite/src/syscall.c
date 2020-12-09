@@ -13,7 +13,6 @@ void do_syscall(Context *c) {
 	case SYS_exit:
 		if(ex_flag == true) {
 			context_uload(current, "/bin/menu", NULL, NULL);
-			naive_uload(NULL, "/bin/menu");
 			switch_boot_pcb();
 			yield();
 		}
@@ -66,8 +65,6 @@ void do_syscall(Context *c) {
 	case SYS_execve:
 		ex_flag = true;
 		context_uload(current, (char *)c->GPR2, NULL, NULL);
-		printf("%s 3232\n", (char *)c->GPR2);
-		naive_uload(NULL, (char *)c->GPR2);
 		switch_boot_pcb();
 		c->GPRx = -1;
 		yield();
