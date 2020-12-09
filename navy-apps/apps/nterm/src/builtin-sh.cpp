@@ -33,7 +33,6 @@ static void sh_handle_cmd(const char *cmd) {
 }
 
 void builtin_sh_run() {
- assert(0);
   sh_banner();
   sh_prompt();
   while (1) {
