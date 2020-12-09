@@ -9,7 +9,7 @@ void* new_page(size_t nr_page) {
   return pf;
 }
 
-static void* pg_alloc(int n) {
+static inline void* pg_alloc(int n) {
   return NULL;
 }
 
