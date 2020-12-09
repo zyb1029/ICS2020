@@ -34,10 +34,10 @@ static void fork_child(const char *nterm_proc) {
   read_fd = app_to_nterm[0];
   write_fd = nterm_to_app[1];
 
-  int flags = fcntl(read_fd, F_GETFL, 0);
-  fcntl(read_fd, F_SETFL, flags | O_NONBLOCK);
 
   assert(0);
+  int flags = fcntl(read_fd, F_GETFL, 0);
+  fcntl(read_fd, F_SETFL, flags | O_NONBLOCK);
   int stdin_fd = dup(0), stdout_fd = dup(1), stderr_fd = dup(2);
 
   dup2(nterm_to_app[0], 0);
