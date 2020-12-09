@@ -21,6 +21,7 @@
 #endif
 
 uintptr_t loader(PCB *pcb, const char *filename) {
+	printf("%s\n", filename);
       int head_addr;
       if (filename == NULL) head_addr = 0;
 	  else {
