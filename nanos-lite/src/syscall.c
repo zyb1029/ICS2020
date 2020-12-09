@@ -14,6 +14,7 @@ void do_syscall(Context *c) {
 		if(ex_flag == true) {
 			naive_uload(NULL, "/bin/menu");
 			context_uload(current, "/bin/menu", NULL, NULL);
+			switch_boot_pcb();
 		}
 		else halt(c->GPR2);
 		break;
@@ -65,6 +66,7 @@ void do_syscall(Context *c) {
 		ex_flag = true;
 		context_uload(current, (char *)c->GPR2, NULL, NULL);
 		naive_uload(NULL, (char *)c->GPR2);
+		switch_boot_pcb();
 		c->GPRx = -1;
 		break;
     default: panic("Unhandled syscall ID = %d", a[0]);
