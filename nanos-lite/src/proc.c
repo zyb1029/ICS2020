@@ -32,7 +32,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(4) - 1);
-	printf("%p\n", loc);
     int env_argc = 0;
 	for (int i = 0; ; i++)
 		if (envp[env_argc] == NULL) break;
@@ -86,8 +85,8 @@ void init_proc() {
 
 }
 
-Context* schedule(Context *prev) {
+Context* schedule(Context *prev) {assert(0);
   current -> cp = prev;
-  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  current = (current == &pcb[0] ? &pcb[0] : &pcb[0]);
   return current -> cp;
 }
