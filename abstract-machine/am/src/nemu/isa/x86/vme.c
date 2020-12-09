@@ -54,17 +54,32 @@ void __am_switch(Context *c) {
 }
 
 void map(AddrSpace *as, void *va, void *pa, int prot) {
+	assert(as != NULL);
+
 	uintptr_t *loc;
 	loc = (uintptr_t *)as->ptr;
+	assert((uintptr_t)loc % PGSIZE == 0);
+
 	uintptr_t src = (uintptr_t)va;
 	assert(src % PGSIZE == 0);
+
 	uintptr_t dst = (uintptr_t)pa;
 	assert(dst % PGSIZE == 0);
 
-	loc = loc + ((src & ~0x3fffff) >> 22);
-	if (*loc == 0) printf("%d\n",111);
-
-
+	loc = loc + ((src & ~0x3fffff) >> 22); // location in directry
+	
+	uintptr_t *loc_pt; // page table's location
+	if (*loc == 0) {
+		uintptr_t *tep;
+		tep = (uintptr_t *)pgalloc_usr(PGSIZE);
+		assert(((uintptr_t)tep & 0xfff) == 0);
+		*loc = (uintptr_t)tep;
+		loc_pt = tep;
+	}
+	else loc_pt = (uintptr_t *) *loc;
+	
+	loc_pt = loc_pt + ((src & 0x003ff000) >> 12);
+	*loc_pt = dst;
 }
 
 Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
