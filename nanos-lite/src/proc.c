@@ -34,21 +34,25 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	loc = ((uintptr_t *)new_page(4) - 1);
 	printf("%p\n", (uintptr_t)heap.end);
     int env_argc = 0;
-	for (int i = 0; ; i++)
-		if (envp[env_argc] == NULL) break;
-		else env_argc++;
-	for (int i = env_argc; i >= 0; i--){
-		*loc = (uintptr_t)envp[i];
-		loc = loc - 1;	
+	if (envp != NULL) {
+		for (int i = 0; ; i++)
+			if (envp[env_argc] == NULL) break;
+			else env_argc++;
+		for (int i = env_argc; i >= 0; i--){
+			*loc = (uintptr_t)envp[i];
+			loc = loc - 1;
+		}
 	}
 
     int argc = 0;
-	for (int i = 0; ; i++)
-		if (argv[argc] == NULL) break;
-		else argc++;
-	for (int i = argc; i >= 0; i--){
-		*loc = (uintptr_t)argv[i];
-		loc = loc - 1;	
+	if (envp != NULL) {
+		for (int i = 0; ; i++)
+			if (argv[argc] == NULL) break;
+			else argc++;
+		for (int i = argc; i >= 0; i--){
+			*loc = (uintptr_t)argv[i];
+			loc = loc - 1;
+		}
 	}
 	*loc = (uintptr_t)argc;
 	Area area;
