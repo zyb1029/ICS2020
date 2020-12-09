@@ -55,6 +55,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			loc = loc - 1;
 		}
 	}
+	printf("%d\n", argc);
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
