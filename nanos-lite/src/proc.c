@@ -32,6 +32,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
+	printf("%p\n", loc);
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -74,7 +75,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 
 static char *argv[] = {"/bin/exec-test", NULL};
-static char *envp[] = {"PATH=/bin", NULL};
+static char *envp[] = {"PATH=", NULL};
 
 void init_proc() {
 
