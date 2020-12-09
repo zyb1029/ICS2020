@@ -22,6 +22,7 @@
 
 uintptr_t loader(PCB *pcb, const char *filename) {
       int head_addr;
+	  printf("%s\n",filename);
       if (filename == NULL) head_addr = 0;
 	  else {
 	     int fd = fs_open(filename, 0, 0);

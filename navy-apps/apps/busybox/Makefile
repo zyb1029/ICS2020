@@ -34,6 +34,9 @@ force: ;
 menuconfig:
 	$(MAKE) -C $(REPO_PATH) $@
 
+install:
+	$(MAKE) -C $(REPO_PATH) CONFIG_PREFIX=$(NAVY_HOME)/fsming $@
+
 clean: clean-busybox
 
 clean-busybox:

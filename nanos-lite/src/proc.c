@@ -32,7 +32,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
-	printf("%p\n", loc);
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -74,13 +73,13 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 }
 
 
-static char *argv[] = {"/bin/exec-test", NULL};
+static char *argv[] = {"--skip", NULL};
 static char *envp[] = {"PATH=", NULL};
 
 void init_proc() {
 
   context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/menu", argv, envp);
+  context_uload(&pcb[0], "/bin/pal", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
