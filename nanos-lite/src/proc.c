@@ -73,7 +73,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 }
 
 
-static char *argv[] = {"--skip", NULL};
+static char *argv[] = {"cat", NULL};
 static char *envp[] = {"PATH=", NULL};
 
 void init_proc() {
