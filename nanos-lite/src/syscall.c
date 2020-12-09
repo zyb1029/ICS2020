@@ -60,6 +60,7 @@ void do_syscall(Context *c) {
 		break; 
 	case SYS_execve:
 		ex_flag = true;
+		context_uload(current, (char *)c->GPR2, NULL, NULL);
 		naive_uload(NULL, (char *)c->GPR2);
 		c->GPRx = -1;
 		break;
