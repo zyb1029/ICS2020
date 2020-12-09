@@ -73,7 +73,7 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 		uintptr_t *tep;
 		tep = (uintptr_t *)pgalloc_usr(PGSIZE);
 		assert(((uintptr_t)tep & 0xfff) == 0);
-		*loc = ((uintptr_t)tep | 1);
+		*loc = (((uintptr_t)tep) | 1);
 		loc_pt = tep;
 	}
 	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);

@@ -60,11 +60,28 @@ inline void paddr_write(paddr_t addr, word_t data, int len) {
 }
 
 word_t vaddr_mmu_read(vaddr_t addr, int len, int type) {
-	return 0;	
+	 paddr_t pg_base = isa_mmu_translate(addr, type, len);
+	 if (pg_base != MEM_RET_CROSS_PAGE) {
+		paddr_t paddr = pg_base;
+		assert(paddr == addr);
+		return paddr_read(paddr, len);
+	 }
+	  else {
+		assert(0);
+	}
+	return 0;
 }
 
 void vaddr_mmu_write(vaddr_t addr, word_t data, int len){
-	
+	 paddr_t pg_base = isa_mmu_translate(addr, data, len);
+	 if (pg_base != MEM_RET_CROSS_PAGE) {
+		paddr_t paddr = pg_base;
+		assert(paddr == addr);
+		paddr_write(paddr, data, len);
+	 }
+	  else {
+		assert(0);
+	}
 }
 
 int isa_vaddr_check(vaddr_t vaddr, int type, int len) {
