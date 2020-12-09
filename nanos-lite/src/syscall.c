@@ -12,6 +12,7 @@ void do_syscall(Context *c) {
   switch (a[0]) {
 	case SYS_exit:
 		if(ex_flag == true) {
+			assert(0);
 			context_uload(current, "/bin/menu", NULL, NULL);
 			switch_boot_pcb();
 			yield();
