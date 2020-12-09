@@ -23,7 +23,7 @@ bool vme_init(void* (*pgalloc_f)(int), void (*pgfree_f)(void*)) {
     void *va = segments[i].start;
     for (; va < segments[i].end; va += PGSIZE) {
       map(&kas, va, va, 0); break;
-    }break;
+    }
   }
   set_cr3(kas.ptr);
   set_cr0(get_cr0() | CR0_PG);
@@ -74,6 +74,7 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 		assert(((uintptr_t)tep & 0xfff) == 0);
 		*loc = (((uintptr_t)tep) | 1);
 		loc_pt = tep;
+		printf("%08x\n", *loc);
 	}
 	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
 	
