@@ -3,8 +3,9 @@
 static void *pf = NULL;
 
 void* new_page(size_t nr_page) {
- 
-  return NULL;
+  for (int i = 0; i < nr_page; i++)
+	pf = (void *)ROUNDUP(pf, PGSIZE); 
+  return pf;
 }
 
 static void* pg_alloc(int n) {
