@@ -4,6 +4,8 @@
 
 static bool ex_flag = false;
 
+static char **empty = {NULL};
+
 void do_syscall(Context *c) {
   uintptr_t a[4];
   char *p;
@@ -12,9 +14,8 @@ void do_syscall(Context *c) {
   switch (a[0]) {
 	case SYS_exit:
 		if(ex_flag == true) {
-			context_uload(current, "/bin/menu", NULL, NULL);
+			context_uload(current, "/bin/menu", empty, empty);
 			switch_boot_pcb();
-			assert(0);
 			yield();
 		}
 		else halt(c->GPR2);
@@ -65,7 +66,7 @@ void do_syscall(Context *c) {
 		break; 
 	case SYS_execve:
 		ex_flag = true;
-		context_uload(current, (char *)c->GPR2, NULL, NULL);
+		context_uload(current, (char *)c->GPR2, empty, empty);
 		switch_boot_pcb();
 		c->GPRx = -1;
 		yield();
