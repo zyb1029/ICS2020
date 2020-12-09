@@ -65,7 +65,6 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 	uintptr_t dst = (uintptr_t)pa;
 	assert(dst % PGSIZE == 0);
 
-    printf("%p\n", loc);	
 	loc = loc + ((src & ~0x3fffff) >> 22); // location in directry
 	uintptr_t *loc_pt; // page table's location
 	if (*loc == 0) {
@@ -74,7 +73,7 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 		assert(((uintptr_t)tep & 0xfff) == 0);
 		*loc = (((uintptr_t)tep) | 1);
 		loc_pt = tep;
-		printf("%x\n", *loc);
+		printf("1: %x %x\n", loc, *loc);
 	}
 	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
 	
