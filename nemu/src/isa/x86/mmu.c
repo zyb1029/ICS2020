@@ -3,15 +3,17 @@
 #include <memory/paddr.h>
 paddr_t isa_mmu_translate(vaddr_t vaddr, int type, int len) {
    uintptr_t *loc;
-   loc = (uintptr_t *)1;
+   uintptr_t tep = cpu.cr3;
+   loc = (uintptr_t *)tep;
    loc = loc + ((vaddr & ~0x3fffff) >> 22);
-
+   assert(loc != NULL);
    assert(((*loc) & 0xfff) == 1);
    assert((*loc) != 0);
 
    uintptr_t *loc_pt;
    loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
    loc_pt = loc_pt + ((vaddr & 0x003ff000) >> 12);
+   assert(loc_pt != NULL);
    assert(((*loc_pt) & 0xfff) == 1);
    assert((*loc_pt) != 0);
    
