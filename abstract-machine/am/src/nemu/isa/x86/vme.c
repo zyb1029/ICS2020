@@ -73,13 +73,13 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 		uintptr_t *tep;
 		tep = (uintptr_t *)pgalloc_usr(PGSIZE);
 		assert(((uintptr_t)tep & 0xfff) == 0);
-		*loc = (uintptr_t)tep;
+		*loc = ((uintptr_t)tep | 1);
 		loc_pt = tep;
 	}
-	else loc_pt = (uintptr_t *) *loc;
+	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
 	
 	loc_pt = loc_pt + ((src & 0x003ff000) >> 12);
-	*loc_pt = dst;
+	*loc_pt = (dst | 1);
 }
 
 Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
