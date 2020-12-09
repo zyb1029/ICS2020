@@ -18,8 +18,6 @@ bool vme_init(void* (*pgalloc_f)(int), void (*pgfree_f)(void*)) {
   pgfree_usr = pgfree_f;
 
   kas.ptr = pgalloc_f(PGSIZE);
-  printf("%p\n", kas.ptr);
-  while(1);
   int i;
   for (i = 0; i < LENGTH(segments); i ++) {
     void *va = segments[i].start;
@@ -27,7 +25,7 @@ bool vme_init(void* (*pgalloc_f)(int), void (*pgfree_f)(void*)) {
       map(&kas, va, va, 0);
     }
   }
-
+  while(1);
   set_cr3(kas.ptr);
   set_cr0(get_cr0() | CR0_PG);
   vme_enable = 1;
@@ -58,6 +56,8 @@ void __am_switch(Context *c) {
 }
 
 void map(AddrSpace *as, void *va, void *pa, int prot) {
+	printf("%p %p\n", as->area.start, as->area.end);
+
 }
 
 Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
