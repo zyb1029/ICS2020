@@ -4,7 +4,7 @@
 
 static bool ex_flag = false;
 
-static char *empty[] = {"1", NULL};
+static char *empty[] = {NULL};
 
 void do_syscall(Context *c) {
   uintptr_t a[4];
