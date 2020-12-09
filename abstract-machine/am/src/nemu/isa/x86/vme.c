@@ -31,6 +31,7 @@ bool vme_init(void* (*pgalloc_f)(int), void (*pgfree_f)(void*)) {
   uintptr_t* p;
   p = (uintptr_t *)0x24d5000;
   printf("%x     \n", *p);
+  while(1);
   return true;
 }
 
