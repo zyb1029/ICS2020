@@ -75,7 +75,7 @@ void init_proc() {
 
   //context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
   context_uload(&pcb[0], "/bin/menu", argv, envp);
-  switch_boot_pcb();
+  switch_boot_pcb();printf("2121\n");
  /* 
   Log("Initializing processes...");
   char *pathname = "/bin/menu";
@@ -85,7 +85,7 @@ void init_proc() {
 
 }
 
-Context* schedule(Context *prev) {assert(0);
+Context* schedule(Context *prev) {
   current -> cp = prev;
   current = (current == &pcb[0] ? &pcb[0] : &pcb[0]);
   return current -> cp;
