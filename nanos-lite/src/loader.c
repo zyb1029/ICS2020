@@ -28,7 +28,6 @@ static inline void* pg_alloc2(int n) {
 }
 
 uintptr_t loader(PCB *pcb, const char *filename) {
-	  printf("%p\n", pcb->as.ptr);
 	  assert(pcb != NULL);
       uint32_t head_addr;
       if (filename == NULL) head_addr = 0;
@@ -64,6 +63,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 	//	 ramdisk_read(fb, offset + head_addr, FileSiz);
 
 		 uintptr_t *tep;
+	  printf("%p\n", pcb->as.ptr);
 		 tep = (uintptr_t *)pg_alloc2(PGSIZE);
 		 assert(((uintptr_t)tep & 0xfff) == 0);
 
