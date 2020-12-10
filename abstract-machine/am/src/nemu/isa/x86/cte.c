@@ -32,7 +32,7 @@ Context* __am_irq_handle(Context *c) {
     assert(c != NULL);
   }
   __am_switch(c);
-  printf("111\n");
+  printf("111 fedfsdfs\n");
   return c;
 }
 
