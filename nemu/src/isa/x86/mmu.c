@@ -4,9 +4,8 @@
 paddr_t isa_mmu_translate(vaddr_t vaddr, int type, int len) {
    uint32_t *loc;
    loc = (uint32_t *)guest_to_host(cpu.cr3);
-   printf("%x\n", cpu.cr3);
    uint32_t tep_loc = *loc + (((vaddr & ~0x3fffff) >> 22) << 2);
-   if (vaddr == 0x400012c2) printf("%x %x\n", *loc, tep_loc);
+   if (vaddr == 0x400012c2) printf("%x %x %x\n", cpu.cr3, *loc, tep_loc);
    loc = loc + ((vaddr & ~0x3fffff) >> 22);
    assert(loc != NULL);
    if (((*loc) & 0xfff) != 1) printf("%x %x\n",vaddr, *loc);
