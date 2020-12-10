@@ -71,8 +71,8 @@ void do_syscall(Context *c) {
 		if (fs_open((char *)c->GPR2, 0, 0)== -1) c->GPRx = -2;
 		else {
 			ex_flag = true;
-			while(1);
 			context_uload(current, (char *)c->GPR2, (char **)c->GPR3, (char **)c->GPR4);
+			while(1);
 			switch_boot_pcb();
 			c->GPRx = -1;
 			yield();
