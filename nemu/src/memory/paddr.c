@@ -83,7 +83,7 @@ void vaddr_mmu_write(vaddr_t addr, word_t data, int len){
 	 paddr_t pg_base = isa_mmu_translate(addr, data, len);
 	 if (pg_base != MEM_RET_CROSS_PAGE) {
 		paddr_t paddr = pg_base;
-		assert(paddr == addr);
+		//assert(paddr == addr);
 		paddr_write(paddr, data, len);
 	 }
 	  else {
