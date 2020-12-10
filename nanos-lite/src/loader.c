@@ -63,10 +63,10 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 	//	 ramdisk_read(fb, offset + head_addr, FileSiz);
 
 		 uintptr_t *tep;
-	  printf("%p\n", pcb->as.ptr);
 		 tep = (uintptr_t *)pg_alloc2(PGSIZE);
 		 assert(((uintptr_t)tep & 0xfff) == 0);
 
+	  printf("%p\n", pcb->as.ptr);
          map(pcb->as.ptr, (void *)(VirtAddr & 0xfffff000), tep, 0);
 		
 		 int remain_space = FileSiz;	
