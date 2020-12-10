@@ -18,7 +18,7 @@ Context* __am_irq_handle(Context *c) {
  // printf("%08x %08x %08x %08x %08x %08x %08x %08x\n",c->eax, c->ecx,c->edx,c->ebx, c->esp, c->ebp, c->esi, c->edi);
  // printf("%08x \n", c->irq);
  // printf("%08x %08x %08x\n", c->eip, c->cs, c->eflags);
-
+  __am_get_cur_as(c);
   if (user_handler) {
     Event ev = {0};
     switch (c->irq) {
@@ -31,6 +31,7 @@ Context* __am_irq_handle(Context *c) {
     c = user_handler(ev, c);
     assert(c != NULL);
   }
+  __am_switch(c);
   return c;
 }
 
