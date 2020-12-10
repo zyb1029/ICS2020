@@ -58,7 +58,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
           
 		 uintptr_t bss_addr = VirtAddr + FileSiz;
 		 uintptr_t final_addr = VirtAddr + Memsiz;
-
+         
 	//	 uint32_t *fb = (uint32_t *)VirtAddr;
 	//	 ramdisk_read(fb, offset + head_addr, FileSiz);
 		 if (VirtAddr == 0)continue;
