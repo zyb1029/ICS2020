@@ -23,7 +23,6 @@ void call_main(uintptr_t *args) {
 	  else now++;
 	  // printf("%s\n", envp[j]);
   }
-  if (strcmp(envp[0], "PATH=/bin/:/usr/bin/")!= 0)while(1);
   environ = envp;
   exit(main(argc, argv, envp));
   assert(0);
