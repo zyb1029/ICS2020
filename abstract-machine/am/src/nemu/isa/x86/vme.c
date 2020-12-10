@@ -54,6 +54,7 @@ void __am_switch(Context *c) {
 }
 
 void map(AddrSpace *as, void *va, void *pa, int prot) {
+	printf("%p %p\n", va, pa);
 	assert(as != NULL);
 	uintptr_t *loc;
 	loc = (uintptr_t *)as->ptr;
