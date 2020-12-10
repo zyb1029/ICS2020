@@ -95,7 +95,6 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 
 			current_len = 0x1000;
 			if (current_len > remain_space) current_len = remain_space;
-			printf("%p\n", VirtAddr);
 			ramdisk_read((char *)tep, current_disk, current_len);
 			remain_space -= current_len;
 			current_disk += current_len;
