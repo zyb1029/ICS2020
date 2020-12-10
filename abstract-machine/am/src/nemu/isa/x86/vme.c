@@ -45,6 +45,7 @@ void unprotect(AddrSpace *as) {
 
 void __am_get_cur_as(Context *c) {
   c->cr3 = (vme_enable ? (void *)get_cr3() : NULL);
+  printf("%p\n", c->cr3);
 }
 
 void __am_switch(Context *c) {
@@ -85,7 +86,6 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
   Context *c = (Context *)kstack.end - 1;
   c->cr3 = (void *)as->ptr;
-  printf("%p", c->cr3);
   c->edi = 0, c->esi = 0, c->ebp = 0, c->esp = 0, c->ebx = 0, c->edx = 0;
   c->ecx = 0, c->eax = 0;
   c->irq = 0x81;
