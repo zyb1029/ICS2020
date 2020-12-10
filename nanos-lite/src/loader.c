@@ -115,7 +115,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
          // memset
 		 remain_space -= current_len;
 		 bss_addr += (bss_addr & 0xfffff000) + 0x00001000;
-
+		printf("%x\n", remain_space);
 		int sign = 0;
 		 while(remain_space) {
 			sign = 1;
