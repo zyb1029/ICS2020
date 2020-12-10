@@ -120,13 +120,13 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		  }
 		  else current_loc += current_len;
          // memset
+			printf("%p\n", bss_addr); 
 		 remain_space -= current_len;
 		 bss_addr += (bss_addr & 0xfffff000) + 0x00001000;
 		 sign = 0;
 		 while(remain_space) {
 			sign = 1;
 			assert(remain_space > 0);	
-			printf("%p\n", bss_addr); 
 			assert((bss_addr & 0xfff) == 0);
 
 			tep = (uintptr_t *)pg_alloc2(PGSIZE);
