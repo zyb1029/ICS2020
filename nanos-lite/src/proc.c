@@ -78,8 +78,8 @@ static char *envp[] = {"PATH=/bin/:/usr/bin/", NULL};
 
 void init_proc() {
 
-  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/bird", argv, envp);
+//  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
+  context_uload(&pcb[0], "/bin/dummy", argv, envp);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
