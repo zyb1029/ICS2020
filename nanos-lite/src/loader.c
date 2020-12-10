@@ -66,9 +66,9 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 tep = (uintptr_t *)pg_alloc2(PGSIZE);
 		 assert(((uintptr_t)tep & 0xfff) == 0);
 
-	  printf("%p\n", pcb->as.ptr);
          map(pcb->as.ptr, (void *)(VirtAddr & 0xfffff000), tep, 0);
 		
+	  printf("%p\n", pcb->as.ptr);
 		 int remain_space = FileSiz;	
 		 uint32_t current_loc = VirtAddr & 0xfff;
 		 uint32_t current_len = 0xfff - (current_loc) + 1;
