@@ -14,7 +14,7 @@ paddr_t isa_mmu_translate(vaddr_t vaddr, int type, int len) {
    loc_pt = (uint32_t *) guest_to_host((*loc) & 0xfffff000);
    loc_pt = loc_pt + ((vaddr & 0x003ff000) >> 12);
    assert(loc_pt != NULL);
-   if (((*loc_pt) & 0xfff) != 1)printf("%x %x", vaddr, *loc_pt);
+   if (((*loc_pt) & 0xfff) != 1)printf("%x %x\n", vaddr, *loc_pt);
    assert(((*loc_pt) & 0xfff) == 1);
    assert((*loc_pt) != 0);
    
