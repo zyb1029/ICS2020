@@ -72,7 +72,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 uint32_t current_loc = VirtAddr & 0xfff;
 		 uint32_t current_len = 0xfff - (current_loc) + 1;
 		 uint32_t current_disk = offset + head_addr;
-		 printf("%p\n", current_len);
+		 printf("%p %p\n", current_len, remain_space);
 
 		 if (current_len > remain_space) current_len = remain_space;
 		 printf("%p\n", current_len);
