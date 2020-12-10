@@ -104,6 +104,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 current_loc = bss_addr & 0xfff;
 		 current_len = 0xfff - (current_loc) + 1;
 		 
+		 printf("%x %x\n", current_len, final_addr & 0xfff); 
 		 if (current_len > remain_space) current_len = remain_space;
 
 		 if ((bss_addr & 0xfff) == 0) {
@@ -112,7 +113,6 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 			map(&(pcb->as), (void *)bss_addr, tep, 0);	 
 		  }
          // memset
-		 printf("%x %x\n", current_len, final_addr & 0xfff); 
 		 remain_space -= current_len;
 		 bss_addr += (bss_addr & 0xfffff000) + 0x00001000;
 
