@@ -139,6 +139,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 			remain_space -= current_len;
 			bss_addr = (bss_addr & 0xfffff000) + 0x00001000;	 
 		 }
+		 printf("%x %x\n", current_loc, final_addr);
          if (sign == 1)
 			 assert(((current_len) & 0xfff) == (final_addr & 0xfff));
 		 else
