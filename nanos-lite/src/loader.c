@@ -55,7 +55,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
 		 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
 		 size_t offset = phdr[i].p_offset;
-         printf("%x\n", VirtAddr); 
+         printf("%x %x\n", VirtAddr, FileSiz); 
 		 uintptr_t bss_addr = VirtAddr + FileSiz;
 		 uintptr_t final_addr = VirtAddr + Memsiz;
          
