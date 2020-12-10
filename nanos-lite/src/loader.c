@@ -61,7 +61,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
          
 	//	 uint32_t *fb = (uint32_t *)VirtAddr;
 	//	 ramdisk_read(fb, offset + head_addr, FileSiz);
-		 if (VirtAddr == 0)continue;
+		 if (phdr[i].p_type != PT_LOAD)continue;
 		 uintptr_t *tep;
 		 tep = (uintptr_t *)pg_alloc2(PGSIZE);
 		 assert(((uintptr_t)tep & 0xfff) == 0);
