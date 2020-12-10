@@ -93,7 +93,7 @@ static char *envp[] = {"PATH=/bin/:/usr/bin/", NULL};
 void init_proc() {
 
 //  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/nterm", argv, envp);
+  context_uload(&pcb[0], "/bin/nemu", argv, envp);
   switch_boot_pcb();
   
   Log("Initializing processes...");
