@@ -74,7 +74,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 uint32_t current_disk = offset + head_addr;
 
 		 if (current_len > remain_space) current_len = remain_space;
-
+		 printf("%p\n", current_len);
 		 ramdisk_read((char *)tep + current_loc,current_disk,current_len);
 		 remain_space -= current_len;
 		 current_disk += current_len;
