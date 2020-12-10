@@ -33,7 +33,7 @@ Context* __am_irq_handle(Context *c) {
   }
  // __am_switch(c);
   set_cr3(c->cr3);
-  printf("111 fedfsdfs\n");
+//  printf("111 fedfsdfs\n");
   return c;
 }
 
