@@ -30,8 +30,10 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
     
+	protect(&(pcb->as)); // make copy of directory
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
+	map(&(pcb->as), pcb->as.area.end, loc + 1, 0);
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -59,7 +61,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	Area area;
 	area.end = (void *)loc;
 
-	protect(&(pcb->as)); // make copy of directory
 	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(pcb, filename));
 	pcb -> cp -> GPRx = (uintptr_t)loc;
 	/*
