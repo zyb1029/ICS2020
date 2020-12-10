@@ -14,6 +14,7 @@ void do_syscall(Context *c) {
   a[0] = c->GPR1;
   switch (a[0]) {
 	case SYS_exit:
+	    halt(c->GPR2);
 		if(ex_flag == true) {
 			context_uload(current, "/bin/nterm", argv, env);
 			switch_boot_pcb();
