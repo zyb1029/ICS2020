@@ -77,7 +77,7 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 		loc_pt = tep;
 	}
 	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
-	
+	if(src == 0x400012c2) printf("%p\n", *loc);	
 	loc_pt = loc_pt + ((src & 0x003ff000) >> 12);
 	*loc_pt = (dst | 1);
 }
