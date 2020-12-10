@@ -9,6 +9,7 @@ void call_main(uintptr_t *args) {
   char *argv[64];
   char *envp[64];
   int now = 1;
+  while(1);
   printf("%p\n", args);
   for (int i = now, j = 0; ; i++, j++){
 	  argv[j] = (char *)args[i];
