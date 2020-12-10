@@ -31,7 +31,6 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
     
 	protect(&(pcb->as)); // make copy of directory
-	printf("%p  666\n", pcb->as.ptr);
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
 	uintptr_t *loc_tep;
@@ -93,7 +92,7 @@ static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
 void init_proc() {
 
 //  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
-  context_uload(&pcb[0], "/bin/exec-test", argv, envp);
+  context_uload(&pcb[0], "/bin/pal", argv, envp);
   switch_boot_pcb();
   
   Log("Initializing processes...");
