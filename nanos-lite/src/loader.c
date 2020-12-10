@@ -1,7 +1,7 @@
 #include <proc.h>
 #include <elf.h>
 #include <common.h>
-
+#include <memory.h>
 
 #if defined(__ISA_AM_NATIVE__)
 #define EXPECT_TYPE EM_X86_64 
@@ -20,8 +20,17 @@
 # define Elf_Phdr Elf32_Phdr
 #endif
 
+static inline void* pg_alloc2(int n) {
+	assert(n % PGSIZE == 0);
+	void *p = new_page(n / PGSIZE);
+	memset(p, 0, n);
+	return p;	
+}
+
 uintptr_t loader(PCB *pcb, const char *filename) {
-      int head_addr;
+
+	  assert(pcb != NULL);
+      uint32_t head_addr;
       if (filename == NULL) head_addr = 0;
 	  else {
 	     int fd = fs_open(filename, 0, 0);
@@ -47,12 +56,87 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
 		 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
 		 size_t offset = phdr[i].p_offset;
-		 uint32_t *fb = (uint32_t *)VirtAddr;
-		 ramdisk_read(fb, offset + head_addr, FileSiz);
-		 memset((uint8_t *)fb + FileSiz, 0, Memsiz - FileSiz);
+         
+		 uintptr_t bss_addr = VirtAddr + FileSiz;
+		 uintptr_t final_addr = VirtAddr + Memsiz;
+
+	//	 uint32_t *fb = (uint32_t *)VirtAddr;
+	//	 ramdisk_read(fb, offset + head_addr, FileSiz);
+
+		 uintptr_t *tep;
+		 tep = (uintptr_t *)pg_alloc2(PGSIZE);
+		 assert(((uintptr_t)tep & 0xfff) == 0);
+
+         map(pcb->as.ptr, (void *)(VirtAddr & 0xfffff000), tep, 0);
+		
+		 int remain_space = FileSiz;	
+		 uint32_t current_loc = VirtAddr & 0xfff;
+		 uint32_t current_len = 0xfff - (current_loc) + 1;
+		 uint32_t current_disk = offset + head_addr;
+
+		 if (current_len > remain_space) current_len = remain_space;
+
+		 ramdisk_read((char *)tep + current_loc,current_disk,current_len);
+		 remain_space -= current_len;
+		 current_disk += current_len;
+		 VirtAddr = (VirtAddr & 0xfffff000) + 0x00001000;
+		 
+		 while(remain_space) {
+			assert(remain_space > 0);	 
+			assert((VirtAddr & 0xfff) == 0);
+
+			tep = (uintptr_t *)pg_alloc2(PGSIZE);
+			assert(((uintptr_t)tep & 0xfff) == 0);
+			map(pcb->as.ptr, (void *)VirtAddr, tep, 0);	 
+
+			current_len = 0x1000;
+			if (current_len > remain_space) current_len = remain_space;
+
+			ramdisk_read((char *)tep, current_disk, current_len);
+			remain_space -= current_len;
+			current_disk += current_len;
+		    VirtAddr = (VirtAddr & 0xfffff000) + 0x00001000;
+		 }
+		 
+		 assert(((current_len + 1) & 0xfff) == (bss_addr & 0xfff));
+
+		 // memset((uint8_t *)fb + FileSiz, 0, Memsiz - FileSiz);
+
+		 remain_space = Memsiz - FileSiz;
+		 current_loc = bss_addr & 0xfff;
+		 current_len = 0xfff - (current_loc) + 1;
+		 
+		 if (current_len > remain_space) current_len = remain_space;
+
+		 if ((bss_addr & 0xfff) == 0) {
+			tep = (uintptr_t *)pg_alloc2(PGSIZE);
+			assert(((uintptr_t)tep & 0xfff)== 0);
+			map(pcb->as.ptr, (void *)bss_addr, tep, 0);	 
+		  }
+         // memset
+		 remain_space -= current_len;
+		 bss_addr += (bss_addr & 0xfffff000) + 0x00001000;
+
+		 while(remain_space) {
+			assert(remain_space > 0);	 
+			assert((bss_addr & 0xfff) == 0);
+
+			tep = (uintptr_t *)pg_alloc2(PGSIZE);
+			assert(((uintptr_t)tep & 0xfff) == 0);
+			map(pcb->as.ptr, (void *)bss_addr, tep, 0);
+			
+			current_len = 0x1000;
+			if (current_len > remain_space) current_len = remain_space;
+			// memset
+			remain_space -= current_len;
+			bss_addr = (bss_addr & 0xfffff000) + 0x00001000;	 
+		 } 
+         assert(((current_len + 1) & 0xfff) == (final_addr & 0xfff));
+
 	  }
 	  return addr;
 }
+
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = loader(pcb, filename);
   if (entry == 0)return;

@@ -8,6 +8,8 @@ html:
 
 ## 1. Basic Setup and Checks
 
+VME = 1
+
 ### Default to build an application
 ifeq ($(MAKECMDGOALS),)
   MAKECMDGOALS  = app
@@ -164,7 +166,7 @@ $(CLEAN_ALL):
 .PHONY: clean-all $(CLEAN_ALL)
 
 ### Build fsimg and ramdisk for Nanos-lite
-APPS = bird
+APPS = 
 TESTS = dummy 
 
 fsimg: $(addprefix apps/, $(APPS)) $(addprefix tests/, $(TESTS))

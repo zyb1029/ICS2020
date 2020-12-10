@@ -58,6 +58,9 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
+
+	protect(&(pcb->as)); // make copy of directory
+
 	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(NULL, filename));
 	pcb -> cp -> GPRx = (uintptr_t)loc;
 	/*
