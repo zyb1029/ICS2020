@@ -44,6 +44,7 @@ void unprotect(AddrSpace *as) {
 }
 
 void __am_get_cur_as(Context *c) {
+	printf("212");
   c->cr3 = (vme_enable ? (void *)get_cr3() : NULL);
 }
 
