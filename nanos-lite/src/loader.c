@@ -125,7 +125,8 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 sign = 0;
 		 while(remain_space) {
 			sign = 1;
-			assert(remain_space > 0);	 
+			assert(remain_space > 0);	
+			printf("%p\n", bss_addr); 
 			assert((bss_addr & 0xfff) == 0);
 
 			tep = (uintptr_t *)pg_alloc2(PGSIZE);
