@@ -96,8 +96,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 			current_disk += current_len;
 		    VirtAddr = (VirtAddr & 0xfffff000) + 0x00001000;
 		 }
-		 printf("%x %x\n", current_len, bss_addr); 
-		 assert(((current_len + 1) & 0xfff) == (bss_addr & 0xfff));
+		 assert(((current_len ) & 0xfff) == (bss_addr & 0xfff));
 
 		 // memset((uint8_t *)fb + FileSiz, 0, Memsiz - FileSiz);
 
@@ -130,7 +129,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 			remain_space -= current_len;
 			bss_addr = (bss_addr & 0xfffff000) + 0x00001000;	 
 		 } 
-         assert(((current_len + 1) & 0xfff) == (final_addr & 0xfff));
+         assert(((current_len ) & 0xfff) == (final_addr & 0xfff));
 
 	  }
 	  return addr;
