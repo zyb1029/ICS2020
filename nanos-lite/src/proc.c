@@ -38,9 +38,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	for (int i = 1; i < 7; i++) {
 		map(&(pcb->as), (char *)pcb->as.area.end - (i * 0x1000), 
 						(char *)loc_tep - (i * 0x1000), 0);
-		printf("%p %p\n", pcb->as.area.end - (i * 0x1000), (char *)loc_tep - (i * 0x1000));
 	}
-	loc = (uintptr_t *)pcb->as.area.end - 1;
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -67,8 +65,9 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
-
-	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(pcb, filename));
+    uint32_t delta = loc_tep - loc; 
+	printf("%x\n", delta);
+	pcb -> cp = ucontext(&(pcb->as), area, (void *)loader(pcb, filename));
 	pcb -> cp -> GPRx = (uintptr_t)loc;
 	/*
 	for (int i = 0; ;i++)
