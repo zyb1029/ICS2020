@@ -11,5 +11,6 @@
 
 void* new_page(size_t);
 
+int mm_brk(uintptr_t brk);
 
 #endif

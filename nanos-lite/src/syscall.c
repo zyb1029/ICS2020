@@ -1,6 +1,7 @@
 #include <common.h>
 #include "syscall.h"
 #include <proc.h>
+#include <memory.h>
 
 static bool ex_flag = false;
 
@@ -57,7 +58,7 @@ void do_syscall(Context *c) {
 		c->GPRx = fs_close(c->GPR2);
 		break;
 	case SYS_brk:
-		c->GPRx = 0;
+		c->GPRx = mm_brk(c->GPR2);
 		break;
 	case SYS_gettimeofday:
 		tv = (timeval *) c->GPR2;
