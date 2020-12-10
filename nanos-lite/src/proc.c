@@ -31,6 +31,7 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
     
 	protect(&(pcb->as)); // make copy of directory
+	printf("%p\n", pcb->as.ptr);
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
 	uintptr_t *loc_tep;
