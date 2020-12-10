@@ -57,6 +57,9 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 	assert(as != NULL);
 	uintptr_t *loc;
 	loc = (uintptr_t *)as->ptr;
+	if ((uintptr_t)loc % PGSIZE != 0) {
+		printf("%p\n", loc);
+	}
 	assert((uintptr_t)loc % PGSIZE == 0);
     
 	uintptr_t src = (uintptr_t)va;
