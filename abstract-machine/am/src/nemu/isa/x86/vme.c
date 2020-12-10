@@ -63,6 +63,7 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 	assert((uintptr_t)loc % PGSIZE == 0);
     
 	uintptr_t src = (uintptr_t)va;
+	printf("%p\n", src);
 	assert(src % PGSIZE == 0);
     if (src == 0x4001000) {
 		printf("666");
