@@ -51,7 +51,6 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 	  uintptr_t addr = elf_head.e_entry;
 	  Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
 	  ramdisk_read(phdr, elf_head.e_phoff + head_addr, sizeof(Elf_Phdr) * elf_head.e_phnum);
-	  while(1);
 	  for (int i = 0; i < elf_head.e_phnum; i++){
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
 		 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
@@ -68,7 +67,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 assert(((uintptr_t)tep & 0xfff) == 0);
 
          map(&(pcb->as), (void *)(VirtAddr & 0xfffff000), tep, 0);
-		
+	     printf("%p\n", (VirtAddr & 0xfffff000));	
 		 int remain_space = FileSiz;	
 		 uint32_t current_loc = VirtAddr & 0xfff;
 		 uint32_t current_len = 0xfff - (current_loc) + 1;
