@@ -58,6 +58,7 @@ void do_syscall(Context *c) {
 		c->GPRx = fs_close(c->GPR2);
 		break;
 	case SYS_brk:
+		if(current->max_brk < c->GPR3) current->max_brk = c->GPR3;
 		c->GPRx = mm_brk(c->GPR2);
 		break;
 	case SYS_gettimeofday:
