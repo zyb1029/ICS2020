@@ -47,7 +47,7 @@ void __am_get_cur_as(Context *c) {
   c->cr3 = (vme_enable ? (void *)get_cr3() : NULL);
 }
 
-void __am_switch(Context *c) {
+inline void __am_switch(Context *c) {
   if (vme_enable && c->cr3 != NULL) {
     set_cr3(c->cr3);
 	printf("%x 111\n", c->cr3);
