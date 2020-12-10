@@ -28,7 +28,7 @@ static inline void* pg_alloc2(int n) {
 }
 
 uintptr_t loader(PCB *pcb, const char *filename) {
-
+	  printf("%p\n", pcb->as.ptr);
 	  assert(pcb != NULL);
       uint32_t head_addr;
       if (filename == NULL) head_addr = 0;
