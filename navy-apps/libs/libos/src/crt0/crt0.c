@@ -17,7 +17,8 @@ void call_main(uintptr_t *args) {
 	  else now++;
 	 // printf("%s\n", argv[j]);
   }
-  if (strcmp(argv[0], "echo")!= 0)while(1);
+  putch(argv[0][0]);
+  //if (strcmp(argv[0], "echo")!= 0)while(1);
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
 	  envp[j] = (char *)args[i];
