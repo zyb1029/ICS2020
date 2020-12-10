@@ -66,9 +66,8 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 tep = (uintptr_t *)pg_alloc2(PGSIZE);
 		 assert(((uintptr_t)tep & 0xfff) == 0);
 
-         map(pcb->as.ptr, (void *)(VirtAddr & 0xfffff000), tep, 0);
+         map(&(pcb->as), (void *)(VirtAddr & 0xfffff000), tep, 0);
 		
-	  printf("%p\n", pcb->as.ptr);
 		 int remain_space = FileSiz;	
 		 uint32_t current_loc = VirtAddr & 0xfff;
 		 uint32_t current_len = 0xfff - (current_loc) + 1;
@@ -87,7 +86,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 
 			tep = (uintptr_t *)pg_alloc2(PGSIZE);
 			assert(((uintptr_t)tep & 0xfff) == 0);
-			map(pcb->as.ptr, (void *)VirtAddr, tep, 0);	 
+			map(&(pcb->as), (void *)VirtAddr, tep, 0);	 
 
 			current_len = 0x1000;
 			if (current_len > remain_space) current_len = remain_space;
@@ -111,7 +110,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 if ((bss_addr & 0xfff) == 0) {
 			tep = (uintptr_t *)pg_alloc2(PGSIZE);
 			assert(((uintptr_t)tep & 0xfff)== 0);
-			map(pcb->as.ptr, (void *)bss_addr, tep, 0);	 
+			map(&(pcb->as), (void *)bss_addr, tep, 0);	 
 		  }
          // memset
 		 remain_space -= current_len;
@@ -123,7 +122,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 
 			tep = (uintptr_t *)pg_alloc2(PGSIZE);
 			assert(((uintptr_t)tep & 0xfff) == 0);
-			map(pcb->as.ptr, (void *)bss_addr, tep, 0);
+			map(&(pcb->as), (void *)bss_addr, tep, 0);
 			
 			current_len = 0x1000;
 			if (current_len > remain_space) current_len = remain_space;
