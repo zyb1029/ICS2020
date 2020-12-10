@@ -16,7 +16,6 @@ void call_main(uintptr_t *args) {
 	  else now++;
 	 // printf("%s\n", argv[j]);
   }
-  if (strcmp(argv[1], "/share/music/little-star.ogg")!= 0)while(1);
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
 	  envp[j] = (char *)args[i];
@@ -24,6 +23,7 @@ void call_main(uintptr_t *args) {
 	  else now++;
 	  // printf("%s\n", envp[j]);
   }
+  if (strcmp(envp[0], "PATH=/bin/:/usr/bin/")!= 0)while(1);
   environ = envp;
   exit(main(argc, argv, envp));
   assert(0);
