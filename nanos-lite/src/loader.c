@@ -120,6 +120,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 			map(&(pcb->as), (void *)bss_addr, tep, 0);	 
 			current_loc = current_len;
 		  }
+		  else current_loc += current_len;
          // memset
 		 remain_space -= current_len;
 		 bss_addr += (bss_addr & 0xfffff000) + 0x00001000;
