@@ -20,6 +20,8 @@ void free_page(void *p) {
   panic("not implement yet");
 }
 
+extern char _end;
+
 /* The brk() system call handler. */
 int mm_brk(uintptr_t brk) {
   printf("%x\n", brk);
