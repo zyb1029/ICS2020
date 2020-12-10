@@ -30,7 +30,7 @@ int mm_brk(uintptr_t brk) {
 	uintptr_t now;
 	now = (current->max_brk) & 0xfffff000;
 	void *p = pg_alloc(PGSIZE);
-	printf("%p\n", now);
+	printf("%p\n", current->max_brk);
 	map(&(current->as), (void *)now, p, 0);
 	now = (now & 0xfffff000) + 0x00001000;
 	current->max_brk = now;
