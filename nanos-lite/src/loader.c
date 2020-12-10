@@ -55,20 +55,18 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
 		 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
 		 size_t offset = phdr[i].p_offset;
-         
+          
 		 uintptr_t bss_addr = VirtAddr + FileSiz;
 		 uintptr_t final_addr = VirtAddr + Memsiz;
 
 	//	 uint32_t *fb = (uint32_t *)VirtAddr;
 	//	 ramdisk_read(fb, offset + head_addr, FileSiz);
-		 
+		 if (VirtAddr == 0)continue;
 		 uintptr_t *tep;
 		 tep = (uintptr_t *)pg_alloc2(PGSIZE);
 		 assert(((uintptr_t)tep & 0xfff) == 0);
 
          map(&(pcb->as), (void *)(VirtAddr & 0xfffff000), tep, 0);
-	     printf("%p %p\n", VirtAddr, (VirtAddr & 0xfffff000));
-		 printf("%p %p\n", FileSiz, Memsiz);	
 		 int remain_space = FileSiz;	
 		 uint32_t current_loc = VirtAddr & 0xfff;
 		 uint32_t current_len = 0xfff - (current_loc) + 1;
