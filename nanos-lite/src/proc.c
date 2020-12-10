@@ -60,7 +60,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	area.end = (void *)loc;
 
 	protect(&(pcb->as)); // make copy of directory
-	printf("%p\n", pcb->as.ptr);
 	pcb -> cp = ucontext(&(pcb->as), area,(void *)loader(pcb, filename));
 	pcb -> cp -> GPRx = (uintptr_t)loc;
 	/*
@@ -83,6 +82,7 @@ void init_proc() {
 
 //  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
   context_uload(&pcb[0], "/bin/dummy", argv, envp);
+  while(1);
   switch_boot_pcb();
  /* 
   Log("Initializing processes...");
