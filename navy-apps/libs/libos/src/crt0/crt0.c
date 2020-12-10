@@ -14,14 +14,14 @@ void call_main(uintptr_t *args) {
 	  argv[j] = (char *)args[i];
 	  if(argv[j] == NULL)break;
 	  else now++;
-	 // printf("%s\n", argv[j]);
+	  printf("%s\n", argv[j]);
   }
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
 	  envp[j] = (char *)args[i];
 	  if(envp[j] == NULL)break;
 	  else now++;
-	  // printf("%s\n", envp[j]);
+	   printf("%s\n", envp[j]);
   }
   environ = envp;
   exit(main(argc, argv, envp));
