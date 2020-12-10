@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <assert.h>
-
+#include <string.h>
 int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
@@ -10,19 +10,20 @@ void call_main(uintptr_t *args) {
   char *envp[64];
   int now = 1;
   while(1);
-  printf("%p\n", args);
+  // printf("%p\n", args);
   for (int i = now, j = 0; ; i++, j++){
 	  argv[j] = (char *)args[i];
 	  if(argv[j] == NULL)break;
 	  else now++;
-	  printf("%s\n", argv[j]);
+	 // printf("%s\n", argv[j]);
   }
+  if (strcmp(argv[0], "echo")!= 0)while(1);
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
 	  envp[j] = (char *)args[i];
 	  if(envp[j] == NULL)break;
 	  else now++;
-	  printf("%s\n", envp[j]);
+	  // printf("%s\n", envp[j]);
   }
   environ = envp;
   exit(main(argc, argv, envp));
