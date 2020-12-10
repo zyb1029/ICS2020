@@ -68,6 +68,7 @@ void do_syscall(Context *c) {
 		c->GPRx = 0;  
 		break; 
 	case SYS_execve:
+		while(1);
 		if (fs_open((char *)c->GPR2, 0, 0)== -1) c->GPRx = -2;
 		else {
 			ex_flag = true;
