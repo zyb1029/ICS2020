@@ -63,6 +63,7 @@ word_t vaddr_mmu_read(vaddr_t addr, int len, int type) {
 	 paddr_t pg_base = isa_mmu_translate(addr, type, len);
 	 if (pg_base != MEM_RET_CROSS_PAGE) {
 		paddr_t paddr = pg_base;
+		printf("%x\n", paddr);
 		assert(paddr == addr);
 		return paddr_read(paddr, len);
 	 }
