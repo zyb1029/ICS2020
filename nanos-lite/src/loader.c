@@ -146,6 +146,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 			 assert(((current_loc) & 0xfff) == (final_addr & 0xfff));
 
 	  }
+	  printf("p\n", addr);
 	  return addr;
 }
 
