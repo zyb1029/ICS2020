@@ -38,6 +38,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	for (int i = 1; i < 7; i++) {
 		map(&(pcb->as), (char *)pcb->as.area.end - (i * 0x1000), 
 						(char *)loc_tep - (i * 0x1000), 0);
+		printf("%p\n", pcb->as.area.end - (i * 0x1000));
 	}
 	loc = (uintptr_t *)pcb->as.area.end - 1;
 	assert(envp != NULL);
