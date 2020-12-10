@@ -18,9 +18,10 @@ static inline def_EHelper(mov_r2cr) {
 }
 
 static inline def_EHelper(mov_cr2r) {
-  assert(id_src1->reg == 0);
+  assert(id_src1->reg == 0 || id_src1-> reg == 3);
   assert(s->dest.width == 4);
   if (id_src1->reg == 0)rtl_li(s, s0, cpu.cr0);
+  else rtl_li(s, s0, cpu.cr3);
   rtl_sr(s, id_dest->reg, s0, 4);
 
   print_asm("movl %%cr%d,%%%s", id_src1->reg, reg_name(id_dest->reg, 4));
