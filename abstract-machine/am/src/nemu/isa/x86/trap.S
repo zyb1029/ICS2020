@@ -16,8 +16,12 @@ __am_asm_trap:
  
   movl %eax, %esp
   
+  popl %eax 
+    
   movl %eax, %cr3
-  addl $4, %esp
+  
+ // addl $4, %esp
+
   popal
   addl $4, %esp
 
