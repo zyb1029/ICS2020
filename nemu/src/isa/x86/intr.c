@@ -24,7 +24,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 #define IRQ_TIMER 32
 
 void query_intr(DecodeExecState *s) {
-	if (cpu.INTR)printf("%d\n", cpu.eflags.IF);
+	if (cpu.INTR)printf("%d\n", cpu.eflags.val & 0x00000100);
 	if (cpu.INTR && cpu.eflags.IF) {
 		cpu.INTR = false;
 		raise_intr(s, IRQ_TIMER, cpu.IDTR.addr);
