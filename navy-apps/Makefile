@@ -8,7 +8,6 @@ html:
 
 ## 1. Basic Setup and Checks
 
-VME = 1
 
 ### Default to build an application
 ifeq ($(MAKECMDGOALS),)
