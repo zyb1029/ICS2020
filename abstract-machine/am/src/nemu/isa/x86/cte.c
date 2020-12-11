@@ -19,6 +19,8 @@ Context* __am_irq_handle(Context *c) {
   if (user_handler) {
     Event ev = {0};
     switch (c->irq) {
+	  case 0x32:
+		ev.event = EVENT_IRQ_TIMER;break;
 	  case 0x80:
 		ev.event = EVENT_SYSCALL; break;
 	  case 0x81: 
@@ -59,14 +61,12 @@ Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
   Context *c = (Context *)kstack.end - 2;
   intptr_t* loc;
   loc = (intptr_t *)(&(c->eflags) + 2);
- // *loc = (char *)arg;
   *loc = (intptr_t)arg;
- // printf("%d %s\n", (char *) arg);return c;
   c->cr3 = 0;
   c->edi = 0, c->esi = 0, c->ebp = 0, c->esp = 0, c->ebx = 0, c->edx = 0;
   c->ecx = 0, c->eax = 0;
   c->irq = 0x81;
-  c->eip = (intptr_t)(entry); c->cs = 8; c->eflags= 0x00000100;
+  c->eip = (intptr_t)(entry); c->cs = 8; c->eflags= 0x00000200;
   return c;
 }
 
