@@ -86,7 +86,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 }
 
 
-static char *argv[] = {"/bin/exec-test" ,"/share/music/little-star.ogg", NULL};
+static char *argv[] = {"--skip" ,"/share/music/little-star.ogg", NULL};
 static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
 
 void init_proc() {
