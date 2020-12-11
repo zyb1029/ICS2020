@@ -19,7 +19,7 @@ Context* __am_irq_handle(Context *c) {
   if (user_handler) {
     Event ev = {0};
     switch (c->irq) {
-	  case 0x32:
+	  case 0x20:
 		ev.event = EVENT_IRQ_TIMER;break;
 	  case 0x80:
 		ev.event = EVENT_SYSCALL; break;
