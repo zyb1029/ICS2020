@@ -345,7 +345,6 @@ paddr_t isa_exec_once() {
 
   fetch_decode_exec(&s);
   update_pc(&s);
-  printf("%x\n", s.jmp_pc);
   query_intr(&s);
   return s.seq_pc;
 }
