@@ -126,7 +126,7 @@ void Print() {
 	for (int i = 0; _out[i] != '\0'; i++) putch(_out[i]);
 }
 
-int printf(const char *fmt, ...) {
+int printf(const char *fmt, ...) {putch('a');
   int len = 0, len_tmp = 0;
   va_start(ap, fmt);
   while (*fmt != '\0') {
