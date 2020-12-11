@@ -29,16 +29,22 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 }
 
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
-    
+    #ifdef HAS_VME    
 	protect(&(pcb->as)); // make copy of directory
+    #endif
+
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
+
+    #ifdef HAS_VME
 	uintptr_t *loc_tep;
 	loc_tep = loc + 1;
 	for (int i = 1; i < 8; i++) {
 		map(&(pcb->as), (char *)pcb->as.area.end - (i * 0x1000), 
 						(char *)loc_tep - (i * 0x1000), 0);
 	}
+    #endif
+
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -65,14 +71,23 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
-
+    
+	#ifdef HAS_VME 
     uint32_t delta = loc_tep - loc;
     uintptr_t *st;
 	st = (uintptr_t *)pcb->as.area.end;
 	st = st - delta;
+    #endif
 
 	pcb -> cp = ucontext(&(pcb->as), area, (void *)loader(pcb, filename));
+    
+    #ifdef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)st;
+	#endif
+	
+	#ifndef HAS_VME
+	pcb -> cp -> GPRx = (uintptr_t)loc;
+	#endif
 	/*
 	for (int i = 0; ;i++)
 		if (argv[argc[tot]] != NULL) argc[tot]++;
