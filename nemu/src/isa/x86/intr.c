@@ -3,6 +3,7 @@
 
 void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	rtl_li(s, s0, cpu.eflags.val);
+	cpu.eflags.IF = 0;
 	rtl_push(s, s0);
 	rtl_li(s, s0, cpu.cs);
 	rtl_push(s, s0);
@@ -20,6 +21,12 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 
 }
 
+#define IRQ_TIMER 32
+
 void query_intr(DecodeExecState *s) {
-  TODO();
+	if (cpu.INTR && cpu.eflags.IF) {
+		cpu.INTR = false;
+		raise_intr(s, IRQ_TIMER, cpu.IDTR.addr);
+		update_pc(s);
+	}
 }

@@ -22,6 +22,8 @@
 
 void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr);
 
+void query_intr(DecodeExecState *s);
+
 static inline uint32_t instr_fetch(vaddr_t *pc, int len) {
   uint32_t instr = vaddr_ifetch(*pc, len);
 #ifdef DEBUG

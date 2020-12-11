@@ -6,7 +6,10 @@ static Context* do_event(Event e, Context* c) {
 	case EVENT_YIELD: return schedule(c);
 	// printf("touch yield!\n"); break;
 	case EVENT_SYSCALL: do_syscall(c); break;
-	case 5: return c;
+	case EVENT_IRQ_TIMER:
+		Log("Recieved IRQ_TIMER"); 
+		return schedule(c);
+	break;
     default: panic("Unhandled event ID = %d", e.event);
   }
 

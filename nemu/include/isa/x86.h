@@ -56,6 +56,7 @@ typedef struct {
 	uint32_t cs;
 	uint32_t cr0;
 	uint32_t cr3;
+	bool INTR;
 } x86_CPU_state;
 
 // decode
