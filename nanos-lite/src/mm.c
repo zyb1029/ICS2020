@@ -26,6 +26,7 @@ extern char _end;
 
 /* The brk() system call handler. */
 int mm_brk(uintptr_t brk) {
+  #ifdef HAS_VME
   if (brk >= current->max_brk) {
 	uintptr_t now;
 	now = (current->max_brk) & 0xfffff000;
@@ -40,7 +41,8 @@ int mm_brk(uintptr_t brk) {
 		now = (now & 0xfffff000) + 0x00001000;
 		current->max_brk = now;
 	}
-  }			  
+  }
+  #endif
   return 0;
 }
 

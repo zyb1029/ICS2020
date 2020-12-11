@@ -55,6 +55,14 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
 		 size_t FileSiz = phdr[i].p_filesz , Memsiz = phdr[i].p_memsz;
 		 size_t offset = phdr[i].p_offset;
+
+		 #ifndef HAS_VME
+		 uint32_t *fb = (uint32_t *)VirtAddr;
+		 ramdisk_read(fb, offset + head_addr, FileSiz);
+		 memset((uint8_t *)fb + FileSiz, 0, Memsiz - FileSiz);
+		 #endif
+
+		 #ifdef HAS_VME
 		 uintptr_t bss_addr = VirtAddr + FileSiz;
 		 uintptr_t final_addr = VirtAddr + Memsiz;
          
@@ -141,6 +149,7 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 			 assert(((current_len) & 0xfff) == (final_addr & 0xfff));
 		 else
 			 assert(((current_loc) & 0xfff) == (final_addr & 0xfff));
+		#endif
 
 	  }
 	  return addr;
