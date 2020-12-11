@@ -90,6 +90,7 @@ Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
   Context *c = (Context *)kstack.end - 1;
   #ifdef HAS_VME
   c->cr3 = (void *)as->ptr;
+  printf("3232\n");
   #endif
   c->edi = 0, c->esi = 0, c->ebp = 0, c->esp = 0, c->ebx = 0, c->edx = 0;
   c->ecx = 0, c->eax = 0;
