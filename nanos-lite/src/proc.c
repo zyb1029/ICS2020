@@ -15,7 +15,7 @@ void switch_boot_pcb() {
 void hello_fun(void *arg) {
   int j = 1;
   while (1) {
- //   Log("Hello World from Nanos-lite with arg '%s' for the %dth time!", (uintptr_t)arg, j);
+    Log("Hello World from Nanos-lite with arg '%s' for the %dth time!", (uintptr_t)arg, j);
     j ++;
     yield();
   }
@@ -100,8 +100,8 @@ static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
 
 void init_proc() {
 
-  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
   context_uload(&pcb[0], "/bin/pal", argv, envp);
+  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
   switch_boot_pcb();
   
   Log("Initializing processes...");
@@ -112,9 +112,13 @@ void init_proc() {
   // load program here
 
 }
+static int count = 0;
 
 Context* schedule(Context *prev) {
   current -> cp = prev;
-  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  if (current == &pcb[0]) count = count + 1;
+  if (current == &pcb[1]) current = &pcb[0];
+  if (count == 100)  count = 0, current = &pcb[1];	  
+  else current =  &pcb[0];
   return current -> cp;
 }
