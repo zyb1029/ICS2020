@@ -92,16 +92,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	#ifndef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)loc;
 	#endif
-	/*
-	for (int i = 0; ;i++)
-		if (argv[argc[tot]] != NULL) argc[tot]++;
-		else break;
-	p[tot][0] = (uintptr_t )(&argc[tot]);
-	p[tot][1] = (uintptr_t )(argv);
-	p[tot][2] = (uintptr_t )(envp);return;
-	pcb -> cp -> GPRx = (uintptr_t)p[tot];
-	tot++;
-	*/ 
 }
 
 
