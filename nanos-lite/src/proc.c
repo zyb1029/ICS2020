@@ -78,6 +78,10 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	st = (uintptr_t *)pcb->as.area.end;
 	st = st - delta;
     #endif
+    
+	#ifndef HAS_VME
+	pcb -> as.ptr = 0;
+	#endif
 
 	pcb -> cp = ucontext(&(pcb->as), area, (void *)loader(pcb, filename));
     
