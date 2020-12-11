@@ -15,7 +15,7 @@ void switch_boot_pcb() {
 void hello_fun(void *arg) {
   int j = 1;
   while (1) {
-//    Log("Hello World from Nanos-lite with arg '%s' for the %dth time!", (uintptr_t)arg, j);
+    Log("Hello World from Nanos-lite with arg '%s' for the %dth time!", (uintptr_t)arg, j);
     j ++;
     yield();
   }
@@ -93,15 +93,15 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	pcb -> cp -> GPRx = (uintptr_t)loc;
 	#endif
 }
-/*
+
 
 static char *argv[] = {"--skip" ,"/share/music/little-star.ogg", NULL};
 static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
-*/
+
 void init_proc() {
 
   context_kload(&pcb[0], (void *)hello_fun, (void *)"-bb");
- // context_uload(&pcb[0], "/bin/pal", argv, envp);
+  context_uload(&pcb[1], "/bin/pal", argv, envp);
   switch_boot_pcb();
   
   Log("Initializing processes...");
@@ -115,6 +115,6 @@ void init_proc() {
 
 Context* schedule(Context *prev) {
   current -> cp = prev;
-  current = (current == &pcb[0] ? &pcb[0] : &pcb[0]);
+  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
   return current -> cp;
 }
