@@ -73,7 +73,7 @@ static inline def_EHelper(iret) {
   cpu.cs = *s0;
   rtl_pop(s,s0);
   cpu.eflags.val = *s0;
-  if (*s0 == 0x00800000)printf("%x %d\n", *s0, cpu.eflags.IF);
+  if (*s0 == 0x00000200)printf("%x %d\n", *s0, cpu.eflags.IF);
   print_asm("iret");
 
 #ifndef __DIFF_REF_NEMU__
