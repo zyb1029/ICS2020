@@ -34,7 +34,7 @@ int deal_width(const char *fmt){
 	return len;
 }
 
-static char buff[32];
+static char buff[65536];
 static bool number_sign = false;
 void deal_number(int x,int len, int mod) {
 	if (mod == 10) {
@@ -126,7 +126,7 @@ void Print() {
 	for (int i = 0; _out[i] != '\0'; i++) putch(_out[i]);
 }
 
-int printf(const char *fmt, ...) {putch('a');
+int printf(const char *fmt, ...) {
   int len = 0, len_tmp = 0;
   va_start(ap, fmt);
   while (*fmt != '\0') {
