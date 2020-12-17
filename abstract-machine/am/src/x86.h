@@ -1,4 +1,3 @@
-#include<stdio.h>
 // CPU rings
 #define DPL_KERN       0x0     // Kernel (ring 0)
 #define DPL_USER       0x3     // User (ring 3)
