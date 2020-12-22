@@ -14,7 +14,6 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 
 	vaddr_t ksp = *s0;
 	if ((*s0) != 0) {
-printf("55\n");
 		vaddr_t tep = cpu.esp;
 		cpu.esp = *s0;
 
@@ -32,6 +31,7 @@ printf("55\n");
 
 	rtl_li(s, s0, (ksp == 0) ? 8 : 3);
 	rtl_push(s, s0);
+	printf("%x\n", *s0);
 	rtl_li(s, s0, (s -> is_jmp ? s-> jmp_pc : s -> seq_pc));
 	rtl_push(s, s0);
 	rtl_li(s, s1, ret_addr);
