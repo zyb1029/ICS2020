@@ -1,5 +1,11 @@
 #include <monitor/difftest.h>
 
+static inline def_EHelper(ltr) {
+  printf("%x\n", *dsrc1);
+  while(1);
+  print_asm_template1(lidt);
+}
+
 static inline def_EHelper(lidt) {
   rtl_lm(s, s0, s->isa.mbase, s->isa.moff, 2);
   cpu.IDTR.size = (int16_t) *s0;
@@ -13,7 +19,6 @@ static inline def_EHelper(lgdt) {
   cpu.GDTR.size = (int16_t) *s0;
   rtl_lm(s, s1, s->isa.mbase, s->isa.moff + 2, 4);
   cpu.GDTR.addr = *s1;
-  printf("%x %x\n", *s1, *s0);
   print_asm_template1(lgdt);
 }
 
