@@ -86,7 +86,6 @@ static inline def_EHelper(iret) {
   rtl_pop(s, s0);
   cpu.cs = *s0;
 
-  printf("%x\n", *s0);
   rtl_pop(s, s0);
   cpu.eflags.val = *s0;
   if ((cpu.cs & 0x3) == 0x3) {
