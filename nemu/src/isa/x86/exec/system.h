@@ -100,9 +100,9 @@ static inline def_EHelper(iret) {
 	 rtl_li(s, s1, Tss_addr);
 	 rtl_li(s, s0, cpu.esp);
 	 rtl_sm(s, s1, 4, s0, 4);
-	 printf("%x\n", *s1);
 	 rtl_pop(s, s0);
 	 cpu.esp = *s0;
+	 printf("%x\n", *s0);
 
 	 rtl_pop(s, s0);
 	 rtl_li(s, s1, Tss_addr);
