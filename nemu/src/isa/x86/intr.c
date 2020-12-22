@@ -4,8 +4,13 @@
 void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	if ((cpu.cs & 0x3) == 0x3) {
 		vaddr_t gdt_addr = cpu.GDTR.addr + cpu.TR;
-		rtl_li(s, s0, gdt_addr);
-		rtl_lm(s, s1, s0, 0, 4);
+		rtl_li(s, s1, gdt_addr);
+		rtl_lm(s, s0, s1, 0, 4);
+		vaddr_t Tss_addr = (((*s0) & 0xffff0000) >> 16);
+		rtl_lm(s, s0, s1, 4, 4);
+		Tss_addr += (((*s0) & 0x000000ff) << 16);
+		Tss_addr += (((*s0))& 0xff000000);
+		printf("%x\n", Tss_addr);
 		
 	}
 	rtl_li(s, s0, cpu.eflags.val);
