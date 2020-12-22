@@ -8,6 +8,15 @@ static inline def_EHelper(lidt) {
   print_asm_template1(lidt);
 }
 
+static inline def_EHelper(lgdt) {
+  rtl_lm(s, s0, s->isa.mbase, s->isa.moff, 2);
+  cpu.GDTR.size = (int16_t) *ddest;
+  rtl_lm(s, s1, s->isa.mbase, s->isa.moff + 2, 4);
+  cpu.GDTR.addr = *s1;
+  printf("%x %x\n", *ddest, *s1);
+  print_asm_template1(lidt);
+}
+
 static inline def_EHelper(mov_r2cr) {
   assert(id_dest->reg == 3 || id_dest->reg == 0);
   assert(s->src1.width == 4);

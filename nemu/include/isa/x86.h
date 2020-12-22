@@ -56,6 +56,11 @@ typedef struct {
 	uint32_t cs;
 	uint32_t cr0;
 	uint32_t cr3;
+	uint32_t TR;
+	struct {
+		int16_t size;
+		vaddr_t addr;	
+	}GDTR;
 	bool INTR;
 } x86_CPU_state;
 
