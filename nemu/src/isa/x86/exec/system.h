@@ -104,7 +104,7 @@ static inline def_EHelper(iret) {
 	 rtl_pop(s, s0);
 	 rtl_li(s, s1, Tss_addr);
 	 rtl_sm(s, s1, 8, s0, 4);
-	 cpu.esp = tep;printf("9 %x\n", tep);
+	 cpu.esp = tep;printf("9 %x %x\n", tep, s->jmp_pc);
   print_asm("iret");
 
 #ifndef __DIFF_REF_NEMU__
