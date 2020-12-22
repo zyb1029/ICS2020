@@ -4,16 +4,16 @@ static inline def_EHelper(lidt) {
   rtl_lm(s, s0, s->isa.mbase, s->isa.moff, 2);
   cpu.IDTR.size = (int16_t) *s0;
   rtl_lm(s, s1, s->isa.mbase, s->isa.moff + 2, 4);
-  printf("%x %x\n", *s0, *s1);
   cpu.IDTR.addr = *s1;
   print_asm_template1(lidt);
 }
 
 static inline def_EHelper(lgdt) {
   rtl_lm(s, s0, s->isa.mbase, s->isa.moff, 2);
-  cpu.GDTR.size = (int16_t) *ddest;
+  cpu.GDTR.size = (int16_t) *s0;
   rtl_lm(s, s1, s->isa.mbase, s->isa.moff + 2, 4);
   cpu.GDTR.addr = *s1;
+  printf("%x %x\n", *s1, *s0);
   print_asm_template1(lgdt);
 }
 
