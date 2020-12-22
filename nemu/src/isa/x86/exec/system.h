@@ -88,7 +88,6 @@ static inline def_EHelper(iret) {
 
   rtl_pop(s, s0);
   cpu.eflags.val = *s0;
-printf("666\n");
   if ((cpu.cs & 0x3) == 0x3) {
 	 vaddr_t gdt_addr = cpu.GDTR.addr + cpu.TR;
 	 rtl_li(s, s1, gdt_addr);
@@ -102,7 +101,7 @@ printf("666\n");
 	 rtl_sm(s, s1, 4, s0, 4);
 	 rtl_pop(s, s0);
 	 cpu.esp = *s0;
-	 printf("%x\n", *s0);
+	 printf("%x\n", cpu.cr3);
 
 	 rtl_pop(s, s0);
 	 rtl_li(s, s1, Tss_addr);
