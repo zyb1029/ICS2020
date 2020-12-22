@@ -3,7 +3,6 @@
 
 void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	if ((cpu.cs & 0x3) == 0x3) {
-		printf("%x\n", cpu.GDTR.addr + cpu.TR);
 	}
 	rtl_li(s, s0, cpu.eflags.val);
 	cpu.eflags.IF = 0;
