@@ -96,15 +96,18 @@ static inline def_EHelper(iret) {
 	 rtl_lm(s, s0, s1, 4, 4);
 	 Tss_addr += (((*s0) &0x000000ff) << 16);
 	 Tss_addr += ((*s0) & 0xff000000);
-	 rtl_li(s, s1, Tss_addr);
-	 rtl_li(s, s0, cpu.esp);
-	 if ((cpu.cs & 0x3) == 0x3) rtl_sm(s, s1, 4, s0, 4);
 	 rtl_pop(s, s0);
 	 vaddr_t tep = *s0;
 	 rtl_pop(s, s0);
 	 rtl_li(s, s1, Tss_addr);
 	 rtl_sm(s, s1, 8, s0, 4);
-	 cpu.esp = tep;printf("9 %x %x\n", tep, s->jmp_pc);
+
+	 rtl_li(s, s1, Tss_addr);
+	 rtl_li(s, s0, cpu.esp);
+	 if ((cpu.cs & 0x3) == 0x3) rtl_sm(s, s1, 4, s0, 4);
+
+	 cpu.esp = tep;
+	 printf("9 %x %x\n", tep, s->jmp_pc);
   print_asm("iret");
 
 #ifndef __DIFF_REF_NEMU__
