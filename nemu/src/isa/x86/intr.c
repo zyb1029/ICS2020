@@ -13,8 +13,8 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	rtl_lm(s, s0, s1, 4, 4);
 
 	vaddr_t ksp = *s0;
-printf("55\n");
 	if ((*s0) != 0) {
+printf("55\n");
 		vaddr_t tep = cpu.esp;
 		cpu.esp = *s0;
 
