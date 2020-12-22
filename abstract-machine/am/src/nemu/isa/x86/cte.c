@@ -65,7 +65,6 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
    gdt[5] = SEG16(STS_T32A,     &tss, sizeof(tss) - 1, DPL_KERN);
    set_gdt(gdt, sizeof(gdt[0]) * NR_SEG);
  // initialize TSS
-   printf("%x\n", &tss);
    tss.ss0 = KSEL(2);
    set_tr(KSEL(5));
 
