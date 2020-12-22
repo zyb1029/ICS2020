@@ -32,6 +32,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	rtl_push(s, s0);
 	rtl_li(s, s0, (s -> is_jmp ? s-> jmp_pc : s -> seq_pc));
 	rtl_push(s, s0);
+	printf("%x\n", *s0);
 	rtl_li(s, s1, ret_addr);
 	rtl_lm(s, s0, s1, NO * 8, 4);
 	vaddr_t Jpc = (*s0) & 0xffff;
