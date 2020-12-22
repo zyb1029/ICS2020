@@ -115,6 +115,7 @@ void init_proc() {
 static int count = 0;
 
 Context* schedule(Context *prev) {
+	printf("7887\n");
   current -> cp = prev;
   if (current == &pcb[0]) count = count + 1;
   if (current == &pcb[1]) current = &pcb[0];
