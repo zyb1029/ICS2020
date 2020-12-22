@@ -10,7 +10,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 		rtl_lm(s, s0, s1, 4, 4);
 		Tss_addr += (((*s0) & 0x000000ff) << 16);
 		Tss_addr += (((*s0))& 0xff000000);
-		printf("%x\n", Tss_addr);
+//		printf("%x\n", Tss_addr);
 		
 	}
 	rtl_li(s, s0, cpu.eflags.val);
