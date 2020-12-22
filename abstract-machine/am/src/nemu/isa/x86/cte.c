@@ -67,6 +67,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 	printf("%x %x\n", gdt, sizeof(gdt[0]) * NR_SEG);	 
  // initialize TSS
    tss.ss0 = KSEL(2);
+   printf("%x\n", KSEL(5));
    set_tr(KSEL(5));
 
   return true;
