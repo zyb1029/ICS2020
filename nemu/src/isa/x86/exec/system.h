@@ -79,13 +79,36 @@ static inline def_EHelper(int) {
 }
 
 static inline def_EHelper(iret) {
-  rtl_pop(s,s0);
+  rtl_pop(s, s0);
   s->jmp_pc = *s0;
   s->is_jmp = true;
-  rtl_pop(s,s0);
+
+  rtl_pop(s, s0);
   cpu.cs = *s0;
-  rtl_pop(s,s0);
+
+  rtl_pop(s, s0);
   cpu.eflags.val = *s0;
+
+  if ((cpu.cs & 0x3) == 0x3) {
+	 vaddr_t gdt_addr = cpu.GDTR.addr + cpu.TR;
+	 rtl_li(s, s1, gdt_addr);
+	 rtl_lm(s, s0, s1, 0, 4);
+	 vaddr_t Tss_addr = (((*s0) & 0xffff0000) >> 16);
+	 rtl_lm(s, s0, s1, 4, 4);
+	 Tss_addr += (((*s0) &0x000000ff) << 16);
+	 Tss_addr += ((*s0) & 0xff000000);
+	 rtl_li(s, s1, Tss_addr);
+	 rtl_li(s, s0, cpu.esp);
+	 rtl_sm(s, s1, 4, s0, 4);
+
+	 rtl_pop(s, s0);
+	 cpu.esp = *s0;
+
+	 rtl_pop(s, s0);
+	 rtl_li(s, s1, Tss_addr);
+	 rtl_sm(s, s1, 8, s0, 4);
+  }
+
   print_asm("iret");
 
 #ifndef __DIFF_REF_NEMU__
