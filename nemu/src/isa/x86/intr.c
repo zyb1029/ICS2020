@@ -2,6 +2,9 @@
 #include "local-include/rtl.h"
 
 void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
+	if ((cpu.cs & 0x3) == 0x3) {
+		printf("3233\n");	
+	}
 	rtl_li(s, s0, cpu.eflags.val);
 	cpu.eflags.IF = 0;
 	rtl_push(s, s0);
