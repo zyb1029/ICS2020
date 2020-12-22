@@ -16,7 +16,7 @@ void __am_vecnull();
 
 Context* __am_irq_handle(Context *c) {
 	printf("eax %x\n", c->eax);
-  __am_get_cur_as(c);/*
+  __am_get_cur_as(c);
   if (user_handler) {
     Event ev = {0};
     switch (c->irq) {
@@ -30,9 +30,9 @@ Context* __am_irq_handle(Context *c) {
     }
     c = user_handler(ev, c);
     assert(c != NULL);
-  }*/
+  }
   __am_switch(c);
-	printf("eax %x\n", c->eax);
+	printf("eax %x\n", c->cr3);
 
   return c;
 }
