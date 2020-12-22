@@ -14,7 +14,7 @@ static inline def_EHelper(lgdt) {
   rtl_lm(s, s1, s->isa.mbase, s->isa.moff + 2, 4);
   cpu.GDTR.addr = *s1;
   printf("%x %x\n", *ddest, *s1);
-  print_asm_template1(lidt);
+  print_asm_template1(lgdt);
 }
 
 static inline def_EHelper(mov_r2cr) {
