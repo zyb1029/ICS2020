@@ -15,7 +15,6 @@ void __am_vecnull();
 
 
 Context* __am_irq_handle(Context *c) {
-	printf("eax %x\n", c->esp3);
   __am_get_cur_as(c);
   if (user_handler) {
     Event ev = {0};
@@ -83,6 +82,7 @@ Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
   c->ecx = 0, c->eax = 0;
   c->irq = 0x81;
   c->eip = (intptr_t)(entry); c->cs = KSEL(1); c->eflags= 0x00000200;
+  c->esp3 = 0;
   return c;
 }
 
