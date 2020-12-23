@@ -45,7 +45,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		map(&(pcb->as), (char *)pcb->as.area.end - (i * 0x1000), 
 						(char *)loc_tep - (i * 0x1000), 0);
 	}
-	printf("666\n");
     #endif
 	assert(envp != NULL);
     int env_argc = 0;
@@ -66,6 +65,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			loc = loc - 1;
 		}
 	}
+	printf("666\n");
 
 	assert(argv != NULL);
     int argc = 0;
