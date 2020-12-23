@@ -72,7 +72,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	}
 	T++;
 	printf("%s\n", argv[1]);
-	if (T == 2)while(1);
+	if (T == 3)while(1);
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
