@@ -95,5 +95,6 @@ Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
   c->esp = (uintptr_t)kstack.end;
 //  c->esp  = (uintptr_t)((uintptr_t *)heap.end - 1);
   c->eip = (uintptr_t)(entry); c->cs = USEL(3); c->eflags = 0x00000200;
+  c->esp3 = 0;
   return c;
 }
