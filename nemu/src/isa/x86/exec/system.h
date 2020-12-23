@@ -88,7 +88,6 @@ static inline def_EHelper(iret) {
   cpu.cs = *s0;
   rtl_pop(s, s0);
   cpu.eflags.val = *s0;
-printf("iret\n");
 	 vaddr_t gdt_addr = cpu.GDTR.addr + cpu.TR;
 	 rtl_li(s, s1, gdt_addr);
 	 rtl_lm(s, s0, s1, 0, 4);
@@ -107,6 +106,7 @@ printf("iret\n");
 	 if ((cpu.cs & 0x3) == 0x3)
 		  rtl_sm(s, s1, 4, s0, 4);
 	 if (tep) cpu.esp = tep;
+printf("iret %x\n", s->jmp_pc);
   print_asm("iret");
 
 #ifndef __DIFF_REF_NEMU__
