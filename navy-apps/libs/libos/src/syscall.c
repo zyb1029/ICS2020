@@ -70,7 +70,6 @@ extern char _end;
 static char* program_break = &_end;
 
 void *_sbrk(intptr_t increment) {
- //printf("%p\n", end);
   if (_syscall_(SYS_brk, (intptr_t)program_break + increment, (intptr_t)program_break, 0) == 0 ) {
 	if(increment > 0) memset(program_break, 0, increment);
 	program_break += increment;
@@ -96,7 +95,6 @@ int _gettimeofday(struct timeval *tv, struct timezone *tz) {
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
-   printf("   %x, %s\n", envp, envp[0]);
    return _syscall_(SYS_execve, (intptr_t)fname, (intptr_t) argv, (intptr_t) envp);
 }
 
