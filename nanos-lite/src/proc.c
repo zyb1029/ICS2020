@@ -7,6 +7,7 @@
 static PCB pcb[MAX_NR_PROC] __attribute__((used)) = {};
 static PCB pcb_boot = {};
 PCB *current = NULL;
+PCB *fg_pcb = &pcb[0];
 
 void switch_boot_pcb() {
   current = &pcb_boot;
@@ -117,8 +118,10 @@ static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
 
 void init_proc() {
 
-  context_uload(&pcb[0], "/bin/nterm", argv, envp);
-  context_uload(&pcb[1], "/bin/hello", argv, envp);
+  context_uload(&pcb[0], "/bin/bird", argv, envp);
+  context_uload(&pcb[1], "/bin/menu", argv, envp);
+  context_uload(&pcb[2], "/bin/pal", argv, envp);
+  context_uload(&pcb[3], "/bin/hello", argv, envp);
 //  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
   switch_boot_pcb();
   
@@ -133,10 +136,10 @@ void init_proc() {
 static int count = 0;
 
 Context* schedule(Context *prev) {
-  current -> cp = prev;current = &pcb[0]; 
-  if (current == &pcb[0]) count = count + 1;
-  if (current == &pcb[1]) current = &pcb[0];
-  if (count == 500)  count = 0, current = &pcb[1];	  
-  else current =  &pcb[0];
+  current -> cp = prev;
+  if (current != &pcb[3]) count = count + 1;
+  if (current == &pcb[3]) current = fg_pcb;
+  if (count == 500)  count = 0, current = &pcb[3];	  
+  else current =  fg_pcb;
   return current -> cp;
 }
