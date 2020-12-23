@@ -59,7 +59,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			else {
 				envp2[env_argc] = malloc(strlen(envp[env_argc]) + 1);
 				strcpy(envp2[env_argc], envp[env_argc]);
-printf("%s\n", envp2[env_argc]);
 				env_argc++;
 			}
 
