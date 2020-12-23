@@ -16,7 +16,6 @@ void call_main(uintptr_t *args) {
   }
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
-	  printf("%d\n", j);
 	  envp[j] = (char *)args[i];
 	  if(envp[j] == NULL)break;
 	  else now++;
