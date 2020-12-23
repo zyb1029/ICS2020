@@ -106,7 +106,7 @@ static inline def_EHelper(iret) {
 	 rtl_li(s, s1, Tss_addr);
 	 rtl_li(s, s0, cpu.esp);
 	 if ((cpu.cs & 0x3) == 0x3)
-		  rtl_sm(s, s1, 4, s0, 4);
+		  rtl_sm(s, s1, 4, s0, 4), printf("iret: %x\n", cpu.esp);
 	 if (tep && ((cpu.cs) & 0x3) == 0x3) cpu.esp = tep;
   print_asm("iret");
 
