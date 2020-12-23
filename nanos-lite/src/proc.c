@@ -65,8 +65,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			loc = loc - 1;
 		}
 	}
-	printf("666\n");
-
 	assert(argv != NULL);
     int argc = 0;
 	if (argv != NULL) {
@@ -86,6 +84,8 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		}
 	}
 	*loc = (uintptr_t)argc;
+	printf("666\n");
+
     
 	#ifdef HAS_VME 
     uint32_t delta = loc_tep - loc;
