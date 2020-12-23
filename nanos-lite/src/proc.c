@@ -10,7 +10,7 @@ PCB *current = NULL;
 
 void switch_boot_pcb() {
   current = &pcb_boot;
-	printf("schdule: %x\n", current->cp->eax);
+	printf("schdule: %x\n", pcb[0].cp->eax);
 }
 
 void hello_fun(void *arg) {
