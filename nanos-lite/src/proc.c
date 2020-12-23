@@ -37,7 +37,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     #ifdef HAS_VME    
 	protect(&(pcb->as)); // make copy of directory
     #endif
-
+printf("111\n");
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
 
@@ -49,7 +49,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 						(char *)loc_tep - (i * 0x1000), 0);
 	}
     #endif
-
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -70,7 +69,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		}
 	}
 	
-	printf("%s %s\n", argv2[0], argv2[1]);
 	assert(argv != NULL);
     int argc = 0;
 	if (argv != NULL) {
