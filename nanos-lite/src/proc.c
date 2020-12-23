@@ -28,6 +28,8 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
+static int T = 0;
+
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
     #ifdef HAS_VME    
 	protect(&(pcb->as)); // make copy of directory
@@ -68,7 +70,9 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			loc = loc - 1;
 		}
 	}
+	T++;
 	printf("%s\n", argv[1]);
+	if (T == 2)while(1);
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
