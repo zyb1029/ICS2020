@@ -108,7 +108,7 @@ static inline def_EHelper(iret) {
 	 if ((cpu.cs & 0x3) == 0x3)
 		  rtl_sm(s, s1, 4, s0, 4);
 	 if (tep) cpu.esp = tep;
-	 printf("touch iret\n");
+	 printf("%x\n", tep);
   print_asm("iret");
 
 #ifndef __DIFF_REF_NEMU__
