@@ -3,10 +3,10 @@
 #include <assert.h>
 #include <string.h>
 int main(int argc, char *argv[], char *envp[]);
-char *argv[64];
-char *envp[64];
 extern char **environ;
 void call_main(uintptr_t *args) {
+  char *argv[64];
+  char *envp[64];
   printf("%p\n", argv[0]);
   int argc = (int)args[0];
   int now = 1;
