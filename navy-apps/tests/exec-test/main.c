@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
   sprintf(buf, "%d", n + 1);
   char *p;
   p = (char *)0xbffffec4;
-  printf("%s", p);
+  printf("%s\n", p);
   execl(argv[0], argv[0], buf, NULL);
   return 0;
 }
