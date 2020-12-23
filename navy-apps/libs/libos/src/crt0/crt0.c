@@ -5,6 +5,7 @@
 int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
+	printf("111\n");
   char *argv[64];
 static char *envp[64];
   int argc = (int)args[0];
