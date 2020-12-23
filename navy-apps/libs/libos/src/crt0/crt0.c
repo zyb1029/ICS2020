@@ -21,7 +21,6 @@ void call_main(uintptr_t *args) {
 	  else now++;
   }
   environ = envp;
-  printf("666\n", argv[0]);
   exit(main(argc, argv, envp));
   assert(0);
 }
