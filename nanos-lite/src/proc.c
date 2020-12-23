@@ -32,6 +32,9 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 static char *argv2[15];
 static char *envp2[15];
 
+static char argv3[15][256];
+static char envp3[15][256];
+
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
     #ifdef HAS_VME    
 	protect(&(pcb->as)); // make copy of directory
@@ -55,8 +58,8 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 				break;
 			}
 			else {
-				envp2[env_argc] = malloc(strlen(envp[env_argc]) + 1);
-				strcpy(envp2[env_argc], envp[env_argc]);
+				strcpy(envp3[env_argc], envp[env_argc]);
+				envp2[env_argc] = envp3[env_argc];
 				env_argc++;
 			}
 
@@ -74,8 +77,8 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 				break;
 			}
 			else {
-				argv2[argc] = malloc(strlen(argv[argc]) + 1);
-				strcpy(argv2[argc], argv[argc]);
+				strcpy(argv3[argc], argv[argc]);
+				argv2[argc] = argv3[argc];
 				argc++;
 			}
 		for (int i = argc; i >= 0; i--){
