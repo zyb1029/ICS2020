@@ -75,8 +75,6 @@ void do_syscall(Context *c) {
 			ex_flag = true;
 			context_uload(current, (char *)c->GPR2,(char **)c->GPR3, (char **)c->GPR4);
 			switch_boot_pcb();
-			c->GPRx = -1;
-			printf("switch\n");
 			yield();
 		}
 		break;
