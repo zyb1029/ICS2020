@@ -56,7 +56,9 @@ inline void __am_switch(Context *c) {
 		loc = loc + (((0x101b5e) & ~0x3fffff) >> 22);
 		printf("%x\n", *loc);
 	}
+		printf("1 %x\n", c->cr3);
     set_cr3(c->cr3);
+		printf("2 %x\n", c->cr3);
   }
 }
 
