@@ -97,7 +97,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	st = (uintptr_t *)pcb->as.area.end;
 	st = st - delta;
     #endif
-			printf("%x\n", st);
+			printf("%x\n", loc);
     
 	#ifndef HAS_VME
 	pcb -> as.ptr = 0;
