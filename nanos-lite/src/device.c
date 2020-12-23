@@ -30,6 +30,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 	  AM_INPUT_KEYBRD_T ev = io_read(AM_INPUT_KEYBRD);
 	  if (ev.keycode == AM_KEY_NONE) return 0;
 	  if (ev.keycode == 2) fg_pcb = 0;
+	  if (ev.keycode == 3) fg_pcb = 1;
+	  if (ev.keycode == 4) fg_pcb = 2;
 	  sprintf(tep, "%s %s\n", ev.keydown ? "kd" : "ku", keyname[ev.keycode]);
   }
   int event_len = strlen(tep);
