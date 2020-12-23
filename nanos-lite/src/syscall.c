@@ -35,7 +35,7 @@ void do_syscall(Context *c) {
 		p = (char *) c->GPR3;
 		c->GPRx = fs_read(c->GPR2, p, c->GPR4);
 		break;
-	case SYS_write:
+	case SYS_write:yield();
 		if (c->GPR2 == 0) {
 			c->GPRx = -1;
 		} 
