@@ -33,6 +33,7 @@ static char *addr;
 
 void *malloc(size_t size) {
   if (addr == NULL) addr = (void *)ROUNDUP(heap.start, 8);
+  printf("malloc: %x %x\n", addr, size);
   size = (size_t)ROUNDUP(size, 8);
   char *old = addr;
   addr += size;
