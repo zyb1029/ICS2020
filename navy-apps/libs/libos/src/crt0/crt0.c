@@ -9,7 +9,7 @@ void call_main(uintptr_t *args) {
   char *argv[64];
   int argc = (int)args[0];
   int now = 1;
-  printf("%x  8  ,\n", args[0]);
+  printf("%x  8  ,\n", args);
   for (int i = now, j = 0; ; i++, j++){
 	  argv[j] = (char *)args[i];
 	  if(argv[j] == NULL)break;
