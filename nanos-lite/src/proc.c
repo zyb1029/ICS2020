@@ -131,7 +131,6 @@ void init_proc() {
 static int count = 0;
 
 Context* schedule(Context *prev) {
-	printf("schdule: %x 8\n", pcb[0].cp->eax);
   current -> cp = prev;current = &pcb[0]; 
 	printf("schdule: %x\n", current->cp->eax);
   return current -> cp;
