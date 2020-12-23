@@ -7,7 +7,7 @@ static BDF_Font *font = NULL;
 static SDL_Surface *screen = NULL;
 Terminal *term = NULL;
 
-void builtin_sh_run(char * argv[]);
+void builtin_sh_run();
 void extern_app_run(const char *app_path);
 
 int main(int argc, char *argv[]) {
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   screen = SDL_SetVideoMode(win_w, win_h, 32, SDL_HWSURFACE);
   setenv("PATH", "/bin", 0);
   term = new Terminal(W, H);
-  if (argc) { builtin_sh_run(argv); }
+  if (argc < 2) { builtin_sh_run(); }
   else { extern_app_run(argv[1]); }
 
   // should not reach here
