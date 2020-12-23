@@ -103,7 +103,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     
     #ifdef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)st;
-	printf("%x\n", st);
 	#endif
 	
 	#ifndef HAS_VME
