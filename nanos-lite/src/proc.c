@@ -7,7 +7,7 @@
 static PCB pcb[MAX_NR_PROC] __attribute__((used)) = {};
 static PCB pcb_boot = {};
 PCB *current = NULL;
-PCB *fg_pcb = &pcb[0];
+int fg_pcb = 0;
 
 void switch_boot_pcb() {
   current = &pcb_boot;
@@ -138,8 +138,8 @@ static int count = 0;
 Context* schedule(Context *prev) {
   current -> cp = prev;
   if (current != &pcb[3]) count = count + 1;
-  if (current == &pcb[3]) current = fg_pcb;
+  if (current == &pcb[3]) current = &pcb[fg_pcb];
   if (count == 500)  count = 0, current = &pcb[3];	  
-  else current =  fg_pcb;
+  else current =  &pcb[fg_pcb];
   return current -> cp;
 }
