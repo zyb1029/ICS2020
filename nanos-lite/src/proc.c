@@ -89,6 +89,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		}
 	}
 	T++;
+	printf("%s %s\n", argv2[0], argv2[1]);
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
