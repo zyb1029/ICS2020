@@ -18,7 +18,7 @@ Context* __am_irq_handle(Context *c) {
   __am_get_cur_as(c);
   if (user_handler) {
     Event ev = {0};
-	printf("%d\n", c->irq);
+	printf("%x\n", c->irq);
     switch (c->irq) {
 	  case 0x20:
 		ev.event = EVENT_IRQ_TIMER;break;
