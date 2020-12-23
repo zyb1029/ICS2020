@@ -22,7 +22,6 @@ static char *envp[64];
 	  else now++;
   }
   environ = envp;
-  printf("%d %s\n", argc, argv[0]);
   exit(main(argc, argv, environ));
   assert(0);
 }
