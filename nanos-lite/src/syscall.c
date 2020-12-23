@@ -35,8 +35,8 @@ void do_syscall(Context *c) {
 		p = (char *) c->GPR3;
 		c->GPRx = fs_read(c->GPR2, p, c->GPR4);
 		break;
-	case SYS_write:yield();
-	printf("666\n");
+	case SYS_write:
+		yield();
 		if (c->GPR2 == 0) {
 			c->GPRx = -1;
 		} 
@@ -71,7 +71,6 @@ void do_syscall(Context *c) {
 	case SYS_execve:
 		if (fs_open((char *)c->GPR2, 0, 0)== -1) {
 			c->GPRx = -2;
-			printf("666\n");
 		}
 		else {
 			ex_flag = true;
