@@ -80,7 +80,7 @@ Context* kcontext(Area kstack, void (*entry)(void *), void *arg) {
   c->edi = 0, c->esi = 0, c->ebp = 0, c->esp = 0, c->ebx = 0, c->edx = 0;
   c->ecx = 0, c->eax = 0;
   c->irq = 0x81;
-  c->eip = (intptr_t)(entry); c->cs = KSEL(1); c->eflags= 0x00000200;
+  c->eip = (intptr_t)(entry); c->cs = KSEL(1); c->eflags= 0x0;//0x00000200;
   c->esp3 = 0; c->ss3 = 0;
   return c;
 }
