@@ -3,12 +3,12 @@
 #include <assert.h>
 #include <string.h>
 int main(int argc, char *argv[], char *envp[]);
+char *argv[64];
+char *envp[64];
 extern char **environ;
 void call_main(uintptr_t *args) {
   printf("%p\n", args[0]);
   int argc = (int)args[0];
-  char *argv[64];
-  char *envp[64];
   int now = 1;
   for (int i = now, j = 0; ; i++, j++){
 	  argv[j] = (char *)args[i];
