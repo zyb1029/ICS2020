@@ -18,7 +18,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	rtl_lm(s, s0, s1, 8, 4);
 	rtl_li(s, s1, *s0);
 	rtl_push(s, s1);
-		
+	printf("%x\n", cpu.esp);	
 	rtl_li(s, s0, tep);
 	rtl_push(s, s0);
 	rtl_li(s, s0, cpu.eflags.val);
