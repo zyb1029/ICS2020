@@ -50,6 +50,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     #endif
 	assert(envp != NULL);
     int env_argc = 0;
+	printf("      %p\n", envp);
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
 			if (envp[env_argc] == NULL) {
