@@ -59,7 +59,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 				break;
 			}
 			else {
-				envp2[env_argc] = malloc(sizeof(envp[env_argc]) + 10);
+				envp2[env_argc] = malloc(strlen(envp[env_argc]) + 1);
 				strcpy(envp2[env_argc], envp[env_argc]);
 				env_argc++;
 			}
@@ -79,9 +79,8 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 				break;
 			}
 			else {
-				argv2[argc] = malloc(sizeof(argv[argc]) + 1);
+				argv2[argc] = malloc(strlen(argv[argc]) + 1);
 				strcpy(argv2[argc], argv[argc]);
-				printf("%x %s %d\n", loc, argv2[argc], argc);
 				argc++;
 			}
 		for (int i = argc; i >= 0; i--){
@@ -93,7 +92,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
-	printf("%x %s\n", loc, argv[0]);
+	printf("%x %s\n", loc, argv2[0]);
 	if (T == 3)while(1);
     
 	#ifdef HAS_VME 
