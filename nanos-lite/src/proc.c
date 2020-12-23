@@ -119,7 +119,7 @@ Context* schedule(Context *prev) {
   current -> cp = prev;
   if (current == &pcb[0]) count = count + 1;
   if (current == &pcb[1]) current = &pcb[0];
-  if (count == 500)  count = 0, current = &pcb[1];	  
+  if (count == 1)  count = 0, current = &pcb[1];	  
   else current =  &pcb[0];
   return current -> cp;
 }
