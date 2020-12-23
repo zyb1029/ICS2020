@@ -30,8 +30,8 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 
 static int T = 0;
 
-static char argv2[15][255];
-static char envp2[15][255];
+static char *argv2[15];
+static char *envp2[15];
 
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
     #ifdef HAS_VME    
@@ -55,10 +55,11 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
 			if (envp[env_argc] == NULL) {
-				envp2[env_argc][0] = '\0';
+				envp2[env_argc] = NULL;
 				break;
 			}
 			else {
+				envp2[env_argc] = malloc(sizeof(envp[env_argc]) + 1);
 				strcpy(envp2[env_argc], envp[env_argc]);
 				env_argc++;
 			}
@@ -74,10 +75,11 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	if (argv != NULL) {
 		for (int i = 0; ; i++)
 			if (argv[argc] == NULL) { 
-				argv2[argc][0] = '\0';
+				argv2[argc] = NULL;
 				break;
 			}
 			else {
+				argv2[argc] = malloc(sizeof(argv[argc]) + 1);
 				strcpy(argv2[argc], argv[argc]);
 				argc++;
 			}
