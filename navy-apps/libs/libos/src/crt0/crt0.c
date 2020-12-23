@@ -22,7 +22,7 @@ void call_main(uintptr_t *args) {
 	  else now++;
   }
   environ = envp;
-  printf("%p\n", environ);
+  printf("%p %s\n", environ, environ[0]);
   exit(main(argc, argv, envp));
   assert(0);
 }
