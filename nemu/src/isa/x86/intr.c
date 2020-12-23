@@ -11,10 +11,10 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	Tss_addr += (((*s0))& 0xff000000);
 	rtl_li(s, s1, Tss_addr);
 	rtl_lm(s, s0, s1, 4, 4);
-	printf("%x\n", cpu.esp);	
 
 	vaddr_t ksp = *s0;
 	vaddr_t tep = cpu.esp;
+	printf("%x\n", ksp);
 	if (ksp != 0) cpu.esp = ksp;
 	rtl_lm(s, s0, s1, 8, 4);
 	rtl_li(s, s1, *s0);
