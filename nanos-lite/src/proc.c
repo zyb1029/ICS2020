@@ -103,7 +103,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     #ifdef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)st;
 	#endif
-	
+	printf("%x\n",&(pcb->cp->GPRx));	
 	#ifndef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)loc;
 	#endif
@@ -132,6 +132,7 @@ static int count = 0;
 
 Context* schedule(Context *prev) {
   current -> cp = prev;current = &pcb[0]; 
+	printf("schdule: %x\n", current->cp->eax);
   return current -> cp;
   if (current == &pcb[0]) count = count + 1;
   if (current == &pcb[1]) current = &pcb[0];
