@@ -39,7 +39,7 @@ static inline def_EHelper(pusha) {
   print_asm("pusha");
 }
 
-static inline def_EHelper(popa) {
+static inline def_EHelper(popa) {printf("  %x\n", cpu.esp);
   if (s->isa.is_operand_size_16) assert(0);
   int size = 4;
   rtl_pop(s, s0);
