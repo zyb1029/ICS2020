@@ -102,7 +102,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     
     #ifdef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)st;
-	printf("schdule: %x\n", pcb[0].cp->eax);
+	printf("schdule: %x 8\n", pcb[0].cp->eax);
 	#endif
 	
 	#ifndef HAS_VME
