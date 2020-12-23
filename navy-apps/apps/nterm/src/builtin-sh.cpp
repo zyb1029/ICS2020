@@ -30,7 +30,7 @@ static char *argv[15];
 static char tep[15][256];
 
 static void sh_handle_cmd(const char *cmd) {
-	int len = strlen(cmd), lst = 0, bj = 0, argc = 1;
+	int len = strlen(cmd), lst = 0, bj = 0, argc = 0;
 	char *p = (char *)cmd;
 	p[len - 1] = '\0';
 	for(int i = 0; i < len;i++) 
@@ -40,7 +40,6 @@ static void sh_handle_cmd(const char *cmd) {
 			strcpy(tep[argc], p + lst), argv[argc] = tep[argc], argc++;
 			lst = i + 1;
 		}
-	argv[0] = tep[0];
 	argv[argc] = NULL;
 
     if(execvp(name, argv) == -1)
