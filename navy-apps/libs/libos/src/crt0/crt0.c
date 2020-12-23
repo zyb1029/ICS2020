@@ -23,6 +23,6 @@ void call_main(uintptr_t *args) {
   }
   environ = envp;
   printf("%p %s\n", environ, environ[0]);
-  exit(main(argc, argv, envp));
+  exit(main(argc, argv, environ));
   assert(0);
 }
