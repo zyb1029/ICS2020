@@ -38,7 +38,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     #endif
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
-printf("%x\n", loc);
     #ifdef HAS_VME
 	uintptr_t *loc_tep;
 	loc_tep = loc + 1;
@@ -86,8 +85,6 @@ printf("%x\n", loc);
 		}
 	}
 	*loc = (uintptr_t)argc;
-	Area area;
-	area.end = (void *)loc;
     
 	#ifdef HAS_VME 
     uint32_t delta = loc_tep - loc;
@@ -99,8 +96,11 @@ printf("%x\n", loc);
 	#ifndef HAS_VME
 	pcb -> as.ptr = 0;
 	#endif
-
-	pcb -> cp = ucontext(&(pcb->as), area, (void *)loader(pcb, filename));
+	
+	Area Stack_area;
+	Stack_area.end = (char *)pcb + sizeof(PCB);
+	 	
+	pcb -> cp = ucontext(&(pcb->as), Stack_area, (void *)loader(pcb, filename));
     
     #ifdef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)st;
