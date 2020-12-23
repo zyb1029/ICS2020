@@ -5,7 +5,6 @@
 int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args) {
-  printf("666\n");
   int argc = (int)args[0];
   char *argv[64];
   char *envp[64];
@@ -22,6 +21,7 @@ void call_main(uintptr_t *args) {
 	  else now++;
   }
   environ = envp;
+  printf("666\n");
   exit(main(argc, argv, envp));
   assert(0);
 }
