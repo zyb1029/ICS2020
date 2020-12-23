@@ -14,7 +14,6 @@ static char *envp[64];
 	  if(argv[j] == NULL)break;
 	  else now++;
   }
-printf("45345\n");
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
 	  envp[j] = (char *)args[i];
