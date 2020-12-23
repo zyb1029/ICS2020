@@ -77,7 +77,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
-	printf("%x %x\n", loc, argv[0]);
+	printf("%x %x\n", loc, argv[1]);
 	if (T == 3)while(1);
     
 	#ifdef HAS_VME 
