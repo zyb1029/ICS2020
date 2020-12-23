@@ -118,8 +118,8 @@ static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
 void init_proc() {
 
   context_uload(&pcb[0], "/bin/pal", argv, envp);
-  context_uload(&pcb[1], "/bin/hello", argv, envp);
-  //context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
+//  context_uload(&pcb[1], "/bin/hello", argv, envp);
+  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
   switch_boot_pcb();
   
   Log("Initializing processes...");
