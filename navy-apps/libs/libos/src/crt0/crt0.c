@@ -21,7 +21,7 @@ void call_main(uintptr_t *args) {
 	  if(envp[j] == NULL)break;
 	  else now++;
   }
-  printf("%s\n", envp[0]);
+  printf("%p\n", args+now);
   environ = envp;
   exit(main(argc, argv, envp));
   assert(0);
