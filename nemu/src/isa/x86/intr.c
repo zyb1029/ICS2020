@@ -22,7 +22,6 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 		
 	rtl_li(s, s0, tep);
 	rtl_push(s, s0);
-	printf("r: %x \n", *s0);
 	rtl_li(s, s0, cpu.eflags.val);
 	cpu.eflags.IF = 0;
 	rtl_push(s, s0);
@@ -40,7 +39,6 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
 	rtl_li(s, s0, 0);
 	rtl_li(s, s1, Tss_addr);
 	rtl_sm(s, s1, 4, s0, 4);
-    printf("%x cc\n", cpu.esp);
   /* TODO: Trigger an interrupt/exception with ``NO''.
    * That is, use ``NO'' to index the IDT.
    */
