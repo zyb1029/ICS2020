@@ -42,7 +42,7 @@ void protect(AddrSpace *as) {
 		uint32_t *loc;
 		loc = (uint32_t *)updir;
 		loc = loc + (((0x101b5e) & ~0x3fffff) >> 22);
-		printf("%x\n", kas.ptr);
+		printf(" %x\n", kas.ptr);
 }
 
 void unprotect(AddrSpace *as) {
