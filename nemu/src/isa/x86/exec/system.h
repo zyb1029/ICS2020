@@ -86,7 +86,7 @@ static inline def_EHelper(iret) {
   s->is_jmp = true;
   rtl_pop(s, s0);
   cpu.cs = *s0;
-
+printf("111\n");
   rtl_pop(s, s0);
   cpu.eflags.val = *s0;
 
