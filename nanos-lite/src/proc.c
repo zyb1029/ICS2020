@@ -57,11 +57,11 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 				break;
 			}
 			else {
+printf("111\n");
 				envp2[env_argc] = malloc(strlen(envp[env_argc]) + 1);
 				strcpy(envp2[env_argc], envp[env_argc]);
 				env_argc++;
 			}
-printf("111\n");
 
 		for (int i = env_argc; i >= 0; i--){
 			*loc = (uintptr_t)envp2[i];
