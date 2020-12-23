@@ -68,7 +68,10 @@ void do_syscall(Context *c) {
 		c->GPRx = 0;  
 		break; 
 	case SYS_execve:
-		if (fs_open((char *)c->GPR2, 0, 0)== -1) c->GPRx = -2;
+		if (fs_open((char *)c->GPR2, 0, 0)== -1) {
+			c->GPRx = -2;
+			printf("666\n");
+		}
 		else {
 			ex_flag = true;
 			context_uload(current, (char *)c->GPR2, (char **)c->GPR3, (char **)c->GPR4);
