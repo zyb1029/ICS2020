@@ -79,7 +79,7 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
 	loc_pt = loc_pt + ((src & 0x003ff000) >> 12);
 	if (*loc_pt != 0) {
-	//	if (*loc_pt != (dst | 1)) printf("repeat mapping %x\n", src);
+		if (*loc_pt != (dst | 1)) printf("repeat mapping %x\n", src);
 		//assert(*loc_pt == (dst | 1));
 	}
 	else
@@ -94,7 +94,7 @@ Context* ucontext(AddrSpace *as, Area kstack, void *entry) {
   c->irq = 0x81;
   c->esp = (uintptr_t)kstack.end;
 //  c->esp  = (uintptr_t)((uintptr_t *)heap.end - 1);
-  c->eip = (uintptr_t)(entry); c->cs = USEL(3); c->eflags = 0x00000200;
+  c->eip = (uintptr_t)(entry); c->cs = USEL(3); c->eflags = 0;//0x00000200;
   c->esp3 = 0; c->ss3 = 0;
   return c;
 }
