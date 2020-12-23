@@ -84,8 +84,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		}
 	}
 	*loc = (uintptr_t)argc;
-	printf("666\n");
-
     
 	#ifdef HAS_VME 
     uint32_t delta = loc_tep - loc;
@@ -105,6 +103,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     
     #ifdef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)st;
+	printf("%x\n", st);
 	#endif
 	
 	#ifndef HAS_VME
