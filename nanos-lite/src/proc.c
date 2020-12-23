@@ -95,7 +95,6 @@ printf("%x\n", loc);
 	st = (uintptr_t *)pcb->as.area.end;
 	st = st - delta;
     #endif
-			printf("%x\n", loc);
     
 	#ifndef HAS_VME
 	pcb -> as.ptr = 0;
@@ -105,7 +104,6 @@ printf("%x\n", loc);
     
     #ifdef HAS_VME
 	pcb -> cp -> GPRx = (uintptr_t)st;
-	printf("%p\n", st);
 	#endif
 	
 	#ifndef HAS_VME
