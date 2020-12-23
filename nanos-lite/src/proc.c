@@ -118,7 +118,7 @@ static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
 void init_proc() {
 
   context_uload(&pcb[0], "/bin/exec-test", argv, envp);
-//  context_uload(&pcb[1], "/bin/hello", argv, envp);
+  context_uload(&pcb[1], "/bin/hello", argv, envp);
   //context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
   switch_boot_pcb();
   
@@ -134,7 +134,6 @@ static int count = 0;
 
 Context* schedule(Context *prev) {
   current -> cp = prev;current = &pcb[0]; 
-  return current -> cp;
   if (current == &pcb[0]) count = count + 1;
   if (current == &pcb[1]) current = &pcb[0];
   if (count == 500)  count = 0, current = &pcb[1];	  
