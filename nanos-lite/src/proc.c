@@ -28,7 +28,6 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 	pcb -> cp = kcontext(area, loc, arg);
 }
 
-static int T = 0;
 
 static char *argv2[15];
 static char *envp2[15];
@@ -50,11 +49,9 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     #endif
 	assert(envp != NULL);
     int env_argc = 0;
-	printf("      %s    0 \n", envp[0]);
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
 			if (envp[env_argc] == NULL) {
-				printf("iii %x %x\n", envp[env_argc], env_argc);
 				envp2[env_argc] = NULL;
 				break;
 			}
@@ -88,8 +85,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			loc = loc - 1;
 		}
 	}
-	T++;
-	if(T==2)while(1);
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
