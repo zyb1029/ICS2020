@@ -15,13 +15,13 @@ void call_main(uintptr_t *args) {
 	  if(argv[j] == NULL)break;
 	  else now++;
   }
-  printf("%s\n", argv[0]);
   now = now + 1;
   for (int i = now, j = 0; ; i++, j++){
 	  envp[j] = (char *)args[i];
 	  if(envp[j] == NULL)break;
 	  else now++;
   }
+  printf("%s\n", envp[0]);
   environ = envp;
   exit(main(argc, argv, envp));
   assert(0);
