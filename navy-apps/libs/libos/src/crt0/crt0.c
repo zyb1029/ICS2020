@@ -9,7 +9,6 @@ void call_main(uintptr_t *args) {
 static char *envp[64];
   int argc = (int)args[0];
   int now = 1;
-  printf("%x  8  ,\n", argc);
   for (int i = now, j = 0; ; i++, j++){
 	  argv[j] = (char *)args[i];
 	  if(argv[j] == NULL)break;
