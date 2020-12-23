@@ -31,11 +31,14 @@ static char tep[15][256];
 
 static void sh_handle_cmd(const char *cmd) {
 	int len = strlen(cmd), lst = 0, bj = 0, argc = 0;
+	char *p = (char *)cmd;
+	p[len - 1] = '\0';
 	for(int i = 0; i < len;i++) 
-		if (cmd[i] == ' ') {
-			cmd[i] = '\0';
-			if (!bj) strcpy(name, cmd + lst);
-			else strcpy(tep[argc++], cmd + lst), argv = tep[argc - 1];
+		if (p[i] == ' ') {
+			p[i] = '\0';
+			if (!bj) strcpy(name, p + lst);
+			else 
+				strcpy(tep[argc], p + lst), argv[argc] = tep[argc], argc++;
 			lst = i + 1;
 		}
 	argv[argc] = NULL;
