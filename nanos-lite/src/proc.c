@@ -98,7 +98,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	
 	Area Stack_area;
 	Stack_area.end = (char *)pcb + sizeof(PCB);
-	 	
+	 printf("%p\n", Stack_area.end);	
 	pcb -> cp = ucontext(&(pcb->as), Stack_area, (void *)loader(pcb, filename));
     
     #ifdef HAS_VME
