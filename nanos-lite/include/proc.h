@@ -18,6 +18,8 @@ typedef union {
 
 extern PCB *current;
 
+extern PCB *fg_pcb;
+
 Context* schedule(Context *prev);
 
 uintptr_t loader(PCB *pcb, const char *filename);

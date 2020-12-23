@@ -79,7 +79,7 @@ void map(AddrSpace *as, void *va, void *pa, int prot) {
 	else loc_pt = (uintptr_t *) ((*loc) & 0xfffff000);
 	loc_pt = loc_pt + ((src & 0x003ff000) >> 12);
 	if (*loc_pt != 0) {
-		if (*loc_pt != (dst | 1)) printf("repeat mapping %x\n", src);
+//		if (*loc_pt != (dst | 1)) printf("repeat mapping %x\n", src);
 		//assert(*loc_pt == (dst | 1));
 	}
 	else
