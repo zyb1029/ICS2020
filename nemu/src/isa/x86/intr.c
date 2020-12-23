@@ -2,7 +2,6 @@
 #include "local-include/rtl.h"
 
 void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr) {
-	printf("%x  s\n", cpu.esp);
 	vaddr_t gdt_addr = cpu.GDTR.addr + cpu.TR;
 	rtl_li(s, s1, gdt_addr);
 	rtl_lm(s, s0, s1, 0, 4);
