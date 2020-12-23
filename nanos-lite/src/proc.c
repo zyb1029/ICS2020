@@ -10,6 +10,7 @@ PCB *current = NULL;
 
 void switch_boot_pcb() {
   current = &pcb_boot;
+	printf("schdule: %x\n", current->cp->eax);
 }
 
 void hello_fun(void *arg) {
@@ -132,7 +133,6 @@ static int count = 0;
 
 Context* schedule(Context *prev) {
   current -> cp = prev;current = &pcb[0]; 
-	printf("schdule: %x\n", current->cp->eax);
   return current -> cp;
   if (current == &pcb[0]) count = count + 1;
   if (current == &pcb[1]) current = &pcb[0];
