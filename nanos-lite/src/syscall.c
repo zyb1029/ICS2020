@@ -74,6 +74,7 @@ void do_syscall(Context *c) {
 		else {
 			ex_flag = true;
 			context_uload(current, (char *)c->GPR2,(char **)c->GPR3, (char **)c->GPR4);
+	printf("schdule: %x\n", current->cp->eax);
 			switch_boot_pcb();
 			c->GPRx = -1;
 			printf("switch\n");
