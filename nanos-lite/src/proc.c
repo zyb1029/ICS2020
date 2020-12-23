@@ -53,13 +53,13 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
 			if (envp[env_argc] == NULL) {
+				printf("iii %x\n", envp[env_argc]);
 				envp2[env_argc] = NULL;
 				break;
 			}
 			else {
 				envp2[env_argc] = malloc(strlen(envp[env_argc]) + 1);
 				strcpy(envp2[env_argc], envp[env_argc]);
-				printf("iii %x\n", envp[env_argc]);
 				env_argc++;
 			}
 
