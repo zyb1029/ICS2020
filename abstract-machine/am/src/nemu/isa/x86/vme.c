@@ -49,7 +49,13 @@ void __am_get_cur_as(Context *c) {
 
 inline void __am_switch(Context *c) {
   if (vme_enable && c->cr3 != NULL) {
-	printf("%x\n", c->cr3);
+    if ((uintptr_t)c->cr3 == 0x2680000) {
+		printf("%x\n", c->cr3);
+		uint32_t *loc;
+		loc = (uint32_t *)c->cr3;
+		loc = loc + (((0x101b5e) & ~0x3fffff) >> 22);
+		printf("%x\n", *loc);
+	}
     set_cr3(c->cr3);
   }
 }
