@@ -23,12 +23,24 @@ static void sh_prompt() {
   sh_printf("sh> ");
 }
 
+static char name[256];
+
+static char *argv[15];
+
+static char tep[15][256];
 
 static void sh_handle_cmd(const char *cmd) {
-	char *p = (char *)cmd;
-	int len = strlen(p);
-	p[len - 1] = '\0';
-    if(execvp(p, NULL) == -1)
+	int len = strlen(cmd), lst = 0, bj = 0, argc = 0;
+	for(int i = 0; i < len;i++) 
+		if (cmd[i] == ' ') {
+			cmd[i] = '\0';
+			if (!bj) strcpy(name, cmd + lst);
+			else strcpy(tep[argc++], cmd + lst), argv = tep[argc - 1];
+			lst = i + 1;
+		}
+	argv[argc] = NULL;
+
+    if(execvp(name, argv) == -1)
 		fprintf(stderr, "\033[31m[ERROR]\033[0m Exec %s failed.\n\n", p);
 }
 
