@@ -16,7 +16,7 @@ void do_syscall(Context *c) {
   switch (a[0]) {
 	case SYS_exit:
 		if(ex_flag == true) {
-			context_uload(current, "/bin/menu", argv, env);
+			context_uload(current, "/bin/nterm", argv, env);
 			current->max_brk = 0;
 			switch_boot_pcb();
 			yield();
