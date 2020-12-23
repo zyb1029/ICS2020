@@ -8,7 +8,6 @@ void call_main(uintptr_t *args) {
   char *argv[64];
 static char *envp[64];
   int argc = (int)args[0];
-  if (argc == 2)while(1);
   int now = 1;
   printf("%x  8  ,\n", argc);
   for (int i = now, j = 0; ; i++, j++){
