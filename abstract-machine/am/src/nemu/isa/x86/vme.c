@@ -38,7 +38,7 @@ void protect(AddrSpace *as) {
   as->pgsize = PGSIZE;
   // map kernel space
   memcpy(updir, kas.ptr, PGSIZE);
-    if ((uintptr_t)updir  == 0x2680000) {
+    if (1) {
 		printf("%x\n", updir);
 		uint32_t *loc;
 		loc = (uint32_t *)updir;
