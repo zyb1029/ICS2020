@@ -29,10 +29,10 @@ void context_kload(PCB * pcb, void* loc, void* arg) {
 }
 
 static int T = 0;
-/*
+
 static char argv2[15][255];
 static char envp2[15][255];
-*/
+
 void context_uload(PCB * pcb, const char* filename, char *const argv[], char *const envp[]) {
     #ifdef HAS_VME    
 	protect(&(pcb->as)); // make copy of directory
@@ -54,10 +54,17 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     int env_argc = 0;
 	if (envp != NULL) {
 		for (int i = 0; ; i++)
-			if (envp[env_argc] == NULL) break;
-			else env_argc++;
+			if (envp[env_argc] == NULL) {
+				envp2[env_argc][0] = '\0';
+				break;
+			}
+			else {
+				strcpy(envp2[env_argc], envp[env_argc]);
+				env_argc++;
+			}
+
 		for (int i = env_argc; i >= 0; i--){
-			*loc = (uintptr_t)envp[i];
+			*loc = (uintptr_t)envp2[i];
 			loc = loc - 1;
 		}
 	}
@@ -66,10 +73,16 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     int argc = 0;
 	if (argv != NULL) {
 		for (int i = 0; ; i++)
-			if (argv[argc] == NULL) break;
-			else argc++;
+			if (argv[argc] == NULL) { 
+				argv2[argc][0] = '\0';
+				break;
+			}
+			else {
+				strcpy(argv2[argc], argv[argc]);
+				argc++;
+			}
 		for (int i = argc; i >= 0; i--){
-			*loc = (uintptr_t)argv[i];
+			*loc = (uintptr_t)argv2[i];
 			loc = loc - 1;
 		}
 	}
@@ -77,7 +90,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
-	printf("%x %x\n", loc, argv[1]);
+	printf("%x %x\n", loc, argv2[1]);
 	if (T == 3)while(1);
     
 	#ifdef HAS_VME 
