@@ -7,9 +7,9 @@ extern char **environ;
 static char *envp[64];
 void call_main(uintptr_t *args) {
   char *argv[64];
-  printf("%p 8\n", args[0]);
   int argc = (int)args[0];
   int now = 1;
+  printf("%p 8\n", argc);
   for (int i = now, j = 0; ; i++, j++){
 	  argv[j] = (char *)args[i];
 	  if(argv[j] == NULL)break;
