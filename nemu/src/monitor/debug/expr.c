@@ -1,5 +1,6 @@
 #include <isa.h>
 #include <memory/paddr.h>
+#include <memory/vaddr.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -278,7 +279,7 @@ uint32_t eval(int p, int q) {
 				uint32_t val;
 				val = eval(p + sum, q);
 				for (i = 0; i < sum; i++) {
-					val = paddr_read(val,4);
+					val = vaddr_ifetch(val, 4);
 				}
 				return val;
 			}
