@@ -98,7 +98,7 @@ static inline def_EHelper(iret) {
 	 Tss_addr += ((*s0) & 0xff000000);
 	 rtl_pop(s, s0);
 	 vaddr_t tep = *s0;
-	 printf("%x\n", tep);
+	 printf("%x %x\n", tep, cpu.cs);
 	 rtl_pop(s, s0);
 	 rtl_li(s, s1, Tss_addr);
 	 rtl_sm(s, s1, 8, s0, 4);
