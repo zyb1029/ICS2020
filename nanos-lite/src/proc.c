@@ -40,7 +40,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
 
-printf("111\n");
     #ifdef HAS_VME
 	uintptr_t *loc_tep;
 	loc_tep = loc + 1;
@@ -49,6 +48,7 @@ printf("111\n");
 						(char *)loc_tep - (i * 0x1000), 0);
 	}
     #endif
+printf("111\n");
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
