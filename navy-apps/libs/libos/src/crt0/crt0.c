@@ -7,7 +7,7 @@ char *argv[64];
 char *envp[64];
 extern char **environ;
 void call_main(uintptr_t *args) {
-  printf("%p\n", args[0]);
+  printf("%p\n", argv[0]);
   int argc = (int)args[0];
   int now = 1;
   for (int i = now, j = 0; ; i++, j++){
