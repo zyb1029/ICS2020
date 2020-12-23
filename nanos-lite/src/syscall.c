@@ -17,6 +17,7 @@ void do_syscall(Context *c) {
 	case SYS_exit:
 		if(ex_flag == true) {
 			context_uload(current, "/bin/menu", argv, env);
+			current->max_brk = 0;
 			switch_boot_pcb();
 			yield();
 		}
