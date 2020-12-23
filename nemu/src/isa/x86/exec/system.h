@@ -79,7 +79,6 @@ static inline def_EHelper(int) {
 }
 
 static inline def_EHelper(iret) {
-  printf("iret: %x\n", cpu.esp);
   rtl_pop(s, s0);
   s->jmp_pc = *s0;
   s->is_jmp = true;
@@ -108,7 +107,7 @@ static inline def_EHelper(iret) {
 	 if ((cpu.cs & 0x3) == 0x3) rtl_sm(s, s1, 4, s0, 4);
 
 	 cpu.esp = tep;
-	 printf("9 %x %x\n", tep, s->jmp_pc);
+	 printf("iret: %x %x\n", tep, s->jmp_pc);
   print_asm("iret");
 
 #ifndef __DIFF_REF_NEMU__
