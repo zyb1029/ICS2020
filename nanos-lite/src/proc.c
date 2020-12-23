@@ -65,6 +65,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 
 		for (int i = env_argc; i >= 0; i--){
 			*loc = (uintptr_t)envp2[i];
+			printf("%x\n", loc);
 			loc = loc - 1;
 		}
 	}
