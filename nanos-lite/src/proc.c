@@ -88,6 +88,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		}
 	}
 	T++;
+	if(T==2)while(1);
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
