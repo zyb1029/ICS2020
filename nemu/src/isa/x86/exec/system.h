@@ -1,7 +1,9 @@
 #include <monitor/difftest.h>
 
 static inline def_EHelper(ltr) {
-  cpu.TR = (uint16_t)*dsrc1;
+  rtl_li(s, s1, 0);
+  rtl_add(s, s0, s1, dsrc1);
+  cpu.TR = (uint16_t)*s0;
   print_asm_template1(lidt);
 }
 
