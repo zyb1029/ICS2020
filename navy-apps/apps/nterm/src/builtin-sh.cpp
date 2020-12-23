@@ -34,7 +34,7 @@ static void sh_handle_cmd(const char *cmd) {
 	char *p = (char *)cmd;
 	p[len - 1] = '\0';
 	for(int i = 0; i < len;i++) 
-		if (p[i] == ' ') {
+		if (p[i] == ' ' || p[i] == '\0') {
 			p[i] = '\0';
 			if (!bj) strcpy(name, p + lst), bj = 1;
 			else 
