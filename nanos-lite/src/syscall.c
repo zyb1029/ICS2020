@@ -36,7 +36,6 @@ void do_syscall(Context *c) {
 		c->GPRx = fs_read(c->GPR2, p, c->GPR4);
 		break;
 	case SYS_write:
-		yield();
 		if (c->GPR2 == 0) {
 			c->GPRx = -1;
 		} 
