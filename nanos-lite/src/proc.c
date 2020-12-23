@@ -48,7 +48,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 						(char *)loc_tep - (i * 0x1000), 0);
 	}
     #endif
-printf("111\n");
 	assert(envp != NULL);
     int env_argc = 0;
 	if (envp != NULL) {
@@ -62,6 +61,7 @@ printf("111\n");
 				strcpy(envp2[env_argc], envp[env_argc]);
 				env_argc++;
 			}
+printf("111\n");
 
 		for (int i = env_argc; i >= 0; i--){
 			*loc = (uintptr_t)envp2[i];
