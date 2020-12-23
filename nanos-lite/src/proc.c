@@ -59,9 +59,9 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 		}
 	}
 	
-	assert(envp != NULL);
+	assert(argv != NULL);
     int argc = 0;
-	if (envp != NULL) {
+	if (argv != NULL) {
 		for (int i = 0; ; i++)
 			if (argv[argc] == NULL) break;
 			else argc++;
