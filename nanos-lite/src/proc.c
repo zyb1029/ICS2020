@@ -81,7 +81,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 			else {
 				argv2[argc] = malloc(sizeof(argv[argc]) + 1);
 				strcpy(argv2[argc], argv[argc]);
-				printf("%x %s %d\n", loc, argv2[0], argc);
+				printf("%x %s %d\n", loc, argv2[argc], argc);
 				argc++;
 			}
 		for (int i = argc; i >= 0; i--){
