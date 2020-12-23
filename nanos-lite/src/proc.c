@@ -92,7 +92,6 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
 	*loc = (uintptr_t)argc;
 	Area area;
 	area.end = (void *)loc;
-	printf("%x %s\n", loc, argv2[0]);
     
 	#ifdef HAS_VME 
     uint32_t delta = loc_tep - loc;
