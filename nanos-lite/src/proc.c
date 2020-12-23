@@ -38,7 +38,7 @@ void context_uload(PCB * pcb, const char* filename, char *const argv[], char *co
     #endif
 	uintptr_t *loc;
 	loc = ((uintptr_t *)new_page(8) - 1);
-
+printf("%x\n", loc);
     #ifdef HAS_VME
 	uintptr_t *loc_tep;
 	loc_tep = loc + 1;
