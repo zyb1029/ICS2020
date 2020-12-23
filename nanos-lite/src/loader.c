@@ -27,6 +27,8 @@ static inline void* pg_alloc2(int n) {
 	return p;	
 }
 
+static char p[1024];
+
 uintptr_t loader(PCB *pcb, const char *filename) {
 	  assert(pcb != NULL);
       uint32_t head_addr;
@@ -49,7 +51,9 @@ uintptr_t loader(PCB *pcb, const char *filename) {
 		return 0;	  
 	  }
 	  uintptr_t addr = elf_head.e_entry;
-	  Elf_Phdr *phdr = (Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
+	  Elf_Phdr *phdr = (Elf_Phdr *)p;
+	  //(Elf_Phdr *)malloc(sizeof(Elf_Phdr) * elf_head.e_phnum);
+	  assert((sizeof(Elf_Phdr) * elf_head.e_phnum) < 1024);
 	  ramdisk_read(phdr, elf_head.e_phoff + head_addr, sizeof(Elf_Phdr) * elf_head.e_phnum);
 	  for (int i = 0; i < elf_head.e_phnum; i++){
 		 uintptr_t VirtAddr = phdr[i].p_vaddr;
