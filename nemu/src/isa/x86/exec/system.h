@@ -2,7 +2,7 @@
 
 static inline def_EHelper(ltr) {
   rtl_li(s, s1, 0);
-  rtl_add(s, s0, s1, dsrc1);
+  rtl_add(s, s0, s1, ddest);
   cpu.TR = (uint16_t)*s0;
   print_asm_template1(lidt);
 }
