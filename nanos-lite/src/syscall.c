@@ -69,7 +69,6 @@ void do_syscall(Context *c) {
 		c->GPRx = 0;  
 		break; 
 	case SYS_execve:
-	printf("e45654345\n");
 		if (fs_open((char *)c->GPR2, 0, 0)== -1) {
 			c->GPRx = -2;
 		}
@@ -78,6 +77,7 @@ void do_syscall(Context *c) {
 			context_uload(current, (char *)c->GPR2,(char **)c->GPR3, (char **)c->GPR4);
 			switch_boot_pcb();
 			c->GPRx = -1;
+	printf("e45654345\n");
 			yield();
 		}
 		break;
