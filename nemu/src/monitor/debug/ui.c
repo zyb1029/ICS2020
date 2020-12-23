@@ -277,10 +277,10 @@ static int cmd_d(char *args) {
 	return 0;	
 }
 void ui_mainloop() {
-  if (is_batch_mode()) {
+  /*if (is_batch_mode()) {
     cmd_c(NULL);
     return;
-  }
+  }*/
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
