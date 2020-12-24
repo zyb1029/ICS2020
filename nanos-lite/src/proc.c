@@ -118,10 +118,10 @@ static char *envp[] = {"PATH/bin/:/usr/bin/", NULL};
 
 void init_proc() {
 
-  context_uload(&pcb[0], "/bin/bird", argv, envp);
+  context_uload(&pcb[0], "/bin/menu", argv, envp);
   context_uload(&pcb[1], "/bin/menu", argv, envp);
   context_uload(&pcb[2], "/bin/menu", argv, envp);
-  context_uload(&pcb[3], "/bin/menu", argv, envp);
+  context_uload(&pcb[3], "/bin/hello", argv, envp);
 //  context_kload(&pcb[1], (void *)hello_fun, (void *)"-bb");
   switch_boot_pcb();
   
