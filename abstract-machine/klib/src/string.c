@@ -1,5 +1,6 @@
 #include <klib.h>
 #include <stdint.h>
+#include <klib-macros.h>
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 // finish testing
